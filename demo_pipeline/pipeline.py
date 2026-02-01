@@ -1,15 +1,15 @@
-import os
 import json
 from textwrap import dedent
 from typing import List, Dict
 
 import pandas as pd
-from openai import OpenAI
+
+from .llm_clients import get_llm_client
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_colwidth', None)
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = get_llm_client()
 
 
 DEFAULT_REQUIREMENTS: List[Dict[str, str]] = [
@@ -84,23 +84,10 @@ def analyze_requirements_with_llm(
         """
     )
 
-    user_prompt = {
-        "role": "user",
-        "content": f"Requirements:\\n{requirements}\\n\\nHDL code:\\n{hdl_code}",
-    }
-
-    response = client.responses.create(
-        model="gpt-4.1-mini",
-        input=[{"role": "system", "content": system_prompt}, user_prompt],
-    )
-
-    # Responses API returns a structured object; pull the raw text and parse JSON.
-    content = (
-        getattr(response, "output_text", None)
-        or (response.output[0].content[0].text if getattr(response, "output", None) else "")
-    )
+    user_content = f"Requirements:\\n{requirements}\\n\\nHDL code:\\n{hdl_code}"
+    content = client.complete(system_prompt, user_content)
     try:
-        return json.loads(content)
+        return json.loads(_extract_json(content))
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"Failed to parse LLM output: {content}") from exc
 
@@ -122,24 +109,34 @@ def normalize_requirements_with_llm(freeform_requirements: List[str]) -> List[Di
         """
     )
 
-    user_prompt = {
-        "role": "user",
-        "content": f"Free-form requirements:\\n{freeform_requirements}",
-    }
-
-    response = client.responses.create(
-        model="gpt-4.1-mini",
-        input=[{"role": "system", "content": system_prompt}, user_prompt],
-    )
-
-    content = (
-        getattr(response, "output_text", None)
-        or (response.output[0].content[0].text if getattr(response, "output", None) else "")
-    )
+    user_content = f"Free-form requirements:\\n{freeform_requirements}"
+    content = client.complete(system_prompt, user_content)
     try:
-        return json.loads(content)
+        return json.loads(_extract_json(content))
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"Failed to parse LLM output: {content}") from exc
+
+
+def _extract_json(text: str) -> str:
+    stripped = text.strip()
+    if not stripped:
+        return stripped
+
+    if stripped[0] in "[{":
+        return stripped
+
+    # Try to pull JSON out of markdown fences or prefixed prose.
+    start = stripped.find("[")
+    end = stripped.rfind("]")
+    if start != -1 and end != -1 and end > start:
+        return stripped[start : end + 1]
+
+    start = stripped.find("{")
+    end = stripped.rfind("}")
+    if start != -1 and end != -1 and end > start:
+        return stripped[start : end + 1]
+
+    return stripped
 
 
 def build_traceability_table(llm_result: List[Dict[str, str]]) -> pd.DataFrame:
