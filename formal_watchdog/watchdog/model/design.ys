@@ -1,0 +1,9 @@
+# running in watchdog/src/
+read_verilog -sv top.sv
+read_verilog -sv props.sv
+prep -top watchdog_formal
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

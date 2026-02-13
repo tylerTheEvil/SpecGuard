@@ -1,0 +1,15 @@
+[options]
+mode prove
+depth 10
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -sv top.sv
+read_verilog -sv props.sv
+prep -top watchdog_formal
+
+[files]
+top.sv
+props.sv
