@@ -32,55 +32,45 @@ If a contributor proposes "improve the smell detector" — interesting, but not 
 2. **Two-layer Quality Agent pattern** — deterministic detection (Layer 1, DO-330 qualifiable) + LLM analyst (Layer 2, augmentative, not authoritative); architectural analog of CI/CD failure analysis.
 3. **Codified compliance constraints with cross-domain binding** — regulatory objectives (DO-178C / DO-254) as executable Cypher patterns; **cross-domain SW↔FPGA binding** is the unique niche (no precedent in current literature).
 
-## Repository layout (current state — needs reorganization)
+## Repository layout
+
+Repository was reorganized on 2026-05-01; see `CHANGELOG.md` for details.
 
 ```
-spec_guard/
-├── specguard/                          ← project root (oddly named same as inner pkg)
-│   ├── 01_specguard_demo_executed.ipynb
-│   ├── README.md
-│   ├── experiment_seeded_faults.py     — validation script (top-level, ad-hoc)
-│   ├── experiment_results.json
-│   │
-│   ├── data/
-│   │   └── cva6_requirements.py        — 64 industrial requirements (CVA6 RISC-V)
-│   │
-│   ├── specguard/                      ← inner Python package (core)
-│   │   ├── __init__.py                 — re-exports from pipeline/scorer/detector
-│   │   ├── smell_detector.py           — 11 smell types, ISO/IEEE 29148 + Femmer 2017
-│   │   ├── quality_scorer.py           — completeness / consistency / verifiability
-│   │   └── pipeline.py                 — orchestrator (smell → score → gate)
-│   │
-│   ├── analizer/                       ← compliance module (typo: should be "analyzer")
-│   │   ├── __init__.py
-│   │   ├── constraint_engine.py        — ComplianceConstraint, Report, runner
-│   │   ├── do178c.py                   — 7 representative obj (Tables A-3, A-4, A-7)
-│   │   ├── do254.py                    — 5 representative obj (§6.2-6.4)
-│   │   ├── cross_domain.py             — 3 cross-domain obj (the unique niche)
-│   │   └── compliance_demo.py          — end-to-end demo (BROKEN: imports stale path)
-│   │
-│   ├── neo4j/                          ← graph layer (name shadows neo4j Python driver!)
-│   │   ├── NEO4J_GUIDE.md
-│   │   ├── graph_builder.py            — Cypher generation, 107 nodes / 171 rels
-│   │   ├── graph_queries_local.py      — 14 ad-hoc queries
-│   │   ├── demo_queries.cypher
-│   │   └── specguard_graph.cypher      — full graph dump for Neo4j Desktop
-│   │
-│   └── .claude/
-│       └── settings.local.json
+specguard/                               ← project root
+├── pyproject.toml                       — package metadata, deps, build config
+├── CLAUDE.md / README.md / CHANGELOG.md
+│
+├── src/
+│   └── specguard/                       ← installed package (src layout)
+│       ├── __init__.py                  — public API re-exports
+│       ├── core/                        — smell detection, scoring, pipeline
+│       │   ├── smell_detector.py        — 11 smell types, ISO/IEEE 29148 + Femmer 2017
+│       │   ├── quality_scorer.py        — completeness / consistency / verifiability
+│       │   └── pipeline.py             — orchestrator (smell → score → gate)
+│       ├── compliance/                  — DO-178C / DO-254 / cross-domain objectives
+│       │   ├── constraint_engine.py     — ComplianceConstraint, Report, runner
+│       │   ├── do178c.py               — 7 representative obj (Tables A-3, A-4, A-7)
+│       │   ├── do254.py                — 5 representative obj (§6.2-6.4)
+│       │   └── cross_domain.py         — 3 cross-domain obj (the unique niche)
+│       ├── graph/                       — knowledge graph (was neo4j/, name conflicted)
+│       │   ├── builder.py              — Cypher generation, 107 nodes / 171 rels
+│       │   └── queries.py              — NetworkX-based local queries
+│       └── data/
+│           └── cva6_requirements.py    — 64 industrial requirements (CVA6 RISC-V)
+│
+├── experiments/
+│   └── seeded_faults.py                — 100% recall validation (50 mutations × 5 types)
+├── notebooks/
+│   └── 01_specguard_demo.ipynb         — walkthrough demo for supervisor
+├── scripts/
+│   └── compliance_demo.py              — end-to-end compliance check demo
+├── tests/                               — 34 pytest tests
+├── results/                             — experiment outputs and Cypher dumps
+└── docs/
+    ├── neo4j_guide.md
+    └── architecture.md                  — architectural overview (three novelties)
 ```
-
-**Known structural issues** (track these for the reorganization prompt):
-
-1. **`analizer/` is a typo** — should be `analyzer/` (or `compliance/` for clarity).
-2. **`neo4j/` shadows the `neo4j` PyPI driver** — will cause import collisions when the real driver is installed. Rename to `graph/` or `kg/`.
-3. **Inner package `specguard/specguard/`** duplicates the project name — confusing and creates path issues. Should adopt `src/specguard/` layout or rename project root.
-4. **`compliance_demo.py` imports are stale** — references `specguard.compliance` but the folder was renamed to `analizer`. Currently broken.
-5. **No `pyproject.toml`** — no package metadata, no dependency declaration, no installable package.
-6. **`experiment_seeded_faults.py` is at root** — should live under `experiments/` or `tests/`.
-7. **No `tests/` directory** — validation lives in ad-hoc experiment scripts.
-8. **`results/` directory is missing** — `experiment_results.json` is at root instead.
-9. **Single notebook with `_executed` suffix** mixed with code — should be under `notebooks/`.
 
 ## Empirical results — what we show the supervisor
 
@@ -130,7 +120,7 @@ spec_guard/
 - Dataclasses for structured data (`SmellHit`, `ComplianceConstraint`, etc.)
 - Docstrings with academic references (Vogelsang 2025, Femmer 2017, Zakeri-Nasrabadi 2024)
 - Type hints required on public API
-- Tests / experiments live separately from the package (currently ad-hoc; needs `tests/` and `experiments/`)
+- Tests live in `tests/` (pytest), experiments in `experiments/` (scripts)
 
 **Documentation:**
 - Ukrainian for dissertation drafts and Notion (supervisor preference)
@@ -183,26 +173,29 @@ spec_guard/
 - Paper #4 (FPGA-specific)
 - Master's thesis topics for KhAI students — full DO-178C / DO-254 codification (separate work)
 
-## Running the code (current state, before reorganization)
+## Running the code
 
 ```bash
-# From the project root (.../spec_guard/specguard/)
+# Install (once)
+pip install -e ".[dev,graph,notebooks]"
 
-# Smell detection + quality scoring + gate decisions
-jupyter notebook 01_specguard_demo_executed.ipynb
+# Demo notebook
+jupyter notebook notebooks/01_specguard_demo.ipynb
 
 # Validation on seeded faults
-python experiment_seeded_faults.py        # 100% recall verification
+python experiments/seeded_faults.py        # 100% recall verification
+
+# Compliance check demo (DO-178C / DO-254 / cross-domain)
+python scripts/compliance_demo.py
 
 # Graph queries (in-memory, no Neo4j required)
-python neo4j/graph_queries_local.py
+python -c "from specguard.graph.queries import main; main()"
 
-# Compliance check (insight #7) — currently broken due to import paths
-# (see "Known structural issues" above; fix is in the reorganization prompt)
-python analizer/compliance_demo.py
+# Test suite
+pytest
 ```
 
-For full graph rendering, Neo4j Desktop must be installed locally (DBMS `specguard-cva6`, password `53265326`). Cypher dump in `neo4j/specguard_graph.cypher` — paste into Neo4j Browser.
+For full graph rendering, Neo4j Desktop must be installed locally (DBMS `specguard-cva6`, password `53265326`). Cypher dump in `results/specguard_graph.cypher` — paste into Neo4j Browser.
 
 ## Tone for AI assistants working in this repo
 

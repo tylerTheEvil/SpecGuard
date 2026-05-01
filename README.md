@@ -9,11 +9,19 @@ components of critical UAVs"*.
 
 ---
 
-## Quick start
+## Installation
 
 ```bash
-# From the project root
-python notebooks/experiment_seeded_faults.py
+pip install -e ".[dev,graph,notebooks]"
+```
+
+## Quick start
+
+```python
+from specguard import assess_requirement
+
+result = assess_requirement("REQ-1", "The system shall respond within 100 ms.")
+print(result.summary())
 ```
 
 Or open the demo notebook:
@@ -22,24 +30,35 @@ Or open the demo notebook:
 jupyter notebook notebooks/01_specguard_demo.ipynb
 ```
 
+Run the compliance demo:
+
+```bash
+python scripts/compliance_demo.py
+```
+
+Run the seeded faults validation:
+
+```bash
+python experiments/seeded_faults.py
+```
+
 ---
 
 ## Project structure
 
 ```
 specguard/
-├── data/
-│   └── cva6_requirements.py        # 64 industrial requirements from CVA6 spec
-├── specguard/
-│   ├── __init__.py
-│   ├── smell_detector.py           # Rule-based smell detection (ISO/IEEE 29148)
-│   ├── quality_scorer.py           # Quantitative quality scoring
-│   └── pipeline.py                 # Pipeline orchestrator
-├── notebooks/
-│   ├── 01_specguard_demo.ipynb     # Walkthrough demo for supervisor
-│   └── experiment_seeded_faults.py # Validation experiment
-└── results/
-    └── experiment_results.json     # Latest experiment output
+├── src/specguard/               # Package source (src layout)
+│   ├── core/                    # Smell detection, scoring, pipeline
+│   ├── compliance/              # DO-178C / DO-254 / cross-domain objectives
+│   ├── graph/                   # Knowledge graph builder and queries
+│   └── data/                    # CVA6 requirements dataset
+├── experiments/                 # Validation experiments (seeded faults)
+├── notebooks/                   # Demo notebooks
+├── scripts/                     # Runnable demos (compliance_demo.py)
+├── results/                     # Experiment outputs and Cypher dumps
+├── docs/                        # Supplementary documentation
+└── tests/                       # pytest test suite
 ```
 
 ---
