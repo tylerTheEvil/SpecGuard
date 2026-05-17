@@ -102,6 +102,7 @@ specguard/                               ← project root
 - **Modular interfaces for Layer 3-4** — ARTEMIS/ALICE/SAT-LLM as plugins, not replacements
 - **Compliance scope:** Option B+C hybrid (~15-25 codified obj + cross-domain focus)
 - **DO-330 TQL-5 positioning** — development tool with human-in-the-loop, NOT airborne AI
+- **Linguistic metrics are an optional research extension** (`src/specguard/linguistic/`), installed via `pip install -e '.[linguistic]'`. They are outside the DO-330-qualifiable core (which must remain stdlib-only) and complement smell-based assessment without replacing it. They are never required for gate decisions. Metrics: Flesch Reading Ease, Flesch-Kincaid Grade, Mean/Max Dependency Length (Barbosa et al. 2024), token count, sentence count, mean sentence length, lexical density.
 
 ## Anti-patterns — DO NOT do these
 

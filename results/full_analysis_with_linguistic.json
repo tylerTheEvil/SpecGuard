@@ -1,0 +1,2022 @@
+{
+  "dataset": "CVA6 RISC-V requirements specification (OpenHW Group)",
+  "n_requirements": 64,
+  "linguistic_available": true,
+  "requirements": [
+    {
+      "requirement_id": "GEN-10",
+      "requirement_text": "CVA6 shall be fully compliant with RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg] by implementing all mandatory features for the set of extensions that are selected and by passing [RVcompat] compatibility tests.",
+      "metadata": {
+        "category": "General",
+        "safety_critical_context": false,
+        "parent_section": "Functional requirements"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 14.357,
+        "flesch_kincaid_grade": 18.958,
+        "mean_dependency_length": 2.902,
+        "max_dependency_length": 23,
+        "token_count": 43,
+        "sentence_count": 2,
+        "mean_sentence_length": 21.5,
+        "lexical_density": 0.279
+      }
+    },
+    {
+      "requirement_id": "ISA-10",
+      "requirement_text": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 75.5,
+        "flesch_kincaid_grade": 4.964,
+        "mean_dependency_length": 2.4,
+        "max_dependency_length": 8,
+        "token_count": 11,
+        "sentence_count": 1,
+        "mean_sentence_length": 11.0,
+        "lexical_density": 0.545
+      }
+    },
+    {
+      "requirement_id": "ISA-20",
+      "requirement_text": "CV32A6 shall support RV32I base instruction set, version 2.1.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 75.5,
+        "flesch_kincaid_grade": 4.964,
+        "mean_dependency_length": 2.4,
+        "max_dependency_length": 8,
+        "token_count": 11,
+        "sentence_count": 1,
+        "mean_sentence_length": 11.0,
+        "lexical_density": 0.455
+      }
+    },
+    {
+      "requirement_id": "ISA-30",
+      "requirement_text": "CVA6 shall support the M extension (integer multiply and divide), version 2.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 46.605,
+        "flesch_kincaid_grade": 9.74,
+        "mean_dependency_length": 3.867,
+        "max_dependency_length": 13,
+        "token_count": 16,
+        "sentence_count": 1,
+        "mean_sentence_length": 16.0,
+        "lexical_density": 0.375
+      }
+    },
+    {
+      "requirement_id": "ISA-40",
+      "requirement_text": "CVA6 shall support the A extension (atomic instructions), version 2.1.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 44.405,
+        "flesch_kincaid_grade": 9.55,
+        "mean_dependency_length": 3.154,
+        "max_dependency_length": 11,
+        "token_count": 14,
+        "sentence_count": 1,
+        "mean_sentence_length": 14.0,
+        "lexical_density": 0.357
+      }
+    },
+    {
+      "requirement_id": "ISA-50",
+      "requirement_text": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 37.455,
+        "flesch_kincaid_grade": 11.265,
+        "mean_dependency_length": 3.8,
+        "max_dependency_length": 18,
+        "token_count": 21,
+        "sentence_count": 1,
+        "mean_sentence_length": 21.0,
+        "lexical_density": 0.429
+      }
+    },
+    {
+      "requirement_id": "ISA-60",
+      "requirement_text": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 45.262,
+        "flesch_kincaid_grade": 11.169,
+        "mean_dependency_length": 4.667,
+        "max_dependency_length": 22,
+        "token_count": 25,
+        "sentence_count": 1,
+        "mean_sentence_length": 25.0,
+        "lexical_density": 0.36
+      }
+    },
+    {
+      "requirement_id": "ISA-70",
+      "requirement_text": "CV64A6 shall support as an option the F extension (single-precision without double-precision floating-point), version 2.2.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 16.77,
+        "flesch_kincaid_grade": 14.647,
+        "mean_dependency_length": 4.417,
+        "max_dependency_length": 22,
+        "token_count": 25,
+        "sentence_count": 1,
+        "mean_sentence_length": 25.0,
+        "lexical_density": 0.4
+      }
+    },
+    {
+      "requirement_id": "ISA-80",
+      "requirement_text": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 56.978,
+        "flesch_kincaid_grade": 8.542,
+        "mean_dependency_length": 3.188,
+        "max_dependency_length": 14,
+        "token_count": 17,
+        "sentence_count": 1,
+        "mean_sentence_length": 17.0,
+        "lexical_density": 0.412
+      }
+    },
+    {
+      "requirement_id": "ISA-90",
+      "requirement_text": "CVA6 shall support the Zicsr extension (CSR instructions), version 2.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 52.865,
+        "flesch_kincaid_grade": 8.37,
+        "mean_dependency_length": 3.615,
+        "max_dependency_length": 11,
+        "token_count": 14,
+        "sentence_count": 1,
+        "mean_sentence_length": 14.0,
+        "lexical_density": 0.286
+      }
+    },
+    {
+      "requirement_id": "ISA-100",
+      "requirement_text": "CVA6 shall support the Zifencei extension, version 2.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 61.24,
+        "flesch_kincaid_grade": 6.705,
+        "mean_dependency_length": 2.889,
+        "max_dependency_length": 7,
+        "token_count": 10,
+        "sentence_count": 1,
+        "mean_sentence_length": 10.0,
+        "lexical_density": 0.3
+      }
+    },
+    {
+      "requirement_id": "ISA-120",
+      "requirement_text": "CVA6 should support as an option the B extension (bit manipulation), version 1.0. The B extension comprises the Zba, Zbb, Zbc and Zbs extensions.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 57.18,
+        "flesch_kincaid_grade": 8.265,
+        "mean_dependency_length": 3.69,
+        "max_dependency_length": 14,
+        "token_count": 31,
+        "sentence_count": 2,
+        "mean_sentence_length": 15.5,
+        "lexical_density": 0.323
+      }
+    },
+    {
+      "requirement_id": "ISA-130",
+      "requirement_text": "CVA6 should support as an option the Zicond extension (ratification pending) version 1.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 37.455,
+        "flesch_kincaid_grade": 11.265,
+        "mean_dependency_length": 2.8,
+        "max_dependency_length": 13,
+        "token_count": 16,
+        "sentence_count": 1,
+        "mean_sentence_length": 16.0,
+        "lexical_density": 0.375
+      }
+    },
+    {
+      "requirement_id": "ISA-140",
+      "requirement_text": "CVA6 should support as an option the Zcb extension version 1.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 72.615,
+        "flesch_kincaid_grade": 5.864,
+        "mean_dependency_length": 2.636,
+        "max_dependency_length": 9,
+        "token_count": 12,
+        "sentence_count": 1,
+        "mean_sentence_length": 12.0,
+        "lexical_density": 0.333
+      }
+    },
+    {
+      "requirement_id": "ISA-150",
+      "requirement_text": "CVA6 should support as an option the Zcmp extension version 1.0.",
+      "metadata": {
+        "category": "ISA",
+        "safety_critical_context": false,
+        "parent_section": "RISC-V standard instructions"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 72.615,
+        "flesch_kincaid_grade": 5.864,
+        "mean_dependency_length": 2.636,
+        "max_dependency_length": 9,
+        "token_count": 12,
+        "sentence_count": 1,
+        "mean_sentence_length": 12.0,
+        "lexical_density": 0.333
+      }
+    },
+    {
+      "requirement_id": "PVL-10",
+      "requirement_text": "CVA6 shall support machine, supervisor, user and debug privilege modes.",
+      "metadata": {
+        "category": "Privileges",
+        "safety_critical_context": false,
+        "parent_section": "Privileges and virtual memory"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 44.405,
+        "flesch_kincaid_grade": 9.55,
+        "mean_dependency_length": 2.833,
+        "max_dependency_length": 10,
+        "token_count": 13,
+        "sentence_count": 1,
+        "mean_sentence_length": 13.0,
+        "lexical_density": 0.462
+      }
+    },
+    {
+      "requirement_id": "PVL-20",
+      "requirement_text": "CV64A6 shall support as an option the Sv39 virtual memory, version 1.11.",
+      "metadata": {
+        "category": "Privileges",
+        "safety_critical_context": false,
+        "parent_section": "Privileges and virtual memory"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 60.705,
+        "flesch_kincaid_grade": 7.773,
+        "mean_dependency_length": 2.692,
+        "max_dependency_length": 11,
+        "token_count": 14,
+        "sentence_count": 1,
+        "mean_sentence_length": 14.0,
+        "lexical_density": 0.357
+      }
+    },
+    {
+      "requirement_id": "PVL-30",
+      "requirement_text": "CV32A6 shall support as an option the Sv32 virtual memory version 1.11.",
+      "metadata": {
+        "category": "Privileges",
+        "safety_critical_context": false,
+        "parent_section": "Privileges and virtual memory"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 60.705,
+        "flesch_kincaid_grade": 7.773,
+        "mean_dependency_length": 2.917,
+        "max_dependency_length": 10,
+        "token_count": 13,
+        "sentence_count": 1,
+        "mean_sentence_length": 13.0,
+        "lexical_density": 0.462
+      }
+    },
+    {
+      "requirement_id": "PVL-40",
+      "requirement_text": "CVA6 instances that do not feature virtual memory shall support the Bare mode.",
+      "metadata": {
+        "category": "Privileges",
+        "safety_critical_context": false,
+        "parent_section": "Privileges and virtual memory"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 56.978,
+        "flesch_kincaid_grade": 8.542,
+        "mean_dependency_length": 2.538,
+        "max_dependency_length": 8,
+        "token_count": 14,
+        "sentence_count": 1,
+        "mean_sentence_length": 14.0,
+        "lexical_density": 0.429
+      }
+    },
+    {
+      "requirement_id": "PVL-50",
+      "requirement_text": "CVA6 shall feature PMP (physical memory protection) as an option.",
+      "metadata": {
+        "category": "Privileges",
+        "safety_critical_context": false,
+        "parent_section": "Privileges and virtual memory"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 44.405,
+        "flesch_kincaid_grade": 9.55,
+        "mean_dependency_length": 3.0,
+        "max_dependency_length": 10,
+        "token_count": 13,
+        "sentence_count": 1,
+        "mean_sentence_length": 13.0,
+        "lexical_density": 0.385
+      }
+    },
+    {
+      "requirement_id": "PVL-60",
+      "requirement_text": "CV64A6 shall support as an option the H extension (hypervisor) version 1.0.",
+      "metadata": {
+        "category": "Privileges",
+        "safety_critical_context": false,
+        "parent_section": "Privileges and virtual memory"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 53.655,
+        "flesch_kincaid_grade": 8.757,
+        "mean_dependency_length": 2.643,
+        "max_dependency_length": 12,
+        "token_count": 15,
+        "sentence_count": 1,
+        "mean_sentence_length": 15.0,
+        "lexical_density": 0.333
+      }
+    },
+    {
+      "requirement_id": "HPM-10",
+      "requirement_text": "CVA6 shall implement the 64-bit mcycle and minstret standard performance counters (including their upper 32 bits counterparts mcycleh and minstreth in CV32A6) as per [RVpriv].",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": true,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 46.1,
+        "flesch_kincaid_grade": 13.04,
+        "mean_dependency_length": 3.484,
+        "max_dependency_length": 29,
+        "token_count": 32,
+        "sentence_count": 1,
+        "mean_sentence_length": 32.0,
+        "lexical_density": 0.406
+      }
+    },
+    {
+      "requirement_id": "HPM-20",
+      "requirement_text": "CVA6 shall implement as an option six generic 64-bit performance counters located in hpmcounter3 to hpmcounter8 (including their upper 32 bits counterparts in CV32A6: hpmcounter3h to hpmcounter8h).",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": true,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 22.763,
+        "flesch_kincaid_grade": 16.792,
+        "mean_dependency_length": 4.688,
+        "max_dependency_length": 30,
+        "token_count": 33,
+        "sentence_count": 1,
+        "mean_sentence_length": 33.0,
+        "lexical_density": 0.485
+      }
+    },
+    {
+      "requirement_id": "HPM-30",
+      "requirement_text": "Each of the six generic performance counters shall be able to count events from one of these sources: L1 I-Cache misses, L1 D-Cache misses, ITLB misses, DTLB misses, Load accesses, Store accesses, Exceptions, Exception handler returns, Branch instructions, Branch mispredicts, Branch exceptions, Call, Return, MSB Full, Instruction fetch Empty, L1 I-Cache accesses, L1 D-Cache accesses, L1$ line invalidation, I-TLB flush, Integer instructions, Floating point instructions, Pipeline bubbles.",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": true,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": -7.642,
+        "flesch_kincaid_grade": 30.97,
+        "mean_dependency_length": 5.88,
+        "max_dependency_length": 91,
+        "token_count": 101,
+        "sentence_count": 1,
+        "mean_sentence_length": 101.0,
+        "lexical_density": 0.337
+      }
+    },
+    {
+      "requirement_id": "HPM-40",
+      "requirement_text": "The source of events counted by the six generic performance counters shall be selected by the mhpmevent3 to mhpmevent8 CSRs.",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": true,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.835
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 38.485,
+        "flesch_kincaid_grade": 12.86,
+        "mean_dependency_length": 2.65,
+        "max_dependency_length": 12,
+        "token_count": 21,
+        "sentence_count": 1,
+        "mean_sentence_length": 21.0,
+        "lexical_density": 0.476
+      }
+    },
+    {
+      "requirement_id": "HPM-50",
+      "requirement_text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": false,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 35.511,
+        "flesch_kincaid_grade": 11.784,
+        "mean_dependency_length": 2.429,
+        "max_dependency_length": 12,
+        "token_count": 15,
+        "sentence_count": 1,
+        "mean_sentence_length": 15.0,
+        "lexical_density": 0.467
+      }
+    },
+    {
+      "requirement_id": "HPM-60",
+      "requirement_text": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR.",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": false,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 47.596,
+        "flesch_kincaid_grade": 10.099,
+        "mean_dependency_length": 2.429,
+        "max_dependency_length": 12,
+        "token_count": 15,
+        "sentence_count": 1,
+        "mean_sentence_length": 15.0,
+        "lexical_density": 0.467
+      }
+    },
+    {
+      "requirement_id": "HPM-70",
+      "requirement_text": "CVA6 shall implement the mcountinhibit counter-inhibit register.",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": false,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": -5.727,
+        "flesch_kincaid_grade": 15.797,
+        "mean_dependency_length": 2.778,
+        "max_dependency_length": 7,
+        "token_count": 10,
+        "sentence_count": 1,
+        "mean_sentence_length": 10.0,
+        "lexical_density": 0.6
+      }
+    },
+    {
+      "requirement_id": "HPM-80",
+      "requirement_text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6).",
+      "metadata": {
+        "category": "Performance",
+        "safety_critical_context": false,
+        "parent_section": "Performance counters"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 38.485,
+        "flesch_kincaid_grade": 12.86,
+        "mean_dependency_length": 3.714,
+        "max_dependency_length": 26,
+        "token_count": 29,
+        "sentence_count": 1,
+        "mean_sentence_length": 29.0,
+        "lexical_density": 0.448
+      }
+    },
+    {
+      "requirement_id": "L1W-10",
+      "requirement_text": "L1WTD shall reflect all write accesses (stores) by the CVA6 core to the external memory within an upper-bounded number of cycles. The upper-bound is fixed but not specified here.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": true,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 57.924,
+        "flesch_kincaid_grade": 8.782,
+        "mean_dependency_length": 3.371,
+        "max_dependency_length": 23,
+        "token_count": 37,
+        "sentence_count": 2,
+        "mean_sentence_length": 18.5,
+        "lexical_density": 0.459
+      }
+    },
+    {
+      "requirement_id": "L1W-20",
+      "requirement_text": "L1WTD shall not change the order of write accesses to the external memory with respect to the order of write accesses (stores) received from the CVA6 core.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": true,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "negative_statement",
+            "trigger": "shall not",
+            "position": 6,
+            "severity": "low",
+            "explanation": "'shall not' is a negative formulation. Positive formulations are usually easier to verify. Consider rephrasing if practical."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 57.23,
+        "flesch_kincaid_grade": 11.984,
+        "mean_dependency_length": 3.103,
+        "max_dependency_length": 26,
+        "token_count": 30,
+        "sentence_count": 1,
+        "mean_sentence_length": 30.0,
+        "lexical_density": 0.467
+      }
+    },
+    {
+      "requirement_id": "L1W-30",
+      "requirement_text": "L1WTD should offer the following size/ways configurations: 0 kbyte (no cache), 4 kbytes (4 or 8 ways), 8 kbytes (4, 8 or 16 ways), 16 kbytes (4, 8 or 16 ways), 32 kbytes (8 or 16 ways).",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": true,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 66.388,
+        "flesch_kincaid_grade": 13.191,
+        "mean_dependency_length": 5.071,
+        "max_dependency_length": 54,
+        "token_count": 57,
+        "sentence_count": 1,
+        "mean_sentence_length": 57.0,
+        "lexical_density": 0.246
+      }
+    },
+    {
+      "requirement_id": "L1W-40",
+      "requirement_text": "L1WTD shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": true,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 52.02,
+        "flesch_kincaid_grade": 9.109,
+        "mean_dependency_length": 2.321,
+        "max_dependency_length": 11,
+        "token_count": 30,
+        "sentence_count": 2,
+        "mean_sentence_length": 15.0,
+        "lexical_density": 0.467
+      }
+    },
+    {
+      "requirement_id": "L1W-50",
+      "requirement_text": "To interface with the P-Mesh coherence system of OpenPiton, L1WTD shall have a line invalidate external command that invalidates the content of a line upon request.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 37.276,
+        "flesch_kincaid_grade": 14.519,
+        "mean_dependency_length": 2.759,
+        "max_dependency_length": 15,
+        "token_count": 30,
+        "sentence_count": 1,
+        "mean_sentence_length": 30.0,
+        "lexical_density": 0.4
+      }
+    },
+    {
+      "requirement_id": "L1W-60",
+      "requirement_text": "Some physical memory regions shall be configurable as not L1WTD cacheable at design time.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "WARN",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.1,
+        "overall": 0.595
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "vagueness",
+            "trigger": "some",
+            "position": 0,
+            "severity": "high",
+            "explanation": "'some' is an imprecise quantifier. Specify exact quantities or ranges."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 59.682,
+        "flesch_kincaid_grade": 8.413,
+        "mean_dependency_length": 1.929,
+        "max_dependency_length": 9,
+        "token_count": 15,
+        "sentence_count": 1,
+        "mean_sentence_length": 15.0,
+        "lexical_density": 0.467
+      }
+    },
+    {
+      "requirement_id": "L1W-70",
+      "requirement_text": "It shall be possible to invalidate L1WTD content with the FENCE.T command.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.835
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "implicit_reference",
+            "trigger": "it",
+            "position": 0,
+            "severity": "low",
+            "explanation": "The pronoun 'it' may refer to multiple entities. Use explicit nouns to avoid ambiguity."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 60.705,
+        "flesch_kincaid_grade": 7.773,
+        "mean_dependency_length": 2.333,
+        "max_dependency_length": 10,
+        "token_count": 13,
+        "sentence_count": 1,
+        "mean_sentence_length": 13.0,
+        "lexical_density": 0.308
+      }
+    },
+    {
+      "requirement_id": "L1W-80",
+      "requirement_text": "The replacement policy of L1WTD shall be LFSR (pseudo-random) or LRU (least recently used).",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 47.596,
+        "flesch_kincaid_grade": 10.099,
+        "mean_dependency_length": 3.15,
+        "max_dependency_length": 14,
+        "token_count": 21,
+        "sentence_count": 1,
+        "mean_sentence_length": 21.0,
+        "lexical_density": 0.381
+      }
+    },
+    {
+      "requirement_id": "L1W-90",
+      "requirement_text": "L1WTD should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.799
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "implicit_reference",
+            "trigger": "this",
+            "position": 87,
+            "severity": "low",
+            "explanation": "The pronoun 'this' may refer to multiple entities. Use explicit nouns to avoid ambiguity."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 53.388,
+        "flesch_kincaid_grade": 8.545,
+        "mean_dependency_length": 2.609,
+        "max_dependency_length": 10,
+        "token_count": 25,
+        "sentence_count": 2,
+        "mean_sentence_length": 12.5,
+        "lexical_density": 0.44
+      }
+    },
+    {
+      "requirement_id": "L1W-100",
+      "requirement_text": "A custom CSR shall allow to disable or enable L1WTD.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 write-through data cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 61.325,
+        "flesch_kincaid_grade": 7.19,
+        "mean_dependency_length": 1.9,
+        "max_dependency_length": 6,
+        "token_count": 11,
+        "sentence_count": 1,
+        "mean_sentence_length": 11.0,
+        "lexical_density": 0.364
+      }
+    },
+    {
+      "requirement_id": "L1I-10",
+      "requirement_text": "L1I should offer the following size/ways configurations: 4 kbytes: 3, 4 or 8 ways, 8 kbytes: 4, 8, or 16 ways, 16 kbytes: 4, 8 or 16 ways, 32 kbytes: 8 or 16 ways.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": true,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 67.819,
+        "flesch_kincaid_grade": 12.246,
+        "mean_dependency_length": 3.646,
+        "max_dependency_length": 46,
+        "token_count": 49,
+        "sentence_count": 1,
+        "mean_sentence_length": 49.0,
+        "lexical_density": 0.265
+      }
+    },
+    {
+      "requirement_id": "L1I-20",
+      "requirement_text": "L1I shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": true,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 52.02,
+        "flesch_kincaid_grade": 9.109,
+        "mean_dependency_length": 2.321,
+        "max_dependency_length": 11,
+        "token_count": 30,
+        "sentence_count": 2,
+        "mean_sentence_length": 15.0,
+        "lexical_density": 0.433
+      }
+    },
+    {
+      "requirement_id": "L1I-30",
+      "requirement_text": "To interface with the P-Mesh coherence system of OpenPiton, L1I shall have a line invalidate external command that invalidates the content of a line upon request.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 37.276,
+        "flesch_kincaid_grade": 14.519,
+        "mean_dependency_length": 2.759,
+        "max_dependency_length": 15,
+        "token_count": 30,
+        "sentence_count": 1,
+        "mean_sentence_length": 30.0,
+        "lexical_density": 0.4
+      }
+    },
+    {
+      "requirement_id": "L1I-40",
+      "requirement_text": "It shall be possible to invalidate L1I content with the FENCE.T command.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.835
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "implicit_reference",
+            "trigger": "it",
+            "position": 0,
+            "severity": "low",
+            "explanation": "The pronoun 'it' may refer to multiple entities. Use explicit nouns to avoid ambiguity."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 60.705,
+        "flesch_kincaid_grade": 7.773,
+        "mean_dependency_length": 2.5,
+        "max_dependency_length": 10,
+        "token_count": 13,
+        "sentence_count": 1,
+        "mean_sentence_length": 13.0,
+        "lexical_density": 0.308
+      }
+    },
+    {
+      "requirement_id": "L1I-50",
+      "requirement_text": "The replacement policy of L1I shall be LFSR (pseudo-random) or LRU (least recently used).",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 47.596,
+        "flesch_kincaid_grade": 10.099,
+        "mean_dependency_length": 3.15,
+        "max_dependency_length": 14,
+        "token_count": 21,
+        "sentence_count": 1,
+        "mean_sentence_length": 21.0,
+        "lexical_density": 0.381
+      }
+    },
+    {
+      "requirement_id": "L1I-60",
+      "requirement_text": "L1I should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.799
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "implicit_reference",
+            "trigger": "this",
+            "position": 85,
+            "severity": "low",
+            "explanation": "The pronoun 'this' may refer to multiple entities. Use explicit nouns to avoid ambiguity."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 53.388,
+        "flesch_kincaid_grade": 8.545,
+        "mean_dependency_length": 2.609,
+        "max_dependency_length": 10,
+        "token_count": 25,
+        "sentence_count": 2,
+        "mean_sentence_length": 12.5,
+        "lexical_density": 0.44
+      }
+    },
+    {
+      "requirement_id": "L1I-70",
+      "requirement_text": "A custom CSR shall allow to disable or enable L1I.",
+      "metadata": {
+        "category": "Cache",
+        "safety_critical_context": false,
+        "parent_section": "L1 Instruction cache"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 61.325,
+        "flesch_kincaid_grade": 7.19,
+        "mean_dependency_length": 1.444,
+        "max_dependency_length": 2,
+        "token_count": 10,
+        "sentence_count": 1,
+        "mean_sentence_length": 10.0,
+        "lexical_density": 0.4
+      }
+    },
+    {
+      "requirement_id": "FET-10",
+      "requirement_text": "CVA6 should support the FENCE.T instruction that ensures that the execution time of subsequent instructions is unrelated with predecessor instructions.",
+      "metadata": {
+        "category": "Instruction",
+        "safety_critical_context": true,
+        "parent_section": "FENCE.T custom instruction"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.829
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 31.715,
+        "flesch_kincaid_grade": 11.32,
+        "mean_dependency_length": 3.05,
+        "max_dependency_length": 18,
+        "token_count": 21,
+        "sentence_count": 1,
+        "mean_sentence_length": 21.0,
+        "lexical_density": 0.476
+      }
+    },
+    {
+      "requirement_id": "FET-20",
+      "requirement_text": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present).",
+      "metadata": {
+        "category": "Instruction",
+        "safety_critical_context": true,
+        "parent_section": "FENCE.T custom instruction"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.829
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 33.69,
+        "flesch_kincaid_grade": 12.287,
+        "mean_dependency_length": 3.842,
+        "max_dependency_length": 17,
+        "token_count": 20,
+        "sentence_count": 1,
+        "mean_sentence_length": 20.0,
+        "lexical_density": 0.45
+      }
+    },
+    {
+      "requirement_id": "PPA-10",
+      "requirement_text": "CVA6 should be resource-optimized on FPGA and ASIC targets.",
+      "metadata": {
+        "category": "PPA",
+        "safety_critical_context": false,
+        "parent_section": "PPA targets"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.829
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 56.7,
+        "flesch_kincaid_grade": 7.587,
+        "mean_dependency_length": 2.636,
+        "max_dependency_length": 9,
+        "token_count": 12,
+        "sentence_count": 1,
+        "mean_sentence_length": 12.0,
+        "lexical_density": 0.25
+      }
+    },
+    {
+      "requirement_id": "PPA-20",
+      "requirement_text": "CVA6 should deliver more than 2.1 CoreMark/MHz.",
+      "metadata": {
+        "category": "PPA",
+        "safety_critical_context": false,
+        "parent_section": "PPA targets"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 78.873,
+        "flesch_kincaid_grade": 3.997,
+        "mean_dependency_length": 2.778,
+        "max_dependency_length": 7,
+        "token_count": 10,
+        "sentence_count": 1,
+        "mean_sentence_length": 10.0,
+        "lexical_density": 0.3
+      }
+    },
+    {
+      "requirement_id": "PPA-30",
+      "requirement_text": "CV32A6 should run at more than 150 MHz in the cv32a6_imac_sv32 configuration on Kintex 7 FPGA technology, commercial -2 speed grade.",
+      "metadata": {
+        "category": "PPA",
+        "safety_critical_context": false,
+        "parent_section": "PPA targets"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.72,
+        "overall": 0.874
+      },
+      "smell_report": {
+        "smell_count": 2,
+        "hits": [
+          {
+            "smell_type": "missing_unit",
+            "trigger": "7",
+            "position": 87,
+            "severity": "low",
+            "explanation": "The numeric value '7' may be missing a measurement unit. Verify that the unit is clear from context."
+          },
+          {
+            "smell_type": "missing_unit",
+            "trigger": "2",
+            "position": 118,
+            "severity": "low",
+            "explanation": "The numeric value '2' may be missing a measurement unit. Verify that the unit is clear from context."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 52.577,
+        "flesch_kincaid_grade": 11.143,
+        "mean_dependency_length": 2.955,
+        "max_dependency_length": 20,
+        "token_count": 23,
+        "sentence_count": 1,
+        "mean_sentence_length": 23.0,
+        "lexical_density": 0.391
+      }
+    },
+    {
+      "requirement_id": "PPA-40",
+      "requirement_text": "CV64A6 should run at more than 900 MHz in the cv64a6_imacfd_sv39 configuration on 28FDSOI technology in the worst case frequency corner with the fastest threshold voltage.",
+      "metadata": {
+        "category": "PPA",
+        "safety_critical_context": false,
+        "parent_section": "PPA targets"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.92,
+        "overall": 0.964
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 47.037,
+        "flesch_kincaid_grade": 13.158,
+        "mean_dependency_length": 3.423,
+        "max_dependency_length": 24,
+        "token_count": 27,
+        "sentence_count": 1,
+        "mean_sentence_length": 27.0,
+        "lexical_density": 0.481
+      }
+    },
+    {
+      "requirement_id": "PPA-50",
+      "requirement_text": "TBD: Placeholder for single-precision floating performance per MHz.",
+      "metadata": {
+        "category": "PPA",
+        "safety_critical_context": false,
+        "parent_section": "PPA targets"
+      },
+      "gate_decision": "FAIL",
+      "quality_scores": {
+        "completeness": 0.0,
+        "consistency": 1.0,
+        "verifiability": 0.5,
+        "overall": 0.475
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "placeholder",
+            "trigger": "TBD",
+            "position": 0,
+            "severity": "high",
+            "explanation": "The marker 'TBD' indicates incomplete content. The requirement must be filled in before it can be considered finalized."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 18.94,
+        "flesch_kincaid_grade": 12.605,
+        "mean_dependency_length": 2.4,
+        "max_dependency_length": 9,
+        "token_count": 12,
+        "sentence_count": 2,
+        "mean_sentence_length": 6.0,
+        "lexical_density": 0.5
+      }
+    },
+    {
+      "requirement_id": "PPA-60",
+      "requirement_text": "TBD: Placeholder for double-precision floating performance per MHz.",
+      "metadata": {
+        "category": "PPA",
+        "safety_critical_context": false,
+        "parent_section": "PPA targets"
+      },
+      "gate_decision": "FAIL",
+      "quality_scores": {
+        "completeness": 0.0,
+        "consistency": 1.0,
+        "verifiability": 0.5,
+        "overall": 0.475
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "placeholder",
+            "trigger": "TBD",
+            "position": 0,
+            "severity": "high",
+            "explanation": "The marker 'TBD' indicates incomplete content. The requirement must be filled in before it can be considered finalized."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 18.94,
+        "flesch_kincaid_grade": 12.605,
+        "mean_dependency_length": 2.4,
+        "max_dependency_length": 9,
+        "token_count": 12,
+        "sentence_count": 2,
+        "mean_sentence_length": 6.0,
+        "lexical_density": 0.5
+      }
+    },
+    {
+      "requirement_id": "MEM-10",
+      "requirement_text": "CVA6 memory interface shall comply with AXI5 specification including the Atomic_Transactions property support as defined in [AXI] section E1.1.",
+      "metadata": {
+        "category": "Interface",
+        "safety_critical_context": false,
+        "parent_section": "Memory bus"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 9.445,
+        "flesch_kincaid_grade": 16.662,
+        "mean_dependency_length": 2.81,
+        "max_dependency_length": 17,
+        "token_count": 22,
+        "sentence_count": 1,
+        "mean_sentence_length": 22.0,
+        "lexical_density": 0.455
+      }
+    },
+    {
+      "requirement_id": "MEM-20",
+      "requirement_text": "CVA6 AXI memory interface shall feature user bit extensions on the data bus (WUSER and RUSER as per [AXI]) in connection with the L1I and L1WTD datasize extensions, with a number of user bits greater or equal to 0.",
+      "metadata": {
+        "category": "Interface",
+        "safety_critical_context": false,
+        "parent_section": "Memory bus"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 39.265,
+        "flesch_kincaid_grade": 17.471,
+        "mean_dependency_length": 4.864,
+        "max_dependency_length": 39,
+        "token_count": 45,
+        "sentence_count": 1,
+        "mean_sentence_length": 45.0,
+        "lexical_density": 0.4
+      }
+    },
+    {
+      "requirement_id": "DBG-10",
+      "requirement_text": "CVA6 shall implement both the Abstracted Command and Execution based features outlined in chapter 4 of [RVdbg].",
+      "metadata": {
+        "category": "Interface",
+        "safety_critical_context": false,
+        "parent_section": "Debug"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 45.262,
+        "flesch_kincaid_grade": 11.169,
+        "mean_dependency_length": 3.053,
+        "max_dependency_length": 17,
+        "token_count": 20,
+        "sentence_count": 1,
+        "mean_sentence_length": 20.0,
+        "lexical_density": 0.25
+      }
+    },
+    {
+      "requirement_id": "IRQ-10",
+      "requirement_text": "CVA6 shall implement interrupt handling registers as per the RISC-V privilege specification and interface with a CLINT implementation.",
+      "metadata": {
+        "category": "Interface",
+        "safety_critical_context": false,
+        "parent_section": "Interrupts"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 19.365,
+        "flesch_kincaid_grade": 15.03,
+        "mean_dependency_length": 2.9,
+        "max_dependency_length": 18,
+        "token_count": 21,
+        "sentence_count": 1,
+        "mean_sentence_length": 21.0,
+        "lexical_density": 0.381
+      }
+    },
+    {
+      "requirement_id": "XIF-10",
+      "requirement_text": "To extend the supported instructions, CVA6 shall have a coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+      "metadata": {
+        "category": "Interface",
+        "safety_critical_context": false,
+        "parent_section": "Coprocessor interface"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 21.647,
+        "flesch_kincaid_grade": 15.954,
+        "mean_dependency_length": 3.258,
+        "max_dependency_length": 23,
+        "token_count": 32,
+        "sentence_count": 1,
+        "mean_sentence_length": 32.0,
+        "lexical_density": 0.375
+      }
+    },
+    {
+      "requirement_id": "TRI-10",
+      "requirement_text": "CVA6 shall have the Transaction-Response Interface (TRI) needed to interface with the P-Mesh coherence system of OpenPiton, according to [OpenPiton].",
+      "metadata": {
+        "category": "Interface",
+        "safety_critical_context": false,
+        "parent_section": "Multi-core interface"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 34.255,
+        "flesch_kincaid_grade": 13.45,
+        "mean_dependency_length": 4.034,
+        "max_dependency_length": 18,
+        "token_count": 30,
+        "sentence_count": 1,
+        "mean_sentence_length": 30.0,
+        "lexical_density": 0.2
+      }
+    },
+    {
+      "requirement_id": "RUL-10",
+      "requirement_text": "CVA6 should have a configurable reset signal: synchronous/asynchronous, active on high or low levels.",
+      "metadata": {
+        "category": "Design",
+        "safety_critical_context": false,
+        "parent_section": "Design rules"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.829
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 59.682,
+        "flesch_kincaid_grade": 8.413,
+        "mean_dependency_length": 2.944,
+        "max_dependency_length": 16,
+        "token_count": 19,
+        "sentence_count": 1,
+        "mean_sentence_length": 19.0,
+        "lexical_density": 0.526
+      }
+    },
+    {
+      "requirement_id": "RUL-20",
+      "requirement_text": "CVA6 shall be a super-synchronous design with a single clock input.",
+      "metadata": {
+        "category": "Design",
+        "safety_critical_context": false,
+        "parent_section": "Design rules"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "smell_report": {
+        "smell_count": 0,
+        "hits": []
+      },
+      "linguistic": {
+        "flesch_reading_ease": 64.925,
+        "flesch_kincaid_grade": 6.936,
+        "mean_dependency_length": 3.077,
+        "max_dependency_length": 11,
+        "token_count": 14,
+        "sentence_count": 1,
+        "mean_sentence_length": 14.0,
+        "lexical_density": 0.5
+      }
+    },
+    {
+      "requirement_id": "RUL-30",
+      "requirement_text": "CVA6 should not include multi-cycle paths.",
+      "metadata": {
+        "category": "Design",
+        "safety_critical_context": false,
+        "parent_section": "Design rules"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.829
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "negative_statement",
+            "trigger": "should not",
+            "position": 5,
+            "severity": "low",
+            "explanation": "'should not' is a negative formulation. Positive formulations are usually easier to verify. Consider rephrasing if practical."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 59.745,
+        "flesch_kincaid_grade": 6.417,
+        "mean_dependency_length": 2.625,
+        "max_dependency_length": 5,
+        "token_count": 9,
+        "sentence_count": 1,
+        "mean_sentence_length": 9.0,
+        "lexical_density": 0.556
+      }
+    },
+    {
+      "requirement_id": "RUL-40",
+      "requirement_text": "CVA6 should not include technology-dependent blocks.",
+      "metadata": {
+        "category": "Design",
+        "safety_critical_context": false,
+        "parent_section": "Design rules"
+      },
+      "gate_decision": "PASS",
+      "quality_scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.62,
+        "overall": 0.829
+      },
+      "smell_report": {
+        "smell_count": 1,
+        "hits": [
+          {
+            "smell_type": "negative_statement",
+            "trigger": "should not",
+            "position": 5,
+            "severity": "low",
+            "explanation": "'should not' is a negative formulation. Positive formulations are usually easier to verify. Consider rephrasing if practical."
+          }
+        ]
+      },
+      "linguistic": {
+        "flesch_reading_ease": 17.445,
+        "flesch_kincaid_grade": 12.317,
+        "mean_dependency_length": 2.375,
+        "max_dependency_length": 5,
+        "token_count": 9,
+        "sentence_count": 1,
+        "mean_sentence_length": 9.0,
+        "lexical_density": 0.444
+      }
+    }
+  ]
+}

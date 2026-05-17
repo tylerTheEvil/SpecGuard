@@ -42,6 +42,30 @@ Run the seeded faults validation:
 python experiments/seeded_faults.py
 ```
 
+Run the extended analysis with linguistic metrics:
+
+```bash
+# Install the linguistic extra first (one-time)
+pip install -e ".[linguistic]"
+python -m spacy download en_core_web_sm
+
+# Run full analysis — writes results/full_analysis_with_linguistic.json
+python experiments/run_full_analysis.py
+```
+
+**Linguistic metrics reference:**
+
+| Metric | Range | What it measures |
+|--------|-------|-----------------|
+| Flesch Reading Ease | 0–100 (higher = easier) | Classical readability; CVA6 expected ~25–50 |
+| Flesch-Kincaid Grade | US grade level (≥0) | Reading level; CVA6 expected ~12–16 |
+| Mean Dependency Length | ≥0 (tokens) | Syntactic complexity; CVA6 expected ~3–5 |
+| Max Dependency Length | ≥0 (tokens) | Longest arc in the sentence parse |
+| Token count | ≥0 | Requirement length |
+| Sentence count | ≥0 | Number of sentences |
+| Mean sentence length | ≥0 (tokens/sent) | Average sentence complexity |
+| Lexical density | 0–1 | Content words / total tokens; CVA6 expected ~0.50–0.70 |
+
 ---
 
 ## Project structure

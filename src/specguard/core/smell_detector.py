@@ -140,12 +140,89 @@ VAGUENESS_TERMS = {
     "usually", "often", "sometimes",
 }
 
-# Optionality / Weakness: weak modal verbs and hedges
+# Optionality: conditional skip phrases that allow the implementer to bypass the requirement.
+# "as X" judgment phrases have been moved to SUBJECTIVITY_TERMS to avoid double-flagging.
 OPTIONALITY_TERMS = {
-    "if possible", "if needed", "if applicable", "if necessary", "where possible",
-    "where appropriate", "where applicable", "as needed", "as appropriate",
-    "as required", "as necessary", "where required",
+    "if possible",
+    "if needed",
+    "if applicable",
+    "if necessary",
+    "if practical",
+    "if feasible",
+    "if reasonable",
+    "where possible",
+    "where applicable",
+    "where required",
 }
+
+# Subjectivity: multi-word judgment phrases without an objective acceptance criterion.
+# Distinct from AMBIGUITY (single adjectives) and OPTIONALITY (conditional skip phrases).
+SUBJECTIVITY_TERMS = {
+    "as appropriate",
+    "where appropriate",
+    "as needed",
+    "as required",
+    "as necessary",
+    "as expected",
+    "as desired",
+    "common sense",
+    "industry standard",
+    "industry best practice",
+    "best practice",
+    "best practices",
+    "state of the art",
+    "state-of-the-art",
+    "good performance",
+    "acceptable performance",
+    "reasonable performance",
+    "high quality",
+    "good quality",
+}
+
+# Weakness: weak modals and softening constructions that undermine normative force.
+# Plain "should" and "may" are intentionally excluded — they carry formal RFC 2119 /
+# ISO 29148 semantics (recommended and permitted, respectively) and flagging them
+# would produce massive false positives on well-formed specifications.
+WEAKNESS_TERMS = {
+    "might",
+    "could",
+    "may want to",
+    "may need to",
+    "may consider",
+    "is encouraged to",
+    "are encouraged to",
+    "is recommended to",
+    "are recommended to",
+}
+
+# Non-verifiable action verbs: vague when used in normative context.
+# "ensure" and "maintain" are intentionally excluded — they appear in many
+# well-formed requirements with measurable criteria and produce too many false positives.
+NON_VERIFIABLE_VERBS = {
+    # "support" intentionally excluded: in ISA/hardware specs "shall support
+    # [extension] version X" is a verifiable bounded claim. Including it
+    # produces ~22 false positives on the CVA6 corpus with 0 true positives.
+    "handle",
+    "manage",
+    "process",
+    "deal with",
+    "accommodate",
+    "facilitate",
+    "promote",
+}
+
+# Negative statement patterns
+NEGATIVE_PATTERN = re.compile(
+    r"\b(shall|must|will|should)\s+not\b",
+    re.IGNORECASE,
+)
+
+DOUBLE_NEGATIVE_PATTERN = re.compile(
+    r"\b(shall|must|will|should)\s+not\s+"
+    r"(?:\w+\s+){0,3}"
+    r"(fail|prevent|stop|deny|reject|refuse|block)\s+to\b",
+    re.IGNORECASE,
+)
 
 # Implicit references — generic entity references without antecedent
 IMPLICIT_REFERENCE_TERMS = {
@@ -263,6 +340,137 @@ def detect_optionality(text: str) -> list[SmellHit]:
     return hits
 
 
+def detect_subjectivity(text: str) -> list[SmellHit]:
+    """Detect multi-word subjective judgment phrases without objective criterion.
+
+    Distinct from AMBIGUITY (single subjective adjectives) and OPTIONALITY
+    (conditional skip phrases). Targets expressions like 'as appropriate' or
+    'industry best practice' that defer the acceptance criterion to the reader's
+    judgment rather than specifying a measurable standard.
+    """
+    hits = []
+    for term, pos in _find_terms(text, SUBJECTIVITY_TERMS):
+        hits.append(
+            SmellHit(
+                smell_type=SmellType.SUBJECTIVITY,
+                trigger=term,
+                position=pos,
+                severity="medium",
+                explanation=(
+                    f"The phrase '{term}' expresses subjective judgment without "
+                    "an objective acceptance criterion. Replace with measurable "
+                    "criteria where possible."
+                ),
+            )
+        )
+    return hits
+
+
+def detect_weakness(text: str) -> list[SmellHit]:
+    """Detect weak modal verbs and softening constructions.
+
+    Flags 'might', 'could', and multi-word softeners ('may want to', etc.)
+    that undermine the normative force of a requirement. Plain 'should' and
+    'may' are intentionally excluded — they carry formal RFC 2119 / ISO 29148
+    semantics and flagging them produces false positives on well-formed specs.
+    """
+    hits = []
+    for term, pos in _find_terms(text, WEAKNESS_TERMS):
+        hits.append(
+            SmellHit(
+                smell_type=SmellType.WEAKNESS,
+                trigger=term,
+                position=pos,
+                severity="high",
+                explanation=(
+                    f"The expression '{term}' weakens the requirement's normative "
+                    "force. Use 'shall' for mandatory behaviour or specify exact "
+                    "conditions."
+                ),
+            )
+        )
+    return hits
+
+
+def detect_non_verifiable(text: str) -> list[SmellHit]:
+    """Detect vague action verbs in normative context (heuristic, low severity).
+
+    Only flags the verb when preceded within 25 characters by a modal verb
+    (shall / should / will / must), restricting detection to the normative-action
+    context where the verb's vagueness matters most.
+
+    'ensure' and 'maintain' are intentionally excluded — they appear frequently
+    in well-formed requirements with measurable criteria.
+    """
+    hits = []
+    text_lower = text.lower()
+    for verb in NON_VERIFIABLE_VERBS:
+        pattern = re.compile(r"\b" + re.escape(verb) + r"\b")
+        for match in pattern.finditer(text_lower):
+            preceding = text_lower[max(0, match.start() - 25) : match.start()]
+            if not re.search(r"\b(shall|should|will|must)\b", preceding):
+                continue
+            hits.append(
+                SmellHit(
+                    smell_type=SmellType.NON_VERIFIABLE,
+                    trigger=verb,
+                    position=match.start(),
+                    severity="low",
+                    explanation=(
+                        f"The verb '{verb}' may lack a measurable acceptance "
+                        "criterion. Verify that the requirement specifies "
+                        "concrete success conditions."
+                    ),
+                )
+            )
+    return hits
+
+
+def detect_negative_statement(text: str) -> list[SmellHit]:
+    """Detect negative formulations and double negations.
+
+    ISO 29148 and Femmer 2017 note that positive formulations are easier to
+    verify than negative ones. Double negations (high severity) are checked
+    first; simple negations (low severity) that overlap a double-negation
+    match are suppressed to avoid duplicate hits.
+    """
+    hits = []
+    flagged_ranges: list[tuple[int, int]] = []
+
+    for match in DOUBLE_NEGATIVE_PATTERN.finditer(text):
+        hits.append(
+            SmellHit(
+                smell_type=SmellType.NEGATIVE_STATEMENT,
+                trigger=match.group(0),
+                position=match.start(),
+                severity="high",
+                explanation=(
+                    f"'{match.group(0)}' contains a double negation, which is "
+                    "hard to interpret and verify. Rephrase positively."
+                ),
+            )
+        )
+        flagged_ranges.append((match.start(), match.end()))
+
+    for match in NEGATIVE_PATTERN.finditer(text):
+        if any(start <= match.start() < end for start, end in flagged_ranges):
+            continue
+        hits.append(
+            SmellHit(
+                smell_type=SmellType.NEGATIVE_STATEMENT,
+                trigger=match.group(0),
+                position=match.start(),
+                severity="low",
+                explanation=(
+                    f"'{match.group(0)}' is a negative formulation. Positive "
+                    "formulations are usually easier to verify. Consider "
+                    "rephrasing if practical."
+                ),
+            )
+        )
+    return hits
+
+
 def detect_comparatives(text: str) -> list[SmellHit]:
     """Detect comparatives without explicit baseline."""
     hits = []
@@ -375,12 +583,19 @@ def detect_missing_unit(text: str) -> list[SmellHit]:
 
 # Detector registry — order is preserved in reports
 DETECTORS = [
+    # Ambiguity category
     detect_ambiguity,
     detect_vagueness,
-    detect_optionality,
-    detect_comparatives,
-    detect_placeholders,
+    detect_subjectivity,
     detect_implicit_references,
+    detect_comparatives,
+    # Verifiability category
+    detect_optionality,
+    detect_weakness,
+    detect_non_verifiable,
+    detect_negative_statement,
+    # Structural category
+    detect_placeholders,
     detect_missing_unit,
 ]
 

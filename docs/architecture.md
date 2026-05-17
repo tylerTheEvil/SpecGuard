@@ -52,6 +52,38 @@ Coordinator Agent
 Polyglot persistence: Neo4j (graph) + MongoDB (documents) + VectorDB (embeddings).
 BYOM (Bring Your Own Model) interface — heterogeneous models per agent role.
 
+## Optional linguistic metrics layer
+
+```
+src/specguard/linguistic/   (install: pip install -e '.[linguistic]')
+```
+
+Classical readability and syntactic complexity metrics that run in parallel
+to the smell-based gate — they do not feed into PASS/WARN/FAIL decisions.
+
+**Rationale:** These metrics are expected as a descriptive baseline by NLP4RE
+reviewers (Zakeri-Nasrabadi 2024, Sonbol 2022, Kummler 2021). They are NOT
+part of the dissertation's architectural novelty; they provide corroborating
+evidence that the CVA6 dataset is representative technical text.
+
+**Why separate from core:** the deterministic core must be stdlib-only for
+DO-330 qualifiability considerations. `textstat` and `spacy` are third-party
+libraries incompatible with that constraint. The `linguistic` subpackage is
+therefore an optional extension that degrades gracefully to `None` when not
+installed.
+
+| Metric | Library | Reference |
+|--------|---------|-----------|
+| Flesch Reading Ease | textstat | Flesch (1948) |
+| Flesch-Kincaid Grade | textstat | Kincaid et al. (1975) |
+| Mean Dependency Length | spaCy | Barbosa et al. (2024) INCOSE |
+| Max Dependency Length | spaCy | — |
+| Token / sentence count | spaCy | standard |
+| Lexical density | spaCy | standard |
+
+Expected ranges on CVA6 (technical hardware requirements):
+Flesch RE ≈ 25–50, FK Grade ≈ 12–16, MDL ≈ 3.0–5.0, Lexical density ≈ 0.50–0.70.
+
 ## Key design constraints
 
 - Detection path must remain deterministic → LLMs only for analysis/explanation

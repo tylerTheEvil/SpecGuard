@@ -1,9 +1,10 @@
 {
   "false_positive_baseline": {
     "clean_requirements_total": 64,
-    "clean_requirements_flagged": 8,
-    "clean_flag_rate": 0.125,
+    "clean_requirements_flagged": 11,
+    "clean_flag_rate": 0.172,
     "smells_in_clean_set": {
+      "negative_statement": 3,
       "vagueness": 1,
       "implicit_reference": 4,
       "missing_unit": 2,
