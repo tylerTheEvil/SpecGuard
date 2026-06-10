@@ -1,0 +1,1975 @@
+{
+  "timestamp": "2026-06-10T09:18:43.402599Z",
+  "standard": "DO-178C (7) + DO-254 (5) + cross-domain (3)",
+  "total_objectives_checked": 15,
+  "objectives_passing": 0,
+  "objectives_failing": 15,
+  "passing_objective_ids": [],
+  "total_violations": 186,
+  "per_objective": [
+    {
+      "objective_id": "DO-178C-A3-1",
+      "standard": "DO-178C",
+      "table": "A-3",
+      "title": "High-level requirements comply with system requirements",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "status": "FAIL",
+      "violation_count": 62,
+      "violations": [
+        {
+          "violating_element": "PPA-20",
+          "explanation": "HLR 'PPA-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PPA-20",
+            "req_text": "CVA6 should deliver more than 2.1 CoreMark/MHz.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PPA-30",
+          "explanation": "HLR 'PPA-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PPA-30",
+            "req_text": "CV32A6 should run at more than 150 MHz in the cv32a6_imac_sv32 configuration on Kintex 7 FPGA technology, commercial -2 speed grade.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PPA-40",
+          "explanation": "HLR 'PPA-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PPA-40",
+            "req_text": "CV64A6 should run at more than 900 MHz in the cv64a6_imacfd_sv39 configuration on 28FDSOI technology in the worst case frequency corner with the fastest threshold voltage.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PPA-50",
+          "explanation": "HLR 'PPA-50' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PPA-50",
+            "req_text": "TBD: Placeholder for single-precision floating performance per MHz.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PPA-60",
+          "explanation": "HLR 'PPA-60' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PPA-60",
+            "req_text": "TBD: Placeholder for double-precision floating performance per MHz.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "MEM-10",
+          "explanation": "HLR 'MEM-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "MEM-10",
+            "req_text": "CVA6 memory interface shall comply with AXI5 specification including the Atomic_Transactions property support as defined in [AXI] section E1.1.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "MEM-20",
+          "explanation": "HLR 'MEM-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "MEM-20",
+            "req_text": "CVA6 AXI memory interface shall feature user bit extensions on the data bus (WUSER and RUSER as per [AXI]) in connection with the L1I and L1WTD datasize extensions, with a number of user bits greater or equal to 0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "DBG-10",
+          "explanation": "HLR 'DBG-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "DBG-10",
+            "req_text": "CVA6 shall implement both the Abstracted Command and Execution based features outlined in chapter 4 of [RVdbg].",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "IRQ-10",
+          "explanation": "HLR 'IRQ-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "IRQ-10",
+            "req_text": "CVA6 shall implement interrupt handling registers as per the RISC-V privilege specification and interface with a CLINT implementation.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "XIF-10",
+          "explanation": "HLR 'XIF-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "XIF-10",
+            "req_text": "To extend the supported instructions, CVA6 shall have a coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "TRI-10",
+          "explanation": "HLR 'TRI-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "TRI-10",
+            "req_text": "CVA6 shall have the Transaction-Response Interface (TRI) needed to interface with the P-Mesh coherence system of OpenPiton, according to [OpenPiton].",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "RUL-10",
+          "explanation": "HLR 'RUL-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "RUL-10",
+            "req_text": "CVA6 should have a configurable reset signal: synchronous/asynchronous, active on high or low levels.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "RUL-20",
+          "explanation": "HLR 'RUL-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "RUL-20",
+            "req_text": "CVA6 shall be a super-synchronous design with a single clock input.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "RUL-30",
+          "explanation": "HLR 'RUL-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "RUL-30",
+            "req_text": "CVA6 should not include multi-cycle paths.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "RUL-40",
+          "explanation": "HLR 'RUL-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "RUL-40",
+            "req_text": "CVA6 should not include technology-dependent blocks.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "GEN-10",
+          "explanation": "HLR 'GEN-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "GEN-10",
+            "req_text": "CVA6 shall be fully compliant with RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg] by implementing all mandatory features for the set of extensions that are selected and by passing [RVcompat] compatibility tests.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-10",
+          "explanation": "HLR 'ISA-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-10",
+            "req_text": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-20",
+          "explanation": "HLR 'ISA-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-20",
+            "req_text": "CV32A6 shall support RV32I base instruction set, version 2.1.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-30",
+          "explanation": "HLR 'ISA-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-30",
+            "req_text": "CVA6 shall support the M extension (integer multiply and divide), version 2.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-40",
+          "explanation": "HLR 'ISA-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-40",
+            "req_text": "CVA6 shall support the A extension (atomic instructions), version 2.1.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-50",
+          "explanation": "HLR 'ISA-50' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-50",
+            "req_text": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-60",
+          "explanation": "HLR 'ISA-60' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-60",
+            "req_text": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-70",
+          "explanation": "HLR 'ISA-70' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-70",
+            "req_text": "CV64A6 shall support as an option the F extension (single-precision without double-precision floating-point), version 2.2.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-80",
+          "explanation": "HLR 'ISA-80' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-80",
+            "req_text": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-90",
+          "explanation": "HLR 'ISA-90' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-90",
+            "req_text": "CVA6 shall support the Zicsr extension (CSR instructions), version 2.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-100",
+          "explanation": "HLR 'ISA-100' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-100",
+            "req_text": "CVA6 shall support the Zifencei extension, version 2.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-120",
+          "explanation": "HLR 'ISA-120' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-120",
+            "req_text": "CVA6 should support as an option the B extension (bit manipulation), version 1.0. The B extension comprises the Zba, Zbb, Zbc and Zbs extensions.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-130",
+          "explanation": "HLR 'ISA-130' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-130",
+            "req_text": "CVA6 should support as an option the Zicond extension (ratification pending) version 1.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-140",
+          "explanation": "HLR 'ISA-140' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-140",
+            "req_text": "CVA6 should support as an option the Zcb extension version 1.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "ISA-150",
+          "explanation": "HLR 'ISA-150' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "ISA-150",
+            "req_text": "CVA6 should support as an option the Zcmp extension version 1.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PVL-10",
+          "explanation": "HLR 'PVL-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PVL-10",
+            "req_text": "CVA6 shall support machine, supervisor, user and debug privilege modes.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PVL-20",
+          "explanation": "HLR 'PVL-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PVL-20",
+            "req_text": "CV64A6 shall support as an option the Sv39 virtual memory, version 1.11.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PVL-30",
+          "explanation": "HLR 'PVL-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PVL-30",
+            "req_text": "CV32A6 shall support as an option the Sv32 virtual memory version 1.11.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PVL-40",
+          "explanation": "HLR 'PVL-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PVL-40",
+            "req_text": "CVA6 instances that do not feature virtual memory shall support the Bare mode.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PVL-50",
+          "explanation": "HLR 'PVL-50' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PVL-50",
+            "req_text": "CVA6 shall feature PMP (physical memory protection) as an option.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PVL-60",
+          "explanation": "HLR 'PVL-60' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PVL-60",
+            "req_text": "CV64A6 shall support as an option the H extension (hypervisor) version 1.0.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-10",
+          "explanation": "HLR 'HPM-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-10",
+            "req_text": "CVA6 shall implement the 64-bit mcycle and minstret standard performance counters (including their upper 32 bits counterparts mcycleh and minstreth in CV32A6) as per [RVpriv].",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-20",
+          "explanation": "HLR 'HPM-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-20",
+            "req_text": "CVA6 shall implement as an option six generic 64-bit performance counters located in hpmcounter3 to hpmcounter8 (including their upper 32 bits counterparts in CV32A6: hpmcounter3h to hpmcounter8h).",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-30",
+          "explanation": "HLR 'HPM-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-30",
+            "req_text": "Each of the six generic performance counters shall be able to count events from one of these sources: L1 I-Cache misses, L1 D-Cache misses, ITLB misses, DTLB misses, Load accesses, Store accesses, Exceptions, Exception handler returns, Branch instructions, Branch mispredicts, Branch exceptions, Call, Return, MSB Full, Instruction fetch Empty, L1 I-Cache accesses, L1 D-Cache accesses, L1$ line invalidation, I-TLB flush, Integer instructions, Floating point instructions, Pipeline bubbles.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-40",
+          "explanation": "HLR 'HPM-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-40",
+            "req_text": "The source of events counted by the six generic performance counters shall be selected by the mhpmevent3 to mhpmevent8 CSRs.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-50",
+          "explanation": "HLR 'HPM-50' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-50",
+            "req_text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-60",
+          "explanation": "HLR 'HPM-60' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-60",
+            "req_text": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-70",
+          "explanation": "HLR 'HPM-70' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-70",
+            "req_text": "CVA6 shall implement the mcountinhibit counter-inhibit register.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "HPM-80",
+          "explanation": "HLR 'HPM-80' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "HPM-80",
+            "req_text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6).",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-30",
+          "explanation": "HLR 'L1W-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-30",
+            "req_text": "L1WTD should offer the following size/ways configurations: 0 kbyte (no cache), 4 kbytes (4 or 8 ways), 8 kbytes (4, 8 or 16 ways), 16 kbytes (4, 8 or 16 ways), 32 kbytes (8 or 16 ways).",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-40",
+          "explanation": "HLR 'L1W-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-40",
+            "req_text": "L1WTD shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-50",
+          "explanation": "HLR 'L1W-50' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-50",
+            "req_text": "To interface with the P-Mesh coherence system of OpenPiton, L1WTD shall have a line invalidate external command that invalidates the content of a line upon request.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-60",
+          "explanation": "HLR 'L1W-60' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-60",
+            "req_text": "Some physical memory regions shall be configurable as not L1WTD cacheable at design time.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-70",
+          "explanation": "HLR 'L1W-70' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-70",
+            "req_text": "It shall be possible to invalidate L1WTD content with the FENCE.T command.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-80",
+          "explanation": "HLR 'L1W-80' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-80",
+            "req_text": "The replacement policy of L1WTD shall be LFSR (pseudo-random) or LRU (least recently used).",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-90",
+          "explanation": "HLR 'L1W-90' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-90",
+            "req_text": "L1WTD should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1W-100",
+          "explanation": "HLR 'L1W-100' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1W-100",
+            "req_text": "A custom CSR shall allow to disable or enable L1WTD.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-10",
+          "explanation": "HLR 'L1I-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-10",
+            "req_text": "L1I should offer the following size/ways configurations: 4 kbytes: 3, 4 or 8 ways, 8 kbytes: 4, 8, or 16 ways, 16 kbytes: 4, 8 or 16 ways, 32 kbytes: 8 or 16 ways.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-20",
+          "explanation": "HLR 'L1I-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-20",
+            "req_text": "L1I shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-30",
+          "explanation": "HLR 'L1I-30' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-30",
+            "req_text": "To interface with the P-Mesh coherence system of OpenPiton, L1I shall have a line invalidate external command that invalidates the content of a line upon request.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-40",
+          "explanation": "HLR 'L1I-40' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-40",
+            "req_text": "It shall be possible to invalidate L1I content with the FENCE.T command.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-50",
+          "explanation": "HLR 'L1I-50' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-50",
+            "req_text": "The replacement policy of L1I shall be LFSR (pseudo-random) or LRU (least recently used).",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-60",
+          "explanation": "HLR 'L1I-60' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-60",
+            "req_text": "L1I should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "L1I-70",
+          "explanation": "HLR 'L1I-70' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "L1I-70",
+            "req_text": "A custom CSR shall allow to disable or enable L1I.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "FET-10",
+          "explanation": "HLR 'FET-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "FET-10",
+            "req_text": "CVA6 should support the FENCE.T instruction that ensures that the execution time of subsequent instructions is unrelated with predecessor instructions.",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "FET-20",
+          "explanation": "HLR 'FET-20' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "FET-20",
+            "req_text": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present).",
+            "reason": "no_system_traceability"
+          }
+        },
+        {
+          "violating_element": "PPA-10",
+          "explanation": "HLR 'PPA-10' lacks traceability to system requirement. Required by DO-178C Table A-3 obj 1.",
+          "raw": {
+            "violating_requirement": "PPA-10",
+            "req_text": "CVA6 should be resource-optimized on FPGA and ASIC targets.",
+            "reason": "no_system_traceability"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-178C-A3-2",
+      "standard": "DO-178C",
+      "table": "A-3",
+      "title": "High-level requirements are accurate and consistent",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 3,
+      "violations": [
+        {
+          "violating_element": "L1W-60",
+          "explanation": "HLR 'L1W-60' has high-severity vagueness smell (trigger: 'some'). DO-178C A-3 obj 2 requires accurate and unambiguous requirements.",
+          "raw": {
+            "violating_requirement": "L1W-60",
+            "req_text": "Some physical memory regions shall be configurable as not L1WTD cacheable at design time.",
+            "reason": "vagueness",
+            "smell_trigger": "some"
+          }
+        },
+        {
+          "violating_element": "PPA-50",
+          "explanation": "HLR 'PPA-50' has high-severity placeholder smell (trigger: 'TBD'). DO-178C A-3 obj 2 requires accurate and unambiguous requirements.",
+          "raw": {
+            "violating_requirement": "PPA-50",
+            "req_text": "TBD: Placeholder for single-precision floating performance per MHz.",
+            "reason": "placeholder",
+            "smell_trigger": "TBD"
+          }
+        },
+        {
+          "violating_element": "PPA-60",
+          "explanation": "HLR 'PPA-60' has high-severity placeholder smell (trigger: 'TBD'). DO-178C A-3 obj 2 requires accurate and unambiguous requirements.",
+          "raw": {
+            "violating_requirement": "PPA-60",
+            "req_text": "TBD: Placeholder for double-precision floating performance per MHz.",
+            "reason": "placeholder",
+            "smell_trigger": "TBD"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-178C-A3-3",
+      "standard": "DO-178C",
+      "table": "A-3",
+      "title": "High-level requirements are compatible with target computer",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 7,
+      "violations": [
+        {
+          "violating_element": "HPM-20",
+          "explanation": "Performance/timing/memory HLR 'HPM-20' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-20",
+            "req_text": "CVA6 shall implement as an option six generic 64-bit performance counters located in hpmcounter3 to hpmcounter8 (including their upper 32 bits counterparts in CV32A6: hpmcounter3h to hpmcounter8h).",
+            "reason": "Performance"
+          }
+        },
+        {
+          "violating_element": "HPM-30",
+          "explanation": "Performance/timing/memory HLR 'HPM-30' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-30",
+            "req_text": "Each of the six generic performance counters shall be able to count events from one of these sources: L1 I-Cache misses, L1 D-Cache misses, ITLB misses, DTLB misses, Load accesses, Store accesses, Exceptions, Exception handler returns, Branch instructions, Branch mispredicts, Branch exceptions, Call, Return, MSB Full, Instruction fetch Empty, L1 I-Cache accesses, L1 D-Cache accesses, L1$ line invalidation, I-TLB flush, Integer instructions, Floating point instructions, Pipeline bubbles.",
+            "reason": "Performance"
+          }
+        },
+        {
+          "violating_element": "HPM-40",
+          "explanation": "Performance/timing/memory HLR 'HPM-40' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-40",
+            "req_text": "The source of events counted by the six generic performance counters shall be selected by the mhpmevent3 to mhpmevent8 CSRs.",
+            "reason": "Performance"
+          }
+        },
+        {
+          "violating_element": "HPM-50",
+          "explanation": "Performance/timing/memory HLR 'HPM-50' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-50",
+            "req_text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+            "reason": "Performance"
+          }
+        },
+        {
+          "violating_element": "HPM-60",
+          "explanation": "Performance/timing/memory HLR 'HPM-60' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-60",
+            "req_text": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR.",
+            "reason": "Performance"
+          }
+        },
+        {
+          "violating_element": "HPM-70",
+          "explanation": "Performance/timing/memory HLR 'HPM-70' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-70",
+            "req_text": "CVA6 shall implement the mcountinhibit counter-inhibit register.",
+            "reason": "Performance"
+          }
+        },
+        {
+          "violating_element": "HPM-80",
+          "explanation": "Performance/timing/memory HLR 'HPM-80' lacks linkage to target hardware characteristics. DO-178C A-3 obj 3.",
+          "raw": {
+            "violating_requirement": "HPM-80",
+            "req_text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6).",
+            "reason": "Performance"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-178C-A4-1",
+      "standard": "DO-178C",
+      "table": "A-4",
+      "title": "Low-level requirements comply with high-level requirements",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "LLR-20",
+          "explanation": "LLR 'LLR-20' has no parent HLR — orphan requirement. DO-178C A-4 obj 1 requires LLR-to-HLR traceability.",
+          "raw": {
+            "violating_requirement": "LLR-20",
+            "req_text": "Pipeline flush handler shall clear scoreboard.",
+            "reason": "no_hlr_parent"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-178C-A4-6",
+      "standard": "DO-178C",
+      "table": "A-4",
+      "title": "Software architecture is consistent with high-level requirements",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 60,
+      "violations": [
+        {
+          "violating_element": "PPA-20",
+          "explanation": "HLR 'PPA-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PPA-20",
+            "req_text": "CVA6 should deliver more than 2.1 CoreMark/MHz.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PPA-30",
+          "explanation": "HLR 'PPA-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PPA-30",
+            "req_text": "CV32A6 should run at more than 150 MHz in the cv32a6_imac_sv32 configuration on Kintex 7 FPGA technology, commercial -2 speed grade.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PPA-40",
+          "explanation": "HLR 'PPA-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PPA-40",
+            "req_text": "CV64A6 should run at more than 900 MHz in the cv64a6_imacfd_sv39 configuration on 28FDSOI technology in the worst case frequency corner with the fastest threshold voltage.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PPA-50",
+          "explanation": "HLR 'PPA-50' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PPA-50",
+            "req_text": "TBD: Placeholder for single-precision floating performance per MHz.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PPA-60",
+          "explanation": "HLR 'PPA-60' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PPA-60",
+            "req_text": "TBD: Placeholder for double-precision floating performance per MHz.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "MEM-10",
+          "explanation": "HLR 'MEM-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "MEM-10",
+            "req_text": "CVA6 memory interface shall comply with AXI5 specification including the Atomic_Transactions property support as defined in [AXI] section E1.1.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "MEM-20",
+          "explanation": "HLR 'MEM-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "MEM-20",
+            "req_text": "CVA6 AXI memory interface shall feature user bit extensions on the data bus (WUSER and RUSER as per [AXI]) in connection with the L1I and L1WTD datasize extensions, with a number of user bits greater or equal to 0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "DBG-10",
+          "explanation": "HLR 'DBG-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "DBG-10",
+            "req_text": "CVA6 shall implement both the Abstracted Command and Execution based features outlined in chapter 4 of [RVdbg].",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "IRQ-10",
+          "explanation": "HLR 'IRQ-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "IRQ-10",
+            "req_text": "CVA6 shall implement interrupt handling registers as per the RISC-V privilege specification and interface with a CLINT implementation.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "XIF-10",
+          "explanation": "HLR 'XIF-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "XIF-10",
+            "req_text": "To extend the supported instructions, CVA6 shall have a coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "TRI-10",
+          "explanation": "HLR 'TRI-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "TRI-10",
+            "req_text": "CVA6 shall have the Transaction-Response Interface (TRI) needed to interface with the P-Mesh coherence system of OpenPiton, according to [OpenPiton].",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "RUL-10",
+          "explanation": "HLR 'RUL-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "RUL-10",
+            "req_text": "CVA6 should have a configurable reset signal: synchronous/asynchronous, active on high or low levels.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "RUL-20",
+          "explanation": "HLR 'RUL-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "RUL-20",
+            "req_text": "CVA6 shall be a super-synchronous design with a single clock input.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "RUL-30",
+          "explanation": "HLR 'RUL-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "RUL-30",
+            "req_text": "CVA6 should not include multi-cycle paths.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "RUL-40",
+          "explanation": "HLR 'RUL-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "RUL-40",
+            "req_text": "CVA6 should not include technology-dependent blocks.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-30",
+          "explanation": "HLR 'ISA-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-30",
+            "req_text": "CVA6 shall support the M extension (integer multiply and divide), version 2.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-40",
+          "explanation": "HLR 'ISA-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-40",
+            "req_text": "CVA6 shall support the A extension (atomic instructions), version 2.1.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-50",
+          "explanation": "HLR 'ISA-50' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-50",
+            "req_text": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-60",
+          "explanation": "HLR 'ISA-60' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-60",
+            "req_text": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-70",
+          "explanation": "HLR 'ISA-70' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-70",
+            "req_text": "CV64A6 shall support as an option the F extension (single-precision without double-precision floating-point), version 2.2.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-80",
+          "explanation": "HLR 'ISA-80' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-80",
+            "req_text": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-90",
+          "explanation": "HLR 'ISA-90' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-90",
+            "req_text": "CVA6 shall support the Zicsr extension (CSR instructions), version 2.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-100",
+          "explanation": "HLR 'ISA-100' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-100",
+            "req_text": "CVA6 shall support the Zifencei extension, version 2.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-120",
+          "explanation": "HLR 'ISA-120' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-120",
+            "req_text": "CVA6 should support as an option the B extension (bit manipulation), version 1.0. The B extension comprises the Zba, Zbb, Zbc and Zbs extensions.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-130",
+          "explanation": "HLR 'ISA-130' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-130",
+            "req_text": "CVA6 should support as an option the Zicond extension (ratification pending) version 1.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-140",
+          "explanation": "HLR 'ISA-140' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-140",
+            "req_text": "CVA6 should support as an option the Zcb extension version 1.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "ISA-150",
+          "explanation": "HLR 'ISA-150' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "ISA-150",
+            "req_text": "CVA6 should support as an option the Zcmp extension version 1.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PVL-20",
+          "explanation": "HLR 'PVL-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PVL-20",
+            "req_text": "CV64A6 shall support as an option the Sv39 virtual memory, version 1.11.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PVL-30",
+          "explanation": "HLR 'PVL-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PVL-30",
+            "req_text": "CV32A6 shall support as an option the Sv32 virtual memory version 1.11.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PVL-40",
+          "explanation": "HLR 'PVL-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PVL-40",
+            "req_text": "CVA6 instances that do not feature virtual memory shall support the Bare mode.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PVL-50",
+          "explanation": "HLR 'PVL-50' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PVL-50",
+            "req_text": "CVA6 shall feature PMP (physical memory protection) as an option.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PVL-60",
+          "explanation": "HLR 'PVL-60' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PVL-60",
+            "req_text": "CV64A6 shall support as an option the H extension (hypervisor) version 1.0.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-10",
+          "explanation": "HLR 'HPM-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-10",
+            "req_text": "CVA6 shall implement the 64-bit mcycle and minstret standard performance counters (including their upper 32 bits counterparts mcycleh and minstreth in CV32A6) as per [RVpriv].",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-20",
+          "explanation": "HLR 'HPM-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-20",
+            "req_text": "CVA6 shall implement as an option six generic 64-bit performance counters located in hpmcounter3 to hpmcounter8 (including their upper 32 bits counterparts in CV32A6: hpmcounter3h to hpmcounter8h).",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-30",
+          "explanation": "HLR 'HPM-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-30",
+            "req_text": "Each of the six generic performance counters shall be able to count events from one of these sources: L1 I-Cache misses, L1 D-Cache misses, ITLB misses, DTLB misses, Load accesses, Store accesses, Exceptions, Exception handler returns, Branch instructions, Branch mispredicts, Branch exceptions, Call, Return, MSB Full, Instruction fetch Empty, L1 I-Cache accesses, L1 D-Cache accesses, L1$ line invalidation, I-TLB flush, Integer instructions, Floating point instructions, Pipeline bubbles.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-40",
+          "explanation": "HLR 'HPM-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-40",
+            "req_text": "The source of events counted by the six generic performance counters shall be selected by the mhpmevent3 to mhpmevent8 CSRs.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-50",
+          "explanation": "HLR 'HPM-50' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-50",
+            "req_text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-60",
+          "explanation": "HLR 'HPM-60' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-60",
+            "req_text": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-70",
+          "explanation": "HLR 'HPM-70' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-70",
+            "req_text": "CVA6 shall implement the mcountinhibit counter-inhibit register.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "HPM-80",
+          "explanation": "HLR 'HPM-80' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "HPM-80",
+            "req_text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6).",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-10",
+          "explanation": "HLR 'L1W-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-10",
+            "req_text": "L1WTD shall reflect all write accesses (stores) by the CVA6 core to the external memory within an upper-bounded number of cycles. The upper-bound is fixed but not specified here.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-20",
+          "explanation": "HLR 'L1W-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-20",
+            "req_text": "L1WTD shall not change the order of write accesses to the external memory with respect to the order of write accesses (stores) received from the CVA6 core.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-30",
+          "explanation": "HLR 'L1W-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-30",
+            "req_text": "L1WTD should offer the following size/ways configurations: 0 kbyte (no cache), 4 kbytes (4 or 8 ways), 8 kbytes (4, 8 or 16 ways), 16 kbytes (4, 8 or 16 ways), 32 kbytes (8 or 16 ways).",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-40",
+          "explanation": "HLR 'L1W-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-40",
+            "req_text": "L1WTD shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-50",
+          "explanation": "HLR 'L1W-50' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-50",
+            "req_text": "To interface with the P-Mesh coherence system of OpenPiton, L1WTD shall have a line invalidate external command that invalidates the content of a line upon request.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-60",
+          "explanation": "HLR 'L1W-60' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-60",
+            "req_text": "Some physical memory regions shall be configurable as not L1WTD cacheable at design time.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-70",
+          "explanation": "HLR 'L1W-70' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-70",
+            "req_text": "It shall be possible to invalidate L1WTD content with the FENCE.T command.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-80",
+          "explanation": "HLR 'L1W-80' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-80",
+            "req_text": "The replacement policy of L1WTD shall be LFSR (pseudo-random) or LRU (least recently used).",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-90",
+          "explanation": "HLR 'L1W-90' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-90",
+            "req_text": "L1WTD should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1W-100",
+          "explanation": "HLR 'L1W-100' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1W-100",
+            "req_text": "A custom CSR shall allow to disable or enable L1WTD.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-10",
+          "explanation": "HLR 'L1I-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-10",
+            "req_text": "L1I should offer the following size/ways configurations: 4 kbytes: 3, 4 or 8 ways, 8 kbytes: 4, 8, or 16 ways, 16 kbytes: 4, 8 or 16 ways, 32 kbytes: 8 or 16 ways.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-20",
+          "explanation": "HLR 'L1I-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-20",
+            "req_text": "L1I shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-30",
+          "explanation": "HLR 'L1I-30' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-30",
+            "req_text": "To interface with the P-Mesh coherence system of OpenPiton, L1I shall have a line invalidate external command that invalidates the content of a line upon request.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-40",
+          "explanation": "HLR 'L1I-40' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-40",
+            "req_text": "It shall be possible to invalidate L1I content with the FENCE.T command.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-50",
+          "explanation": "HLR 'L1I-50' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-50",
+            "req_text": "The replacement policy of L1I shall be LFSR (pseudo-random) or LRU (least recently used).",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-60",
+          "explanation": "HLR 'L1I-60' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-60",
+            "req_text": "L1I should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "L1I-70",
+          "explanation": "HLR 'L1I-70' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "L1I-70",
+            "req_text": "A custom CSR shall allow to disable or enable L1I.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "FET-10",
+          "explanation": "HLR 'FET-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "FET-10",
+            "req_text": "CVA6 should support the FENCE.T instruction that ensures that the execution time of subsequent instructions is unrelated with predecessor instructions.",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "FET-20",
+          "explanation": "HLR 'FET-20' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "FET-20",
+            "req_text": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present).",
+            "reason": "no_implementing_module"
+          }
+        },
+        {
+          "violating_element": "PPA-10",
+          "explanation": "HLR 'PPA-10' has no implementing module (software or HDL). DO-178C A-4 obj 6: architecture must cover all HLR.",
+          "raw": {
+            "violating_requirement": "PPA-10",
+            "req_text": "CVA6 should be resource-optimized on FPGA and ASIC targets.",
+            "reason": "no_implementing_module"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-178C-A7-1",
+      "standard": "DO-178C",
+      "table": "A-7",
+      "title": "Test procedures are correct",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 32,
+      "violations": [
+        {
+          "violating_element": "PPA-30",
+          "explanation": "HLR 'PPA-30' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "PPA-30",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "PPA-40",
+          "explanation": "HLR 'PPA-40' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "PPA-40",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "DBG-10",
+          "explanation": "HLR 'DBG-10' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "DBG-10",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "XIF-10",
+          "explanation": "HLR 'XIF-10' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "XIF-10",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "RUL-10",
+          "explanation": "HLR 'RUL-10' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "RUL-10",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "RUL-20",
+          "explanation": "HLR 'RUL-20' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "RUL-20",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "RUL-30",
+          "explanation": "HLR 'RUL-30' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "RUL-30",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "RUL-40",
+          "explanation": "HLR 'RUL-40' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "RUL-40",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-30",
+          "explanation": "HLR 'ISA-30' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-30",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-50",
+          "explanation": "HLR 'ISA-50' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-50",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-60",
+          "explanation": "HLR 'ISA-60' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-60",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-70",
+          "explanation": "HLR 'ISA-70' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-70",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-80",
+          "explanation": "HLR 'ISA-80' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-80",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-100",
+          "explanation": "HLR 'ISA-100' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-100",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "ISA-150",
+          "explanation": "HLR 'ISA-150' (DAL-A) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "ISA-150",
+            "req_level": "HLR",
+            "dal_level": "A",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "PVL-40",
+          "explanation": "HLR 'PVL-40' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "PVL-40",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "PVL-60",
+          "explanation": "HLR 'PVL-60' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "PVL-60",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "HPM-10",
+          "explanation": "HLR 'HPM-10' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "HPM-10",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "HPM-30",
+          "explanation": "HLR 'HPM-30' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "HPM-30",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "HPM-40",
+          "explanation": "HLR 'HPM-40' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "HPM-40",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "HPM-50",
+          "explanation": "HLR 'HPM-50' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "HPM-50",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "HPM-60",
+          "explanation": "HLR 'HPM-60' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "HPM-60",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1W-10",
+          "explanation": "HLR 'L1W-10' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1W-10",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1W-40",
+          "explanation": "HLR 'L1W-40' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1W-40",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1W-70",
+          "explanation": "HLR 'L1W-70' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1W-70",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1W-80",
+          "explanation": "HLR 'L1W-80' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1W-80",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1I-10",
+          "explanation": "HLR 'L1I-10' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1I-10",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1I-20",
+          "explanation": "HLR 'L1I-20' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1I-20",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1I-40",
+          "explanation": "HLR 'L1I-40' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1I-40",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1I-50",
+          "explanation": "HLR 'L1I-50' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1I-50",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "L1I-70",
+          "explanation": "HLR 'L1I-70' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "L1I-70",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        },
+        {
+          "violating_element": "FET-20",
+          "explanation": "HLR 'FET-20' (DAL-B) has no verifying test case. DO-178C A-7 obj 1: every requirement must be tested.",
+          "raw": {
+            "violating_requirement": "FET-20",
+            "req_level": "HLR",
+            "dal_level": "B",
+            "reason": "no_verifying_test"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-178C-A7-3",
+      "standard": "DO-178C",
+      "table": "A-7",
+      "title": "Test coverage of high-level requirements is achieved",
+      "applicable_dal": [
+        "A",
+        "B"
+      ],
+      "status": "FAIL",
+      "violation_count": 13,
+      "violations": [
+        {
+          "violating_element": "ISA-20",
+          "explanation": "DAL-A HLR 'ISA-20' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-20",
+            "req_text": "CV32A6 shall support RV32I base instruction set, version 2.1.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-30",
+          "explanation": "DAL-A HLR 'ISA-30' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-30",
+            "req_text": "CVA6 shall support the M extension (integer multiply and divide), version 2.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-40",
+          "explanation": "DAL-A HLR 'ISA-40' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-40",
+            "req_text": "CVA6 shall support the A extension (atomic instructions), version 2.1.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-50",
+          "explanation": "DAL-A HLR 'ISA-50' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-50",
+            "req_text": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-60",
+          "explanation": "DAL-A HLR 'ISA-60' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-60",
+            "req_text": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-70",
+          "explanation": "DAL-A HLR 'ISA-70' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-70",
+            "req_text": "CV64A6 shall support as an option the F extension (single-precision without double-precision floating-point), version 2.2.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-80",
+          "explanation": "DAL-A HLR 'ISA-80' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-80",
+            "req_text": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-90",
+          "explanation": "DAL-A HLR 'ISA-90' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-90",
+            "req_text": "CVA6 shall support the Zicsr extension (CSR instructions), version 2.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-100",
+          "explanation": "DAL-A HLR 'ISA-100' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-100",
+            "req_text": "CVA6 shall support the Zifencei extension, version 2.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-120",
+          "explanation": "DAL-A HLR 'ISA-120' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-120",
+            "req_text": "CVA6 should support as an option the B extension (bit manipulation), version 1.0. The B extension comprises the Zba, Zbb, Zbc and Zbs extensions.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-130",
+          "explanation": "DAL-A HLR 'ISA-130' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-130",
+            "req_text": "CVA6 should support as an option the Zicond extension (ratification pending) version 1.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-140",
+          "explanation": "DAL-A HLR 'ISA-140' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-140",
+            "req_text": "CVA6 should support as an option the Zcb extension version 1.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        },
+        {
+          "violating_element": "ISA-150",
+          "explanation": "DAL-A HLR 'ISA-150' lacks MC/DC test coverage. DO-178C A-7 obj 3 (DAL-A specific).",
+          "raw": {
+            "violating_requirement": "ISA-150",
+            "req_text": "CVA6 should support as an option the Zcmp extension version 1.0.",
+            "reason": "missing_mcdc_coverage"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-254-6.2.1",
+      "standard": "DO-254",
+      "table": "6.2.1",
+      "title": "Hardware requirements verification — completeness",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "HWR-40",
+          "explanation": "HWR 'HWR-40' (DAL-A) has no assigned verification method. DO-254 §6.2.1 requires verification method identified for each requirement.",
+          "raw": {
+            "violating_requirement": "HWR-40",
+            "req_text": "Interrupt latency shall be bounded.",
+            "dal_level": "A",
+            "reason": "no_verification_method"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-254-6.2.2",
+      "standard": "DO-254",
+      "table": "6.2.2",
+      "title": "Hardware requirement traceability to system requirements",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "HWR-50",
+          "explanation": "HWR 'HWR-50' has neither system traceability nor derivation rationale. DO-254 §6.2.2 requires one or the other.",
+          "raw": {
+            "violating_requirement": "HWR-50",
+            "req_text": "Branch predictor table sized to 256 entries (derived).",
+            "reason": "no_traceability_or_rationale"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-254-6.3.1",
+      "standard": "DO-254",
+      "table": "6.3.1",
+      "title": "Derived requirements documented with rationale",
+      "applicable_dal": [
+        "A",
+        "B"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "HWR-50",
+          "explanation": "Derived HWR 'HWR-50' lacks documented rationale. DO-254 §6.3.1 requires rationale for derived requirements.",
+          "raw": {
+            "violating_requirement": "HWR-50",
+            "req_text": "Branch predictor table sized to 256 entries (derived).",
+            "reason": "derived_without_rationale"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-254-6.3.2",
+      "standard": "DO-254",
+      "table": "6.3.2",
+      "title": "Derived requirements impact on system safety assessed",
+      "applicable_dal": [
+        "A",
+        "B"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "HWR-60",
+          "explanation": "Derived DAL-A HWR 'HWR-60' lacks safety impact assessment. DO-254 §6.3.2 requires ARP4761-style analysis.",
+          "raw": {
+            "violating_requirement": "HWR-60",
+            "req_text": "DMA burst length fixed at 16 (derived).",
+            "dal_level": "A",
+            "reason": "no_safety_assessment"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "DO-254-6.4.1",
+      "standard": "DO-254",
+      "table": "6.4.1",
+      "title": "Verification activities compliant with hardware design",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "HWR-70",
+          "explanation": "DAL-A HWR 'HWR-70' has no passing verification artifact (test or formal assertion). DO-254 §6.4.1.",
+          "raw": {
+            "violating_requirement": "HWR-70",
+            "dal_level": "A",
+            "reason": "no_passing_verification"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "CROSS-HW-SW-1",
+      "standard": "ARP4754A+DO-178C+DO-254",
+      "table": "cross-domain",
+      "title": "Hardware-software interface requirements coherent",
+      "applicable_dal": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "IRQ-10 <-> HWR-40",
+          "explanation": "SW HLR and HW HWR both reference interface 'IRQ_LINE' but consistency is not asserted (no CONSISTENT_WITH edge). Cross-domain coherence required by ARP4754A §5.",
+          "raw": {
+            "violating_requirement": "IRQ-10 <-> HWR-40",
+            "shared_interface": "IRQ_LINE",
+            "reason": "unconfirmed_consistency"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "CROSS-TIMING-1",
+      "standard": "ARP4754A+DO-178C+DO-254",
+      "table": "cross-domain",
+      "title": "Timing budget allocations consistent across SW and HW",
+      "applicable_dal": [
+        "A",
+        "B"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "SYS-4",
+          "explanation": "System requirement 'SYS-4' has timing budget 50 ns, but allocations to SW+HW sum to 70 ns. Budget overrun in cross-domain allocation.",
+          "raw": {
+            "violating_requirement": "SYS-4",
+            "budget": 50,
+            "allocated": 70,
+            "reason": "budget_overrun"
+          }
+        }
+      ]
+    },
+    {
+      "objective_id": "CROSS-SAFETY-1",
+      "standard": "ARP4761+DO-178C+DO-254",
+      "table": "cross-domain",
+      "title": "Safety hazards propagated to both SW and HW requirements",
+      "applicable_dal": [
+        "A",
+        "B"
+      ],
+      "status": "FAIL",
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "HAZ-2",
+          "explanation": "Safety hazard 'HAZ-2' (severity: hazardous) requires both SW and HW mitigation but lacks one or both. ARP4761 + DO-178C/DO-254 cross-domain mitigation.",
+          "raw": {
+            "violating_requirement": "HAZ-2",
+            "hazard_text": "Stale cache line read after store.",
+            "severity": "hazardous",
+            "reason": "incomplete_mitigation_coverage"
+          }
+        }
+      ]
+    }
+  ],
+  "load_summary": {
+    "base_stats": {
+      "total_nodes": 110,
+      "total_relationships": 174,
+      "nodes_by_label": {
+        "Requirement": 64,
+        "Category": 9,
+        "Component": 10,
+        "Standard": 13,
+        "Configuration": 2,
+        "Smell": 12
+      },
+      "relationships_by_type": {
+        "BELONGS_TO": 64,
+        "MENTIONS": 75,
+        "REFERS_TO": 21,
+        "APPLIES_TO": 2,
+        "HAS_SMELL": 12
+      }
+    },
+    "final_node_count": 187,
+    "final_rel_count": 249
+  },
+  "_provenance": {
+    "neo4j_version": "2026.04.0 (enterprise)",
+    "driver": "neo4j-python (Neo4jGraphRunner)",
+    "metadata_status": "MOCK",
+    "note": "Compliance metadata (DAL, level, traceability, interfaces, hazards, timing budgets, verification artifacts) is synthetic. The public CVA6 specification contains no certification data. This run demonstrates that the 15 codified Cypher patterns execute on a real Neo4j instance and discriminate seeded compliant vs. violating cases. It is NOT certification evidence and would require DER review before any real use.",
+    "generator": "Phase 1a evidence-hardening (scripts/load_neo4j.py + neo4j_runner.py)"
+  }
+}

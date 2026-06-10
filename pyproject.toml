@@ -48,6 +48,9 @@ packages = ["src/specguard"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = "test_*.py"
+markers = [
+    "neo4j: integration tests that require a reachable Neo4j database (skipped otherwise)",
+]
 
 [tool.ruff]
 line-length = 100
