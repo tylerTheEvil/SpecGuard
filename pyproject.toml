@@ -46,6 +46,9 @@ dev = [
     "mypy",
 ]
 
+[project.scripts]
+specguard = "specguard.cli:main"
+
 [project.urls]
 Documentation = "https://github.com/antonstryapunin/spec_guard/blob/main/CLAUDE.md"
 

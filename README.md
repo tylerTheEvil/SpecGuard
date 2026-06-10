@@ -114,6 +114,33 @@ DO-330-qualifiable deterministic core — the LLM is never authoritative (only
 human-accepted edges are ever exported; there is no auto-accept), exactly the
 Layer 2 analyst pattern used elsewhere in SpecGuard.
 
+### Unified CLI
+
+After `pip install -e .` a single `specguard` console command exposes the
+deterministic tool surface (the LLM-free entry point an agent session drives).
+Every subcommand supports `--json` for tooling; `assess` exits `0`/`1`/`2`
+(all PASS / any WARN / any FAIL) so a script can branch on the worst gate.
+Input parsers accept plain text (`ID: text` per line), Markdown tables, and CSV
+(`--format auto` by default; `-` reads stdin).
+
+```bash
+specguard assess reqs.txt                       # Layer 1 gate table (text/MD/CSV/stdin)
+specguard assess - --json                        # machine-readable; stdin input
+specguard import reqs.csv --dataset-tag myproj   # build graph, report counts (dry run)
+specguard import reqs.csv --dataset-tag myproj --to-neo4j   # MERGE (never clears; dataset-tagged)
+specguard comply --memory                        # 15 codified objectives, no DB needed
+specguard comply --neo4j                         # same, against live Neo4j ([graph] extra)
+specguard graph q6                               # named NetworkX queries (q6/q8/q14)
+specguard graph --cypher "MATCH (n) RETURN count(n)"   # read-only Cypher (writes refused)
+specguard extract reqs.txt --queue q.json        # LLM-propose edges -> review queue ([llm] extra)
+specguard review q.json list                     # list/accept/reject/export proposals
+specguard review q.json merge-to-neo4j           # MERGE accepted edges (only LLM-originated write)
+```
+
+Neo4j Community Edition is one database per DBMS, so imported datasets coexist
+by a `dataset` node property (not separate databases); `import --to-neo4j` and
+`review merge-to-neo4j` are MERGE-based and never clear existing data.
+
 ---
 
 ## Project structure

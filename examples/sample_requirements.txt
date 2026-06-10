@@ -1,0 +1,12 @@
+# Sample requirements for the SpecGuard CLI walkthrough.
+# Plain-text format: one "ID: text" per line; blank lines and # comments ignored;
+# a line without an "ID:" prefix continues the previous requirement.
+# Deliberately seeded with defects so assess shows PASS / WARN / FAIL.
+
+REQ-01: The CVA6 processor shall execute the RV64I base instruction set, version 2.1.
+REQ-02: The cache controller shall service a load-to-use access within 80 ns.
+REQ-03: The system should be reasonably fast and user-friendly under typical load.
+REQ-04: The interrupt handler may optionally clear some of the pending flags, etc.
+REQ-05: Timing budget for the store path is TBD.
+REQ-06: The MMU shall translate virtual addresses using Sv39 paging, raising a page
+        fault on an invalid translation.

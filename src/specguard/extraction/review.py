@@ -213,6 +213,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_export.add_argument("out_file", help="Output path for accepted edges.")
 
+    sub.add_parser(
+        "merge-to-neo4j",
+        help="MERGE accepted edges into the live Neo4j graph (needs the [graph] extra).",
+    )
+
     args = parser.parse_args(argv)
 
     queue_path = Path(args.queue_file)
@@ -248,6 +253,27 @@ def main(argv: list[str] | None = None) -> int:
         edges = export_accepted_edges(queue)
         Path(args.out_file).write_text(json.dumps(edges, indent=2, ensure_ascii=False))
         print(f"Exported {len(edges)} accepted edge(s) to {args.out_file}")
+        return 0
+
+    if args.command == "merge-to-neo4j":
+        edges = export_accepted_edges(queue)
+        if not edges:
+            print("No accepted edges to merge.")
+            return 0
+        try:
+            from specguard.graph.neo4j_io import merge_accepted_edges
+        except ImportError as exc:  # pragma: no cover - only without [graph]
+            print(f"Neo4j write requires the [graph] extra: {exc}", file=sys.stderr)
+            return 2
+        try:
+            result = merge_accepted_edges(edges)
+        except ImportError as exc:
+            print(
+                f"Neo4j driver not installed (install '.[graph]'): {exc}",
+                file=sys.stderr,
+            )
+            return 2
+        print(f"Merged {result['edges_merged']} accepted edge(s) into Neo4j.")
         return 0
 
     return 1  # pragma: no cover - argparse requires a subcommand
