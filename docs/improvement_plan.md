@@ -132,6 +132,104 @@ results on the derived dataset via real Neo4j execution.
 - Deliverable: demo script — Coordinator dispatches CVA6 through all three
   agents and merges a combined report.
 
+## Phase 5 — Agentic session integration (Claude as operator console)
+
+**Goal:** an engineer opens a Claude session, points at a folder of
+requirements (or pastes text), and runs the SpecGuard workflows
+conversationally — assess, refine, import, graph queries, compliance —
+while every verdict stays deterministic and every graph write stays
+human-confirmed. This is the concrete realization of the HMAS
+*interaction layer*: the session host plays Coordinator-with-a-human.
+
+**Positioning honesty:** this is engineering, not a fourth novelty.
+Its dissertation value is (a) operationalizing the automation-boundary
+claim end-to-end, (b) extending automation to the refinement stage in
+the defensible propose→verify→confirm shape, and (c) serving as the
+instrument for the future effort-measurement user study.
+
+### The invariant that must survive integration
+
+**The session LLM is never the detector.** Commands and skill text must
+enforce: always run the deterministic tool; present gate output verbatim
+and attributed; LLM commentary clearly separated as annotation; all
+graph writes flow through the review queue or explicit confirmation.
+In code this invariant is structural; in a chat session it is only as
+strong as the command instructions — so they state it as hard rules.
+
+### 5a. Unified CLI (deterministic tool surface)
+
+A `specguard` console entry point (pyproject `[project.scripts]`)
+wrapping the existing machinery. The CLI is deliberately LLM-free —
+all LLM work (rewrite drafting, edge proposing) happens in the session
+or via the BYOM extraction module:
+
+- `specguard assess <path|->` — parse requirements, run the Layer 1
+  pipeline, report gates (human-readable + `--json`). Reading stdin
+  (`-`) is what enables the session refinement loop.
+- `specguard import <path> [--dataset-tag NAME] [--to-neo4j]` — parse,
+  build graph, load. MERGE-based with a `dataset` node property so
+  engineer imports coexist with the CVA6/UAV demo graphs (today's
+  loaders clear-and-load the whole DB — unacceptable once engineers
+  bring their own data).
+- `specguard comply [--dataset cva6|uav|TAG] [--neo4j|--memory]` —
+  compliance run; NetworkX in-memory fallback when the DB is down
+  (same degradation pattern as everywhere else).
+- `specguard graph <named-query|--cypher QUERY>` — read-only by
+  default; a small named-query library (q6/q8/q14 + per-dataset
+  variants); raw Cypher allowed read-only.
+- `specguard extract <path>` / `specguard review ...` — wraps the
+  existing extraction + review-queue CLI; adds the missing
+  `review merge-to-neo4j` step that MERGEs **accepted** edges into the
+  live graph (the only LLM-originated write path, and it is
+  human-gated by construction).
+- Input parser: plain text (`ID: text` per line), Markdown table, CSV.
+  Explicitly NOT ReqIF/DOORS — that is a separate work (rabbit hole).
+
+### 5b. Claude command set (`.claude/` in this repo)
+
+Skill/commands with the guard rules baked in:
+
+- `/sg-assess <path|pasted text>` — run `specguard assess`, show gate
+  table verbatim, then (clearly separated) plain-language annotation.
+- `/sg-refine` — for each FAIL/WARN requirement: draft a rewrite,
+  re-run `specguard assess -` on the draft, iterate until PASS or
+  stuck, present diff + before/after gate evidence, ask the engineer
+  to accept. Accepted text is written back to the source file. (This
+  is the propose→verify→confirm extension of automation into the
+  refinement stage.)
+- `/sg-import` — parse + import with dataset tag; confirm before any
+  Neo4j write; report node/edge counts.
+- `/sg-extract` — propose edges → review queue → walk the engineer
+  through accept/reject → `review merge-to-neo4j` only on confirmation.
+- `/sg-comply`, `/sg-graph` — compliance and graph Q&A over the live
+  Neo4j (read-only unless explicitly confirmed).
+
+### 5c. Neo4j interaction notes
+
+Available already: `Neo4jGraphRunner` (env-configured), loaders,
+integration-test patterns. Needed: MERGE import + dataset tags (5a),
+accepted-edge write path (5a), read-only guard for session-issued
+Cypher. Constraint to document: Neo4j CE = one database per DBMS, so
+dataset coexistence is by node property, not by database.
+
+### 5d. Validation & demo
+
+- Parser + CLI smoke tests (subprocess) in plain pytest; Neo4j-marked
+  tests for MERGE import and accepted-edge writes.
+- `examples/` folder with a small sample requirements file (with
+  seeded defects) for the walkthrough.
+- A scripted end-to-end session transcript in `docs/` (assess → refine
+  → import → extract → comply) — defense/Радій demo material.
+
+### Stage 2 (deferred): MCP server
+
+Promote the same CLI surface to typed MCP tools
+(`assess_requirements`, `query_graph`, `propose_edges`,
+`check_compliance`) once the workflows stabilize. Wins: structured
+results instead of parsed stdout, host-agnosticism (any MCP client —
+keeps the artifact vendor-neutral). Deliberately NOT first: tool
+schemas are costly to iterate while workflows are still settling.
+
 ## Status
 
 | Phase | Item | Status |
@@ -144,6 +242,11 @@ results on the derived dataset via real Neo4j execution.
 | 3a | BYOM provider protocol | **done 2026-06-10** — `specguard.llm`: ModelProvider + StructuredModelProvider protocols, Anthropic + Mock providers, `[llm]` extra |
 | 3b | Edge extraction + eval | **done 2026-06-10** — `specguard.extraction` with evidence-span hallucination guard + human review CLI. **Live eval run 2026-06-10** (claude-opus-4-8, 64 reqs): MENTIONS **recall 1.000, precision 0.664** (75/75 truth edges recovered, 38 extra proposals, 0 guard rejections). Caveat for Paper #3: ground truth is the hand-built graph, so the 38 "false positives" may include genuinely correct edges the manual build missed — human adjudication of those 38 would tighten the precision figure (eval JSON stores counts only; add pair-level logging before the adjudication run) |
 | 4 | HMAS skeleton | **done 2026-06-10** — `specguard.agents`: Coordinator + Quality/Formalization/Traceability agents, per-role BYOM mapping, determinism invariant tested; polyglot persistence remains future work |
+| 5a | Unified `specguard` CLI (parser, assess/import/comply/graph/extract, MERGE + dataset tags, accepted-edge Neo4j write) | **done 2026-06-10** — `src/specguard/cli.py` + `io/parsers.py` + `graph/neo4j_io.py`; exit codes 0/1/2 on gates; 40 new tests (203 total) |
+| 5b | Claude command set with detector-invariant guard rules | **done 2026-06-10** — `.claude/commands/sg-{assess,refine,import,extract,comply,graph}.md`, each with a Hard-rules section |
+| 5c | Neo4j session interactions (read-only guard, coexistence docs) | **done 2026-06-10** — `run_readonly_cypher` write-refusal, MERGE-only writes, dataset-tag coexistence (tested) |
+| 5d | Examples + CLI tests + scripted demo transcript | **done 2026-06-10** — `examples/walkthrough_requirements.txt` (5 PASS/4 WARN/2 FAIL), `docs/session_walkthrough.md` with genuine outputs incl. live extraction |
+| 5-S2 | MCP server over the CLI surface | deferred until workflows stabilize |
 
 ### Phase 1 outcome note (for Paper #3)
 

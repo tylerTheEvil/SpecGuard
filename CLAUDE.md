@@ -59,6 +59,8 @@ specguard/                               ← project root
 │       ├── llm/                         — BYOM provider protocols (novelty #1 interface) + Anthropic/Mock adapters ([llm] extra)
 │       ├── extraction/                  — LLM-assisted edge extraction, human-confirmed (augmentative, outside qualifiable core)
 │       ├── agents/                      — HMAS skeleton: Coordinator + Quality/Formalization/Traceability agents (interface validation)
+│       ├── io/                          — requirement parsers (plain text / Markdown table / CSV; NOT ReqIF)
+│       ├── cli.py                       — `specguard` console command: deterministic tool surface for agent sessions
 │       └── data/
 │           ├── cva6_requirements.py    — 64 industrial requirements (CVA6 RISC-V)
 │           └── uav_cross_domain.py     — 20 derived UAV flight-control reqs (system/HLR/HWR, CVA6-anchored)
@@ -209,7 +211,16 @@ python -c "from specguard.graph.queries import main; main()"
 
 # Test suite
 pytest
+
+# Unified CLI (deterministic tool surface; see README "Unified CLI" for all subcommands)
+specguard assess <file|->         # Layer 1 gate table; exit 0/1/2 = all PASS / any WARN / any FAIL
+specguard import <file> --dataset-tag NAME [--to-neo4j]   # MERGE-based, never clears
+specguard comply --memory|--neo4j
+specguard graph q6|q8|q14 | --cypher "..."                # raw Cypher is read-only
+specguard review <queue.json> list|accept|reject|export|merge-to-neo4j
 ```
+
+Claude session commands (`/sg-assess`, `/sg-refine`, `/sg-import`, `/sg-extract`, `/sg-comply`, `/sg-graph`) live in `.claude/commands/` and drive this CLI. **The session LLM is never the detector** — commands must run the deterministic tool, quote its output verbatim, and keep LLM commentary clearly separated; all Neo4j writes require explicit user confirmation. Demo walkthrough: `docs/session_walkthrough.md`, sample input: `examples/walkthrough_requirements.txt`.
 
 For full graph rendering, Neo4j Desktop must be installed locally (DBMS `specguard-cva6`, password `53265326`). Cypher dump in `results/specguard_graph.cypher` — paste into Neo4j Browser.
 

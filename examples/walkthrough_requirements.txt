@@ -1,0 +1,32 @@
+# Extended requirements for the SpecGuard session walkthrough demo.
+# Plain-text format: one "ID: text" per line; blank lines and # comments ignored;
+# a line without an "ID:" prefix continues the previous requirement.
+# Avionics/FPGA-flavored; covers DO-178C DAL-A and DO-254 DA-A contexts.
+# Deliberately seeded with defects to produce a mix of PASS / WARN / FAIL gates:
+#   PASS  5: REQ-01, REQ-02, REQ-06, REQ-09, REQ-10
+#   WARN  4: REQ-03, REQ-04, REQ-07, REQ-08  (vagueness / optionality / comparative smells)
+#   FAIL  2: REQ-05, REQ-11                   (TBD placeholders)
+
+# --- PASS tier (clean, precise, verifiable) ---
+REQ-01: The CVA6 processor shall execute the RV64I base instruction set, version 2.1.
+REQ-02: The cache controller shall service a load-to-use access within 80 ns under nominal
+        operating conditions (Vdd 1.2 V ± 5%).
+REQ-06: The MMU shall translate virtual addresses using Sv39 paging, raising a page-fault
+        exception when the PTE is invalid or the access permission check fails.
+REQ-09: The FPGA fabric shall implement the CVA6 pipeline meeting a maximum operating
+        frequency of 200 MHz at the worst-case process corner (SS, 0.95 V).
+REQ-10: The interrupt controller shall acknowledge each level-sensitive interrupt within
+        two clock cycles of the interrupt signal being asserted.
+
+# --- WARN tier (seeded: vagueness, optionality, ambiguous adjective, comparative) ---
+REQ-03: The system should be reasonably fast and user-friendly under typical load.
+REQ-04: The interrupt handler may optionally clear some of the pending flags, etc.
+REQ-07: The watchdog timer shall fire an adequate number of ticks before the deadline,
+        depending on the specific operating mode in use at that time.
+REQ-08: The FPGA configuration loader shall program the bitstream faster than the
+        previous version of the loader, delivering better performance in all scenarios.
+
+# --- FAIL tier (TBD placeholders — must be resolved before progression) ---
+REQ-05: Timing budget for the store path is TBD.
+REQ-11: The FPGA power consumption limit for the flight-control compute block is TBD
+        pending thermal analysis.
