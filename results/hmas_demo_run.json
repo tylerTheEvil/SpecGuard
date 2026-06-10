@@ -1,0 +1,696 @@
+{
+  "dispatch_order": [
+    "quality",
+    "formalization",
+    "traceability"
+  ],
+  "provider_usage": {
+    "quality": null,
+    "formalization": null,
+    "traceability": null
+  },
+  "agents": {
+    "quality": {
+      "role": "Quality Agent (Layer 1 deterministic gate + optional LLM analyst)",
+      "payload": {
+        "aggregate": {
+          "total_requirements": 64,
+          "gate_pass": 61,
+          "gate_warn": 1,
+          "gate_fail": 2,
+          "pass_rate": 0.953,
+          "fail_rate": 0.031,
+          "avg_completeness": 0.961,
+          "avg_consistency": 1.0,
+          "avg_verifiability": 0.777,
+          "avg_overall": 0.888,
+          "total_smells_detected": 12,
+          "smells_per_requirement": 0.19,
+          "smell_type_distribution": {
+            "negative_statement": 3,
+            "vagueness": 1,
+            "implicit_reference": 4,
+            "missing_unit": 2,
+            "placeholder": 2
+          }
+        },
+        "per_requirement": [
+          {
+            "requirement_id": "GEN-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-10",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-20",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-30",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-40",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-50",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-60",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-70",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-80",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-90",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-100",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-120",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-130",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-140",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "ISA-150",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PVL-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PVL-20",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PVL-30",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PVL-40",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PVL-50",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PVL-60",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-10",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-20",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-30",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-40",
+            "gate_decision": "PASS",
+            "overall": 0.835,
+            "completeness": 0.9,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-50",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-60",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-70",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "HPM-80",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1W-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1W-20",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "L1W-30",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1W-40",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1W-50",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1W-60",
+            "gate_decision": "WARN",
+            "overall": 0.595,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.1,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "L1W-70",
+            "gate_decision": "PASS",
+            "overall": 0.835,
+            "completeness": 0.9,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "L1W-80",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1W-90",
+            "gate_decision": "PASS",
+            "overall": 0.799,
+            "completeness": 0.9,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "L1W-100",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1I-10",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1I-20",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1I-30",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1I-40",
+            "gate_decision": "PASS",
+            "overall": 0.835,
+            "completeness": 0.9,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "L1I-50",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "L1I-60",
+            "gate_decision": "PASS",
+            "overall": 0.799,
+            "completeness": 0.9,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "L1I-70",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "FET-10",
+            "gate_decision": "PASS",
+            "overall": 0.829,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "FET-20",
+            "gate_decision": "PASS",
+            "overall": 0.829,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PPA-10",
+            "gate_decision": "PASS",
+            "overall": 0.829,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PPA-20",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PPA-30",
+            "gate_decision": "PASS",
+            "overall": 0.874,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.72,
+            "smell_count": 2
+          },
+          {
+            "requirement_id": "PPA-40",
+            "gate_decision": "PASS",
+            "overall": 0.964,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.92,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "PPA-50",
+            "gate_decision": "FAIL",
+            "overall": 0.475,
+            "completeness": 0.0,
+            "consistency": 1.0,
+            "verifiability": 0.5,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "PPA-60",
+            "gate_decision": "FAIL",
+            "overall": 0.475,
+            "completeness": 0.0,
+            "consistency": 1.0,
+            "verifiability": 0.5,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "MEM-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "MEM-20",
+            "gate_decision": "PASS",
+            "overall": 1.0,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 1.0,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "DBG-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "IRQ-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "XIF-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "TRI-10",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "RUL-10",
+            "gate_decision": "PASS",
+            "overall": 0.829,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "RUL-20",
+            "gate_decision": "PASS",
+            "overall": 0.865,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.7,
+            "smell_count": 0
+          },
+          {
+            "requirement_id": "RUL-30",
+            "gate_decision": "PASS",
+            "overall": 0.829,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 1
+          },
+          {
+            "requirement_id": "RUL-40",
+            "gate_decision": "PASS",
+            "overall": 0.829,
+            "completeness": 1.0,
+            "consistency": 1.0,
+            "verifiability": 0.62,
+            "smell_count": 1
+          }
+        ]
+      },
+      "llm_annotation": null,
+      "used_provider": null
+    },
+    "formalization": {
+      "role": "Formalization Agent (Layer 2 knowledge-graph queries)",
+      "payload": {
+        "graph_stats": {
+          "total_nodes": 110,
+          "total_relationships": 174,
+          "nodes_by_label": {
+            "Requirement": 64,
+            "Category": 9,
+            "Component": 10,
+            "Standard": 13,
+            "Configuration": 2,
+            "Smell": 12
+          },
+          "relationships_by_type": {
+            "BELONGS_TO": 64,
+            "MENTIONS": 75,
+            "REFERS_TO": 21,
+            "APPLIES_TO": 2,
+            "HAS_SMELL": 12
+          }
+        },
+        "conflict_candidates_screened": 9,
+        "cross_cutting_count": 14,
+        "safety_critical_with_smells": [
+          {
+            "id": "L1W-20",
+            "smells": [
+              {
+                "type": "negative_statement",
+                "severity": "low",
+                "trigger": "shall not"
+              }
+            ]
+          }
+        ]
+      },
+      "llm_annotation": null,
+      "used_provider": null
+    },
+    "traceability": {
+      "role": "Traceability Agent (Layer 3 compliance + cross-domain binding)",
+      "payload": {
+        "objectives_checked": 15,
+        "passing": 9,
+        "passing_objective_ids": [
+          "DO-178C-A4-1",
+          "DO-254-6.2.1",
+          "DO-254-6.2.2",
+          "DO-254-6.3.1",
+          "DO-254-6.3.2",
+          "DO-254-6.4.1",
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "violation_count": 167,
+        "compliance_rate": 0.6,
+        "violations_by_objective": {
+          "DO-178C-A3-1": 43,
+          "DO-178C-A3-2": 3,
+          "DO-178C-A3-3": 14,
+          "DO-178C-A4-6": 64,
+          "DO-178C-A7-1": 29,
+          "DO-178C-A7-3": 14
+        }
+      },
+      "llm_annotation": null,
+      "used_provider": null
+    }
+  },
+  "_meta": {
+    "demo": "hmas_demo",
+    "mock_llm": false,
+    "requirements_count": 64,
+    "note": "HMAS skeleton (interface validation). Deterministic; polyglot persistence and async orchestration are future work."
+  }
+}

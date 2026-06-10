@@ -40,17 +40,33 @@ Layer 3 — Compliance codification     src/specguard/compliance/
 - Cross-domain SW↔FPGA binding is the unique niche — no prior precedent in literature
 - Full codification of ~71 DO-178C + ~50 DO-254 objectives is a separate research direction
 
-## Hierarchical Multi-Agent System (HMAS) — planned
+## Hierarchical Multi-Agent System (HMAS) — skeleton implemented
 
 ```
 Coordinator Agent
-├── Quality Agent        (Layer 1 + LLM analyst)
+├── Quality Agent        (Layer 1 + optional LLM analyst)
 ├── Formalization Agent  (Layer 2 graph queries)
 └── Traceability Agent   (Layer 3 compliance + cross-domain)
 ```
 
-Polyglot persistence: Neo4j (graph) + MongoDB (documents) + VectorDB (embeddings).
-BYOM (Bring Your Own Model) interface — heterogeneous models per agent role.
+Skeleton implemented in `src/specguard/agents/` (interface validation only): a
+deterministic, synchronous `Coordinator` dispatches a requirements dataset
+through the three layer-wrapping agents in fixed order and merges their uniform
+`AgentReport`s into a combined `AssessmentReport` (demo: `scripts/hmas_demo.py`,
+output `results/hmas_demo_run.json`). The agents package is stdlib-only beyond
+SpecGuard's own layers and the `typing`-based BYOM protocol; it runs with no
+Neo4j and never imports `anthropic`.
+
+BYOM (Bring Your Own Model) interface — heterogeneous models per agent role:
+each agent accepts an optional `ModelProvider` (`specguard.llm`), and the
+Coordinator accepts a per-role provider mapping. The LLM is strictly
+augmentative — deterministic gate/graph/compliance results are computed before
+and independently of any model call (asserted in `tests/test_hmas.py`),
+preserving the DO-330-qualifiable detection path.
+
+Polyglot persistence (Neo4j + MongoDB + VectorDB) and asynchronous, negotiating
+agents remain **future work** — the current artifact validates the composition
+and the BYOM-per-role interfaces, not a multi-agent runtime.
 
 ## Optional linguistic metrics layer
 
