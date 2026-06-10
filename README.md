@@ -27,11 +27,16 @@ result = assess_requirement("REQ-1", "The system shall respond within 100 ms.")
 print(result.summary())
 ```
 
-Or open the demo notebook:
+Or open the demo notebooks:
 
 ```bash
-jupyter notebook notebooks/01_specguard_demo.ipynb
+jupyter notebook notebooks/01_specguard_demo.ipynb       # core pipeline walkthrough
+jupyter notebook notebooks/02_llm_scenarios_demo.ipynb   # BYOM / LLM analyst / extraction / HMAS
 ```
+
+The LLM notebook auto-detects `ANTHROPIC_API_KEY`: with a key it makes ~10 small
+live API calls; without one every cell still runs on a deterministic
+`MockProvider`.
 
 Run the compliance demo:
 

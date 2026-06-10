@@ -142,7 +142,7 @@ results on the derived dataset via real Neo4j execution.
 | 1c | Housekeeping | **done 2026-06-10** |
 | 2 | UAV cross-domain dataset | **done 2026-06-10** — 20 paired reqs (6 system + 7 HLR + 7 HWR), CVA6-anchored, PX4/ArduPilot-derived; all 3 CROSS-* objectives discriminate correctly on real Neo4j |
 | 3a | BYOM provider protocol | **done 2026-06-10** — `specguard.llm`: ModelProvider + StructuredModelProvider protocols, Anthropic + Mock providers, `[llm]` extra |
-| 3b | Edge extraction + eval | **done 2026-06-10** — `specguard.extraction` with evidence-span hallucination guard + human review CLI; **live eval blocked on ANTHROPIC_API_KEY** (mock smoke test passes; run `experiments/edge_extraction_eval.py --provider anthropic` once a key is set) |
+| 3b | Edge extraction + eval | **done 2026-06-10** — `specguard.extraction` with evidence-span hallucination guard + human review CLI. **Live eval run 2026-06-10** (claude-opus-4-8, 64 reqs): MENTIONS **recall 1.000, precision 0.664** (75/75 truth edges recovered, 38 extra proposals, 0 guard rejections). Caveat for Paper #3: ground truth is the hand-built graph, so the 38 "false positives" may include genuinely correct edges the manual build missed — human adjudication of those 38 would tighten the precision figure (eval JSON stores counts only; add pair-level logging before the adjudication run) |
 | 4 | HMAS skeleton | **done 2026-06-10** — `specguard.agents`: Coordinator + Quality/Formalization/Traceability agents, per-role BYOM mapping, determinism invariant tested; polyglot persistence remains future work |
 
 ### Phase 1 outcome note (for Paper #3)
