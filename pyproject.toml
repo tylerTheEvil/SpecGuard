@@ -27,6 +27,13 @@ graph = [
     "neo4j>=5.0",
     "networkx>=3.0",
 ]
+llm = [
+    # BYOM provider extra (novelty #1 interface) + LLM-assisted edge
+    # extraction. Outside the stdlib-only DO-330-qualifiable core: the
+    # protocol in specguard.llm.provider imports with no extras; only the
+    # concrete AnthropicProvider needs this package.
+    "anthropic>=0.92",
+]
 notebooks = [
     "jupyter",
     "pandas",

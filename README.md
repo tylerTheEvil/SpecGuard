@@ -69,6 +69,46 @@ python experiments/run_full_analysis.py
 | Mean sentence length | ≥0 (tokens/sent) | Average sentence complexity |
 | Lexical density | 0–1 | Content words / total tokens; CVA6 expected ~0.50–0.70 |
 
+### LLM-assisted edge extraction (optional)
+
+Hand-building the knowledge graph's `MENTIONS` / `DERIVES_FROM` / `MITIGATES`
+edges is the real adoption barrier for industrial requirement sets. SpecGuard
+provides an optional, human-in-the-loop extractor: an LLM *proposes* candidate
+edges (each with a confidence and a verbatim evidence span from the
+requirement text); a human *confirms* them before any edge enters the graph.
+
+```bash
+# Install the LLM extra first (one-time)
+pip install -e ".[llm]"
+export ANTHROPIC_API_KEY=...   # any BYOM provider works; Anthropic is the bundled adapter
+
+# Offline smoke run (no API key needed) — writes results/edge_extraction_eval.json
+python experiments/edge_extraction_eval.py --provider mock
+
+# Live blind eval against the hand-built CVA6 ground truth
+python experiments/edge_extraction_eval.py --provider anthropic [--model claude-opus-4-8]
+```
+
+Review flow (proposals → human confirmation → export):
+
+```bash
+# proposals are persisted to a JSON review queue, then:
+python -m specguard.extraction.review queue.json list --pending
+python -m specguard.extraction.review queue.json accept 0 3 7
+python -m specguard.extraction.review queue.json reject 1
+python -m specguard.extraction.review queue.json export accepted_edges.json
+```
+
+The BYOM (Bring Your Own Model) provider interface lives in
+`src/specguard/llm/` (a minimal `ModelProvider` protocol plus an optional
+structured-output capability and a provider-agnostic fallback). It is the
+concrete artifact behind dissertation novelty #1.
+
+**Honesty note:** extraction is *augmentative* and sits outside the
+DO-330-qualifiable deterministic core — the LLM is never authoritative (only
+human-accepted edges are ever exported; there is no auto-accept), exactly the
+Layer 2 analyst pattern used elsewhere in SpecGuard.
+
 ---
 
 ## Project structure
