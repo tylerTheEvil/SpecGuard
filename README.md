@@ -4,6 +4,9 @@ Research prototype for the dissertation: *"Models and methods for AI-agentic
 support of requirements engineering in the software lifecycle and FPGA
 components of critical UAVs"*.
 
+> Note: a title change to *"Architecture of AI-agentic support..."* is pending
+> supervisor approval; the wording above is kept until then.
+
 **Author:** Anton Stryapunin, KhAI, gr. F7-503-1
 **Supervisor:** Prof. Yevhen Brezhnyev
 

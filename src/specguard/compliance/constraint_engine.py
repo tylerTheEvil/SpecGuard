@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 
@@ -199,7 +199,7 @@ def run_compliance_check(
 
     return ComplianceReport(
         standard=standard_name,
-        timestamp=datetime.utcnow().isoformat() + "Z",
+        timestamp=datetime.now(UTC).isoformat().replace("+00:00", "Z"),
         total_objectives_checked=len(applicable),
         passing_objective_ids=passing_ids,
         violations=all_violations,

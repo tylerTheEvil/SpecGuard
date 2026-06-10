@@ -56,8 +56,12 @@ specguard/                               ← project root
 │       ├── graph/                       — knowledge graph (was neo4j/, name conflicted)
 │       │   ├── builder.py              — Cypher generation, 107 nodes / 171 rels
 │       │   └── queries.py              — NetworkX-based local queries
+│       ├── llm/                         — BYOM provider protocols (novelty #1 interface) + Anthropic/Mock adapters ([llm] extra)
+│       ├── extraction/                  — LLM-assisted edge extraction, human-confirmed (augmentative, outside qualifiable core)
+│       ├── agents/                      — HMAS skeleton: Coordinator + Quality/Formalization/Traceability agents (interface validation)
 │       └── data/
-│           └── cva6_requirements.py    — 64 industrial requirements (CVA6 RISC-V)
+│           ├── cva6_requirements.py    — 64 industrial requirements (CVA6 RISC-V)
+│           └── uav_cross_domain.py     — 20 derived UAV flight-control reqs (system/HLR/HWR, CVA6-anchored)
 │
 ├── experiments/
 │   └── seeded_faults.py                — 100% recall validation (50 mutations × 5 types)
@@ -81,12 +85,17 @@ specguard/                               ← project root
 - Average scores: completeness 0.961, consistency 1.000, verifiability 0.777, overall 0.888
 - **Verifiability is the weakest dimension** — consistent with industry experience
 
-### Seeded faults (synthetic validation)
-- **100% recall** on 50 mutations × 5 fault types (ambiguity, vagueness, optionality, placeholder, comparative)
+### Seeded faults (synthetic validation — three tiers, honest framing)
+- **Sanity check (detector's own lexicon):** 100% recall on 50 mutations × 5 fault types — true *by construction*, validates implementation wiring only
+- **Independent-lexicon tier** (published terms, programmatically disjoint from detector lexicons): **0% recall** — expected for a closed-lexicon detector, demonstrates the coverage limit
+- **LLM blind-mutation tier** (written blind to detector internals): **28.6% recall** (14/49)
+- The two non-circular tiers bound real recall; this is the "lexicon coverage" finding for Paper #3, not a defect to tune away. See `experiments/seeded_faults_independent.py`
+- FPR on clean set: 12.5% (8/64 after excluding genuine pre-existing defects PPA-50/PPA-60/L1W-60 from the FP numerator)
 
 ### Compliance check (insight #7 PoC)
 - 15 codified objectives (7 DO-178C + 5 DO-254 + 3 cross-domain)
-- **9 passing (60%), 168 violations** on CVA6 with mock DAL/level/traceability
+- **9 passing (60%), 168 violations** on CVA6 with mock DAL/level/traceability (in-memory demo runner)
+- **All 15 Cypher queries verified executable on real Neo4j** (2026.04, via `Neo4jGraphRunner` + `scripts/load_neo4j.py` with deliberately seeded compliant/violating mock metadata) — artifact: `results/compliance_neo4j_run.json`; "executable Cypher patterns" is now a verified claim
 - **L1W-60, PPA-50, PPA-60 from smell detection are also classified as DO-178C A-3-2 violations** — demonstrating Layer 1 ↔ Layer 3 architectural integration
 
 ## Architectural decisions (settled — do not reopen without explicit reason)
@@ -103,6 +112,9 @@ specguard/                               ← project root
 - **Compliance scope:** Option B+C hybrid (~15-25 codified obj + cross-domain focus)
 - **DO-330 TQL-5 positioning** — development tool with human-in-the-loop, NOT airborne AI
 - **Linguistic metrics are an optional research extension** (`src/specguard/linguistic/`), installed via `pip install -e '.[linguistic]'`. They are outside the DO-330-qualifiable core (which must remain stdlib-only) and complement smell-based assessment without replacing it. They are never required for gate decisions. Metrics: Flesch Reading Ease, Flesch-Kincaid Grade, Mean/Max Dependency Length (Barbosa et al. 2024), token count, sentence count, mean sentence length, lexical density.
+- **Optional-extra quarantine pattern** — anything requiring third-party deps (Neo4j driver, LLM clients, spaCy) lives outside the stdlib-only core path behind a pyproject optional extra (`[graph]`, `[linguistic]`, `[llm]`) and degrades gracefully when not installed. Plain `pytest` must always pass with no extras and no external services; integration tests that need Neo4j use `@pytest.mark.neo4j` and skip when the DB is unreachable.
+- **Seeded-fault validation must use lexicons independent of the detector** — faults injected from the detector's own word lists produce 100% recall by construction and may only be described as an implementation sanity check, never as method validation. Independent lexicons require a programmatic disjointness check; overlaps are reported, not silently used.
+- **LLM-assisted edge extraction is augmentative, never authoritative** — extraction (`src/specguard/extraction/`, planned) proposes edges with evidence spans; only human-confirmed edges enter the graph. Same Layer-2 pattern as the LLM analyst.
 
 ## Anti-patterns — DO NOT do these
 
@@ -155,13 +167,16 @@ specguard/                               ← project root
 
 ## Roadmap (high-level)
 
+**Active: evidence-hardening plan — see `docs/improvement_plan.md` (authoritative, phase-by-phase).**
+Phase 1: real Neo4j execution of constraint Cypher + de-circularized seeded-fault validation + housekeeping.
+Phase 2: UAV cross-domain dataset (CVA6 as HW side). Phase 3: BYOM provider + LLM-assisted edge extraction.
+Phase 4: HMAS skeleton.
+
 **Near (next month):**
 - Supervisor meeting — confirm architecture-vs-method shift, approve title change to "Архітектура..."
 - Paper #2 final submission
-- Paper #3 outline with full literature review
+- Paper #3 outline with full literature review (after improvement plan Phases 1-2 — they are its empirical foundation)
 - Update `smell_detector` docstring with honest attribution (currently overstated)
-- Reorganize repository structure (see companion reorganization prompt)
-- Fix broken imports in `compliance_demo.py` post-rename
 
 **Medium (1-3 months):**
 - Implement FSARC 7 conflict types as Cypher queries (Layer 2 — concrete, demonstrable)
