@@ -1,0 +1,1418 @@
+{
+  "experiment": "seeded_faults_independent",
+  "description": "Method-level validation using an INDEPENDENT lexicon disjoint from the detector's own lexicons. Recall < 100% is expected and is evidence of closed-lexicon coverage limits, not a bug.",
+  "seed": 42,
+  "independent_lexicon_sizes": {
+    "ambiguity": 19,
+    "vagueness": 14,
+    "optionality": 12,
+    "comparative": 19,
+    "placeholder": 10
+  },
+  "overlaps_excluded": [
+    {
+      "fault_type": "ambiguity",
+      "term": "state-of-the-art",
+      "reason": "overlaps detector lexicon/regex; excluded from injection"
+    },
+    {
+      "fault_type": "vagueness",
+      "term": "a few",
+      "reason": "overlaps detector lexicon/regex; excluded from injection"
+    },
+    {
+      "fault_type": "vagueness",
+      "term": "a lot of",
+      "reason": "overlaps detector lexicon/regex; excluded from injection"
+    },
+    {
+      "fault_type": "vagueness",
+      "term": "almost always",
+      "reason": "overlaps detector lexicon/regex; excluded from injection"
+    },
+    {
+      "fault_type": "vagueness",
+      "term": "very nearly",
+      "reason": "overlaps detector lexicon/regex; excluded from injection"
+    }
+  ],
+  "placeholder_closed_vocab_note": "PLACEHOLDER detection uses a closed regex over {TBD, TODO, FIXME, XXX, TBC}. Full disjointness while staying detectable is impossible: a marker is either one of those exact tokens (overlap) or an alternative phrasing the detector cannot match. The independent list intentionally uses alternative phrasings, so misses on this type are EXPECTED and document the closed-lexicon coverage limit rather than a detector bug.",
+  "independent_tier": {
+    "recall": {
+      "overall_recall": 0.0,
+      "total_mutations": 50,
+      "total_hits": 0,
+      "per_fault_type": {
+        "ambiguity": {
+          "total": 10,
+          "hit": 0,
+          "recall": 0.0
+        },
+        "vagueness": {
+          "total": 10,
+          "hit": 0,
+          "recall": 0.0
+        },
+        "optionality": {
+          "total": 10,
+          "hit": 0,
+          "recall": 0.0
+        },
+        "comparative": {
+          "total": 10,
+          "hit": 0,
+          "recall": 0.0
+        },
+        "placeholder": {
+          "total": 10,
+          "hit": 0,
+          "recall": 0.0
+        }
+      }
+    },
+    "precision_and_fpr": {
+      "false_positive_rate": {
+        "clean_total": 64,
+        "clean_flagged_raw": [
+          "L1I-40",
+          "L1I-60",
+          "L1W-20",
+          "L1W-60",
+          "L1W-70",
+          "L1W-90",
+          "PPA-30",
+          "PPA-50",
+          "PPA-60",
+          "RUL-30",
+          "RUL-40"
+        ],
+        "excluded_known_defects": [
+          "L1W-60",
+          "PPA-50",
+          "PPA-60"
+        ],
+        "false_positive_requirements": [
+          "L1I-40",
+          "L1I-60",
+          "L1W-20",
+          "L1W-70",
+          "L1W-90",
+          "PPA-30",
+          "RUL-30",
+          "RUL-40"
+        ],
+        "false_positive_rate": 0.125,
+        "exclusion_rule": "Known pre-existing defects PPA-50, PPA-60 (TBD placeholders) and L1W-60 (vague 'some') are genuine true positives and are removed from the FP numerator."
+      },
+      "per_type_precision": {
+        "ambiguity": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "precision": null
+        },
+        "vagueness": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "precision": null
+        },
+        "optionality": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "precision": null
+        },
+        "comparative": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "precision": null
+        },
+        "placeholder": {
+          "true_positives": 0,
+          "false_positives": 0,
+          "precision": null
+        }
+      },
+      "overall_precision": null
+    },
+    "mutation_detail": [
+      {
+        "original_id": "L1I-30",
+        "fault_type": "ambiguity",
+        "injected_term": "versatile",
+        "description": "Appended subjective adjective 'versatile'",
+        "mutated_text": "To interface with the P-Mesh coherence system of OpenPiton, L1I shall have a line invalidate external command that invalidates the content of a line upon request. The implementation shall be versatile.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-70",
+        "fault_type": "ambiguity",
+        "injected_term": "significant",
+        "description": "Appended subjective adjective 'significant'",
+        "mutated_text": "CV64A6 shall support as an option the F extension (single-precision without double-precision floating-point), version 2.2. The implementation shall be significant.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-10",
+        "fault_type": "ambiguity",
+        "injected_term": "generic",
+        "description": "Appended subjective adjective 'generic'",
+        "mutated_text": "CV64A6 shall support RV64I base instruction set, version 2.1. The implementation shall be generic.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-10",
+        "fault_type": "ambiguity",
+        "injected_term": "ergonomic",
+        "description": "Appended subjective adjective 'ergonomic'",
+        "mutated_text": "CVA6 should be resource-optimized on FPGA and ASIC targets. The implementation shall be ergonomic.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-30",
+        "fault_type": "ambiguity",
+        "injected_term": "customary",
+        "description": "Appended subjective adjective 'customary'",
+        "mutated_text": "CV32A6 shall support as an option the Sv32 virtual memory version 1.11. The implementation shall be customary.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-10",
+        "fault_type": "ambiguity",
+        "injected_term": "effective",
+        "description": "Appended subjective adjective 'effective'",
+        "mutated_text": "CVA6 shall support machine, supervisor, user and debug privilege modes. The implementation shall be effective.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-150",
+        "fault_type": "ambiguity",
+        "injected_term": "desirable",
+        "description": "Appended subjective adjective 'desirable'",
+        "mutated_text": "CVA6 should support as an option the Zcmp extension version 1.0. The implementation shall be desirable.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-80",
+        "fault_type": "ambiguity",
+        "injected_term": "graceful",
+        "description": "Appended subjective adjective 'graceful'",
+        "mutated_text": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0. The implementation shall be graceful.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "XIF-10",
+        "fault_type": "ambiguity",
+        "injected_term": "routine",
+        "description": "Appended subjective adjective 'routine'",
+        "mutated_text": "To extend the supported instructions, CVA6 shall have a coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification. The implementation shall be routine.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-60",
+        "fault_type": "ambiguity",
+        "injected_term": "feasible",
+        "description": "Appended subjective adjective 'feasible'",
+        "mutated_text": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2. The implementation shall be feasible.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-100",
+        "fault_type": "vagueness",
+        "injected_term": "every",
+        "description": "Appended vague quantifier 'every'",
+        "mutated_text": "A custom CSR shall allow to disable or enable L1WTD. Every of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-30",
+        "fault_type": "vagueness",
+        "injected_term": "close to",
+        "description": "Appended vague quantifier 'close to'",
+        "mutated_text": "CV32A6 shall support as an option the Sv32 virtual memory version 1.11. Close to of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-60",
+        "fault_type": "vagueness",
+        "injected_term": "certain",
+        "description": "Appended vague quantifier 'certain'",
+        "mutated_text": "TBD: Placeholder for double-precision floating performance per MHz. Certain of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "IRQ-10",
+        "fault_type": "vagueness",
+        "injected_term": "multiple",
+        "description": "Appended vague quantifier 'multiple'",
+        "mutated_text": "CVA6 shall implement interrupt handling registers as per the RISC-V privilege specification and interface with a CLINT implementation. Multiple of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "GEN-10",
+        "fault_type": "vagueness",
+        "injected_term": "most",
+        "description": "Appended vague quantifier 'most'",
+        "mutated_text": "CVA6 shall be fully compliant with RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg] by implementing all mandatory features for the set of extensions that are selected and by passing [RVcompat] compatibility tests. Most of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-30",
+        "fault_type": "vagueness",
+        "injected_term": "a number of",
+        "description": "Appended vague quantifier 'a number of'",
+        "mutated_text": "CV32A6 should run at more than 150 MHz in the cv32a6_imac_sv32 configuration on Kintex 7 FPGA technology, commercial -2 speed grade. A number of of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "missing_unit"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "TRI-10",
+        "fault_type": "vagueness",
+        "injected_term": "majority of",
+        "description": "Appended vague quantifier 'majority of'",
+        "mutated_text": "CVA6 shall have the Transaction-Response Interface (TRI) needed to interface with the P-Mesh coherence system of OpenPiton, according to [OpenPiton]. Majority of of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-100",
+        "fault_type": "vagueness",
+        "injected_term": "each",
+        "description": "Appended vague quantifier 'each'",
+        "mutated_text": "CVA6 shall support the Zifencei extension, version 2.0. Each of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1I-70",
+        "fault_type": "vagueness",
+        "injected_term": "about",
+        "description": "Appended vague quantifier 'about'",
+        "mutated_text": "A custom CSR shall allow to disable or enable L1I. About of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-80",
+        "fault_type": "vagueness",
+        "injected_term": "to the extent possible",
+        "description": "Appended vague quantifier 'to the extent possible'",
+        "mutated_text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6). To the extent possible of the cases shall be handled.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-60",
+        "fault_type": "optionality",
+        "injected_term": "on a best-effort basis",
+        "description": "Appended escape clause 'on a best-effort basis'",
+        "mutated_text": "TBD: Placeholder for double-precision floating performance per MHz. This requirement applies on a best-effort basis.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-20",
+        "fault_type": "optionality",
+        "injected_term": "to the extent practical",
+        "description": "Inserted escape clause 'to the extent practical' after 'shall'",
+        "mutated_text": "CV32A6 shall, to the extent practical, support RV32I base instruction set, version 2.1.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "FET-20",
+        "fault_type": "optionality",
+        "injected_term": "subject to",
+        "description": "Appended escape clause 'subject to'",
+        "mutated_text": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present). This requirement applies subject to.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-20",
+        "fault_type": "optionality",
+        "injected_term": "at the discretion of",
+        "description": "Inserted escape clause 'at the discretion of' after 'shall'",
+        "mutated_text": "L1WTD shall, at the discretion of, not change the order of write accesses to the external memory with respect to the order of write accesses (stores) received from the CVA6 core.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-70",
+        "fault_type": "optionality",
+        "injected_term": "to the extent feasible",
+        "description": "Inserted escape clause 'to the extent feasible' after 'shall'",
+        "mutated_text": "It shall, to the extent feasible, be possible to invalidate L1WTD content with the FENCE.T command.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "implicit_reference"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-70",
+        "fault_type": "optionality",
+        "injected_term": "wherever feasible",
+        "description": "Inserted escape clause 'wherever feasible' after 'shall'",
+        "mutated_text": "CV64A6 shall, wherever feasible, support as an option the F extension (single-precision without double-precision floating-point), version 2.2.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-40",
+        "fault_type": "optionality",
+        "injected_term": "as deemed necessary",
+        "description": "Inserted escape clause 'as deemed necessary' after 'shall'",
+        "mutated_text": "The source of events counted by the six generic performance counters shall, as deemed necessary, be selected by the mhpmevent3 to mhpmevent8 CSRs.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-50",
+        "fault_type": "optionality",
+        "injected_term": "as far as possible",
+        "description": "Inserted escape clause 'as far as possible' after 'shall'",
+        "mutated_text": "CV32A6 shall, as far as possible, support as an option the F extension (single-precision floating-point), version 2.2.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-80",
+        "fault_type": "optionality",
+        "injected_term": "may be omitted",
+        "description": "Inserted escape clause 'may be omitted' after 'shall'",
+        "mutated_text": "The replacement policy of L1WTD shall, may be omitted, be LFSR (pseudo-random) or LRU (least recently used).",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-40",
+        "fault_type": "optionality",
+        "injected_term": "optionally",
+        "description": "Inserted escape clause 'optionally' after 'shall'",
+        "mutated_text": "CVA6 instances that do not feature virtual memory shall, optionally, support the Bare mode.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "IRQ-10",
+        "fault_type": "comparative",
+        "injected_term": "cheaper",
+        "description": "Appended bare comparative 'cheaper'",
+        "mutated_text": "CVA6 shall implement interrupt handling registers as per the RISC-V privilege specification and interface with a CLINT implementation. The result shall be cheaper.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-60",
+        "fault_type": "comparative",
+        "injected_term": "richer",
+        "description": "Appended bare comparative 'richer'",
+        "mutated_text": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2. The result shall be richer.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-40",
+        "fault_type": "comparative",
+        "injected_term": "wider",
+        "description": "Appended bare comparative 'wider'",
+        "mutated_text": "The source of events counted by the six generic performance counters shall be selected by the mhpmevent3 to mhpmevent8 CSRs. The result shall be wider.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-30",
+        "fault_type": "comparative",
+        "injected_term": "denser",
+        "description": "Appended bare comparative 'denser'",
+        "mutated_text": "CV32A6 shall support as an option the Sv32 virtual memory version 1.11. The result shall be denser.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-20",
+        "fault_type": "comparative",
+        "injected_term": "improved",
+        "description": "Appended bare comparative 'improved'",
+        "mutated_text": "L1WTD shall not change the order of write accesses to the external memory with respect to the order of write accesses (stores) received from the CVA6 core. The result shall be improved.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [
+          "negative_statement"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1I-30",
+        "fault_type": "comparative",
+        "injected_term": "less complex",
+        "description": "Appended bare comparative 'less complex'",
+        "mutated_text": "To interface with the P-Mesh coherence system of OpenPiton, L1I shall have a line invalidate external command that invalidates the content of a line upon request. The result shall be less complex.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "MEM-20",
+        "fault_type": "comparative",
+        "injected_term": "shorter",
+        "description": "Appended bare comparative 'shorter'",
+        "mutated_text": "CVA6 AXI memory interface shall feature user bit extensions on the data bus (WUSER and RUSER as per [AXI]) in connection with the L1I and L1WTD datasize extensions, with a number of user bits greater or equal to 0. The result shall be shorter.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-30",
+        "fault_type": "comparative",
+        "injected_term": "tighter",
+        "description": "Appended bare comparative 'tighter'",
+        "mutated_text": "Each of the six generic performance counters shall be able to count events from one of these sources: L1 I-Cache misses, L1 D-Cache misses, ITLB misses, DTLB misses, Load accesses, Store accesses, Exceptions, Exception handler returns, Branch instructions, Branch mispredicts, Branch exceptions, Call, Return, MSB Full, Instruction fetch Empty, L1 I-Cache accesses, L1 D-Cache accesses, L1$ line invalidation, I-TLB flush, Integer instructions, Floating point instructions, Pipeline bubbles. The result shall be tighter.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-100",
+        "fault_type": "comparative",
+        "injected_term": "longer",
+        "description": "Appended bare comparative 'longer'",
+        "mutated_text": "CVA6 shall support the Zifencei extension, version 2.0. The result shall be longer.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "MEM-10",
+        "fault_type": "comparative",
+        "injected_term": "quicker",
+        "description": "Appended bare comparative 'quicker'",
+        "mutated_text": "CVA6 memory interface shall comply with AXI5 specification including the Atomic_Transactions property support as defined in [AXI] section E1.1. The result shall be quicker.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "MEM-20",
+        "fault_type": "placeholder",
+        "injected_term": "[placeholder]",
+        "description": "Replaced numeric '0' with placeholder '[placeholder]'",
+        "mutated_text": "CVA6 AXI memory interface shall feature user bit extensions on the data bus (WUSER and RUSER as per [AXI]) in connection with the L1I and L1WTD datasize extensions, with a number of user bits greater or equal to [placeholder].",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-40",
+        "fault_type": "placeholder",
+        "injected_term": "to be specified",
+        "description": "Replaced numeric '900' with placeholder 'to be specified'",
+        "mutated_text": "CV64A6 should run at more than to be specified MHz in the cv64a6_imacfd_sv39 configuration on 28FDSOI technology in the worst case frequency corner with the fastest threshold voltage.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "RUL-10",
+        "fault_type": "placeholder",
+        "injected_term": "to be determined later",
+        "description": "Appended placeholder 'to be determined later'",
+        "mutated_text": "CVA6 should have a configurable reset signal: synchronous/asynchronous, active on high or low levels. Exact value to be determined later.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-30",
+        "fault_type": "placeholder",
+        "injected_term": "to be supplied",
+        "description": "Replaced numeric '2.0' with placeholder 'to be supplied'",
+        "mutated_text": "CVA6 shall support the M extension (integer multiply and divide), version to be supplied.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-150",
+        "fault_type": "placeholder",
+        "injected_term": "to be completed",
+        "description": "Replaced numeric '1.0' with placeholder 'to be completed'",
+        "mutated_text": "CVA6 should support as an option the Zcmp extension version to be completed.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "MEM-10",
+        "fault_type": "placeholder",
+        "injected_term": "to be defined",
+        "description": "Replaced numeric '1' with placeholder 'to be defined'",
+        "mutated_text": "CVA6 memory interface shall comply with AXI5 specification including the Atomic_Transactions property support as defined in [AXI] section E1.to be defined.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-20",
+        "fault_type": "placeholder",
+        "injected_term": "value pending",
+        "description": "Replaced numeric '2.1' with placeholder 'value pending'",
+        "mutated_text": "CV32A6 shall support RV32I base instruction set, version value pending.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-60",
+        "fault_type": "placeholder",
+        "injected_term": "to be confirmed",
+        "description": "Appended placeholder 'to be confirmed'",
+        "mutated_text": "TBD: Placeholder for double-precision floating performance per MHz. Exact value to be confirmed.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-60",
+        "fault_type": "placeholder",
+        "injected_term": "details forthcoming",
+        "description": "Replaced numeric '1.0' with placeholder 'details forthcoming'",
+        "mutated_text": "CV64A6 shall support as an option the H extension (hypervisor) version details forthcoming.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-50",
+        "fault_type": "placeholder",
+        "injected_term": "to be decided",
+        "description": "Appended placeholder 'to be decided'",
+        "mutated_text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR. Exact value to be decided.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "new_expected_smells": [],
+        "hit": false
+      }
+    ]
+  },
+  "blind_mutations": {
+    "source_file": "/Users/antonstryapunin/code/spec_guard/specguard/experiments/data/blind_mutations.json",
+    "overall_recall": 0.286,
+    "total_mutations": 49,
+    "total_hits": 14,
+    "per_fault_type": {
+      "vagueness": {
+        "total": 10,
+        "hit": 2,
+        "recall": 0.2
+      },
+      "ambiguity": {
+        "total": 10,
+        "hit": 5,
+        "recall": 0.5
+      },
+      "optionality": {
+        "total": 10,
+        "hit": 3,
+        "recall": 0.3
+      },
+      "placeholder": {
+        "total": 9,
+        "hit": 3,
+        "recall": 0.333
+      },
+      "comparative": {
+        "total": 10,
+        "hit": 1,
+        "recall": 0.1
+      }
+    },
+    "mutation_detail": [
+      {
+        "original_id": "ISA-10",
+        "target_smell": "vagueness",
+        "mutated_text": "CV64A6 shall support RV64I base instruction set, a recent stable version.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-30",
+        "target_smell": "vagueness",
+        "mutated_text": "CVA6 shall support the M extension (integer multiply and divide), a current approved version.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-40",
+        "target_smell": "vagueness",
+        "mutated_text": "CVA6 shall support the A extension (atomic instructions), an appropriate version.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-20",
+        "target_smell": "vagueness",
+        "mutated_text": "CVA6 should deliver a sufficient number of CoreMark/MHz.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-30",
+        "target_smell": "vagueness",
+        "mutated_text": "CV32A6 should run at a reasonably high frequency in the cv32a6_imac_sv32 configuration on Kintex 7 FPGA technology, commercial -2 speed grade.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "ambiguity",
+          "missing_unit"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-20",
+        "target_smell": "vagueness",
+        "mutated_text": "CVA6 shall implement as an option several generic 64-bit performance counters located in hpmcounter3 to hpmcounter8 (including their upper 32 bits counterparts in CV32A6: hpmcounter3h to hpmcounter8h).",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "vagueness"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "L1W-30",
+        "target_smell": "vagueness",
+        "mutated_text": "L1WTD should offer the following size/ways configurations: 0 kbyte (no cache), 4 kbytes (4 or 8 ways), 8 kbytes (4, 8 or 16 ways), 16 kbytes (4, 8 or 16 ways), and larger configurations as required.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "comparative",
+          "subjectivity"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "MEM-20",
+        "target_smell": "vagueness",
+        "mutated_text": "CVA6 AXI memory interface shall feature user bit extensions on the data bus (WUSER and RUSER as per [AXI]) in connection with the L1I and L1WTD datasize extensions, with a small number of user bits.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-40",
+        "target_smell": "vagueness",
+        "mutated_text": "CV64A6 should run at a high clock frequency in the cv64a6_imacfd_sv39 configuration on 28FDSOI technology in the worst case frequency corner with the fastest threshold voltage.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-40",
+        "target_smell": "vagueness",
+        "mutated_text": "L1WTD shall support datasize extension to store EDC, ECC or other information. The number of bits of the extension is defined by some configuration parameter.",
+        "expected_smell": [
+          "vagueness"
+        ],
+        "detected_smells": [
+          "vagueness"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "GEN-10",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 shall be reasonably compliant with RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg] by implementing all mandatory features for the set of extensions that are selected and by passing [RVcompat] compatibility tests.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "PPA-10",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 should be efficiently designed on FPGA and ASIC targets.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "L1W-20",
+        "target_smell": "ambiguity",
+        "mutated_text": "L1WTD shall appropriately maintain the order of write accesses to the external memory with respect to the order of write accesses (stores) received from the CVA6 core.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "RUL-20",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 shall be a well-designed synchronous design with a single clock input.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "FET-10",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 should support the FENCE.T instruction that ensures that the execution time of subsequent instructions is adequately isolated from predecessor instructions.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "L1W-80",
+        "target_smell": "ambiguity",
+        "mutated_text": "The replacement policy of L1WTD shall be a well-established and proven algorithm.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-10",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 shall implement robust 64-bit mcycle and minstret standard performance counters (including their upper 32 bits counterparts mcycleh and minstreth in CV32A6) as per [RVpriv].",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [
+          "ambiguity"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "XIF-10",
+        "target_smell": "ambiguity",
+        "mutated_text": "To extend the supported instructions, CVA6 shall have a high-quality coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "RUL-30",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 should not include problematic multi-cycle paths.",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [
+          "negative_statement"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "DBG-10",
+        "target_smell": "ambiguity",
+        "mutated_text": "CVA6 shall implement both the Abstracted Command and Execution based features in a manner consistent with the intent of chapter 4 of [RVdbg].",
+        "expected_smell": [
+          "ambiguity",
+          "subjectivity"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-90",
+        "target_smell": "optionality",
+        "mutated_text": "CVA6 may support the Zicsr extension (CSR instructions), version 2.0.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-100",
+        "target_smell": "optionality",
+        "mutated_text": "CVA6 should support the Zifencei extension, version 2.0.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-10",
+        "target_smell": "optionality",
+        "mutated_text": "CVA6 is encouraged to support machine, supervisor, user and debug privilege modes.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "weakness"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "HPM-40",
+        "target_smell": "optionality",
+        "mutated_text": "The source of events counted by the six generic performance counters can be selected by the mhpmevent3 to mhpmevent8 CSRs.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-70",
+        "target_smell": "optionality",
+        "mutated_text": "It may be possible to invalidate L1WTD content with the FENCE.T command.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "implicit_reference"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-100",
+        "target_smell": "optionality",
+        "mutated_text": "A custom CSR could allow to disable or enable L1WTD.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "weakness"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "HPM-70",
+        "target_smell": "optionality",
+        "mutated_text": "CVA6 may implement the mcountinhibit counter-inhibit register if applicable.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "optionality"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "MEM-10",
+        "target_smell": "optionality",
+        "mutated_text": "CVA6 memory interface is expected to comply with AXI5 specification including the Atomic_Transactions property support as defined in [AXI] section E1.1.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1I-40",
+        "target_smell": "optionality",
+        "mutated_text": "It is desirable that it be possible to invalidate L1I content with the FENCE.T command.",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [
+          "implicit_reference"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "TRI-10",
+        "target_smell": "optionality",
+        "mutated_text": "CVA6 should consider providing the Transaction-Response Interface (TRI) needed to interface with the P-Mesh coherence system of OpenPiton, according to [OpenPiton].",
+        "expected_smell": [
+          "optionality",
+          "weakness"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-50",
+        "target_smell": "placeholder",
+        "mutated_text": "CVA6 shall achieve [VALUE TBD] single-precision floating-point operations per MHz.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-60",
+        "target_smell": "placeholder",
+        "mutated_text": "CVA6 shall achieve [VALUE TBD] double-precision floating-point operations per MHz.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-20",
+        "target_smell": "placeholder",
+        "mutated_text": "CV32A6 shall support RV32I base instruction set, version <TO BE CONFIRMED>.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1I-20",
+        "target_smell": "placeholder",
+        "mutated_text": "L1I shall support datasize extension to store EDC, ECC or other information. The numbers of bits of the extension is defined by a compile-time parameter (exact width to be specified in a future revision).",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PPA-40",
+        "target_smell": "placeholder",
+        "mutated_text": "CV64A6 should run at more than ??? MHz in the cv64a6_imacfd_sv39 configuration on 28FDSOI technology in the worst case frequency corner with the fastest threshold voltage.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "RUL-10",
+        "target_smell": "placeholder",
+        "mutated_text": "CVA6 should have a configurable reset signal: [RESET TYPE TBD], active on high or low levels.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "HPM-30",
+        "target_smell": "placeholder",
+        "mutated_text": "Each of the six generic performance counters shall be able to count events from one of these sources: L1 I-Cache misses, L1 D-Cache misses, ITLB misses, DTLB misses, Load accesses, Store accesses, Exceptions, Exception handler returns, Branch instructions, Branch mispredicts, Branch exceptions, Call, Return, MSB Full, Instruction fetch Empty, L1 I-Cache accesses, L1 D-Cache accesses, L1$ line invalidation, I-TLB flush, Integer instructions, Floating point instructions, Pipeline bubbles, and others to be defined.",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-50",
+        "target_smell": "placeholder",
+        "mutated_text": "To interface with the P-Mesh coherence system of OpenPiton, L1WTD shall have a line invalidate external command that invalidates the content of a line upon request (interface signal names TBD).",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "PVL-40",
+        "target_smell": "placeholder",
+        "mutated_text": "CVA6 instances that do not feature virtual memory shall support the Bare mode (additional modes TBD).",
+        "expected_smell": [
+          "placeholder"
+        ],
+        "detected_smells": [
+          "placeholder"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "PPA-20",
+        "target_smell": "comparative",
+        "mutated_text": "CVA6 should deliver better CoreMark/MHz performance than comparable in-order RISC-V cores.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [
+          "comparative"
+        ],
+        "hit": true
+      },
+      {
+        "original_id": "PPA-30",
+        "target_smell": "comparative",
+        "mutated_text": "CV32A6 should run at a higher frequency than similar open-source RISC-V cores in the cv32a6_imac_sv32 configuration on Kintex 7 FPGA technology, commercial -2 speed grade.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [
+          "missing_unit"
+        ],
+        "hit": false
+      },
+      {
+        "original_id": "ISA-120",
+        "target_smell": "comparative",
+        "mutated_text": "CVA6 should support as an option the B extension (bit manipulation), a newer version than what was previously supported. The B extension comprises the Zba, Zbb, Zbc and Zbs extensions.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1W-10",
+        "target_smell": "comparative",
+        "mutated_text": "L1WTD shall reflect all write accesses (stores) by the CVA6 core to the external memory in fewer cycles than a standard write-through cache implementation. The upper-bound is fixed but not specified here.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "HPM-50",
+        "target_smell": "comparative",
+        "mutated_text": "CVA6 shall allow the supervisor broader access to performance counters than user-mode software through enabling of mcounteren CSR.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1I-50",
+        "target_smell": "comparative",
+        "mutated_text": "The replacement policy of L1I shall achieve a lower miss rate than a random replacement policy.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "PVL-60",
+        "target_smell": "comparative",
+        "mutated_text": "CV64A6 shall support as an option a more recent version of the H extension (hypervisor) than was available at the previous release.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "L1I-10",
+        "target_smell": "comparative",
+        "mutated_text": "L1I should offer a greater variety of size/ways configurations than current generation commercial RISC-V processors.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "RUL-40",
+        "target_smell": "comparative",
+        "mutated_text": "CVA6 should include fewer technology-dependent blocks than a typical synthesizable RISC-V design.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      },
+      {
+        "original_id": "IRQ-10",
+        "target_smell": "comparative",
+        "mutated_text": "CVA6 shall implement interrupt handling registers with lower latency than legacy interrupt controllers and interface with a CLINT implementation.",
+        "expected_smell": [
+          "comparative"
+        ],
+        "detected_smells": [],
+        "hit": false
+      }
+    ]
+  }
+}

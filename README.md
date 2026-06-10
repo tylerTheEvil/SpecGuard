@@ -132,19 +132,36 @@ Performance, etc.). 12 requirements are tagged as safety-critical context.
 | Smells detected | 9 |
 | Smells per requirement | 0.14 |
 
-**Validation on seeded faults (50 controlled mutations):**
+**Sanity check — seeded faults from the detector's own lexicon (50 mutations):**
+100% recall across all five fault types. This is true *by construction* — the
+faults are injected using the detector's own trigger words — so it validates the
+implementation wiring, not the method. See `experiments/seeded_faults.py`.
 
-| Fault type | Recall |
-|------------|--------|
-| Ambiguity | 100% |
-| Vagueness | 100% |
-| Optionality | 100% |
-| Placeholder | 100% |
-| Comparative | 100% |
-| **Overall** | **100%** |
+**Method validation — independent-lexicon faults (50 mutations):** faults
+injected with published terms (INCOSE GtWR, Femmer 2017, Berry & Kamsties, ISO
+29148) programmatically verified *disjoint* from the detector's lexicons.
+Recall below 100% is the expected, credible measure of lexicon coverage.
 
-**False-positive baseline on clean dataset:** 12.5% (8 of 64 requirements
-flagged with at least one smell — these include known-incomplete TBD entries).
+| Fault type | Recall (independent) | Recall (LLM blind) |
+|------------|----------------------|--------------------|
+| Ambiguity | 0% (0/10) | 50% (5/10) |
+| Vagueness | 0% (0/10) | 20% (2/10) |
+| Optionality | 0% (0/10) | 30% (3/10) |
+| Comparative | 0% (0/10) | 10% (1/10) |
+| Placeholder | 0% (0/10) | 33% (3/9) |
+| **Overall** | **0% (0/50)** | **28.6% (14/49)** |
+
+The 0% on the strictly-disjoint lexicon and 28.6% on LLM-written blind mutations
+together bound the detector's real recall: its closed lexicon does not
+generalise beyond its own vocabulary. This is the honest "lexicon coverage"
+finding for Paper #3, not a defect to tune away. See
+`experiments/seeded_faults_independent.py` and
+`results/seeded_faults_independent.json`.
+
+**False-positive rate on clean dataset:** 12.5% — 11 of 64 requirements are
+flagged; 3 of those (PPA-50, PPA-60 TBD placeholders, L1W-60 vague "some") are
+genuine pre-existing defects excluded from the FP numerator, leaving 8/64 false
+positives.
 
 ---
 

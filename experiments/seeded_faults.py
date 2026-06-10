@@ -1,19 +1,31 @@
-"""Seeded Faults Experiment.
+"""Seeded Faults Experiment — IMPLEMENTATION SANITY CHECK (not method validation).
 
-Standard methodology for validating requirements quality detection tools:
-- Take clean requirements
-- Inject controlled faults (synthetic smell-introducing modifications)
-- Measure detection precision and recall
-- Compare against simple baseline
+WARNING — read before citing the recall number from this experiment.
+
+This experiment injects faults using the detector's OWN lexicon vocabulary
+(``inject_ambiguity`` inserts "appropriate"/"fast"/"user-friendly", etc. — words
+that literally live in ``smell_detector.AMBIGUITY_TERMS``). Consequently the
+reported ~100% recall is true *by construction*: any lexicon-based detector
+attains perfect recall against faults drawn from its own lexicon. This validates
+that the detection *implementation* fires end-to-end (the pipeline wiring,
+mutation harness, and reporting work), NOT that the detection *method*
+generalises.
+
+Method-level (de-circularized) validation lives in
+``experiments/seeded_faults_independent.py``, which injects faults using an
+INDEPENDENT lexicon — terms from published literature (INCOSE GtWR, Femmer 2017,
+Berry & Kamsties, ISO 29148) programmatically verified disjoint from the
+detector's lexicons. Recall there is below 100% and is the credible, publishable
+measure of lexicon coverage.
+
+Keep this script as a fast regression sanity check; do NOT report its recall as
+evidence of method quality in Paper #3.
 
 Methodology reference:
 - Zakeri-Nasrabadi et al. (2024). "Natural language requirements testability
   measurement based on requirement smells"
 - Veizaga et al. (2023). "Automated Smell Detection and Recommendation"
   used similar mutation-style validation
-
-This experiment is the empirical foundation for the SpecGuard method
-publication (Paper #3).
 """
 
 from __future__ import annotations
