@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "specguard"
+version = "0.1.0"
+description = "Multi-layered quality gate for requirements engineering in safety-critical software and FPGA systems"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Anton Stryapunin", email = "urban.child.mf@gmail.com"},
+]
+license = {text = "MIT"}
+keywords = ["requirements-engineering", "DO-178C", "DO-254", "knowledge-graph", "smell-detection"]
+
+dependencies = [
+    # Deterministic core is intentionally stdlib-only for DO-330 qualifiability.
+]
+
+[project.optional-dependencies]
+linguistic = [
+    "textstat>=0.7.3",
+    "spacy>=3.7,<4.0",
+]
+graph = [
+    "neo4j>=5.0",
+    "networkx>=3.0",
+]
+llm = [
+    # BYOM provider extra (novelty #1 interface) + LLM-assisted edge
+    # extraction. Outside the stdlib-only DO-330-qualifiable core: the
+    # protocol in specguard.llm.provider imports with no extras; only the
+    # concrete AnthropicProvider needs this package.
+    "anthropic>=0.92",
+]
+notebooks = [
+    "jupyter",
+    "pandas",
+    "matplotlib",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+]
+
+[project.scripts]
+specguard = "specguard.cli:main"
+
+[project.urls]
+Documentation = "https://github.com/antonstryapunin/spec_guard/blob/main/CLAUDE.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/specguard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+markers = [
+    "neo4j: integration tests that require a reachable Neo4j database (skipped otherwise)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = []

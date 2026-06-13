@@ -1,0 +1,112 @@
+{
+  "false_positive_baseline": {
+    "clean_requirements_total": 64,
+    "clean_requirements_flagged": 11,
+    "clean_flag_rate": 0.172,
+    "smells_in_clean_set": {
+      "negative_statement": 3,
+      "vagueness": 1,
+      "implicit_reference": 4,
+      "missing_unit": 2,
+      "placeholder": 2
+    }
+  },
+  "seeded_fault_evaluation": {
+    "total_faults_injected": 50,
+    "total_faults_detected": 50,
+    "overall_recall": 1.0,
+    "per_fault_type": {
+      "ambiguity": {
+        "total": 10,
+        "detected": 10,
+        "examples_caught": [
+          {
+            "id": "L1I-30",
+            "mutation": "Added subjective sentence",
+            "mutated_text": "To interface with the P-Mesh coherence system of OpenPiton, L1I shall have a line invalidate external command that inval"
+          },
+          {
+            "id": "ISA-70",
+            "mutation": "Replaced 'single-precision' with subjective 'user-friendly'",
+            "mutated_text": "CV64A6 shall support as an option the F extension (user-friendly without double-precision floating-point), version 2.2."
+          }
+        ],
+        "examples_missed": [],
+        "recall": 1.0
+      },
+      "vagueness": {
+        "total": 10,
+        "detected": 10,
+        "examples_caught": [
+          {
+            "id": "L1I-60",
+            "mutation": "Added vague sentence",
+            "mutated_text": "L1I should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized wi"
+          },
+          {
+            "id": "PPA-10",
+            "mutation": "Added vague sentence",
+            "mutated_text": "CVA6 should be resource-optimized on FPGA and ASIC targets. There may be some additional considerations."
+          }
+        ],
+        "examples_missed": [],
+        "recall": 1.0
+      },
+      "optionality": {
+        "total": 10,
+        "detected": 10,
+        "examples_caught": [
+          {
+            "id": "ISA-140",
+            "mutation": "Added 'if needed' escape clause",
+            "mutated_text": "CVA6 should support as an option the Zcb extension version 1.0. This requirement applies if needed."
+          },
+          {
+            "id": "ISA-150",
+            "mutation": "Added 'if needed' escape clause",
+            "mutated_text": "CVA6 should support as an option the Zcmp extension version 1.0. This requirement applies if needed."
+          }
+        ],
+        "examples_missed": [],
+        "recall": 1.0
+      },
+      "placeholder": {
+        "total": 10,
+        "detected": 10,
+        "examples_caught": [
+          {
+            "id": "L1W-70",
+            "mutation": "Added TBD placeholder",
+            "mutated_text": "It shall be possible to invalidate L1WTD content with the FENCE.T command. (TBD: exact value to be determined.)"
+          },
+          {
+            "id": "HPM-60",
+            "mutation": "Added TBD placeholder",
+            "mutated_text": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR. (TBD: exact value to be det"
+          }
+        ],
+        "examples_missed": [],
+        "recall": 1.0
+      },
+      "comparative": {
+        "total": 10,
+        "detected": 10,
+        "examples_caught": [
+          {
+            "id": "L1I-70",
+            "mutation": "Added bare comparative 'faster'",
+            "mutated_text": "A custom CSR shall be faster and allow to disable or enable L1I."
+          },
+          {
+            "id": "HPM-80",
+            "mutation": "Added bare comparative 'faster'",
+            "mutated_text": "CVA6 shall be faster and implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and thei"
+          }
+        ],
+        "examples_missed": [],
+        "recall": 1.0
+      }
+    }
+  },
+  "n_faults": 50
+}

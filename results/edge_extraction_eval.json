@@ -1,0 +1,27 @@
+{
+  "provider": "anthropic",
+  "model": null,
+  "requirements_evaluated": 64,
+  "evidence_guard_rejections": 0,
+  "per_edge_type": {
+    "MENTIONS": {
+      "proposed": 113,
+      "ground_truth": 75,
+      "true_positives": 75,
+      "false_positives": 38,
+      "false_negatives": 0,
+      "precision": 0.6637168141592921,
+      "recall": 1.0
+    },
+    "DERIVES_FROM": {
+      "proposed": 2,
+      "ground_truth": null,
+      "note": "no hand-built ground truth; counts reported, not scored"
+    },
+    "MITIGATES": {
+      "proposed": 0,
+      "ground_truth": null,
+      "note": "no hand-built ground truth; counts reported, not scored"
+    }
+  }
+}

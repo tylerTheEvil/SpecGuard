@@ -1,0 +1,113 @@
+{
+  "standard": "cross-domain (UAV)",
+  "timestamp": "2026-06-10T10:07:51.050003Z",
+  "graph_summary": {
+    "dataset": {
+      "system_requirements": 6,
+      "hlr_requirements": 7,
+      "hwr_requirements": 7,
+      "total_requirements": 20,
+      "interfaces": 4,
+      "hazards": 3,
+      "seeded_violations": 3
+    },
+    "final_node_count": 27,
+    "final_rel_count": 29
+  },
+  "objectives_checked": 3,
+  "passing_objective_ids": [],
+  "total_violations": 3,
+  "by_objective": {
+    "CROSS-HW-SW-1": {
+      "title": "Hardware-software interface requirements coherent",
+      "standard": "ARP4754A+DO-178C+DO-254",
+      "passed": false,
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "UAV-HLR-60 <-> UAV-HWR-60",
+          "explanation": "SW HLR and HW HWR both reference interface 'FPU_CSR_BLOCK' but consistency is not asserted (no CONSISTENT_WITH edge). Cross-domain coherence required by ARP4754A \u00a75.",
+          "raw_data": {
+            "violating_requirement": "UAV-HLR-60 <-> UAV-HWR-60",
+            "shared_interface": "FPU_CSR_BLOCK",
+            "reason": "unconfirmed_consistency"
+          }
+        }
+      ]
+    },
+    "CROSS-TIMING-1": {
+      "title": "Timing budget allocations consistent across SW and HW",
+      "standard": "ARP4754A+DO-178C+DO-254",
+      "passed": false,
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "UAV-SYS-40",
+          "explanation": "System requirement 'UAV-SYS-40' has timing budget 2000000 ns, but allocations to SW+HW sum to 2500000 ns. Budget overrun in cross-domain allocation.",
+          "raw_data": {
+            "violating_requirement": "UAV-SYS-40",
+            "budget": 2000000,
+            "allocated": 2500000,
+            "reason": "budget_overrun"
+          }
+        }
+      ]
+    },
+    "CROSS-SAFETY-1": {
+      "title": "Safety hazards propagated to both SW and HW requirements",
+      "standard": "ARP4761+DO-178C+DO-254",
+      "passed": false,
+      "violation_count": 1,
+      "violations": [
+        {
+          "violating_element": "UAV-HAZ-2",
+          "explanation": "Safety hazard 'UAV-HAZ-2' (severity: hazardous) requires both SW and HW mitigation but lacks one or both. ARP4761 + DO-178C/DO-254 cross-domain mitigation.",
+          "raw_data": {
+            "violating_requirement": "UAV-HAZ-2",
+            "hazard_text": "Motor runaway: actuator command path emits a saturated PWM value after a stale rate setpoint.",
+            "severity": "hazardous",
+            "reason": "incomplete_mitigation_coverage"
+          }
+        }
+      ]
+    }
+  },
+  "seeded_violations": [
+    {
+      "key": "TIMING_OVERRUN",
+      "objective_id": "CROSS-TIMING-1",
+      "description": "UAV-SYS-40 (failsafe) has a 2,000,000 ns budget but its children UAV-HLR-40 (1,500,000) + UAV-HWR-40 (1,000,000) sum to 2,500,000 ns \u2014 a 500,000 ns overrun.",
+      "violating_element": "UAV-SYS-40",
+      "compliant_counterpart": "UAV-SYS-10",
+      "why": "Single-domain tools see each child fitting its own share; only a cross-domain sum detects the system-budget overrun."
+    },
+    {
+      "key": "MISSING_CONSISTENCY",
+      "objective_id": "CROSS-HW-SW-1",
+      "description": "UAV-HLR-60 and UAV-HWR-60 both MENTIONS the FPU_CSR_BLOCK interface, but no CONSISTENT_WITH edge is asserted between them.",
+      "violating_element": "FPU_CSR_BLOCK",
+      "compliant_counterpart": "GYRO_IRQ_LINE",
+      "why": "Mismatched HW/SW interface specs are a classic integration defect that slips through single-domain verification."
+    },
+    {
+      "key": "SINGLE_DOMAIN_HAZARD",
+      "objective_id": "CROSS-SAFETY-1",
+      "description": "UAV-HAZ-2 (hazardous, dual-domain required) is mitigated only on the HW side (UAV-HWR-50); no HLR MITIGATES edge exists.",
+      "violating_element": "UAV-HAZ-2",
+      "compliant_counterpart": "UAV-HAZ-1",
+      "why": "Catastrophic/hazardous hazards needing defence-in-depth require mitigation on BOTH sides; single-domain coverage is insufficient."
+    }
+  ],
+  "_provenance": {
+    "dataset": "specguard.data.uav_cross_domain",
+    "nature": "DERIVED, ILLUSTRATIVE dataset authored for this study \u2014 NOT requirements from a real certified UAV program and NOT certification evidence. This supersedes the hand-authored synthetic cross-domain seed in scripts/load_neo4j.py.",
+    "sw_side_derived_from": [
+      "PX4 architecture/controller concept (docs.px4.io/main/en/concept/architecture.html): IMU 1 kHz sample, 250 Hz publish; cascaded position/attitude/rate controllers",
+      "PX4 control-loop cadence (discuss.px4.io/t/control-loop-update-frequency/14043): rate loop ~250 Hz, position loop ~100 Hz",
+      "ArduPilot aggressive rate-loop tuning (ardupilot.org/copter/docs/high-loop-rate-tuning.html): main loop 400 Hz / 2.5 ms; fast-rate thread up to 4 kHz",
+      "ArduPilot failsafe documentation (ardupilot.org/copter/docs/failsafe-landing-page.html): bounded deterministic link-loss/battery/EKF failsafes"
+    ],
+    "hw_side_anchored_in": "CVA6 Requirements Specification v1.0.1 (OpenHW Group/Thales) via specguard.data.cva6_requirements; HWR reqs reference real CVA6 IDs IRQ-10, MEM-10, MEM-20, L1W-10, FET-10, ISA-60",
+    "authored_for_this_study": "'shall' requirement wording, HLR/HWR decomposition, timing-budget arithmetic, DAL assignments, mini-FHA hazards and severities, and all deliberate seeded violations"
+  }
+}
