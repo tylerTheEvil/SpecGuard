@@ -230,6 +230,36 @@ results instead of parsed stdout, host-agnosticism (any MCP client —
 keeps the artifact vendor-neutral). Deliberately NOT first: tool
 schemas are costly to iterate while workflows are still settling.
 
+## Phase 6 — Novelty deepening (literature-checked)
+
+Four directions that upgrade the contributions from "instances" to
+"methods/properties," each stress-tested against prior art on 2026-06-10.
+**Full analysis, surviving claims, landmine papers, differentiations, and
+citation backbone: `docs/novelty_deepening.md` (authoritative for this
+phase).** Summary:
+
+- **6.1 Regulatory codification methodology** — checkability taxonomy over
+  all DO-178C+DO-254 objectives, graph-pattern templates per class,
+  quantitative coverage map, graph meta-model. Key differentiation target:
+  RACK/ARCOS (software-only evidence curation). Cross-domain SW↔FPGA niche
+  independently re-confirmed unoccupied.
+- **6.2 Non-interference property + GSN assurance case** — formalize and
+  property-test "no information flow from ModelProvider outputs to
+  deterministic verdicts"; GSN case arguing TQL-5 qualifiability. Key
+  complement: Liu et al. DASC 2025 (admissibility without mechanism).
+- **6.3 Semantic-drift guard for LLM rewrites** — deterministic invariants
+  (ID, numerics/units, entities, modal strength) checked before any
+  /sg-refine draft is shown + drift-frequency experiment. Cleanest gap;
+  one open check: AirReq's semantic-preservation stance.
+- **6.4 Flagship experiment: CVA6 vs RISC-V ISA specs** — NL-level
+  cross-document consistency against the governing standard; the documented
+  WLRL deviation is the built-in ground-truth case to recover.
+
+Priority by value/effort: 6.3 (days) → 6.1 (spine) → 6.2 (defense) → 6.4
+(flagship). Strategic option for the supervisor meeting: merge novelties
+#1+#2 into "the qualification boundary as a first-class architectural
+element."
+
 ## Status
 
 | Phase | Item | Status |
@@ -247,6 +277,10 @@ schemas are costly to iterate while workflows are still settling.
 | 5c | Neo4j session interactions (read-only guard, coexistence docs) | **done 2026-06-10** — `run_readonly_cypher` write-refusal, MERGE-only writes, dataset-tag coexistence (tested) |
 | 5d | Examples + CLI tests + scripted demo transcript | **done 2026-06-10** — `examples/walkthrough_requirements.txt` (5 PASS/4 WARN/2 FAIL), `docs/session_walkthrough.md` with genuine outputs incl. live extraction |
 | 5-S2 | MCP server over the CLI surface | deferred until workflows stabilize |
+| 6.1 | Codification methodology + coverage map + meta-model | pending — see `docs/novelty_deepening.md` |
+| 6.2 | Non-interference property + GSN assurance case | pending |
+| 6.3 | Semantic-drift guard for LLM rewrites + experiment | pending — blocked only on AirReq overlap check |
+| 6.4 | CVA6 vs RISC-V ISA cross-document experiment | pending (flagship, largest effort) |
 
 ### Phase 1 outcome note (for Paper #3)
 
