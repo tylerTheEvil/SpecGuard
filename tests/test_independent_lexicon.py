@@ -21,6 +21,7 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 import independent_lexicon as il  # noqa: E402
+
 from specguard.core.smell_detector import (  # noqa: E402
     AMBIGUITY_TERMS,
     COMPARATIVE_PATTERN,

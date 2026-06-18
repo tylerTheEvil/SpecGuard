@@ -153,7 +153,9 @@ class TestOptionalityRefactorCorrectness:
         assert SmellType.OPTIONALITY in report.smell_types_found
 
     def test_if_applicable_still_triggers_optionality(self):
-        report = analyze_requirement("T28", "The system shall use hardware acceleration where applicable.")
+        report = analyze_requirement(
+            "T28", "The system shall use hardware acceleration where applicable."
+        )
         assert SmellType.OPTIONALITY in report.smell_types_found
 
 

@@ -33,7 +33,7 @@ from __future__ import annotations
 import json
 import random
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
 
 from independent_lexicon import (
@@ -147,7 +147,7 @@ def build_mutations(requirements: list, n_per_type: int = N_PER_TYPE) -> list[Mu
     candidates = [r for r in requirements if len(r.text.split()) >= 8]
     mutations: list[Mutation] = []
 
-    for fault_type, expected in EXPECTED_SMELLS.items():
+    for fault_type, _expected in EXPECTED_SMELLS.items():
         terms = independent_terms(fault_type)
         if not terms:
             continue
@@ -215,7 +215,7 @@ def evaluate_recall(mutations: list[Mutation]) -> dict:
             }
         )
 
-    for ft, stats in per_type.items():
+    for _ft, stats in per_type.items():
         stats["recall"] = round(stats["hit"] / stats["total"], 3) if stats["total"] else 0.0
 
     total = sum(s["total"] for s in per_type.values())

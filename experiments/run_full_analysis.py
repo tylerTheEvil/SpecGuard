@@ -31,7 +31,6 @@ logger = logging.getLogger(__name__)
 from specguard.core.extended_pipeline import assess_dataset_extended
 from specguard.data.cva6_requirements import get_all_requirements
 
-
 # ---------------------------------------------------------------------------
 # Stdlib Spearman rank correlation (no scipy dependency)
 # ---------------------------------------------------------------------------
@@ -135,7 +134,7 @@ def _print_summary(results) -> None:
     ]
 
     print("\n" + "=" * 60)
-    print("LINGUISTIC METRICS — SUMMARY (CVA6, n={})".format(len(ling_results)))
+    print(f"LINGUISTIC METRICS — SUMMARY (CVA6, n={len(ling_results)})")
     print("=" * 60)
     print(f"{'Metric':<28} {'Mean':>8} {'Median':>8} {'StDev':>8}")
     print("-" * 60)

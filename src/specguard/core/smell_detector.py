@@ -38,7 +38,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 
 
-class SmellType(str, Enum):
+class SmellType(str, Enum):  # noqa: UP042 — deliberate (str, Enum); StrEnum changes str() semantics
     """Catalog of requirement smells from ISO/IEEE 29148."""
 
     AMBIGUITY = "ambiguity"
