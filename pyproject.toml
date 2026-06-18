@@ -50,7 +50,8 @@ dev = [
 specguard = "specguard.cli:main"
 
 [project.urls]
-Documentation = "https://github.com/antonstryapunin/spec_guard/blob/main/CLAUDE.md"
+Homepage = "https://github.com/tylerTheEvil/SpecGuard"
+Documentation = "https://github.com/tylerTheEvil/SpecGuard/blob/main/CLAUDE.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/specguard"]
