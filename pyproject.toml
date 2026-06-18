@@ -39,6 +39,11 @@ notebooks = [
     "pandas",
     "matplotlib",
 ]
+viz = [
+    # Coverage-map figure generator (scripts/coverage_map.py) only. Never
+    # imported from src/specguard — the stdlib-only core must not depend on it.
+    "matplotlib",
+]
 dev = [
     "pytest>=7.0",
     "pytest-cov",

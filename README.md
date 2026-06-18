@@ -135,7 +135,22 @@ specguard graph --cypher "MATCH (n) RETURN count(n)"   # read-only Cypher (write
 specguard extract reqs.txt --queue q.json        # LLM-propose edges -> review queue ([llm] extra)
 specguard review q.json list                     # list/accept/reject/export proposals
 specguard review q.json merge-to-neo4j           # MERGE accepted edges (only LLM-originated write)
+specguard taxonomy validate                      # validate the checkability taxonomy (stdlib-only, FK-checked)
+specguard taxonomy stats                         # counts per standard / zone / class / template
 ```
+
+### Checkability taxonomy (Contribution #2)
+
+The 15 codified objectives are generalised into a machine-readable
+**checkability taxonomy** (`taxonomy/checkability_taxonomy.csv`) that classifies
+each objective by *how it can be verified* — semantic class → checkability zone
+(`machine` / `screened` / `human`) → topological template + decision rule. The
+stdlib-only loader/validator FK-checks every row against the real
+`ComplianceConstraint` symbols and runs in CI with no extras. See
+[`docs/taxonomy.md`](docs/taxonomy.md). The coverage-map figure
+(`scripts/coverage_map.py`, `[viz]` extra) carries a **CALIBRATION SUBSET** stamp
+— the 15 seed objectives were selected for codifiability, so it is not a
+representative coverage result.
 
 Neo4j Community Edition is one database per DBMS, so imported datasets coexist
 by a `dataset` node property (not separate databases); `import --to-neo4j` and
@@ -151,7 +166,9 @@ specguard/
 │   ├── core/                    # Smell detection, scoring, pipeline
 │   ├── compliance/              # DO-178C / DO-254 / cross-domain objectives
 │   ├── graph/                   # Knowledge graph builder and queries
+│   ├── taxonomy/                # Checkability taxonomy loader/validator (stdlib-only)
 │   └── data/                    # CVA6 requirements dataset
+├── taxonomy/                    # checkability_taxonomy.csv (human-editable source of truth)
 ├── experiments/                 # Validation experiments (seeded faults)
 ├── notebooks/                   # Demo notebooks
 ├── scripts/                     # Runnable demos (compliance_demo.py)

@@ -62,6 +62,8 @@ jobs:
           python -c "import specguard; print('specguard', specguard.__version__ if hasattr(specguard, '__version__') else 'ok')"
           specguard --help
           printf 'REQ-1: The system shall respond within 100 ms.\nREQ-2: The system should be fast enough.\n' | specguard assess - || true
+      - name: Validate checkability taxonomy (stdlib-only, FK integrity)
+        run: specguard taxonomy validate
       - name: Build sdist + wheel
         run: |
           pip install build

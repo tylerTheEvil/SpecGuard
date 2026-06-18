@@ -54,6 +54,13 @@ jobs:
       - name: HMAS skeleton demo
         run: python scripts/hmas_demo.py | tee /tmp/hmas.txt
 
+      - name: Taxonomy stats + coverage map (calibration subset)
+        run: |
+          pip install -e ".[viz]"
+          specguard taxonomy stats | tee /tmp/taxonomy.txt
+          python scripts/coverage_map.py --calibration 2>&1 | tee -a /tmp/taxonomy.txt
+        # results/coverage_map.{png,csv} ride along in the evidence artifact below.
+
       # --- Opt-in LIVE eval (manual only, guarded) ------------------------
       - name: Edge extraction — LIVE Anthropic eval (opt-in)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_live }}
@@ -84,6 +91,7 @@ jobs:
             emit "Compliance — 15 codified objectives" /tmp/compliance.txt
             emit "Edge extraction — offline MockProvider" /tmp/extraction_mock.txt
             emit "HMAS skeleton demo" /tmp/hmas.txt
+            emit "Checkability taxonomy — stats + coverage map (CALIBRATION subset)" /tmp/taxonomy.txt
             emit "Edge extraction — LIVE Anthropic (opt-in)" /tmp/extraction_live.txt
           } >> "$GITHUB_STEP_SUMMARY"
 
