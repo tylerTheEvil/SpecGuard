@@ -10,6 +10,9 @@ components of critical UAVs"*.
 **Author:** Anton Stryapunin, KhAI, gr. F7-503-1
 **Supervisor:** Prof. Yevhen Brezhnyev
 
+[![CI](https://github.com/tylerTheEvil/SpecGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/tylerTheEvil/SpecGuard/actions/workflows/ci.yml)
+[![Experiments](https://github.com/tylerTheEvil/SpecGuard/actions/workflows/experiments.yml/badge.svg)](https://github.com/tylerTheEvil/SpecGuard/actions/workflows/experiments.yml)
+
 ---
 
 ## Installation
@@ -17,6 +20,10 @@ components of critical UAVs"*.
 ```bash
 pip install -e ".[dev,graph,notebooks]"
 ```
+
+Optional extras (all degrade gracefully when absent — the stdlib-only core never
+needs them): `graph` (Neo4j + NetworkX), `llm` (Anthropic BYOM adapter),
+`linguistic` (spaCy + textstat), `viz` (matplotlib, coverage map), `notebooks`.
 
 ## Quick start
 
@@ -174,8 +181,30 @@ specguard/
 ├── scripts/                     # Runnable demos (compliance_demo.py)
 ├── results/                     # Experiment outputs and Cypher dumps
 ├── docs/                        # Supplementary documentation
+├── .github/workflows/           # CI gate + experiments demonstration pipeline
 └── tests/                       # pytest test suite
 ```
+
+---
+
+## Continuous integration & demonstration
+
+Two GitHub Actions pipelines (`.github/workflows/`):
+
+- **`ci.yml` — the gate** (every push / PR): ruff lint, a stdlib-only core +
+  wheel-build guard, the `pytest` matrix on Python 3.11 / 3.12 / 3.13, an
+  isolated linguistic-extra job, and a real `neo4j:5-community` service
+  container that **continuously verifies the 15 compliance Cypher queries on a
+  live database**. The core job also runs `specguard taxonomy validate`, so the
+  checkability taxonomy is FK-checked against the real `ComplianceConstraint`
+  symbols with no extras installed.
+- **`experiments.yml` — the demonstration** (runs only after CI succeeds):
+  executes the experiments — seeded faults (both tiers), compliance,
+  edge-extraction (offline mock), the HMAS demo, taxonomy stats + coverage map —
+  each as an independent step so one failure never masks the rest. It publishes
+  a per-experiment **status table + evidence dashboard** to the run summary and
+  uploads `results/` as an artifact. An opt-in live-LLM eval is gated behind a
+  manual trigger and the `ANTHROPIC_API_KEY` secret (never runs automatically).
 
 ---
 
@@ -269,20 +298,35 @@ quantitative scoring model. Differences:
 | Baseline metrics | None | Recall, FPR |
 | DO-330 qualifiable | No (black box LLM) | In principle yes |
 
-This is a deliberate design choice. The graph layer (next phase) will add
-LLM-based reasoning on top of the deterministic smell foundation, so
-auditable results are preserved.
+This is a deliberate design choice: the graph layer adds LLM-augmented reasoning
+*on top of* the deterministic smell foundation (Layer 2, augmentative and never
+authoritative), so auditable results are preserved.
 
 ---
 
-## Next steps (post-demo)
+## Status & roadmap
 
-1. **Graph layer**: Neo4j knowledge graph + Cypher queries for inter-requirement
-   consistency.
-2. **Regulatory codification**: DO-178C / DO-254 objectives as reusable graph
-   schemas (the second scientific novelty of the dissertation).
-3. **LLM augmentation**: combine deterministic smell detection with LLM
-   reasoning for context-dependent issues (subjective phrasing, implicit
-   contradictions).
-4. **Cross-dataset validation**: extend to FVEval, VERT, and possibly
-   industrial datasets through NVP "Radiy" collaboration.
+**Done** (see `docs/improvement_plan.md` for the phase-by-phase record):
+
+- **Graph layer** — Neo4j knowledge graph + NetworkX queries; all 15 compliance
+  Cypher patterns verified executable on a live database (now continuously, in CI).
+- **Regulatory codification** — 7 DO-178C + 5 DO-254 + 3 cross-domain objectives
+  as executable graph constraints, plus the machine-readable **checkability
+  taxonomy** (Contribution #2) generalising them.
+- **LLM augmentation** — BYOM provider interface + human-gated edge extraction
+  (Layer 2 analyst pattern); the session LLM is never the detector.
+- **De-circularised validation** — honest three-tier recall (own-lexicon 100% by
+  construction; independent-lexicon 0%; LLM-blind 28.6%) — the lexicon-coverage
+  finding, not a defect to tune away.
+- **HMAS skeleton** + a CI/CD demonstration platform.
+
+**Next** (candidate directions in `docs/novelty_deepening.md`):
+
+1. **Quantify the two-layer value-add** — measure recall recovered by the Layer 2
+   LLM analyst over the deterministic baseline, with the augmentative invariant
+   verified numerically.
+2. **Cross-domain binding as a measured result** — show defects the SW↔FPGA
+   binding catches that single-domain analysis structurally cannot.
+3. **DO-330 qualification skeleton + GSN assurance case**.
+4. **Cross-dataset validation** — extend beyond CVA6 (e.g. via NVP "Radiy"
+   collaboration) for external validity.
