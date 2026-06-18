@@ -34,35 +34,51 @@ jobs:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: pyproject.toml
-      # [graph] brings networkx, needed by hmas_demo (imports the HMAS
-      # FormalizationAgent) and any graph-backed experiment.
-      - run: pip install -e ".[dev,graph,llm]"
+      # [graph] -> networkx (hmas_demo + graph experiments); [viz] -> matplotlib
+      # (coverage map). One install so each experiment step is just its run.
+      - run: pip install -e ".[dev,graph,llm,viz]"
 
       # --- Deterministic experiments (no API key, reproducible) -----------
+      # Each step is continue-on-error so ONE failure never masks the others.
+      # The dashboard reports per-experiment status; the Gate step at the end
+      # fails the job iff any experiment actually failed.
       - name: Seeded faults — own-lexicon sanity (100% by construction)
+        id: exp_seeded_own
+        continue-on-error: true
         run: python experiments/seeded_faults.py | tee /tmp/seeded_own.txt
 
       - name: Seeded faults — independent + LLM-blind lexicon (honest recall)
+        id: exp_seeded_indep
+        continue-on-error: true
         run: python experiments/seeded_faults_independent.py | tee /tmp/seeded_indep.txt
 
       - name: Compliance — 15 codified objectives (in-memory)
+        id: exp_compliance
+        continue-on-error: true
         run: python scripts/compliance_demo.py | tee /tmp/compliance.txt
 
       - name: Edge extraction — offline MockProvider (deterministic)
+        id: exp_extraction_mock
+        continue-on-error: true
         run: python experiments/edge_extraction_eval.py --provider mock | tee /tmp/extraction_mock.txt
 
       - name: HMAS skeleton demo
+        id: exp_hmas
+        continue-on-error: true
         run: python scripts/hmas_demo.py | tee /tmp/hmas.txt
 
       - name: Taxonomy stats + coverage map (calibration subset)
+        id: exp_taxonomy
+        continue-on-error: true
         run: |
-          pip install -e ".[viz]"
           specguard taxonomy stats | tee /tmp/taxonomy.txt
           python scripts/coverage_map.py --calibration 2>&1 | tee -a /tmp/taxonomy.txt
         # results/coverage_map.{png,csv} ride along in the evidence artifact below.
 
       # --- Opt-in LIVE eval (manual only, guarded) ------------------------
       - name: Edge extraction — LIVE Anthropic eval (opt-in)
+        id: exp_live
+        continue-on-error: true
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_live }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -75,11 +91,42 @@ jobs:
       # --- Evidence dashboard in the run summary --------------------------
       - name: Build evidence summary
         if: always()
+        env:
+          O_SEEDED_OWN: ${{ steps.exp_seeded_own.outcome }}
+          O_SEEDED_INDEP: ${{ steps.exp_seeded_indep.outcome }}
+          O_COMPLIANCE: ${{ steps.exp_compliance.outcome }}
+          O_EXTRACTION_MOCK: ${{ steps.exp_extraction_mock.outcome }}
+          O_HMAS: ${{ steps.exp_hmas.outcome }}
+          O_TAXONOMY: ${{ steps.exp_taxonomy.outcome }}
+          O_LIVE: ${{ steps.exp_live.outcome }}
         run: |
           {
             echo "# SpecGuard — experiment evidence"
             echo ""
             echo "Commit: \`${{ github.event.workflow_run.head_sha || github.sha }}\`"
+            echo ""
+            echo "## Status"
+            echo ""
+            echo "| Experiment | Result |"
+            echo "|------------|--------|"
+            status() { # $1 = label, $2 = outcome
+              case "$2" in
+                success) r="✅ pass";;
+                failure) r="❌ FAIL";;
+                skipped|"") r="⏭️ skipped";;
+                *) r="$2";;
+              esac
+              echo "| $1 | $r |"
+            }
+            status "Seeded faults — own-lexicon sanity" "$O_SEEDED_OWN"
+            status "Seeded faults — independent + LLM-blind" "$O_SEEDED_INDEP"
+            status "Compliance — 15 codified objectives" "$O_COMPLIANCE"
+            status "Edge extraction — offline MockProvider" "$O_EXTRACTION_MOCK"
+            status "HMAS skeleton demo" "$O_HMAS"
+            status "Checkability taxonomy — stats + coverage map" "$O_TAXONOMY"
+            status "Edge extraction — LIVE Anthropic (opt-in)" "$O_LIVE"
+            echo ""
+            echo "## Output"
             echo ""
             emit() { # $1 = title, $2 = file
               echo "<details><summary>$1</summary>"; echo ""; echo '```'
@@ -102,3 +149,26 @@ jobs:
           name: experiment-results
           path: results/
           if-no-files-found: warn
+
+      # --- Gate: every experiment ran; fail the job iff any FAILED --------
+      - name: Gate — fail if any experiment failed
+        if: always()
+        env:
+          O_SEEDED_OWN: ${{ steps.exp_seeded_own.outcome }}
+          O_SEEDED_INDEP: ${{ steps.exp_seeded_indep.outcome }}
+          O_COMPLIANCE: ${{ steps.exp_compliance.outcome }}
+          O_EXTRACTION_MOCK: ${{ steps.exp_extraction_mock.outcome }}
+          O_HMAS: ${{ steps.exp_hmas.outcome }}
+          O_TAXONOMY: ${{ steps.exp_taxonomy.outcome }}
+          O_LIVE: ${{ steps.exp_live.outcome }}
+        run: |
+          failed=0
+          for o in "$O_SEEDED_OWN" "$O_SEEDED_INDEP" "$O_COMPLIANCE" \
+                   "$O_EXTRACTION_MOCK" "$O_HMAS" "$O_TAXONOMY" "$O_LIVE"; do
+            [ "$o" = "failure" ] && failed=1
+          done
+          if [ "$failed" = "1" ]; then
+            echo "::error::One or more experiments failed — see the Status table in the run summary."
+            exit 1
+          fi
+          echo "All experiments succeeded (skipped steps are OK)."
