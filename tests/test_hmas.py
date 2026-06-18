@@ -9,6 +9,12 @@ from __future__ import annotations
 
 import importlib
 
+import pytest
+
+# The HMAS FormalizationAgent (Layer 2) needs networkx ([graph] extra); skip
+# cleanly so plain ``pytest`` with no extras still passes (quarantine invariant).
+pytest.importorskip("networkx")
+
 from specguard.agents import (
     Agent,
     AgentReport,
