@@ -41,6 +41,9 @@ _PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
+# Reuse the destructive-clear helper from the Phase 1a loader so the two stay
+# behaviourally identical (and we do not duplicate the Cypher).
+from scripts.load_neo4j import _clear_database
 from specguard.compliance import CROSS_DOMAIN_OBJECTIVES, run_compliance_check
 from specguard.compliance.neo4j_runner import Neo4jConfig, Neo4jGraphRunner
 from specguard.data.uav_cross_domain import (
@@ -55,10 +58,6 @@ from specguard.data.uav_cross_domain import (
     dataset_stats,
     get_domain_requirements,
 )
-
-# Reuse the destructive-clear helper from the Phase 1a loader so the two stay
-# behaviourally identical (and we do not duplicate the Cypher).
-from scripts.load_neo4j import _clear_database
 
 _RESULTS_PATH = Path(__file__).resolve().parents[1] / "results" / "cross_domain_run.json"
 

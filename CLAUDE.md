@@ -222,7 +222,7 @@ specguard review <queue.json> list|accept|reject|export|merge-to-neo4j
 
 Claude session commands (`/sg-assess`, `/sg-refine`, `/sg-import`, `/sg-extract`, `/sg-comply`, `/sg-graph`) live in `.claude/commands/` and drive this CLI. **The session LLM is never the detector** — commands must run the deterministic tool, quote its output verbatim, and keep LLM commentary clearly separated; all Neo4j writes require explicit user confirmation. Demo walkthrough: `docs/session_walkthrough.md`, sample input: `examples/walkthrough_requirements.txt`.
 
-For full graph rendering, Neo4j Desktop must be installed locally (DBMS `specguard-cva6`); set the DBMS password via the `SPECGUARD_NEO4J_PASSWORD` env var (`SPECGUARD_NEO4J_USER` / `SPECGUARD_NEO4J_URI` likewise). Cypher dump in `results/specguard_graph.cypher` — paste into Neo4j Browser.
+For full graph rendering, Neo4j Desktop must be installed locally (DBMS `specguard-cva6`). Credentials are never hard-coded: set `SPECGUARD_NEO4J_PASSWORD` (and optionally `SPECGUARD_NEO4J_URI` / `_USER` / `_DATABASE`) in your environment — locally via your shell profile, in CI via GitHub Actions secrets / the ephemeral service-container password. Cypher dump in `results/specguard_graph.cypher` — paste into Neo4j Browser.
 
 ## Tone for AI assistants working in this repo
 

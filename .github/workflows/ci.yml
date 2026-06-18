@@ -1,0 +1,178 @@
+name: CI
+
+# The gate: sanitizers + tests. Runs on every push and PR.
+# Experiments (experiments.yml) run separately, and only after this succeeds.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# A newer push to the same ref cancels the older, still-running CI.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # ----------------------------------------------------------------------
+  # Sanitizers — ruff (configured in pyproject) + mypy.
+  # mypy / ruff-format are informational (continue-on-error) so pre-existing
+  # findings surface without blocking merges; flip to blocking once clean.
+  # ----------------------------------------------------------------------
+  lint:
+    name: Lint & type-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: pip install -e ".[dev]"
+      - name: ruff (lint)
+        run: ruff check .
+      - name: ruff (format check)
+        run: ruff format --check .
+        continue-on-error: true
+      - name: mypy
+        run: mypy src/specguard
+        continue-on-error: true
+
+  # ----------------------------------------------------------------------
+  # Core guard — proves the DO-330-qualifiable core stays stdlib-only:
+  # install with NO extras, import it, exercise the CLI, and build the wheel.
+  # ----------------------------------------------------------------------
+  core:
+    name: Stdlib-only core + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install core with no extras
+        run: pip install -e .
+      - name: Import + CLI smoke (no third-party deps present)
+        run: |
+          python -c "import specguard; print('specguard', specguard.__version__ if hasattr(specguard, '__version__') else 'ok')"
+          specguard --help
+          printf 'REQ-1: The system shall respond within 100 ms.\nREQ-2: The system should be fast enough.\n' | specguard assess - || true
+      - name: Build sdist + wheel
+        run: |
+          pip install build
+          python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  # ----------------------------------------------------------------------
+  # Test matrix — core + llm/extraction (MockProvider, no API key).
+  # Neo4j tests auto-skip (no DB); linguistic tests importorskip (no spaCy).
+  # ----------------------------------------------------------------------
+  test:
+    name: Tests (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: pip install -e ".[dev,llm]"
+      - name: pytest (with coverage)
+        run: pytest --cov=specguard --cov-report=term-missing --cov-report=xml
+      - name: Upload coverage XML
+        if: matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.xml
+
+  # ----------------------------------------------------------------------
+  # Linguistic extra — heavy spaCy + model download isolated to one job so
+  # the matrix stays fast. Runs the metrics tests that otherwise skip.
+  # ----------------------------------------------------------------------
+  linguistic:
+    name: Linguistic extra
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: pip install -e ".[dev,linguistic]"
+      - run: python -m spacy download en_core_web_sm
+      - run: pytest tests/test_linguistic_metrics.py -v
+
+  # ----------------------------------------------------------------------
+  # Neo4j integration — real neo4j:5-community service container.
+  # Continuously verifies the 15 compliance Cypher queries execute on a live
+  # DB (hardens the Phase-1 "executable Cypher patterns" claim).
+  # ----------------------------------------------------------------------
+  neo4j:
+    name: Neo4j integration
+    runs-on: ubuntu-latest
+    services:
+      neo4j:
+        image: neo4j:5-community
+        env:
+          NEO4J_AUTH: neo4j/testpassword
+          NEO4J_server_memory_pagecache_size: 256M
+        ports:
+          - 7687:7687
+          - 7474:7474
+        options: >-
+          --health-cmd "wget -qO- http://localhost:7474 || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      SPECGUARD_NEO4J_URI: bolt://localhost:7687
+      SPECGUARD_NEO4J_USER: neo4j
+      SPECGUARD_NEO4J_PASSWORD: testpassword
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: pip install -e ".[dev,graph]"
+      - name: Wait for Neo4j Bolt connectivity
+        run: |
+          python - <<'PY'
+          import os, time
+          from neo4j import GraphDatabase
+          uri = os.environ["SPECGUARD_NEO4J_URI"]
+          auth = (os.environ["SPECGUARD_NEO4J_USER"], os.environ["SPECGUARD_NEO4J_PASSWORD"])
+          last = None
+          for _ in range(30):
+              try:
+                  d = GraphDatabase.driver(uri, auth=auth)
+                  d.verify_connectivity()
+                  d.close()
+                  print("Neo4j is up")
+                  break
+              except Exception as e:  # noqa: BLE001
+                  last = e
+                  time.sleep(2)
+          else:
+              raise SystemExit(f"Neo4j never became reachable: {last}")
+          PY
+      - name: Load CVA6 graph into Neo4j
+        run: python scripts/load_neo4j.py
+      - name: Run Neo4j-marked integration tests
+        run: pytest -m neo4j -v

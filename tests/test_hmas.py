@@ -15,7 +15,6 @@ from specguard.agents import (
     AgentRequest,
     AssessmentReport,
     Coordinator,
-    FormalizationAgent,
     QualityAgent,
     TraceabilityAgent,
 )

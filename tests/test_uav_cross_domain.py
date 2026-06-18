@@ -23,7 +23,6 @@ from specguard.data.uav_cross_domain import (
     all_requirement_texts,
     dataset_stats,
     get_domain_requirements,
-    get_hlr_requirements,
     get_hwr_requirements,
 )
 

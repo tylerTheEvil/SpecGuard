@@ -40,7 +40,7 @@ if TYPE_CHECKING:  # pragma: no cover - typing only
 # runner can target a different DBMS without code changes.
 DEFAULT_URI = "bolt://localhost:7687"
 DEFAULT_USER = "neo4j"
-DEFAULT_PASSWORD = "neo4j"  # placeholder; set SPECGUARD_NEO4J_PASSWORD for your DBMS
+DEFAULT_PASSWORD = "neo4j"  # placeholder only; set SPECGUARD_NEO4J_PASSWORD for your DBMS
 DEFAULT_DATABASE = "neo4j"
 
 

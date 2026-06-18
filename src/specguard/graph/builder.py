@@ -201,11 +201,6 @@ def build_graph(
     """
     graph = RequirementGraph()
 
-    # Map req_id -> AssessmentResult for smell lookups
-    smell_lookup: dict = {}
-    if smell_results:
-        smell_lookup = {r.requirement_id: r for r in smell_results}
-
     # ---- Layer 1: Requirement and Category nodes ----
     categories_seen = set()
     for req in requirements:

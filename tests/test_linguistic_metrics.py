@@ -9,7 +9,7 @@ import pytest
 
 class TestReadability:
     def test_readability_range(self):
-        textstat = pytest.importorskip("textstat")
+        pytest.importorskip("textstat")
         pytest.importorskip("spacy")
         from specguard.linguistic import compute_linguistic_metrics
 
@@ -115,7 +115,7 @@ class TestEdgeCases:
         assert m1.token_count > 0
         assert m2.token_count > 0
         # Preloaded nlp object is the same reference as the cached one
-        from specguard.linguistic._spacy_loader import _NLP_CACHE, _MODEL_NAME
+        from specguard.linguistic._spacy_loader import _MODEL_NAME, _NLP_CACHE
         assert nlp is _NLP_CACHE[_MODEL_NAME]
 
 
@@ -127,8 +127,8 @@ class TestExtendedPipelineGracefulDegradation:
         degradation path cannot be exercised in that environment).
         """
         try:
-            import textstat  # noqa: F401
             import spacy  # noqa: F401
+            import textstat  # noqa: F401
             pytest.skip("linguistic extra is installed; degradation path not testable")
         except ImportError:
             pass
