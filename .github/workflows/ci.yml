@@ -89,7 +89,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: pyproject.toml
-      - run: pip install -e ".[dev,llm]"
+      # [graph] brings networkx — the HMAS FormalizationAgent (Layer 2) and the
+      # graph query helpers require it. Neo4j tests still skip (no DB in this job).
+      - run: pip install -e ".[dev,graph,llm]"
       - name: pytest (with coverage)
         run: pytest --cov=specguard --cov-report=term-missing --cov-report=xml
       - name: Upload coverage XML
