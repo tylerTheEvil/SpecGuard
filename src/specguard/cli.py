@@ -406,6 +406,80 @@ def cmd_review(args: argparse.Namespace, extra: list[str]) -> int:
 
 
 # ---------------------------------------------------------------------------
+# taxonomy  (checkability taxonomy — stdlib-only, Contribution #2)
+# ---------------------------------------------------------------------------
+
+
+def _load_taxonomy_or_exit(args: argparse.Namespace):
+    """Load the taxonomy, printing a clean error and signalling exit 2 on failure.
+
+    Returns ``(rows, None)`` on success or ``(None, exit_code)`` on failure.
+    """
+    from specguard.taxonomy import load_taxonomy
+
+    try:
+        return load_taxonomy(args.path), None
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"taxonomy: {exc}", file=sys.stderr)
+        return None, 2
+
+
+def cmd_taxonomy_validate(args: argparse.Namespace) -> int:
+    """Validate the taxonomy CSV; exit 0 if clean, 1 if any error, 2 if unreadable."""
+    from specguard.taxonomy import validate
+
+    rows, exit_code = _load_taxonomy_or_exit(args)
+    if rows is None:
+        return exit_code
+
+    errors = validate(rows)
+    if args.json:
+        _emit_json(
+            {
+                "ok": not errors,
+                "rows": len(rows),
+                "error_count": len(errors),
+                "errors": [e.as_dict() for e in errors],
+            }
+        )
+    else:
+        if not errors:
+            print(f"Taxonomy valid — {len(rows)} rows, 0 errors. ✓")
+        else:
+            print(f"Taxonomy INVALID — {len(errors)} error(s) across {len(rows)} rows:")
+            for e in errors:
+                print(f"  [{e.objective_id}] {e.field}: {e.message}")
+    return 0 if not errors else 1
+
+
+def cmd_taxonomy_stats(args: argparse.Namespace) -> int:
+    """Report counts per standard / zone / class / template."""
+    from specguard.taxonomy import compute_stats
+
+    rows, exit_code = _load_taxonomy_or_exit(args)
+    if rows is None:
+        return exit_code
+
+    stats = compute_stats(rows)
+    if args.json:
+        _emit_json(stats)
+    else:
+        print(f"Taxonomy statistics — {stats['total']} rows")
+        print(f"  codified: {stats['codified']}   classified-only: {stats['classified_only']}")
+        print(f"  distinct templates: {stats['distinct_templates']}")
+        for label, key in (
+            ("by standard", "by_standard"),
+            ("by zone", "by_zone"),
+            ("by semantic class", "by_semantic_class"),
+            ("by template", "by_template"),
+        ):
+            print(f"  {label}:")
+            for name, count in sorted(stats[key].items()):  # type: ignore[attr-defined]
+                print(f"    {name}: {count}")
+    return 0
+
+
+# ---------------------------------------------------------------------------
 # Argument parser
 # ---------------------------------------------------------------------------
 
@@ -473,6 +547,20 @@ def build_parser() -> argparse.ArgumentParser:
         help="Review action.",
     )
     p_review.set_defaults(func=None)  # handled specially (needs extra args)
+
+    # taxonomy (validate | stats) — stdlib-only checkability taxonomy
+    p_tax = sub.add_parser("taxonomy", help="Checkability taxonomy: validate | stats.")
+    tax_sub = p_tax.add_subparsers(dest="tax_command", required=True)
+
+    p_tax_validate = tax_sub.add_parser("validate", help="Validate the taxonomy CSV.")
+    p_tax_validate.add_argument("--path", default=None, help="Taxonomy CSV path (default: auto).")
+    p_tax_validate.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    p_tax_validate.set_defaults(func=cmd_taxonomy_validate)
+
+    p_tax_stats = tax_sub.add_parser("stats", help="Counts per standard/zone/class/template.")
+    p_tax_stats.add_argument("--path", default=None, help="Taxonomy CSV path (default: auto).")
+    p_tax_stats.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    p_tax_stats.set_defaults(func=cmd_taxonomy_stats)
 
     return parser
 
