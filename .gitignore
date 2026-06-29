@@ -13,3 +13,9 @@ build/
 .DS_Store
 Archive.zip
 results/notebook_review_queue.json
+
+# Generated paper figures (scripts/make_figs.py)
+figures/
+
+# Locally-generated coverage map (scripts/coverage_map.py; CI regenerates it)
+results/coverage_map.*
