@@ -14,6 +14,9 @@ build/
 Archive.zip
 results/notebook_review_queue.json
 
+# Reference clone of GitHub Spec Kit (see docs/speckit_integration_plan.md) — never committed
+spec-kit/
+
 # Generated paper figures (scripts/make_figs.py)
 figures/
 
