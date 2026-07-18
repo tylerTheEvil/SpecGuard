@@ -57,15 +57,35 @@ MANDATORY_MODALS = {"shall", "must", "will"}
 RECOMMENDED_MODALS = {"should"}
 OPTIONAL_MODALS = {"may", "can", "could", "might"}
 
-# Indicators of measurable / verifiable criteria
+# Indicators of measurable / verifiable criteria.
+#
+# The original lexicon was tuned on hardware-style requirements (CVA6) and
+# missed several quantification idioms; gaps were exposed by the spec-kit
+# pilot (results/speckit_pilot/pilot_report.md, G5):
+# - "90%" never matched: in the old `(?:%|percent)\b` the trailing \b after
+#   '%' cannot match before whitespace ('%' and ' ' are both non-word chars)
+# - minute/hour/calendar time units were absent (though present in the
+#   smell detector's unit lexicon — the two lists are now consistent)
+# - number-anchored comparators ("under 2 minutes", "within 1 s") and
+#   bare bounded comparators ("no more than") were absent
+# - comma-grouped numerals ("1,000 concurrent users") and exact zero-counts
+#   ("zero data loss") are quantifications too
 MEASURABLE_PATTERNS = [
     re.compile(r"\b\d+\s*(?:kbyte|kbytes|mbyte|mbytes|byte|bytes|bit|bits)\b", re.I),
     re.compile(r"\b\d+\s*(?:hz|khz|mhz|ghz|hertz)\b", re.I),
     re.compile(r"\b\d+\s*(?:ns|us|ms|s|sec|seconds?|cycles?)\b", re.I),
+    re.compile(r"\b\d+\s*(?:min|minutes?|hours?|days?|weeks?|months?|years?)\b", re.I),
     re.compile(r"\b\d+\s*(?:way|ways|kb|mb|gb)\b", re.I),
-    re.compile(r"\b\d+\s*(?:%|percent)\b", re.I),
+    re.compile(r"\b\d+\s*(?:%|percent\b)", re.I),
     re.compile(r"\bversion\s+\d+(?:\.\d+)*\b", re.I),
-    re.compile(r"\b(?:less than|more than|at least|at most|equal to|greater than)\b", re.I),
+    re.compile(
+        r"\b(?:less than|more than|at least|at most|equal to|greater than|"
+        r"no more than|no fewer than|no less than)\b",
+        re.I,
+    ),
+    re.compile(r"\b(?:under|within|up to|exactly|every)\s+\d", re.I),
+    re.compile(r"\b\d{1,3}(?:,\d{3})+\b"),
+    re.compile(r"\bzero\s+\w+", re.I),
 ]
 
 

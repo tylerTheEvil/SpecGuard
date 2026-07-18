@@ -159,6 +159,55 @@ class TestOptionalityRefactorCorrectness:
         assert SmellType.OPTIONALITY in report.smell_types_found
 
 
+class TestSpecKitPilotFixes:
+    """Regression tests for lexical-collision fixes G1-G4 from the spec-kit
+    pilot (results/speckit_pilot/pilot_report.md)."""
+
+    # G1 — comma-grouped numerals tokenize as one number
+    def test_comma_grouped_numeral_is_one_token(self):
+        report = analyze_requirement("G1a", "The queue shall hold 1,000 pending entries.")
+        hits = [h for h in report.hits if h.smell_type == SmellType.MISSING_UNIT]
+        assert [h.trigger for h in hits] == ["1,000"]  # not the "000" tail artifact
+
+    def test_comma_grouped_numeral_with_unit_not_flagged(self):
+        report = analyze_requirement("G1b", "The link shall tolerate 1,000 ms of delay.")
+        assert SmellType.MISSING_UNIT not in report.smell_types_found
+
+    # G2 — "how many" is interrogative, not an imprecise quantifier
+    def test_how_many_not_vague(self):
+        report = analyze_requirement("G2a", "The tool shall report how many lines were skipped.")
+        assert SmellType.VAGUENESS not in report.smell_types_found
+
+    def test_plain_many_still_vague(self):
+        report = analyze_requirement("G2b", "Many interrupts shall be maskable.")
+        assert SmellType.VAGUENESS in report.smell_types_found
+
+    def test_show_many_still_vague(self):
+        # 'show' must not satisfy the 'how' guard (word boundary required)
+        report = analyze_requirement("G2c", "The UI shall show many results.")
+        assert SmellType.VAGUENESS in report.smell_types_found
+
+    # G3 — calendar units are units
+    def test_calendar_units_not_missing_unit(self):
+        report = analyze_requirement("G3a", "Logs shall be retained for at least 12 months.")
+        assert SmellType.MISSING_UNIT not in report.smell_types_found
+
+    def test_unitless_number_still_flagged(self):
+        report = analyze_requirement("G3b", "The buffer shall hold 128 pending entries.")
+        assert SmellType.MISSING_UNIT in report.smell_types_found
+
+    # G4 — comparative + technical noun is a noun phrase, not a comparison
+    def test_lower_limit_noun_phrase_not_comparative(self):
+        report = analyze_requirement(
+            "G4a", "Operators shall set a lower limit, an upper limit, or both."
+        )
+        assert SmellType.COMPARATIVE not in report.smell_types_found
+
+    def test_bare_lower_still_comparative(self):
+        report = analyze_requirement("G4b", "The system shall have lower latency.")
+        assert SmellType.COMPARATIVE in report.smell_types_found
+
+
 class TestSmellReport:
     def test_smell_types_found_property(self):
         report = analyze_requirement("T12", "The system shall be fast.")

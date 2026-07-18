@@ -238,14 +238,19 @@ COMPARATIVE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Numeric value followed by no unit (heuristic, false positives possible)
+# Numeric value followed by no unit (heuristic, false positives possible).
+# Comma-grouped numerals ("1,000") are matched as one token — previously the
+# tail group ("000") was flagged in isolation, a tokenization artifact exposed
+# by the spec-kit pilot (results/speckit_pilot/pilot_report.md, G1).
 NUMERIC_NO_UNIT_PATTERN = re.compile(
-    r"\b(\d+(?:\.\d+)?)\s+(?!"
+    r"\b(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s+(?!"
     # known units (extend as needed)
     r"(?:bit|bits|byte|bytes|kbyte|kbytes|mbyte|mbytes|gbyte|gbytes|"
     r"kb|mb|gb|kib|mib|gib|"
     r"hz|khz|mhz|ghz|"
     r"ns|us|ms|s|sec|seconds?|min|minutes?|hours?|"
+    # calendar units (pilot G3 — "12 months" was flagged despite having a unit)
+    r"days?|weeks?|months?|years?|"
     r"way|ways|cycle|cycles|"
     r"v|volt|volts|a|amp|amps|w|watt|watts|"
     r"deg|degree|degrees|c|f|"
@@ -292,9 +297,17 @@ def detect_ambiguity(text: str) -> list[SmellHit]:
 
 
 def detect_vagueness(text: str) -> list[SmellHit]:
-    """Detect imprecise quantifiers."""
+    """Detect imprecise quantifiers.
+
+    'many'/'few' preceded by 'how' are skipped: "report how many lines were
+    skipped" is an interrogative construction, not an imprecise quantifier
+    (lexical collision found by the spec-kit pilot, G2).
+    """
     hits = []
+    text_lower = text.lower()
     for term, pos in _find_terms(text, VAGUENESS_TERMS):
+        if term in {"many", "few"} and re.search(r"\bhow\s*$", text_lower[:pos]):
+            continue
         # 'some' has high severity in safety contexts; default medium otherwise
         severity = "high" if term in {"some", "many", "etc"} else "medium"
         hits.append(
@@ -472,13 +485,20 @@ def detect_negative_statement(text: str) -> list[SmellHit]:
 
 
 def detect_comparatives(text: str) -> list[SmellHit]:
-    """Detect comparatives without explicit baseline."""
+    """Detect comparatives without explicit baseline.
+
+    Noun phrases like "lower limit" / "higher bound" / "smaller threshold"
+    are skipped — the comparative modifies a technical noun and needs no
+    baseline (lexical collision found by the spec-kit pilot, G4).
+    """
     hits = []
     for match in COMPARATIVE_PATTERN.finditer(text):
         # Check if there's a comparison anchor like "than X" within next 20 chars
         following = text[match.end() : match.end() + 30].lower()
         if " than " in following or "compared to" in following or "relative to" in following:
             continue  # has baseline
+        if re.match(r"\s+(?:limit|bound|threshold)s?\b", following):
+            continue  # noun phrase, not a baseline-less comparison
         hits.append(
             SmellHit(
                 smell_type=SmellType.COMPARATIVE,

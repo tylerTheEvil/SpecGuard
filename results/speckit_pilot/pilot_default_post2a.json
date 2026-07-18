@@ -1,0 +1,1831 @@
+{
+  "profile": "default",
+  "aggregate": {
+    "total_requirements": 120,
+    "gate_pass": 111,
+    "gate_warn": 9,
+    "gate_fail": 0,
+    "pass_rate": 0.925,
+    "fail_rate": 0.0,
+    "avg_completeness": 0.932,
+    "avg_consistency": 0.996,
+    "avg_verifiability": 0.718,
+    "avg_overall": 0.852,
+    "total_smells_detected": 18,
+    "smells_per_requirement": 0.15,
+    "smell_type_distribution": {
+      "negative_statement": 6,
+      "comparative": 1,
+      "ambiguity": 1,
+      "missing_unit": 6,
+      "vagueness": 4
+    }
+  },
+  "results": [
+    {
+      "id": "001-photo-albums/FR-001",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST allow users to create photo albums, each with a user-provided name.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-002",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "Users MUST be able to add photos from their library to an album.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-003",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST keep albums separate: a photo belongs to at most one album at a time, and adding a photo that is already in another album requires the user to confirm moving it.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-004",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST display all albums on the main page, grouped by album creation date (most recent group first).",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-005",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "Users MUST be able to reorder albums within a date group on the main page via drag and drop.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-006",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST persist the user's custom album order so it is retained across sessions.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-007",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST NOT allow an album to be placed inside another album; dropping an album onto another album reorders them side by side and never creates nesting.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": [
+        {
+          "type": "negative_statement",
+          "trigger": "MUST NOT",
+          "severity": "low",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "001-photo-albums/FR-008",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST display the photos of an opened album as a grid of uniform tiles.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-009",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "Users MUST be able to open an individual photo from its tile into a larger single-photo view and return to the tile grid.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.4,
+        "overall": 0.73
+      },
+      "hits": [
+        {
+          "type": "comparative",
+          "trigger": "larger",
+          "severity": "medium",
+          "position": 68
+        }
+      ]
+    },
+    {
+      "id": "001-photo-albums/FR-010",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "Each album entry on the main page MUST show the album name, its photo count, and a representative cover image (most recently added photo by default).",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-011",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "Users MUST be able to rename an album, delete an album (with confirmation), and remove individual photos from an album.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-012",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "Deleting an album or removing a photo from an album MUST NOT delete the underlying photo from the user's library.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": [
+        {
+          "type": "negative_statement",
+          "trigger": "MUST NOT",
+          "severity": "low",
+          "position": 52
+        }
+      ]
+    },
+    {
+      "id": "001-photo-albums/FR-013",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST persist albums, photo-to-album assignments, and ordering so the user's organization survives closing and reopening the app.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/FR-014",
+      "spec": "001-photo-albums",
+      "kind": "FR",
+      "text": "System MUST show an appropriate empty state for an album with no photos and for a main page with no albums, each prompting the relevant next action.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.4,
+        "overall": 0.73
+      },
+      "hits": [
+        {
+          "type": "ambiguity",
+          "trigger": "appropriate",
+          "severity": "medium",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "id": "001-photo-albums/SC-001",
+      "spec": "001-photo-albums",
+      "kind": "SC",
+      "text": "A first-time user can create a new album and add their first photos to it in under 1 minute.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/SC-002",
+      "spec": "001-photo-albums",
+      "kind": "SC",
+      "text": "Users can locate and open a specific album from the main page in under 10 seconds, even with 50+ albums present.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/SC-003",
+      "spec": "001-photo-albums",
+      "kind": "SC",
+      "text": "Opening an album of up to 500 photos presents a browsable tile grid within 2 seconds.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.775
+      },
+      "hits": [
+        {
+          "type": "missing_unit",
+          "trigger": "500",
+          "severity": "low",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "id": "001-photo-albums/SC-004",
+      "spec": "001-photo-albums",
+      "kind": "SC",
+      "text": "Album order set by drag-and-drop is retained in 100% of subsequent sessions, and no sequence of drag-and-drop actions can ever produce a nested album.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "001-photo-albums/SC-005",
+      "spec": "001-photo-albums",
+      "kind": "SC",
+      "text": "90% of first-time users complete the core flow (create an album, add photos, reorder albums) without assistance.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-001",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST allow a registered user to create a short link from a valid destination URL.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-002",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST validate submitted destination URLs and reject malformed or unsupported ones with a descriptive error message.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-003",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST generate a unique short code for each link when no custom alias is provided.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-004",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST redirect any visitor of an active short link to its destination URL without requiring the visitor to sign in.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.4,
+        "overall": 0.73
+      },
+      "hits": [
+        {
+          "type": "vagueness",
+          "trigger": "any",
+          "severity": "medium",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "id": "002-url-shortener/FR-005",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "Users MUST be able to optionally specify a custom alias when creating a link, subject to an allowed character set and length limits.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-006",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST reject a custom alias that is already in use or matches a reserved word, and MUST inform the user why.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-007",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST record each click on a short link, including at minimum the time of the click.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-008",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "Users MUST be able to view the total click count and clicks-over-time breakdown for each link they own.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-009",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST restrict link management and statistics visibility to the link's owner \u2014 no user may view or modify another user's links.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 0.85,
+        "verifiability": 0.7,
+        "overall": 0.827
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-010",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "Users MUST be able to set an optional expiration date/time on a link at creation, and to add, change, or remove it later.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-011",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST stop redirecting an expired link and instead show visitors a page explaining that the link has expired.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-012",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "Users MUST be able to list, deactivate, and delete their own links; a deactivated or deleted link MUST stop redirecting.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-013",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST show a \"not found\" page for short codes that do not exist, without revealing whether a code ever existed.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/FR-014",
+      "spec": "002-url-shortener",
+      "kind": "FR",
+      "text": "System MUST retain a link's accumulated statistics after the link expires or is deactivated, until the link is deleted by its owner.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/SC-001",
+      "spec": "002-url-shortener",
+      "kind": "SC",
+      "text": "A user can go from submitting a long URL to having a working short link in under 30 seconds.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.937
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/SC-002",
+      "spec": "002-url-shortener",
+      "kind": "SC",
+      "text": "Visitors following an active short link reach the destination in under 1 second in 95% of cases.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/SC-003",
+      "spec": "002-url-shortener",
+      "kind": "SC",
+      "text": "Click statistics visible to the owner reflect at least 99% of actual clicks, and appear in the dashboard within 1 minute of the click.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/SC-004",
+      "spec": "002-url-shortener",
+      "kind": "SC",
+      "text": "Expired links stop redirecting within 1 minute of their expiration time in 100% of cases.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/SC-005",
+      "spec": "002-url-shortener",
+      "kind": "SC",
+      "text": "90% of first-time users successfully create a short link (with or without a custom alias) on their first attempt without external help.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "002-url-shortener/SC-006",
+      "spec": "002-url-shortener",
+      "kind": "SC",
+      "text": "The service sustains 1,000 concurrent redirect requests without visitor-facing errors or degradation.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.775
+      },
+      "hits": [
+        {
+          "type": "missing_unit",
+          "trigger": "1,000",
+          "severity": "low",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-001",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST accept a path to a web server access log file and parse entries in the common access log formats (Common Log Format and Combined Log Format), extracting at minimum: timestamp, requested endpoint, and response status.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-002",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST report the top endpoints ranked by request count, showing the count and share of total traffic for each; the number of endpoints shown MUST default to 10 and be configurable.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-003",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST compute and report error rates: overall percentage of failed requests, split into client errors (4xx) and server errors (5xx), and the endpoints with the highest error counts.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-004",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST detect traffic spikes in a log file by comparing request volume per time window against the surrounding baseline, and report each spike's time range, request count, and magnitude relative to baseline.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-005",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST tolerate malformed lines by skipping them, and MUST report how many lines were skipped; it MUST NOT abort the whole analysis because of individual bad lines.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": [
+        {
+          "type": "negative_statement",
+          "trigger": "MUST NOT",
+          "severity": "low",
+          "position": 103
+        }
+      ]
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-006",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST provide a watch mode that continuously follows a log file, processing new entries as they are appended.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-007",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "In watch mode, System MUST raise an alert when an anomalous condition is detected, covering at minimum: error rate in the recent window exceeding a threshold, and request volume deviating sharply from the established baseline.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-008",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "Alerts MUST be delivered to the operator's terminal, clearly distinguishable from normal output, and MUST include what condition fired, when, and the observed value versus the threshold or baseline.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-009",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "In watch mode, System MUST survive log rotation and truncation of the watched file, resuming from the new file/beginning without terminating.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-010",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST allow the operator to configure analysis and alerting parameters, at minimum: spike sensitivity, error-rate alert threshold, and the time window size used for rate calculations.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-011",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST support restricting batch analysis to a user-specified time range.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-012",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST offer the summary report in both a human-readable form and a machine-readable structured form suitable for consumption by scripts.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-013",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST use exit codes that distinguish successful analysis, analysis completed with warnings (e.g., skipped lines above a notable share), and failure (unreadable file, unrecognized format).",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/FR-014",
+      "spec": "003-log-analyzer-cli",
+      "kind": "FR",
+      "text": "System MUST be able to analyze log files significantly larger than available memory without failing.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/SC-001",
+      "spec": "003-log-analyzer-cli",
+      "kind": "SC",
+      "text": "An operator can go from a raw log file to a complete summary report (top endpoints, error rates, spikes) with a single command, with results for a 1 GB file available in under 60 seconds on typical operator hardware.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/SC-002",
+      "spec": "003-log-analyzer-cli",
+      "kind": "SC",
+      "text": "On reference log files with independently verified contents, reported endpoint counts and error rates match the ground truth exactly (100% agreement).",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/SC-003",
+      "spec": "003-log-analyzer-cli",
+      "kind": "SC",
+      "text": "In watch mode, an alert for an anomalous condition appears within 30 seconds of the triggering entries being written to the log.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/SC-004",
+      "spec": "003-log-analyzer-cli",
+      "kind": "SC",
+      "text": "Under normal (non-anomalous) traffic replayed over 24 hours, watch mode raises no more than 2 false alerts.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.775
+      },
+      "hits": [
+        {
+          "type": "missing_unit",
+          "trigger": "2",
+          "severity": "low",
+          "position": 92
+        }
+      ]
+    },
+    {
+      "id": "003-log-analyzer-cli/SC-005",
+      "spec": "003-log-analyzer-cli",
+      "kind": "SC",
+      "text": "Analysis completes successfully on log files containing up to 10% malformed lines, and the report accurately states the number of lines skipped.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "003-log-analyzer-cli/SC-006",
+      "spec": "003-log-analyzer-cli",
+      "kind": "SC",
+      "text": "An operator unfamiliar with the raw log format can answer \"what are the top 5 endpoints and the overall error rate?\" from the report alone on their first attempt, without consulting the raw log.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.46,
+        "overall": 0.727
+      },
+      "hits": [
+        {
+          "type": "missing_unit",
+          "trigger": "5",
+          "severity": "low",
+          "position": 76
+        }
+      ]
+    },
+    {
+      "id": "004-cart-discounts/FR-001",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST allow shoppers to enter a discount code during checkout and apply it to the current order after validation.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-002",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST support percentage discount codes that reduce the eligible order subtotal by a configured percentage (1\u2013100%).",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-003",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST support fixed-amount discount codes that reduce the eligible order subtotal by a configured monetary amount, capped so the merchandise total never falls below zero.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-004",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST enforce an expiry date per code and reject expired codes at both application time and order placement.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-005",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST enforce a per-customer usage limit per code, counting completed orders per customer, and reject applications beyond the limit.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-006",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST support an optional total redemption cap per code across all customers and reject applications once the cap is reached.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-007",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST enforce combination rules: each code is marked either combinable or exclusive; an exclusive code cannot be applied together with any other code, and only codes marked combinable may stack.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 0.85,
+        "verifiability": 0.4,
+        "overall": 0.693
+      },
+      "hits": [
+        {
+          "type": "vagueness",
+          "trigger": "any",
+          "severity": "medium",
+          "position": 141
+        }
+      ]
+    },
+    {
+      "id": "004-cart-discounts/FR-008",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST display each applied discount as an itemized line (code and amount saved) and show the updated order total before payment is taken.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-009",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST re-validate all applied codes (active status, expiry, usage limits, combination rules) at order placement, and reject the order with a clear explanation if any code is no longer valid.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.4,
+        "overall": 0.73
+      },
+      "hits": [
+        {
+          "type": "vagueness",
+          "trigger": "any",
+          "severity": "medium",
+          "position": 168
+        }
+      ]
+    },
+    {
+      "id": "004-cart-discounts/FR-010",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "Shoppers MUST be able to remove an applied code before payment, restoring the undiscounted total.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-011",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "Marketing users MUST be able to create discount codes via an admin screen, specifying: code string, discount type (percentage or fixed amount), value, expiry date, per-customer usage limit, optional total redemption cap, and combinability.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-012",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "Marketing users MUST be able to deactivate (and reactivate) codes; deactivation takes effect immediately for new applications and does not alter completed orders.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-013",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST enforce uniqueness of code strings (case-insensitive) and match shopper-entered codes case-insensitively with surrounding whitespace ignored.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-014",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST record every redemption (code, customer, order, discount amount, timestamp) so that usage limits can be enforced and marketing can review code usage.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 0.85,
+        "verifiability": 0.7,
+        "overall": 0.827
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-015",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "Access to the discount code admin screen MUST be restricted to authorized marketing/admin roles.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/FR-016",
+      "spec": "004-cart-discounts",
+      "kind": "FR",
+      "text": "System MUST present distinct, shopper-friendly rejection messages for each failure reason: unknown code, expired, deactivated, per-customer limit reached, total cap reached, and not combinable with an applied code.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/SC-001",
+      "spec": "004-cart-discounts",
+      "kind": "SC",
+      "text": "A shopper can apply a valid discount code and see the updated order total within 2 seconds, without leaving the checkout flow.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/SC-002",
+      "spec": "004-cart-discounts",
+      "kind": "SC",
+      "text": "100% of orders placed with a discount reflect a discount amount consistent with the code's definition, and no completed order has a negative merchandise total.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/SC-003",
+      "spec": "004-cart-discounts",
+      "kind": "SC",
+      "text": "Zero orders are completed using a code that was expired, deactivated, or over its usage limit at the moment of order placement.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/SC-004",
+      "spec": "004-cart-discounts",
+      "kind": "SC",
+      "text": "A marketing user can create and publish a new discount code in under 3 minutes without engineering involvement.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "004-cart-discounts/SC-005",
+      "spec": "004-cart-discounts",
+      "kind": "SC",
+      "text": "At least 95% of shoppers who attempt to apply a code either succeed or receive a message identifying the specific reason for rejection on the first attempt.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-001",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST accept temperature and vibration telemetry readings reported by registered factory floor sensors.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-002",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST record for each reading: the sensor identifier, reading type (temperature or vibration), measured value with unit, and the time of measurement.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-003",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST validate incoming readings and reject those that are malformed (missing fields, non-numeric values, unknown reading type), recording each rejection with a reason without interrupting ingestion of other readings.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-004",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST record readings received for unregistered sensor identifiers as rejected, retaining enough detail for later investigation, and MUST NOT store them as normal telemetry.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": [
+        {
+          "type": "negative_statement",
+          "trigger": "MUST NOT",
+          "severity": "low",
+          "position": 139
+        }
+      ]
+    },
+    {
+      "id": "005-sensor-telemetry/FR-005",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST persist accepted readings and allow operators to retrieve them by sensor and time range.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-006",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST retain stored readings for at least 12 months.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-007",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "Operators MUST be able to define an alert threshold per sensor and per reading type, consisting of an upper limit, a lower limit, or both.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-008",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "Operators MUST be able to view, update, and remove existing thresholds; changes MUST take effect for readings received after the change.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-009",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST evaluate every accepted reading against the active threshold for its sensor and reading type, and create an alert when the value falls outside the configured limits.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-010",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST notify the responsible operators when a new alert episode begins, including the sensor, reading type, measured value, violated threshold, and time of breach.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-011",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST group consecutive violating readings from the same sensor and reading type into a single alert episode and MUST NOT send a separate notification for each violating reading within an episode.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": [
+        {
+          "type": "negative_statement",
+          "trigger": "MUST NOT",
+          "severity": "low",
+          "position": 119
+        }
+      ]
+    },
+    {
+      "id": "005-sensor-telemetry/FR-012",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST mark an alert episode as resolved when a subsequent reading for that sensor and reading type returns within the threshold, recording the resolution time.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-013",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "System MUST record the delivery outcome of each notification so that failed deliveries are visible and auditable.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/FR-014",
+      "spec": "005-sensor-telemetry",
+      "kind": "FR",
+      "text": "Operators MUST be able to view alert history, filterable by sensor and time range, including breach start, peak value, threshold in effect, and resolution time.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/SC-001",
+      "spec": "005-sensor-telemetry",
+      "kind": "SC",
+      "text": "A reading reported by a sensor is visible to operators within 10 seconds of being received.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/SC-002",
+      "spec": "005-sensor-telemetry",
+      "kind": "SC",
+      "text": "Operators are notified within 60 seconds of a threshold-violating reading being received.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/SC-003",
+      "spec": "005-sensor-telemetry",
+      "kind": "SC",
+      "text": "An operator can configure a new threshold for a sensor in under 2 minutes.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/SC-004",
+      "spec": "005-sensor-telemetry",
+      "kind": "SC",
+      "text": "The system ingests sustained telemetry from 1,000 sensors reporting every 10 seconds (\u22486,000 readings/minute) with zero loss of valid readings.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.6,
+        "overall": 0.73
+      },
+      "hits": [
+        {
+          "type": "missing_unit",
+          "trigger": "1,000",
+          "severity": "low",
+          "position": 44
+        },
+        {
+          "type": "missing_unit",
+          "trigger": "6,000",
+          "severity": "low",
+          "position": 87
+        }
+      ]
+    },
+    {
+      "id": "005-sensor-telemetry/SC-005",
+      "spec": "005-sensor-telemetry",
+      "kind": "SC",
+      "text": "During a continuous breach, operators receive exactly one notification per alert episode rather than one per violating reading.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.5,
+        "overall": 0.685
+      },
+      "hits": []
+    },
+    {
+      "id": "005-sensor-telemetry/SC-006",
+      "spec": "005-sensor-telemetry",
+      "kind": "SC",
+      "text": "100% of rejected readings (malformed or unknown sensor) are traceable in rejection records \u2014 no telemetry is silently discarded.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-001",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "Users MUST be able to set a notification level per channel, choosing at minimum: all messages, mentions only (includes direct @-mentions of the user), or muted.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-002",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST apply a workspace-wide default notification level to any channel the user has not explicitly configured, and users MUST be able to change their personal default.",
+      "gate": "WARN",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.4,
+        "overall": 0.73
+      },
+      "hits": [
+        {
+          "type": "vagueness",
+          "trigger": "any",
+          "severity": "medium",
+          "position": 65
+        }
+      ]
+    },
+    {
+      "id": "006-team-notifications/FR-003",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "Users MUST be able to define a recurring daily quiet-hours window (start time and end time, evaluated in the user's local time zone), including windows that span midnight.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-004",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST suppress delivery of notifications during the user's quiet hours, except for keyword alerts (see FR-007), and MUST preserve suppressed activity as unread/missed items visible after the window ends.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-005",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "Users MUST be able to create, view, edit, and delete a personal list of alert keywords.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-006",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST match alert keywords against message content case-insensitively on whole-word boundaries.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-007",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST deliver keyword-alert notifications immediately, overriding per-channel settings (including muted channels), quiet hours, and digest mode, and MUST indicate which keyword triggered the notification.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-008",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "Users MUST be able to enable or disable digest mode and select a digest delivery interval from a predefined set of options.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-009",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "While digest mode is enabled, system MUST hold non-urgent notifications and deliver them as a single summary per interval, grouped by channel with message counts; urgent notifications (direct messages, @-mentions of the user, keyword alerts) MUST still be delivered immediately.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-010",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST NOT deliver an empty digest when no non-urgent notifications accumulated during the interval.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": [
+        {
+          "type": "negative_statement",
+          "trigger": "MUST NOT",
+          "severity": "low",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "id": "006-team-notifications/FR-011",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST apply notification preference changes to all messages received after the change takes effect, without requiring the user to sign out or restart.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-012",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "System MUST persist all notification preferences per user so they apply consistently across the user's sessions and devices.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-013",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "When digest mode is disabled with undelivered held notifications, system MUST surface those pending notifications to the user rather than discarding them.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 0.7,
+        "overall": 0.865
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/FR-014",
+      "spec": "006-team-notifications",
+      "kind": "FR",
+      "text": "When a single message triggers multiple notification reasons (e.g., a mention that also matches a keyword), system MUST deliver at most one notification for that message.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 1.0,
+        "consistency": 1.0,
+        "verifiability": 1.0,
+        "overall": 1.0
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/SC-001",
+      "spec": "006-team-notifications",
+      "kind": "SC",
+      "text": "A user can configure a channel's notification level, quiet hours, or a keyword alert in under 1 minute each without documentation or assistance.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.9,
+        "consistency": 1.0,
+        "verifiability": 0.86,
+        "overall": 0.907
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/SC-002",
+      "spec": "006-team-notifications",
+      "kind": "SC",
+      "text": "100% of messages matching a user's alert keywords produce an immediate notification, regardless of channel mute, quiet hours, or digest state, in scenario testing.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/SC-003",
+      "spec": "006-team-notifications",
+      "kind": "SC",
+      "text": "Zero notifications are delivered during a user's quiet-hours window in scenario testing, excluding keyword alerts.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/SC-004",
+      "spec": "006-team-notifications",
+      "kind": "SC",
+      "text": "Users with digest mode enabled experience at least an 80% reduction in individual notification interruptions during a typical workday compared to the same activity without digest mode.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/SC-005",
+      "spec": "006-team-notifications",
+      "kind": "SC",
+      "text": "Keyword-alert and mention notifications are delivered within 5 seconds of the message being posted under normal load.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    },
+    {
+      "id": "006-team-notifications/SC-006",
+      "spec": "006-team-notifications",
+      "kind": "SC",
+      "text": "Within one month of release, support requests related to unwanted or missed notifications decrease by 30%.",
+      "gate": "PASS",
+      "scores": {
+        "completeness": 0.7,
+        "consistency": 1.0,
+        "verifiability": 0.8,
+        "overall": 0.82
+      },
+      "hits": []
+    }
+  ]
+}
