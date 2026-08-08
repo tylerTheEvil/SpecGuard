@@ -1,0 +1,166 @@
+{
+  "_note": "Run-to-run variance of the LLM edge-extraction eval (experiments/edge_extraction_eval.py), MENTIONS edges scored against the 75 hand-built CVA6 ground-truth edges over 64 requirements. Ollama runs are sampling-pinned (temperature 0, seed 42 as of 2026-08-08) but NOT bit-reproducible: under greedy decoding the seed is largely inert, and residual nondeterminism comes from floating-point non-associativity in parallel GPU kernels (Metal backend here), which can flip near-tie token choices between runs — observed effect is +/-1 proposed edge. Anthropic runs use API-default sampling (current Opus models reject sampling parameters), so run-to-run drift is expected and unpinnable. Recall was stable in every Anthropic run (1.0); variance affects only extra proposed edges. 'stdev' is the sample standard deviation (n-1). Two pre-fix runs carry timestamp_utc: null and a reconstructed config, marked as such.",
+  "requirements_evaluated": 64,
+  "ground_truth_mentions": 75,
+  "runs": [
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-opus-4-8",
+        "temperature": "api_default",
+        "seed": null,
+        "max_tokens": 4096,
+        "timestamp_utc": null,
+        "reconstructed": true
+      },
+      "proposed": 111,
+      "true_positives": 75,
+      "false_positives": 36,
+      "false_negatives": 0,
+      "precision": 0.6756756756756757,
+      "recall": 1.0,
+      "evidence_guard_rejections": 0,
+      "timestamp_utc": null,
+      "note": "pre-fix run (2026-06/08); artifact recorded no timestamp or config and was later overwritten — values preserved from the session record, config reconstructed from provider defaults then in effect"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-opus-4-8",
+        "temperature": "api_default",
+        "seed": null,
+        "max_tokens": 4096,
+        "timestamp_utc": "2026-08-08T17:28:19+00:00"
+      },
+      "proposed": 109,
+      "true_positives": 75,
+      "false_positives": 34,
+      "false_negatives": 0,
+      "precision": 0.6880733944954128,
+      "recall": 1.0,
+      "evidence_guard_rejections": 0,
+      "timestamp_utc": "2026-08-08T17:28:19+00:00"
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-opus-4-8",
+        "temperature": "api_default",
+        "seed": null,
+        "max_tokens": 4096,
+        "timestamp_utc": "2026-08-08T17:54:00+00:00"
+      },
+      "proposed": 110,
+      "true_positives": 75,
+      "false_positives": 35,
+      "false_negatives": 0,
+      "precision": 0.6818181818181818,
+      "recall": 1.0,
+      "evidence_guard_rejections": 0,
+      "timestamp_utc": "2026-08-08T17:54:00+00:00"
+    },
+    {
+      "provider": "ollama",
+      "model": "gemma4:latest",
+      "config": {
+        "provider": "ollama",
+        "model": "gemma4:latest",
+        "temperature": 0,
+        "seed": null,
+        "max_tokens": null,
+        "num_ctx": 8192,
+        "timestamp_utc": null,
+        "reconstructed": true
+      },
+      "proposed": 101,
+      "true_positives": 74,
+      "false_positives": 27,
+      "false_negatives": 1,
+      "precision": 0.7326732673267327,
+      "recall": 0.9866666666666667,
+      "evidence_guard_rejections": 0,
+      "timestamp_utc": null,
+      "note": "pre-fix run (2026-06/08); artifact recorded no timestamp or config and was later overwritten — values preserved from the session record, config reconstructed from provider defaults then in effect"
+    },
+    {
+      "provider": "ollama",
+      "model": "gemma4:latest",
+      "config": {
+        "provider": "ollama",
+        "model": "gemma4:latest",
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": null,
+        "timestamp_utc": "2026-08-08T17:46:50+00:00",
+        "num_ctx": 8192
+      },
+      "proposed": 100,
+      "true_positives": 73,
+      "false_positives": 27,
+      "false_negatives": 2,
+      "precision": 0.73,
+      "recall": 0.9733333333333334,
+      "evidence_guard_rejections": 0,
+      "timestamp_utc": "2026-08-08T17:46:50+00:00"
+    },
+    {
+      "provider": "ollama",
+      "model": "gemma4:latest",
+      "config": {
+        "provider": "ollama",
+        "model": "gemma4:latest",
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": null,
+        "timestamp_utc": "2026-08-08T18:15:24+00:00",
+        "num_ctx": 8192
+      },
+      "proposed": 101,
+      "true_positives": 74,
+      "false_positives": 27,
+      "false_negatives": 1,
+      "precision": 0.7326732673267327,
+      "recall": 0.9866666666666667,
+      "evidence_guard_rejections": 0,
+      "timestamp_utc": "2026-08-08T18:15:24+00:00"
+    }
+  ],
+  "summary": {
+    "anthropic": {
+      "n_runs": 3,
+      "recall": {
+        "min": 1.0,
+        "max": 1.0,
+        "mean": 1.0
+      },
+      "precision": {
+        "min": 0.6756756756756757,
+        "max": 0.6880733944954128,
+        "mean": 0.6818557506630901,
+        "stdev": 0.006198944793018978
+      },
+      "note": "3 runs, all unpinned (api_default sampling)."
+    },
+    "ollama": {
+      "n_runs": 3,
+      "recall": {
+        "min": 0.9733333333333334,
+        "max": 0.9866666666666667,
+        "mean": 0.9822222222222222
+      },
+      "precision": {
+        "min": 0.73,
+        "max": 0.7326732673267327,
+        "mean": 0.7317821782178218,
+        "stdev": 0.0015434116107049414
+      },
+      "note": "Pools 1 unpinned + 2 seeded runs; the two seeded runs alone still differ by one edge, i.e. seeding did not achieve bit-reproducibility."
+    }
+  }
+}
