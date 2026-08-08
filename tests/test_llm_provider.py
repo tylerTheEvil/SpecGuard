@@ -165,3 +165,116 @@ def test_core_imports_without_extras():
     mod = importlib.import_module("specguard.llm.provider")
     assert hasattr(mod, "ModelProvider")
     assert hasattr(mod, "complete_structured")
+
+
+# ---------------------------------------------------------------------------
+# Ollama provider (stdlib-only; server faked by patching urlopen)
+# ---------------------------------------------------------------------------
+
+
+class _FakeResponse:
+    def __init__(self, body: dict) -> None:
+        self._body = body
+
+    def read(self):
+        import json
+
+        return json.dumps(self._body).encode("utf-8")
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+
+def _patch_urlopen(monkeypatch, content: str):
+    """Fake urlopen returning an Ollama chat body; captures the Request."""
+    import json
+
+    captured: dict = {}
+
+    def fake_urlopen(request, timeout=None):
+        captured["url"] = request.full_url
+        captured["payload"] = json.loads(request.data.decode("utf-8"))
+        captured["timeout"] = timeout
+        return _FakeResponse({"message": {"role": "assistant", "content": content}})
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    return captured
+
+
+def test_ollama_is_structured_provider():
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    provider = OllamaProvider("gemma4:latest")
+    assert isinstance(provider, ModelProvider)
+    assert supports_structured(provider) is True
+
+
+def test_ollama_complete_payload_and_result(monkeypatch):
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    captured = _patch_urlopen(monkeypatch, "hello back")
+    provider = OllamaProvider("gemma4:latest")
+    assert provider.complete("hi", system="sys") == "hello back"
+
+    payload = captured["payload"]
+    assert payload["model"] == "gemma4:latest"
+    assert payload["stream"] is False
+    assert "format" not in payload
+    assert payload["messages"] == [
+        {"role": "system", "content": "sys"},
+        {"role": "user", "content": "hi"},
+    ]
+    # Deterministic defaults and the truncation-guard context size. The seed
+    # matches the seeded-faults experiments (42) for cross-experiment
+    # consistency; together with temperature 0 it pins eval reproducibility.
+    assert payload["options"]["temperature"] == 0
+    assert payload["options"]["num_ctx"] == 8192
+    assert payload["options"]["seed"] == 42
+    assert captured["url"].endswith("/api/chat")
+
+
+def test_ollama_structured_passes_schema_as_format(monkeypatch):
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    captured = _patch_urlopen(monkeypatch, '{"edges": []}')
+    provider = OllamaProvider("gemma4:latest")
+    schema = {"type": "object", "properties": {"edges": {"type": "array"}}}
+    assert provider.complete_structured("p", schema) == {"edges": []}
+    assert captured["payload"]["format"] == schema
+
+
+def test_ollama_structured_rejects_non_object(monkeypatch):
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    _patch_urlopen(monkeypatch, "[1, 2]")
+    provider = OllamaProvider("gemma4:latest")
+    with pytest.raises(ValueError):
+        provider.complete_structured("p", {"type": "object"})
+
+
+def test_ollama_unreachable_server_hint(monkeypatch):
+    import urllib.error
+
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    def fake_urlopen(request, timeout=None):
+        raise urllib.error.URLError("connection refused")
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    provider = OllamaProvider("gemma4:latest")
+    with pytest.raises(RuntimeError) as exc:
+        provider.complete("hi")
+    assert "ollama serve" in str(exc.value)
+
+
+def test_ollama_base_url_env_override(monkeypatch):
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    monkeypatch.setenv("SPECGUARD_OLLAMA_URL", "http://example.org:9999/")
+    captured = _patch_urlopen(monkeypatch, "ok")
+    provider = OllamaProvider("gemma4:latest")
+    provider.complete("hi")
+    assert captured["url"] == "http://example.org:9999/api/chat"

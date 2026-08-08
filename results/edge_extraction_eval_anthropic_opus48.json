@@ -1,28 +1,28 @@
 {
-  "provider": "mock",
-  "model": null,
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
   "config": {
-    "provider": "mock",
-    "model": null,
-    "temperature": null,
+    "provider": "anthropic",
+    "model": "claude-opus-4-8",
+    "temperature": "api_default",
     "seed": null,
-    "max_tokens": null,
-    "timestamp_utc": "2026-08-08T17:25:05+00:00"
+    "max_tokens": 4096,
+    "timestamp_utc": "2026-08-08T17:28:19+00:00"
   },
   "requirements_evaluated": 64,
   "evidence_guard_rejections": 0,
   "per_edge_type": {
     "MENTIONS": {
-      "proposed": 76,
+      "proposed": 109,
       "ground_truth": 75,
       "true_positives": 75,
-      "false_positives": 1,
+      "false_positives": 34,
       "false_negatives": 0,
-      "precision": 0.9868421052631579,
+      "precision": 0.6880733944954128,
       "recall": 1.0
     },
     "DERIVES_FROM": {
-      "proposed": 0,
+      "proposed": 3,
       "ground_truth": null,
       "note": "no hand-built ground truth; counts reported, not scored"
     },

@@ -1,25 +1,26 @@
 {
-  "provider": "mock",
-  "model": null,
+  "provider": "ollama",
+  "model": "gemma4:latest",
   "config": {
-    "provider": "mock",
-    "model": null,
-    "temperature": null,
-    "seed": null,
+    "provider": "ollama",
+    "model": "gemma4:latest",
+    "temperature": 0,
+    "seed": 42,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-08T17:25:05+00:00"
+    "timestamp_utc": "2026-08-08T17:46:50+00:00",
+    "num_ctx": 8192
   },
   "requirements_evaluated": 64,
   "evidence_guard_rejections": 0,
   "per_edge_type": {
     "MENTIONS": {
-      "proposed": 76,
+      "proposed": 100,
       "ground_truth": 75,
-      "true_positives": 75,
-      "false_positives": 1,
-      "false_negatives": 0,
-      "precision": 0.9868421052631579,
-      "recall": 1.0
+      "true_positives": 73,
+      "false_positives": 27,
+      "false_negatives": 2,
+      "precision": 0.73,
+      "recall": 0.9733333333333334
     },
     "DERIVES_FROM": {
       "proposed": 0,

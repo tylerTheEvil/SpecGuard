@@ -20,10 +20,17 @@ have hand-drawn, how many did the model surface for one-click confirmation".
 Usage:
     python experiments/edge_extraction_eval.py --provider mock      # offline smoke
     python experiments/edge_extraction_eval.py --provider anthropic [--model ...]
+    python experiments/edge_extraction_eval.py --provider ollama --model gemma4:latest
 
 The mock run executes now and is deterministic. The anthropic run needs
 ANTHROPIC_API_KEY; if selected without a key (or without the package) the
-script prints a clear message and exits non-zero gracefully.
+script prints a clear message and exits non-zero gracefully. The ollama run
+needs a running local Ollama server and an explicit --model (see
+``ollama list``); the server is pinged before the run so an unreachable
+backend fails fast with a hint instead of mid-run.
+
+When comparing providers, pass --out to keep each run's artifact separate —
+the default path is the canonical (anthropic) artifact cited in the docs.
 """
 
 from __future__ import annotations
@@ -32,6 +39,7 @@ import argparse
 import json
 import os
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 from specguard.data.cva6_requirements import get_all_requirements
@@ -100,6 +108,27 @@ def _make_anthropic_provider(model: str | None):
     return AnthropicProvider(model=model or DEFAULT_MODEL)
 
 
+def _make_ollama_provider(model: str):
+    from specguard.llm.ollama_provider import OllamaProvider
+
+    return OllamaProvider(model)
+
+
+def _ping_ollama() -> str | None:
+    """Return an error string if the Ollama server is unreachable, else None."""
+    import urllib.error
+    import urllib.request
+
+    from specguard.llm.ollama_provider import DEFAULT_BASE_URL
+
+    base_url = (os.environ.get("SPECGUARD_OLLAMA_URL") or DEFAULT_BASE_URL).rstrip("/")
+    try:
+        with urllib.request.urlopen(f"{base_url}/api/version", timeout=5):
+            return None
+    except urllib.error.URLError as exc:
+        return f"Ollama server unreachable at {base_url} ({exc.reason}). Start it with `ollama serve`."
+
+
 def _score(proposals: set[tuple[str, str]], truth: set[tuple[str, str]]) -> dict:
     tp = len(proposals & truth)
     fp = len(proposals - truth)
@@ -115,7 +144,32 @@ def _score(proposals: set[tuple[str, str]], truth: set[tuple[str, str]]) -> dict
     }
 
 
-def run(provider, *, provider_name: str, model: str | None) -> dict:
+def _run_config(provider, provider_name: str) -> dict:
+    """Snapshot of the run configuration actually in effect.
+
+    Derived from the provider *instance*, not the CLI arguments, so the
+    artifact records what ran (e.g. the resolved default model) rather than
+    what was requested. Anthropic deliberately sends no sampling params
+    (current Opus models reject them), so temperature is recorded as
+    ``"api_default"`` — the limitation is explicit instead of hidden. The
+    mock provider replays canned responses and samples nothing: null.
+    """
+    options = getattr(provider, "options", None) or {}
+    anthropic_default = "api_default" if provider_name == "anthropic" else None
+    config: dict = {
+        "provider": provider_name,
+        "model": getattr(provider, "model", None),
+        "temperature": options.get("temperature", anthropic_default),
+        "seed": options.get("seed"),
+        "max_tokens": getattr(provider, "max_tokens", None),
+        "timestamp_utc": datetime.now(UTC).isoformat(timespec="seconds"),
+    }
+    if "num_ctx" in options:
+        config["num_ctx"] = options["num_ctx"]
+    return config
+
+
+def run(provider, *, provider_name: str) -> dict:
     reqs = get_all_requirements()
     inventory = _build_inventory()
     pairs = [(r.req_id, r.text) for r in reqs]
@@ -148,7 +202,10 @@ def run(provider, *, provider_name: str, model: str | None) -> dict:
 
     return {
         "provider": provider_name,
-        "model": model,
+        # The model the provider will actually call, never the raw CLI arg
+        # (which is null on the Anthropic default path).
+        "model": getattr(provider, "model", None),
+        "config": _run_config(provider, provider_name),
         "requirements_evaluated": len(reqs),
         "evidence_guard_rejections": total_rejected,
         "per_edge_type": per_type,
@@ -158,9 +215,13 @@ def run(provider, *, provider_name: str, model: str | None) -> dict:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--provider", choices=["mock", "anthropic"], default="mock"
+        "--provider", choices=["mock", "anthropic", "ollama"], default="mock"
     )
-    parser.add_argument("--model", default=None, help="Model id (anthropic only).")
+    parser.add_argument(
+        "--model",
+        default=None,
+        help="Model id (anthropic: optional; ollama: required, see `ollama list`).",
+    )
     parser.add_argument(
         "--out", default=str(RESULTS_PATH), help="Output JSON path."
     )
@@ -180,17 +241,30 @@ def main(argv: list[str] | None = None) -> int:
         except ImportError as exc:
             print(str(exc), file=sys.stderr)
             return 1
+    elif args.provider == "ollama":
+        if not args.model:
+            print(
+                "--provider ollama requires an explicit --model "
+                "(e.g. --model gemma4:latest; see `ollama list`).",
+                file=sys.stderr,
+            )
+            return 1
+        error = _ping_ollama()
+        if error is not None:
+            print(error, file=sys.stderr)
+            return 1
+        provider = _make_ollama_provider(args.model)
     else:
         provider = _make_mock_provider()
 
-    report = run(provider, provider_name=args.provider, model=args.model)
+    report = run(provider, provider_name=args.provider)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(report, indent=2, ensure_ascii=False))
 
     print("=" * 70)
-    print(f"EDGE-EXTRACTION EVAL  (provider={report['provider']})")
+    print(f"EDGE-EXTRACTION EVAL  (provider={report['provider']} model={report['model']})")
     print("=" * 70)
     print(f"Requirements evaluated : {report['requirements_evaluated']}")
     print(f"Evidence-guard rejects : {report['evidence_guard_rejections']}")
