@@ -54,6 +54,21 @@ def _resolve_runner(config: Neo4jConfig | None) -> Neo4jGraphRunner:
     return runner
 
 
+def _is_human_accepted(edge: dict[str, Any]) -> bool:
+    """True iff an edge carries review-queue human-acceptance provenance.
+
+    Requires ``properties.human_confirmed is True`` and
+    ``properties.review_status == "ACCEPTED"`` — the markers
+    :func:`specguard.extraction.review.export_accepted_edges` stamps on items a
+    human explicitly accepted. See :func:`merge_accepted_edges` for the honesty
+    note on why this is a provenance gate, not authentication.
+    """
+    props = edge.get("properties")
+    if not isinstance(props, dict):
+        return False
+    return props.get("human_confirmed") is True and props.get("review_status") == "ACCEPTED"
+
+
 def merge_graph(
     graph: RequirementGraph,
     *,
@@ -148,10 +163,24 @@ def merge_accepted_edges(
     ``human_confirmed=True``, is written onto the relationship so the
     LLM-then-human origin is auditable in the graph.
 
-    This is the **only** LLM-originated write path in the system, and it is
-    human-gated *by construction*: ``export_accepted_edges`` emits ACCEPTED
-    items exclusively, so anything reaching this function already passed an
-    explicit human decision.
+    This is the **only** LLM-originated write path in the system, and the human
+    gate is enforced *by this function*, not merely by convention: every edge
+    must carry the provenance ``export_accepted_edges`` stamps on ACCEPTED items
+    — ``properties.human_confirmed is True`` **and**
+    ``properties.review_status == "ACCEPTED"``. Any edge lacking that provenance
+    is refused and **nothing is written** (the whole batch is rejected before a
+    connection is opened). This closes the previous hole where a raw
+    ``list[dict]`` could be written straight to Neo4j with no evidence it ever
+    reached the review queue.
+
+    Honesty note: this is a *provenance gate*, not an authentication boundary.
+    The markers are plain properties, so a determined caller could forge them
+    (just as they could call the driver directly) — mirroring the
+    "defense in depth, not a security boundary" stance of
+    :func:`run_readonly_cypher`. What it guarantees is that the ordinary write
+    path cannot *accidentally* bypass human review: edges must come shaped like
+    review-queue output. Reviewer-identity capture is a deliberate follow-up
+    (the review CLI does not yet record who accepted an edge).
 
     Endpoint nodes are MERGEd (not just matched) so an accepted edge to a
     target the deterministic builder never created still lands rather than
@@ -162,8 +191,26 @@ def merge_accepted_edges(
         ``{"edges_merged": N}``.
 
     Raises:
+        ValueError: if any edge lacks human-confirmed / ACCEPTED provenance.
         ImportError: if the ``neo4j`` driver is not installed.
     """
+    unconfirmed = [
+        i
+        for i, edge in enumerate(edges)
+        if not _is_human_accepted(edge)
+    ]
+    if unconfirmed:
+        raise ValueError(
+            "merge_accepted_edges refuses to write edges without human-review "
+            f"provenance: {len(unconfirmed)} of {len(edges)} edge(s) at indices "
+            f"{unconfirmed} lack properties.human_confirmed is True and "
+            "properties.review_status == 'ACCEPTED'. Only edges emitted by "
+            "specguard.extraction.review.export_accepted_edges (i.e. items an "
+            "explicit human accept() promoted to ACCEPTED) carry this "
+            "provenance — build accepted edges through the review queue rather "
+            "than passing raw dicts."
+        )
+
     runner = _resolve_runner(config)
     try:
         merged = 0

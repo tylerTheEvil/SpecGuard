@@ -1,0 +1,240 @@
+{
+  "_meta": {
+    "purpose": "Independent human-annotated evaluation subset for edge extraction (MENTIONS/REFERS_TO/DERIVES_FROM).",
+    "independence": "Author each item's `edges` by reading its `text`, per annotation_guidelines.md. Do NOT paste build_graph output — the dictionary reference is the thing under test. The scorer refuses a gold set identical to the builder reference.",
+    "edge_types": [
+      "MENTIONS",
+      "REFERS_TO",
+      "DERIVES_FROM"
+    ],
+    "subset_size": 20,
+    "sampling": "deterministic, Hamilton-stratified by category; see edge_extraction_human_eval.sample_subset",
+    "inventory_note": "`inventory` is the allowed target vocabulary (ids), not reference edges. Targets must come from it.",
+    "annotator": null,
+    "annotated_utc": null,
+    "status": "TEMPLATE_UNFILLED"
+  },
+  "inventory": {
+    "components": [
+      "CLINT",
+      "CSR",
+      "CV32A6",
+      "CV64A6",
+      "CVA6",
+      "DTM",
+      "FPU",
+      "L1I",
+      "L1WTD",
+      "MMU",
+      "PLIC",
+      "PMP",
+      "PTW",
+      "TLB",
+      "TRI"
+    ],
+    "standards": [
+      "AXI",
+      "AXI5",
+      "CV-X-IF",
+      "FENCE.T",
+      "OpenPiton",
+      "RV32I",
+      "RV64I",
+      "RVcmo",
+      "RVcompat",
+      "RVdbg",
+      "RVpriv",
+      "RVunpriv",
+      "Sv32",
+      "Sv39"
+    ],
+    "requirements": [
+      "GEN-10",
+      "ISA-10",
+      "ISA-20",
+      "ISA-30",
+      "ISA-40",
+      "ISA-50",
+      "ISA-60",
+      "ISA-70",
+      "ISA-80",
+      "ISA-90",
+      "ISA-100",
+      "ISA-120",
+      "ISA-130",
+      "ISA-140",
+      "ISA-150",
+      "PVL-10",
+      "PVL-20",
+      "PVL-30",
+      "PVL-40",
+      "PVL-50",
+      "PVL-60",
+      "HPM-10",
+      "HPM-20",
+      "HPM-30",
+      "HPM-40",
+      "HPM-50",
+      "HPM-60",
+      "HPM-70",
+      "HPM-80",
+      "L1W-10",
+      "L1W-20",
+      "L1W-30",
+      "L1W-40",
+      "L1W-50",
+      "L1W-60",
+      "L1W-70",
+      "L1W-80",
+      "L1W-90",
+      "L1W-100",
+      "L1I-10",
+      "L1I-20",
+      "L1I-30",
+      "L1I-40",
+      "L1I-50",
+      "L1I-60",
+      "L1I-70",
+      "FET-10",
+      "FET-20",
+      "PPA-10",
+      "PPA-20",
+      "PPA-30",
+      "PPA-40",
+      "PPA-50",
+      "PPA-60",
+      "MEM-10",
+      "MEM-20",
+      "DBG-10",
+      "IRQ-10",
+      "XIF-10",
+      "TRI-10",
+      "RUL-10",
+      "RUL-20",
+      "RUL-30",
+      "RUL-40"
+    ]
+  },
+  "items": [
+    {
+      "req_id": "DBG-10",
+      "category": "Interface",
+      "text": "CVA6 shall implement both the Abstracted Command and Execution based features outlined in chapter 4 of [RVdbg].",
+      "edges": []
+    },
+    {
+      "req_id": "FET-20",
+      "category": "Instruction",
+      "text": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present).",
+      "edges": []
+    },
+    {
+      "req_id": "HPM-10",
+      "category": "Performance",
+      "text": "CVA6 shall implement the 64-bit mcycle and minstret standard performance counters (including their upper 32 bits counterparts mcycleh and minstreth in CV32A6) as per [RVpriv].",
+      "edges": []
+    },
+    {
+      "req_id": "HPM-50",
+      "category": "Performance",
+      "text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+      "edges": []
+    },
+    {
+      "req_id": "HPM-80",
+      "category": "Performance",
+      "text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6).",
+      "edges": []
+    },
+    {
+      "req_id": "ISA-10",
+      "category": "ISA",
+      "text": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+      "edges": []
+    },
+    {
+      "req_id": "ISA-140",
+      "category": "ISA",
+      "text": "CVA6 should support as an option the Zcb extension version 1.0.",
+      "edges": []
+    },
+    {
+      "req_id": "ISA-50",
+      "category": "ISA",
+      "text": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+      "edges": []
+    },
+    {
+      "req_id": "ISA-90",
+      "category": "ISA",
+      "text": "CVA6 shall support the Zicsr extension (CSR instructions), version 2.0.",
+      "edges": []
+    },
+    {
+      "req_id": "L1I-10",
+      "category": "Cache",
+      "text": "L1I should offer the following size/ways configurations: 4 kbytes: 3, 4 or 8 ways, 8 kbytes: 4, 8, or 16 ways, 16 kbytes: 4, 8 or 16 ways, 32 kbytes: 8 or 16 ways.",
+      "edges": []
+    },
+    {
+      "req_id": "L1I-50",
+      "category": "Cache",
+      "text": "The replacement policy of L1I shall be LFSR (pseudo-random) or LRU (least recently used).",
+      "edges": []
+    },
+    {
+      "req_id": "L1W-100",
+      "category": "Cache",
+      "text": "A custom CSR shall allow to disable or enable L1WTD.",
+      "edges": []
+    },
+    {
+      "req_id": "L1W-50",
+      "category": "Cache",
+      "text": "To interface with the P-Mesh coherence system of OpenPiton, L1WTD shall have a line invalidate external command that invalidates the content of a line upon request.",
+      "edges": []
+    },
+    {
+      "req_id": "L1W-90",
+      "category": "Cache",
+      "text": "L1WTD should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+      "edges": []
+    },
+    {
+      "req_id": "PPA-10",
+      "category": "PPA",
+      "text": "CVA6 should be resource-optimized on FPGA and ASIC targets.",
+      "edges": []
+    },
+    {
+      "req_id": "PPA-60",
+      "category": "PPA",
+      "text": "TBD: Placeholder for double-precision floating performance per MHz.",
+      "edges": []
+    },
+    {
+      "req_id": "PVL-10",
+      "category": "Privileges",
+      "text": "CVA6 shall support machine, supervisor, user and debug privilege modes.",
+      "edges": []
+    },
+    {
+      "req_id": "PVL-60",
+      "category": "Privileges",
+      "text": "CV64A6 shall support as an option the H extension (hypervisor) version 1.0.",
+      "edges": []
+    },
+    {
+      "req_id": "RUL-30",
+      "category": "Design",
+      "text": "CVA6 should not include multi-cycle paths.",
+      "edges": []
+    },
+    {
+      "req_id": "XIF-10",
+      "category": "Interface",
+      "text": "To extend the supported instructions, CVA6 shall have a coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+      "edges": []
+    }
+  ]
+}

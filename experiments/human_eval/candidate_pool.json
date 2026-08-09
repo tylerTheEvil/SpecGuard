@@ -1,0 +1,421 @@
+{
+  "_meta": {
+    "purpose": "Candidates for human triage. NOT gold labels.",
+    "sources": {
+      "dict": "builder KNOWN_COMPONENTS/KNOWN_STANDARDS matches (the surrogate)",
+      "surface": "dictionary-agnostic acronym/identifier regex, inventory-absent tokens"
+    }
+  },
+  "items": [
+    {
+      "req_id": "DBG-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "REFERS_TO",
+          "target": "RVdbg",
+          "evidence_span": "RVdbg"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Abstracted",
+          "evidence_span": "Abstracted",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Command",
+          "evidence_span": "Command",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Execution",
+          "evidence_span": "Execution",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "FET-20",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "REFERS_TO",
+          "target": "FENCE.T",
+          "evidence_span": "FENCE.T"
+        }
+      ]
+    },
+    {
+      "req_id": "HPM-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CV32A6",
+          "evidence_span": "CV32A6"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "REFERS_TO",
+          "target": "RVpriv",
+          "evidence_span": "RVpriv"
+        }
+      ]
+    },
+    {
+      "req_id": "HPM-50",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CSR",
+          "evidence_span": "CSR"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        }
+      ]
+    },
+    {
+      "req_id": "HPM-80",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CV32A6",
+          "evidence_span": "CV32A6"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        }
+      ]
+    },
+    {
+      "req_id": "ISA-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CV64A6",
+          "evidence_span": "CV64A6"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "REFERS_TO",
+          "target": "RV64I",
+          "evidence_span": "RV64I"
+        }
+      ]
+    },
+    {
+      "req_id": "ISA-140",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Zcb",
+          "evidence_span": "Zcb",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "ISA-50",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CV32A6",
+          "evidence_span": "CV32A6"
+        }
+      ]
+    },
+    {
+      "req_id": "ISA-90",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CSR",
+          "evidence_span": "CSR"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Zicsr",
+          "evidence_span": "Zicsr",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "L1I-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "L1I",
+          "evidence_span": "L1I"
+        }
+      ]
+    },
+    {
+      "req_id": "L1I-50",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "L1I",
+          "evidence_span": "L1I"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "LFSR",
+          "evidence_span": "LFSR",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "LRU",
+          "evidence_span": "LRU",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "L1W-100",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CSR",
+          "evidence_span": "CSR"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "L1WTD",
+          "evidence_span": "L1WTD"
+        }
+      ]
+    },
+    {
+      "req_id": "L1W-50",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "L1WTD",
+          "evidence_span": "L1WTD"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "REFERS_TO",
+          "target": "OpenPiton",
+          "evidence_span": "OpenPiton"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "P-Mesh",
+          "evidence_span": "P-Mesh",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "L1W-90",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "L1WTD",
+          "evidence_span": "L1WTD"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Alternatively",
+          "evidence_span": "Alternatively",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "PPA-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "FPGA",
+          "evidence_span": "FPGA",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "ASIC",
+          "evidence_span": "ASIC",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "PPA-60",
+      "candidates": [
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "TBD",
+          "evidence_span": "TBD",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Placeholder",
+          "evidence_span": "Placeholder",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "MHz",
+          "evidence_span": "MHz",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    },
+    {
+      "req_id": "PVL-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        }
+      ]
+    },
+    {
+      "req_id": "PVL-60",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CV64A6",
+          "evidence_span": "CV64A6"
+        }
+      ]
+    },
+    {
+      "req_id": "RUL-30",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        }
+      ]
+    },
+    {
+      "req_id": "XIF-10",
+      "candidates": [
+        {
+          "source": "dict",
+          "edge_type_hint": "MENTIONS",
+          "target": "CVA6",
+          "evidence_span": "CVA6"
+        },
+        {
+          "source": "dict",
+          "edge_type_hint": "REFERS_TO",
+          "target": "CV-X-IF",
+          "evidence_span": "CV-X-IF"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Issue",
+          "evidence_span": "Issue",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Commit",
+          "evidence_span": "Commit",
+          "note": "identifier not in inventory — possible missing entity"
+        },
+        {
+          "source": "surface",
+          "edge_type_hint": null,
+          "target": null,
+          "surface_form": "Result",
+          "evidence_span": "Result",
+          "note": "identifier not in inventory — possible missing entity"
+        }
+      ]
+    }
+  ]
+}

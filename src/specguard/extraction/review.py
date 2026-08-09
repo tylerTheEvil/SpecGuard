@@ -26,7 +26,12 @@ from dataclasses import asdict, dataclass, field
 from enum import StrEnum
 from pathlib import Path
 
-from specguard.extraction.extractor import EdgeProposal, EdgeType, ExtractionResult
+from specguard.extraction.extractor import (
+    _EDGE_TYPE_FALLBACK_LABEL,
+    EdgeProposal,
+    EdgeType,
+    ExtractionResult,
+)
 
 
 class ReviewStatus(StrEnum):
@@ -48,6 +53,10 @@ class ReviewItem:
     confidence: float
     evidence_span: str
     status: ReviewStatus = ReviewStatus.PENDING
+    # True node label of the target, carried from the proposal (P0.4) so export
+    # emits the real type instead of inferring it from edge_type. ``None`` for
+    # items loaded from pre-P0.4 queue files; export then falls back by type.
+    target_label: str | None = None
 
     @classmethod
     def from_proposal(cls, item_id: int, proposal: EdgeProposal) -> ReviewItem:
@@ -58,6 +67,7 @@ class ReviewItem:
             target_entity=proposal.target_entity,
             confidence=proposal.confidence,
             evidence_span=proposal.evidence_span,
+            target_label=proposal.target_label,
         )
 
     def to_dict(self) -> dict:
@@ -76,6 +86,7 @@ class ReviewItem:
             confidence=float(d["confidence"]),
             evidence_span=d["evidence_span"],
             status=ReviewStatus(d.get("status", "PENDING")),
+            target_label=d.get("target_label"),
         )
 
 
@@ -153,10 +164,18 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
 
     Only ``ACCEPTED`` items are emitted — this is the structural guarantee that
     the LLM is never authoritative. There is no parameter to relax it.
+
+    The target's ``to_label`` is the true node label carried on the item
+    (``target_label``, derived from the inventory bucket at extraction time), so
+    a standard exports as ``Standard`` and a hazard as ``Hazard`` — not
+    collapsed by an edge-type guess. Items missing a label (pre-P0.4 queue
+    files) fall back to a per-edge-type default.
     """
     edges: list[dict] = []
     for item in queue.accepted():
-        to_label = "Requirement" if item.edge_type is not EdgeType.MENTIONS else "Component"
+        to_label = item.target_label or _EDGE_TYPE_FALLBACK_LABEL.get(
+            item.edge_type, "Requirement"
+        )
         edges.append(
             {
                 "from_label": "Requirement",
@@ -169,6 +188,11 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
                     "confidence": item.confidence,
                     "evidence_span": item.evidence_span,
                     "human_confirmed": True,
+                    # Lifecycle marker copied from the queue state. The Neo4j
+                    # write path (merge_accepted_edges) requires this to equal
+                    # ACCEPTED, so an edge dict that never passed through an
+                    # accept() decision cannot be written.
+                    "review_status": ReviewStatus.ACCEPTED.value,
                 },
             }
         )

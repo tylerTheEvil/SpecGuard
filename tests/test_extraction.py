@@ -147,6 +147,159 @@ def test_unknown_edge_type_and_empty_evidence_rejected():
     assert reasons == {"unknown edge_type", "empty evidence_span"}
 
 
+# ---------------------------------------------------------------------------
+# Ontology-membership guard (P0.2)
+# ---------------------------------------------------------------------------
+
+
+def test_target_not_in_inventory_rejected():
+    """A target absent from the inventory is refused, even with valid evidence.
+
+    Covers the sentinel case: the model returns ``target="NOT_IN_INVENTORY"``
+    but quotes a real in-text span (``"CVA6"``). Membership is enforced in code,
+    so the proposal is rejected regardless of the (otherwise valid) evidence.
+    """
+    provider = _provider(
+        [
+            {
+                "edge_type": "MENTIONS",
+                "target_entity": "NOT_IN_INVENTORY",
+                "confidence": 0.9,
+                "evidence_span": "CVA6",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals == []
+    assert len(result.rejected) == 1
+    assert result.rejected[0]["reason"] == "target not in inventory"
+
+
+def test_mention_to_standard_in_inventory_accepted():
+    """A MENTIONS to an inventory standard whose id appears in evidence is kept."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "MENTIONS",
+                "target_entity": "RV64I",
+                "confidence": 0.9,
+                "evidence_span": "RV64I operation",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert [p.target_entity for p in result.proposals] == ["RV64I"]
+    assert result.rejected == []
+
+
+# ---------------------------------------------------------------------------
+# Evidence-binding guard, MENTIONS-scoped (P0.2)
+# ---------------------------------------------------------------------------
+
+
+def test_mentions_evidence_must_name_target():
+    """``target="MMU"`` justified by ``"the FPU"`` is a mismatch and is rejected.
+
+    Both entities are in the inventory and the span occurs verbatim in the text,
+    so only the target/evidence-binding guard can catch this.
+    """
+    provider = _provider(
+        [
+            {
+                "edge_type": "MENTIONS",
+                "target_entity": "MMU",
+                "confidence": 0.9,
+                "evidence_span": "the FPU",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals == []
+    assert len(result.rejected) == 1
+    assert result.rejected[0]["reason"] == "evidence does not name target"
+
+
+def test_derives_from_target_need_not_appear_in_evidence():
+    """The binding guard is MENTIONS-scoped: DERIVES_FROM ids need not appear.
+
+    A parent-requirement id (``GEN-10``) legitimately does not occur in the
+    child's evidence span, so a DERIVES_FROM edge with a valid in-text span
+    survives.
+    """
+    provider = _provider(
+        [
+            {
+                "edge_type": "DERIVES_FROM",
+                "target_entity": "GEN-10",
+                "confidence": 0.7,
+                "evidence_span": "shall support",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "ISA-50", REQ_TEXT, INVENTORY)
+    assert [p.target_entity for p in result.proposals] == ["GEN-10"]
+    assert [p.edge_type for p in result.proposals] == [EdgeType.DERIVES_FROM]
+    assert result.rejected == []
+
+
+# ---------------------------------------------------------------------------
+# Typed edges (REFERS_TO) and true target labels (P0.1 / P0.4)
+# ---------------------------------------------------------------------------
+
+
+def test_refers_to_standard_parsed_with_standard_label():
+    """A REFERS_TO to an inventory standard is parsed and labelled Standard."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "REFERS_TO",
+                "target_entity": "RV64I",
+                "confidence": 0.9,
+                "evidence_span": "RV64I operation",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert len(result.proposals) == 1
+    p = result.proposals[0]
+    assert p.edge_type is EdgeType.REFERS_TO
+    assert p.target_entity == "RV64I"
+    assert p.target_label == "Standard"
+
+
+def test_mentions_component_carries_component_label():
+    """A MENTIONS to a component carries the Component label from the inventory."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "MENTIONS",
+                "target_entity": "CVA6",
+                "confidence": 0.9,
+                "evidence_span": "CVA6 shall support",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals[0].target_label == "Component"
+
+
+def test_refers_to_binding_guard_applies():
+    """REFERS_TO is a named-entity edge, so evidence must name the standard."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "REFERS_TO",
+                "target_entity": "RV64I",
+                "confidence": 0.9,
+                "evidence_span": "CVA6 shall support",  # does not name RV64I
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals == []
+    assert result.rejected[0]["reason"] == "evidence does not name target"
+
+
 def test_extract_edges_batch_order():
     provider = MockProvider(default=json.dumps({"edges": []}))
     pairs = [("A", "text a"), ("B", "text b")]
@@ -215,11 +368,68 @@ def test_export_only_accepted():
     assert edge["to_label"] == "Component"
     assert edge["properties"]["source"] == "llm_extraction"
     assert edge["properties"]["human_confirmed"] is True
+    assert edge["properties"]["review_status"] == "ACCEPTED"
 
 
 def test_export_empty_when_none_accepted():
     queue = _two_proposal_queue()
     assert export_accepted_edges(queue) == []
+
+
+def _standard_ref_queue() -> ReviewQueue:
+    provider = _provider(
+        [
+            {
+                "edge_type": "REFERS_TO",
+                "target_entity": "RV64I",
+                "confidence": 0.9,
+                "evidence_span": "RV64I operation",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "ISA-50", REQ_TEXT, INVENTORY)
+    return ReviewQueue.from_results([result])
+
+
+def test_export_uses_true_label_for_standard():
+    """P0.4: a standard target exports as Standard, not collapsed to Component."""
+    queue = _standard_ref_queue()
+    queue.accept(0)
+    edges = export_accepted_edges(queue)
+    assert len(edges) == 1
+    assert edges[0]["to_label"] == "Standard"
+    assert edges[0]["rel_type"] == "REFERS_TO"
+    assert edges[0]["to_id"] == "RV64I"
+
+
+def test_export_label_survives_queue_persistence(tmp_path):
+    """The true target label round-trips through the queue JSON."""
+    queue = _standard_ref_queue()
+    queue.accept(0)
+    path = tmp_path / "q.json"
+    queue.save(path)
+    reloaded = ReviewQueue.load(path)
+    assert reloaded.get(0).target_label == "Standard"
+    assert export_accepted_edges(reloaded)[0]["to_label"] == "Standard"
+
+
+def test_export_fallback_label_for_hand_built_proposal():
+    """A directly-built proposal (no inventory context) falls back by edge type."""
+    from specguard.extraction.extractor import EdgeProposal
+
+    queue = ReviewQueue()
+    queue.add(
+        EdgeProposal(
+            edge_type=EdgeType.REFERS_TO,
+            source_id="R-1",
+            target_entity="AXI",
+            confidence=0.8,
+            evidence_span="AXI",
+        )
+    )
+    queue.accept(0)
+    edge = export_accepted_edges(queue)[0]
+    assert edge["to_label"] == "Standard"  # from _EDGE_TYPE_FALLBACK_LABEL
 
 
 def test_no_auto_accept_api_exists():
