@@ -1,104 +1,11 @@
 {
-  "_note": "MENTIONS re-scored under two target taxonomies from committed pair-level logs; no LLM runs. component_only: reference = builder MENTIONS (75 pairs, KNOWN_COMPONENTS dictionary). combined: reference = builder MENTIONS UNION builder REFERS_TO (96 pairs; standards from KNOWN_STANDARDS, builder.py). FP targets classified by the same lexicons; neither taxonomy escapes the surrogate-ground-truth circularity (the reference is builder output in both). Component-only scores are validated against the stored aggregates of every artifact. The six runs aggregated in results/edge_extraction_variance.json (3 anthropic + 3 ollama, 2026-06/08) predate pair-level logging and carry aggregate counts only — combined-taxonomy re-scoring is impossible for them.",
+  "_note": "SUPERSEDED (2026-08-09): historical combined-taxonomy rescore of PRE-FIX artifacts only. The typed extractor now scores REFERS_TO first-class (see results/section5_numbers.json for current numbers); do not cite these figures for the current pipeline. MENTIONS re-scored under two target taxonomies from committed pair-level logs; no LLM runs. component_only: reference = builder MENTIONS (75 pairs, KNOWN_COMPONENTS dictionary). combined: reference = builder MENTIONS UNION builder REFERS_TO (96 pairs; standards from KNOWN_STANDARDS, builder.py). FP targets classified by the same lexicons; neither taxonomy escapes the surrogate-ground-truth circularity (the reference is builder output in both). Component-only scores are validated against the stored aggregates of every artifact. The six runs aggregated in results/edge_extraction_variance.json (3 anthropic + 3 ollama, 2026-06/08) predate pair-level logging and carry aggregate counts only — combined-taxonomy re-scoring is impossible for them.",
   "reference_sizes": {
     "mentions": 75,
     "refers_to": 21,
     "combined": 96
   },
   "runs": [
-    {
-      "file": "results/edge_extraction_eval.json",
-      "provider": "mock",
-      "model": null,
-      "prompt_variant": "baseline",
-      "proposed": 76,
-      "component_only": {
-        "true_positives": 75,
-        "false_positives": 1,
-        "false_negatives": 0,
-        "precision": 0.9868421052631579,
-        "recall": 1.0,
-        "fp_breakdown": {
-          "component": 1,
-          "standard": 0,
-          "out_of_inventory": 0
-        }
-      },
-      "combined": {
-        "true_positives": 75,
-        "false_positives": 1,
-        "false_negatives": 21,
-        "precision": 0.9868421052631579,
-        "recall": 0.78125,
-        "fp_breakdown": {
-          "component": 1,
-          "standard": 0,
-          "out_of_inventory": 0
-        }
-      }
-    },
-    {
-      "file": "results/edge_extraction_eval_anthropic_opus48.json",
-      "provider": "anthropic",
-      "model": "claude-opus-4-8",
-      "prompt_variant": "baseline",
-      "proposed": 110,
-      "component_only": {
-        "true_positives": 75,
-        "false_positives": 35,
-        "false_negatives": 0,
-        "precision": 0.6818181818181818,
-        "recall": 1.0,
-        "fp_breakdown": {
-          "component": 8,
-          "standard": 27,
-          "out_of_inventory": 0
-        }
-      },
-      "combined": {
-        "true_positives": 96,
-        "false_positives": 14,
-        "false_negatives": 0,
-        "precision": 0.8727272727272727,
-        "recall": 1.0,
-        "fp_breakdown": {
-          "component": 8,
-          "standard": 6,
-          "out_of_inventory": 0
-        }
-      }
-    },
-    {
-      "file": "results/edge_extraction_eval_ollama_gemma4.json",
-      "provider": "ollama",
-      "model": "gemma4:latest",
-      "prompt_variant": "baseline",
-      "proposed": 100,
-      "component_only": {
-        "true_positives": 73,
-        "false_positives": 27,
-        "false_negatives": 2,
-        "precision": 0.73,
-        "recall": 0.9733333333333334,
-        "fp_breakdown": {
-          "component": 3,
-          "standard": 24,
-          "out_of_inventory": 0
-        }
-      },
-      "combined": {
-        "true_positives": 94,
-        "false_positives": 6,
-        "false_negatives": 2,
-        "precision": 0.94,
-        "recall": 0.9791666666666666,
-        "fp_breakdown": {
-          "component": 3,
-          "standard": 3,
-          "out_of_inventory": 0
-        }
-      }
-    },
     {
       "file": "results/prompt_variants/edge_extraction_eval_anthropic_opus48_baseline_run1.json",
       "provider": "anthropic",

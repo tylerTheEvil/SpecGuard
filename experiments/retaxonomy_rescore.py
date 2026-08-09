@@ -159,6 +159,10 @@ def main() -> int:
 
     out = {
         "_note": (
+            "SUPERSEDED (2026-08-09): historical combined-taxonomy rescore of "
+            "PRE-FIX artifacts only. The typed extractor now scores REFERS_TO "
+            "first-class (see results/section5_numbers.json for current "
+            "numbers); do not cite these figures for the current pipeline. "
             "MENTIONS re-scored under two target taxonomies from committed "
             "pair-level logs; no LLM runs. component_only: reference = "
             f"builder MENTIONS ({len(mentions_ref)} pairs, KNOWN_COMPONENTS "
