@@ -1,0 +1,402 @@
+{
+  "_note": "Prompt-variant grid over the edge-extraction eval. Guard, scoring and ground truth identical across variants; only the system prompt (strict) or a second same-provider pass (critique) differs. 'in_prompt' FP suppression is memorisation of the three few-shot negatives shown verbatim in the strict prompt (['GEN-10->RVpriv', 'HPM-30->L1I', 'PPA-30->Sv32']) and must not be read as generalisation; 'held_out' suppression is the generalisation signal. A baseline FP counts as suppressed only if absent from every run of the variant. Baseline run-1 files are verbatim copies of the committed canonical artifacts (config-identical reuse).",
+  "cells": {
+    "anthropic/baseline": {
+      "n_runs": 2,
+      "files": [
+        "edge_extraction_eval_anthropic_opus48_baseline_run1.json",
+        "edge_extraction_eval_anthropic_opus48_baseline_run2.json"
+      ],
+      "MENTIONS": {
+        "precision": {
+          "mean": 0.6818181818181818,
+          "min": 0.6818181818181818,
+          "max": 0.6818181818181818
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "proposed": [
+          110,
+          110
+        ],
+        "false_positives": [
+          35,
+          35
+        ]
+      },
+      "DERIVES_FROM": {
+        "precision": {
+          "mean": 0.41666666666666663,
+          "min": 0.3333333333333333,
+          "max": 0.5
+        },
+        "recall": {
+          "mean": 0.3333333333333333,
+          "min": 0.3333333333333333,
+          "max": 0.3333333333333333
+        },
+        "proposed": [
+          2,
+          3
+        ],
+        "false_positives": [
+          1,
+          2
+        ]
+      },
+      "evidence_guard_rejections": [
+        0,
+        0
+      ]
+    },
+    "anthropic/critique": {
+      "n_runs": 2,
+      "files": [
+        "edge_extraction_eval_anthropic_opus48_critique_run1.json",
+        "edge_extraction_eval_anthropic_opus48_critique_run2.json"
+      ],
+      "MENTIONS": {
+        "precision": {
+          "mean": 0.75,
+          "min": 0.75,
+          "max": 0.75
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "proposed": [
+          100,
+          100
+        ],
+        "false_positives": [
+          25,
+          25
+        ]
+      },
+      "DERIVES_FROM": {
+        "precision": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "proposed": [
+          1,
+          1
+        ],
+        "false_positives": [
+          1,
+          1
+        ]
+      },
+      "evidence_guard_rejections": [
+        0,
+        0
+      ],
+      "mentions_fp_suppression_vs_baseline": {
+        "baseline_fp_pairs": 36,
+        "in_prompt": {
+          "total": 3,
+          "suppressed": 1
+        },
+        "held_out": {
+          "total": 33,
+          "suppressed": 10
+        },
+        "new_fps_not_in_baseline": []
+      },
+      "critique": {
+        "pre_critique_proposed": [
+          113,
+          114
+        ],
+        "post_critique_proposed": [
+          101,
+          101
+        ],
+        "removed_pairs": [
+          12,
+          13
+        ],
+        "added_by_critique": [
+          0,
+          0
+        ],
+        "removed_true_positives": []
+      }
+    },
+    "anthropic/strict": {
+      "n_runs": 2,
+      "files": [
+        "edge_extraction_eval_anthropic_opus48_strict_run1.json",
+        "edge_extraction_eval_anthropic_opus48_strict_run2.json"
+      ],
+      "MENTIONS": {
+        "precision": {
+          "mean": 0.8390804597701149,
+          "min": 0.8390804597701149,
+          "max": 0.8390804597701149
+        },
+        "recall": {
+          "mean": 0.9733333333333334,
+          "min": 0.9733333333333334,
+          "max": 0.9733333333333334
+        },
+        "proposed": [
+          87,
+          87
+        ],
+        "false_positives": [
+          14,
+          14
+        ]
+      },
+      "DERIVES_FROM": {
+        "precision": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "proposed": [
+          0,
+          0
+        ],
+        "false_positives": [
+          0,
+          0
+        ]
+      },
+      "evidence_guard_rejections": [
+        0,
+        0
+      ],
+      "mentions_fp_suppression_vs_baseline": {
+        "baseline_fp_pairs": 36,
+        "in_prompt": {
+          "total": 3,
+          "suppressed": 3
+        },
+        "held_out": {
+          "total": 33,
+          "suppressed": 19
+        },
+        "new_fps_not_in_baseline": []
+      }
+    },
+    "ollama/baseline": {
+      "n_runs": 2,
+      "files": [
+        "edge_extraction_eval_ollama_gemma4_baseline_run1.json",
+        "edge_extraction_eval_ollama_gemma4_baseline_run2.json"
+      ],
+      "MENTIONS": {
+        "precision": {
+          "mean": 0.73,
+          "min": 0.73,
+          "max": 0.73
+        },
+        "recall": {
+          "mean": 0.9733333333333334,
+          "min": 0.9733333333333334,
+          "max": 0.9733333333333334
+        },
+        "proposed": [
+          100,
+          100
+        ],
+        "false_positives": [
+          27,
+          27
+        ]
+      },
+      "DERIVES_FROM": {
+        "precision": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "proposed": [
+          0,
+          0
+        ],
+        "false_positives": [
+          0,
+          0
+        ]
+      },
+      "evidence_guard_rejections": [
+        0,
+        0
+      ]
+    },
+    "ollama/critique": {
+      "n_runs": 2,
+      "files": [
+        "edge_extraction_eval_ollama_gemma4_critique_run1.json",
+        "edge_extraction_eval_ollama_gemma4_critique_run2.json"
+      ],
+      "MENTIONS": {
+        "precision": {
+          "mean": 0.7671892497200448,
+          "min": 0.7659574468085106,
+          "max": 0.7684210526315789
+        },
+        "recall": {
+          "mean": 0.9666666666666667,
+          "min": 0.96,
+          "max": 0.9733333333333334
+        },
+        "proposed": [
+          94,
+          95
+        ],
+        "false_positives": [
+          22,
+          22
+        ]
+      },
+      "DERIVES_FROM": {
+        "precision": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "proposed": [
+          0,
+          0
+        ],
+        "false_positives": [
+          0,
+          0
+        ]
+      },
+      "evidence_guard_rejections": [
+        0,
+        0
+      ],
+      "mentions_fp_suppression_vs_baseline": {
+        "baseline_fp_pairs": 27,
+        "in_prompt": {
+          "total": 3,
+          "suppressed": 0
+        },
+        "held_out": {
+          "total": 24,
+          "suppressed": 5
+        },
+        "new_fps_not_in_baseline": []
+      },
+      "critique": {
+        "pre_critique_proposed": [
+          100,
+          101
+        ],
+        "post_critique_proposed": [
+          94,
+          95
+        ],
+        "removed_pairs": [
+          6,
+          6
+        ],
+        "added_by_critique": [
+          0,
+          0
+        ],
+        "removed_true_positives": [
+          "MENTIONS:ISA-90->CSR",
+          "MENTIONS:ISA-90->CSR"
+        ]
+      }
+    },
+    "ollama/strict": {
+      "n_runs": 2,
+      "files": [
+        "edge_extraction_eval_ollama_gemma4_strict_run1.json",
+        "edge_extraction_eval_ollama_gemma4_strict_run2.json"
+      ],
+      "MENTIONS": {
+        "precision": {
+          "mean": 0.8658536585365854,
+          "min": 0.8658536585365854,
+          "max": 0.8658536585365854
+        },
+        "recall": {
+          "mean": 0.9466666666666667,
+          "min": 0.9466666666666667,
+          "max": 0.9466666666666667
+        },
+        "proposed": [
+          82,
+          82
+        ],
+        "false_positives": [
+          11,
+          11
+        ]
+      },
+      "DERIVES_FROM": {
+        "precision": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "proposed": [
+          0,
+          0
+        ],
+        "false_positives": [
+          0,
+          0
+        ]
+      },
+      "evidence_guard_rejections": [
+        0,
+        0
+      ],
+      "mentions_fp_suppression_vs_baseline": {
+        "baseline_fp_pairs": 27,
+        "in_prompt": {
+          "total": 3,
+          "suppressed": 3
+        },
+        "held_out": {
+          "total": 24,
+          "suppressed": 14
+        },
+        "new_fps_not_in_baseline": [
+          "ISA-50->FPU"
+        ]
+      }
+    }
+  }
+}

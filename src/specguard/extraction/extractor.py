@@ -153,6 +153,8 @@ def extract_edges_for_requirement(
     requirement_id: str,
     text: str,
     inventory: dict[str, list[str]],
+    *,
+    system_prompt: str | None = None,
 ) -> ExtractionResult:
     """Extract candidate edges for a single requirement.
 
@@ -166,18 +168,35 @@ def extract_edges_for_requirement(
         text: the requirement text (the only valid source of evidence spans).
         inventory: allowed targets, grouped by kind (e.g.
             ``{"components": [...], "standards": [...], "requirements": [...]}``).
+        system_prompt: optional override of the default system prompt, for
+            prompt-tuning experiments. The evidence guard is applied
+            identically regardless of prompt.
 
     Returns:
         An :class:`ExtractionResult` with validated proposals and a record of
         any proposals rejected by the guard.
     """
     prompt = _build_prompt(requirement_id, text, inventory)
-    response = complete_structured(provider, prompt, _RESPONSE_SCHEMA, system=_SYSTEM_PROMPT)
+    response = complete_structured(
+        provider, prompt, _RESPONSE_SCHEMA, system=system_prompt or _SYSTEM_PROMPT
+    )
 
-    result = ExtractionResult(requirement_id=requirement_id)
     raw_edges = response.get("edges", [])
     if not isinstance(raw_edges, list):
         raw_edges = []
+    return _validate_proposals(requirement_id, text, raw_edges)
+
+
+def _validate_proposals(
+    requirement_id: str, text: str, raw_edges: list
+) -> ExtractionResult:
+    """Validate raw proposal dicts into an :class:`ExtractionResult`.
+
+    Holds the evidence-span hallucination guard (moved verbatim from
+    ``extract_edges_for_requirement``; logic unchanged). Factored out so
+    multi-pass experiments can run the guard on a final filtered list.
+    """
+    result = ExtractionResult(requirement_id=requirement_id)
 
     for raw in raw_edges:
         if not isinstance(raw, dict):
@@ -233,6 +252,8 @@ def extract_edges(
     provider: ModelProvider,
     requirements: list[tuple[str, str]],
     inventory: dict[str, list[str]],
+    *,
+    system_prompt: str | None = None,
 ) -> list[ExtractionResult]:
     """Extract edges over many requirements (one call each).
 
@@ -240,11 +261,15 @@ def extract_edges(
         provider: BYOM provider.
         requirements: list of ``(requirement_id, text)`` pairs.
         inventory: shared allowed-target inventory.
+        system_prompt: optional system-prompt override, passed through to
+            :func:`extract_edges_for_requirement`.
 
     Returns:
         One :class:`ExtractionResult` per input requirement, in input order.
     """
     return [
-        extract_edges_for_requirement(provider, req_id, text, inventory)
+        extract_edges_for_requirement(
+            provider, req_id, text, inventory, system_prompt=system_prompt
+        )
         for req_id, text in requirements
     ]

@@ -45,14 +45,123 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from specguard.data.cva6_requirements import get_all_requirements
-from specguard.extraction.extractor import EdgeType, extract_edges
+from specguard.extraction.extractor import (
+    _RESPONSE_SCHEMA,
+    _SYSTEM_PROMPT,
+    EdgeType,
+    _build_prompt,
+    _validate_proposals,
+    extract_edges,
+)
 from specguard.graph.builder import (
     KNOWN_COMPONENTS,
     KNOWN_STANDARDS,
     build_graph,
 )
+from specguard.llm.provider import complete_structured
 
 RESULTS_PATH = Path(__file__).resolve().parent.parent / "results" / "edge_extraction_eval.json"
+
+# ---------------------------------------------------------------------------
+# Prompt variants (precision/recall trade-off experiment). The evidence guard,
+# scoring logic and ground truth are IDENTICAL across variants — only the
+# system prompt (and, for "critique", a second same-provider pass) differ.
+# ---------------------------------------------------------------------------
+
+# The three few-shot negative examples baked into the STRICT prompt. These are
+# real false positives from the committed baseline artifact
+# (results/edge_extraction_eval_anthropic_opus48.json). METHODOLOGICAL GUARD:
+# because they are shown verbatim in the prompt, their suppression is
+# memorisation, not generalisation — the summary reports them separately
+# ("in-prompt") from the remaining held-out FPs.
+IN_PROMPT_FP_PAIRS: list[tuple[str, str, str]] = [
+    ("MENTIONS", "GEN-10", "RVpriv"),   # cited standard/document
+    ("MENTIONS", "PPA-30", "Sv32"),     # parenthetical configuration name
+    ("MENTIONS", "HPM-30", "L1I"),      # context for another component
+]
+
+STRICT_SYSTEM_PROMPT = _SYSTEM_PROMPT + (
+    "\n\nSTRICT CRITERIA — apply these before proposing any edge:\n"
+    "MENTIONS: an entity counts as mentioned ONLY if it is a direct subject or "
+    "object of the requirement's normative clause (the 'shall'/'should' "
+    "statement). Do NOT propose MENTIONS edges for: parenthetical asides; "
+    "cited standards or documents ([AXI], [RVpriv], [RVdbg] and similar "
+    "bracketed references); or entities mentioned only as context for another "
+    "component.\n"
+    "Examples:\n"
+    "- NOT a valid edge: GEN-10 -MENTIONS-> RVpriv, because '[RVpriv]' is a "
+    "cited document reference, not a subject or object of the normative "
+    "clause.\n"
+    "- NOT a valid edge: PPA-30 -MENTIONS-> Sv32, because Sv32 appears only "
+    "inside the configuration name 'cv32a6_imac_sv32', a parenthetical "
+    "qualifier, not as the subject or object of the requirement.\n"
+    "- NOT a valid edge: HPM-30 -MENTIONS-> L1I, because 'L1 I-Cache misses' "
+    "names an event source listed as context for the performance counters; "
+    "the requirement's normative clause is about the counters, not the "
+    "cache.\n"
+    "- VALID edge: L1W-100 -MENTIONS-> L1WTD, because L1WTD is the direct "
+    "object of the normative clause 'A custom CSR shall allow to disable or "
+    "enable L1WTD'.\n"
+    "DERIVES_FROM: propose only if the child requirement textually refers to "
+    "an entity the parent introduces. Shared topic or category is NOT "
+    "derivation.\n"
+    "- NOT a valid edge: ISA-80 -DERIVES_FROM-> ISA-10, because both concern "
+    "ISA extensions (shared topic) but ISA-80's text does not refer to any "
+    "entity ISA-10 introduces."
+)
+
+CRITIQUE_INSTRUCTION = (
+    "Re-examine each proposal. Remove any that rest only on topical "
+    "similarity, parenthetical mention, or document citation rather than a "
+    "direct normative relationship. Return the filtered list in the same "
+    "JSON schema."
+)
+
+PROMPT_VARIANTS = ("baseline", "strict", "critique")
+
+
+def _extract_with_critique(provider, pairs, inventory):
+    """Two-pass extraction: propose (baseline prompt), then self-critique.
+
+    The evidence guard runs on the FINAL filtered list only. Returns the
+    per-requirement results plus a critique log with pre/post raw proposal
+    counts and the pairs the second pass removed (or, protocol-violating,
+    added — a 'filtered list' should never grow, so additions are counted).
+    """
+    log = {
+        "pre_critique_proposed": 0,
+        "post_critique_proposed": 0,
+        "added_by_critique": 0,
+        "removed": [],
+    }
+    results = []
+    for req_id, text in pairs:
+        prompt = _build_prompt(req_id, text, inventory)
+        resp1 = complete_structured(provider, prompt, _RESPONSE_SCHEMA, system=_SYSTEM_PROMPT)
+        raw1 = resp1.get("edges", [])
+        raw1 = [e for e in raw1 if isinstance(e, dict)] if isinstance(raw1, list) else []
+
+        critique_prompt = (
+            f"{prompt}\n\nYour previous proposals were:\n"
+            f"{json.dumps({'edges': raw1}, ensure_ascii=False)}\n\n"
+            f"{CRITIQUE_INSTRUCTION}"
+        )
+        resp2 = complete_structured(
+            provider, critique_prompt, _RESPONSE_SCHEMA, system=_SYSTEM_PROMPT
+        )
+        raw2 = resp2.get("edges", [])
+        raw2 = [e for e in raw2 if isinstance(e, dict)] if isinstance(raw2, list) else []
+
+        log["pre_critique_proposed"] += len(raw1)
+        log["post_critique_proposed"] += len(raw2)
+        pre_keys = {(e.get("edge_type"), req_id, e.get("target_entity")) for e in raw1}
+        post_keys = {(e.get("edge_type"), req_id, e.get("target_entity")) for e in raw2}
+        for et, src, tgt in sorted(pre_keys - post_keys):
+            log["removed"].append({"edge_type": et, "source_id": src, "target": tgt})
+        log["added_by_critique"] += len(post_keys - pre_keys)
+
+        results.append(_validate_proposals(req_id, text, raw2))
+    return results, log
 
 
 def _build_inventory() -> dict[str, list[str]]:
@@ -210,12 +319,17 @@ def _edge_log(
     return entries
 
 
-def run(provider, *, provider_name: str) -> dict:
+def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
     reqs = get_all_requirements()
     inventory = _build_inventory()
     pairs = [(r.req_id, r.text) for r in reqs]
 
-    results = extract_edges(provider, pairs, inventory)
+    critique_log = None
+    if variant == "critique":
+        results, critique_log = _extract_with_critique(provider, pairs, inventory)
+    else:
+        sp = STRICT_SYSTEM_PROMPT if variant == "strict" else None
+        results = extract_edges(provider, pairs, inventory, system_prompt=sp)
 
     # First proposal per unique (source, target) pair; duplicates collapse so
     # the aggregate counts keep their original set semantics.
@@ -253,16 +367,32 @@ def run(provider, *, provider_name: str) -> dict:
         "edges": _edge_log("MITIGATES", proposals_by_type["MITIGATES"], None),
     }
 
-    return {
+    config = _run_config(provider, provider_name)
+    config["prompt_variant"] = variant
+    report = {
         "provider": provider_name,
         # The model the provider will actually call, never the raw CLI arg
         # (which is null on the Anthropic default path).
         "model": getattr(provider, "model", None),
-        "config": _run_config(provider, provider_name),
+        "config": config,
         "requirements_evaluated": len(reqs),
         "evidence_guard_rejections": total_rejected,
         "per_edge_type": per_type,
     }
+    if critique_log is not None:
+        # Annotate removals with ground-truth membership so recall damage
+        # attributable to the critique pass is visible without re-deriving.
+        for entry in critique_log["removed"]:
+            et = entry["edge_type"]
+            if et in ("MENTIONS", "DERIVES_FROM"):
+                entry["in_ground_truth"] = (
+                    entry["source_id"],
+                    entry["target"],
+                ) in _ground_truth(et)
+            else:
+                entry["in_ground_truth"] = None
+        report["critique"] = critique_log
+    return report
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -277,6 +407,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--out", default=str(RESULTS_PATH), help="Output JSON path."
+    )
+    parser.add_argument(
+        "--prompt-variant",
+        choices=PROMPT_VARIANTS,
+        default="baseline",
+        help="System-prompt variant: baseline (control), strict (tightened "
+        "definitions + few-shot negatives), critique (two-pass self-filter). "
+        "Guard, scoring and ground truth are identical across variants.",
     )
     args = parser.parse_args(argv)
 
@@ -310,15 +448,26 @@ def main(argv: list[str] | None = None) -> int:
     else:
         provider = _make_mock_provider()
 
-    report = run(provider, provider_name=args.provider)
+    report = run(provider, provider_name=args.provider, variant=args.prompt_variant)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(report, indent=2, ensure_ascii=False))
 
     print("=" * 70)
-    print(f"EDGE-EXTRACTION EVAL  (provider={report['provider']} model={report['model']})")
+    print(
+        f"EDGE-EXTRACTION EVAL  (provider={report['provider']} "
+        f"model={report['model']} variant={args.prompt_variant})"
+    )
     print("=" * 70)
+    if "critique" in report:
+        c = report["critique"]
+        print(
+            f"Critique pass: {c['pre_critique_proposed']} -> "
+            f"{c['post_critique_proposed']} proposals "
+            f"({len(c['removed'])} unique pairs removed, "
+            f"{c['added_by_critique']} added)"
+        )
     print(f"Requirements evaluated : {report['requirements_evaluated']}")
     print(f"Evidence-guard rejects : {report['evidence_guard_rejections']}")
     for et in ("MENTIONS", "DERIVES_FROM"):
