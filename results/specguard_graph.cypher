@@ -115,8 +115,8 @@ MERGE (n:Component {node_id: 'TRI'}) SET n += {name: 'TRI', full_name: 'Transact
 // ---- Standard nodes (13) ----
 MERGE (n:Standard {node_id: 'RVunpriv'}) SET n += {name: 'RVunpriv', description: 'RISC-V User-Level ISA'};
 MERGE (n:Standard {node_id: 'RVcompat'}) SET n += {name: 'RVcompat', description: 'RISC-V Architectural Compatibility Test'};
-MERGE (n:Standard {node_id: 'RVpriv'}) SET n += {name: 'RVpriv', description: 'RISC-V Privileged Architecture'};
 MERGE (n:Standard {node_id: 'RVdbg'}) SET n += {name: 'RVdbg', description: 'RISC-V External Debug Support'};
+MERGE (n:Standard {node_id: 'RVpriv'}) SET n += {name: 'RVpriv', description: 'RISC-V Privileged Architecture'};
 MERGE (n:Standard {node_id: 'RV64I'}) SET n += {name: 'RV64I', description: 'RISC-V 64-bit base ISA'};
 MERGE (n:Standard {node_id: 'RV32I'}) SET n += {name: 'RV32I', description: 'RISC-V 32-bit base ISA'};
 MERGE (n:Standard {node_id: 'Sv39'}) SET n += {name: 'Sv39', description: 'RISC-V Sv39 virtual memory'};
@@ -131,16 +131,19 @@ MERGE (n:Standard {node_id: 'CV-X-IF'}) SET n += {name: 'CV-X-IF', description: 
 MERGE (n:Configuration {node_id: 'cv32a6_imac_sv32'}) SET n += {name: 'cv32a6_imac_sv32', description: 'CVA6 32-bit IMAC ISA with Sv32'};
 MERGE (n:Configuration {node_id: 'cv64a6_imacfd_sv39'}) SET n += {name: 'cv64a6_imacfd_sv39', description: 'CVA6 64-bit IMACFD ISA with Sv39'};
 
-// ---- Smell nodes (9) ----
-MERGE (n:Smell {node_id: 'smell_1'}) SET n += {smell_type: 'vagueness', trigger: 'some', severity: 'high', position: 0, explanation: '\'some\' is an imprecise quantifier. Specify exact quantities or ranges.'};
-MERGE (n:Smell {node_id: 'smell_2'}) SET n += {smell_type: 'implicit_reference', trigger: 'it', severity: 'low', position: 0, explanation: 'The pronoun \'it\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
-MERGE (n:Smell {node_id: 'smell_3'}) SET n += {smell_type: 'implicit_reference', trigger: 'this', severity: 'low', position: 87, explanation: 'The pronoun \'this\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
-MERGE (n:Smell {node_id: 'smell_4'}) SET n += {smell_type: 'implicit_reference', trigger: 'it', severity: 'low', position: 0, explanation: 'The pronoun \'it\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
-MERGE (n:Smell {node_id: 'smell_5'}) SET n += {smell_type: 'implicit_reference', trigger: 'this', severity: 'low', position: 85, explanation: 'The pronoun \'this\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
-MERGE (n:Smell {node_id: 'smell_6'}) SET n += {smell_type: 'missing_unit', trigger: '7', severity: 'low', position: 87, explanation: 'The numeric value \'7\' may be missing a measurement unit. Verify that the unit is clear from context.'};
-MERGE (n:Smell {node_id: 'smell_7'}) SET n += {smell_type: 'missing_unit', trigger: '2', severity: 'low', position: 118, explanation: 'The numeric value \'2\' may be missing a measurement unit. Verify that the unit is clear from context.'};
-MERGE (n:Smell {node_id: 'smell_8'}) SET n += {smell_type: 'placeholder', trigger: 'TBD', severity: 'high', position: 0, explanation: 'The marker \'TBD\' indicates incomplete content. The requirement must be filled in before it can be considered finalized.'};
+// ---- Smell nodes (12) ----
+MERGE (n:Smell {node_id: 'smell_1'}) SET n += {smell_type: 'negative_statement', trigger: 'shall not', severity: 'low', position: 6, explanation: '\'shall not\' is a negative formulation. Positive formulations are usually easier to verify. Consider rephrasing if practical.'};
+MERGE (n:Smell {node_id: 'smell_2'}) SET n += {smell_type: 'vagueness', trigger: 'some', severity: 'high', position: 0, explanation: '\'some\' is an imprecise quantifier. Specify exact quantities or ranges.'};
+MERGE (n:Smell {node_id: 'smell_3'}) SET n += {smell_type: 'implicit_reference', trigger: 'it', severity: 'low', position: 0, explanation: 'The pronoun \'it\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
+MERGE (n:Smell {node_id: 'smell_4'}) SET n += {smell_type: 'implicit_reference', trigger: 'this', severity: 'low', position: 87, explanation: 'The pronoun \'this\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
+MERGE (n:Smell {node_id: 'smell_5'}) SET n += {smell_type: 'implicit_reference', trigger: 'it', severity: 'low', position: 0, explanation: 'The pronoun \'it\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
+MERGE (n:Smell {node_id: 'smell_6'}) SET n += {smell_type: 'implicit_reference', trigger: 'this', severity: 'low', position: 85, explanation: 'The pronoun \'this\' may refer to multiple entities. Use explicit nouns to avoid ambiguity.'};
+MERGE (n:Smell {node_id: 'smell_7'}) SET n += {smell_type: 'missing_unit', trigger: '7', severity: 'low', position: 87, explanation: 'The numeric value \'7\' may be missing a measurement unit. Verify that the unit is clear from context.'};
+MERGE (n:Smell {node_id: 'smell_8'}) SET n += {smell_type: 'missing_unit', trigger: '2', severity: 'low', position: 118, explanation: 'The numeric value \'2\' may be missing a measurement unit. Verify that the unit is clear from context.'};
 MERGE (n:Smell {node_id: 'smell_9'}) SET n += {smell_type: 'placeholder', trigger: 'TBD', severity: 'high', position: 0, explanation: 'The marker \'TBD\' indicates incomplete content. The requirement must be filled in before it can be considered finalized.'};
+MERGE (n:Smell {node_id: 'smell_10'}) SET n += {smell_type: 'placeholder', trigger: 'TBD', severity: 'high', position: 0, explanation: 'The marker \'TBD\' indicates incomplete content. The requirement must be filled in before it can be considered finalized.'};
+MERGE (n:Smell {node_id: 'smell_11'}) SET n += {smell_type: 'negative_statement', trigger: 'should not', severity: 'low', position: 5, explanation: '\'should not\' is a negative formulation. Positive formulations are usually easier to verify. Consider rephrasing if practical.'};
+MERGE (n:Smell {node_id: 'smell_12'}) SET n += {smell_type: 'negative_statement', trigger: 'should not', severity: 'low', position: 5, explanation: '\'should not\' is a negative formulation. Positive formulations are usually easier to verify. Consider rephrasing if practical.'};
 
 // ---- BELONGS_TO relationships (64) ----
 MATCH (a:Requirement {node_id: 'GEN-10'}), (b:Category {node_id: 'General'}) MERGE (a)-[:BELONGS_TO]->(b);
@@ -218,8 +221,8 @@ MATCH (a:Requirement {node_id: 'ISA-50'}), (b:Component {node_id: 'CV32A6'}) MER
 MATCH (a:Requirement {node_id: 'ISA-60'}), (b:Component {node_id: 'CV64A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'ISA-70'}), (b:Component {node_id: 'CV64A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'ISA-80'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'ISA-90'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'ISA-90'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'ISA-90'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'ISA-100'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'ISA-120'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'ISA-130'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
@@ -229,21 +232,21 @@ MATCH (a:Requirement {node_id: 'PVL-10'}), (b:Component {node_id: 'CVA6'}) MERGE
 MATCH (a:Requirement {node_id: 'PVL-20'}), (b:Component {node_id: 'CV64A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'PVL-30'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'PVL-40'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'PVL-50'}), (b:Component {node_id: 'PMP'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'PVL-50'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'PVL-50'}), (b:Component {node_id: 'PMP'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'PVL-60'}), (b:Component {node_id: 'CV64A6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'HPM-10'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'HPM-20'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'HPM-10'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-20'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'HPM-20'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-30'}), (b:Component {node_id: 'TLB'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'HPM-50'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-50'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'HPM-60'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'HPM-50'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-60'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'HPM-60'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-70'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'HPM-80'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'HPM-80'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'HPM-80'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1W-10'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1W-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1W-20'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
@@ -255,8 +258,8 @@ MATCH (a:Requirement {node_id: 'L1W-60'}), (b:Component {node_id: 'L1WTD'}) MERG
 MATCH (a:Requirement {node_id: 'L1W-70'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1W-80'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1W-90'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'L1W-100'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1W-100'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'L1W-100'}), (b:Component {node_id: 'CSR'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1I-10'}), (b:Component {node_id: 'L1I'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1I-20'}), (b:Component {node_id: 'L1I'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'L1I-30'}), (b:Component {node_id: 'L1I'}) MERGE (a)-[:MENTIONS]->(b);
@@ -271,15 +274,15 @@ MATCH (a:Requirement {node_id: 'PPA-20'}), (b:Component {node_id: 'CVA6'}) MERGE
 MATCH (a:Requirement {node_id: 'PPA-30'}), (b:Component {node_id: 'CV32A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'PPA-40'}), (b:Component {node_id: 'CV64A6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'MEM-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'MEM-20'}), (b:Component {node_id: 'L1I'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'MEM-20'}), (b:Component {node_id: 'L1WTD'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'MEM-20'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'MEM-20'}), (b:Component {node_id: 'L1I'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'DBG-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'IRQ-10'}), (b:Component {node_id: 'CLINT'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'IRQ-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'IRQ-10'}), (b:Component {node_id: 'CLINT'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'XIF-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
-MATCH (a:Requirement {node_id: 'TRI-10'}), (b:Component {node_id: 'TRI'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'TRI-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
+MATCH (a:Requirement {node_id: 'TRI-10'}), (b:Component {node_id: 'TRI'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'RUL-10'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'RUL-20'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
 MATCH (a:Requirement {node_id: 'RUL-30'}), (b:Component {node_id: 'CVA6'}) MERGE (a)-[:MENTIONS]->(b);
@@ -288,8 +291,8 @@ MATCH (a:Requirement {node_id: 'RUL-40'}), (b:Component {node_id: 'CVA6'}) MERGE
 // ---- REFERS_TO relationships (21) ----
 MATCH (a:Requirement {node_id: 'GEN-10'}), (b:Standard {node_id: 'RVunpriv'}) MERGE (a)-[:REFERS_TO]->(b);
 MATCH (a:Requirement {node_id: 'GEN-10'}), (b:Standard {node_id: 'RVcompat'}) MERGE (a)-[:REFERS_TO]->(b);
-MATCH (a:Requirement {node_id: 'GEN-10'}), (b:Standard {node_id: 'RVpriv'}) MERGE (a)-[:REFERS_TO]->(b);
 MATCH (a:Requirement {node_id: 'GEN-10'}), (b:Standard {node_id: 'RVdbg'}) MERGE (a)-[:REFERS_TO]->(b);
+MATCH (a:Requirement {node_id: 'GEN-10'}), (b:Standard {node_id: 'RVpriv'}) MERGE (a)-[:REFERS_TO]->(b);
 MATCH (a:Requirement {node_id: 'ISA-10'}), (b:Standard {node_id: 'RV64I'}) MERGE (a)-[:REFERS_TO]->(b);
 MATCH (a:Requirement {node_id: 'ISA-20'}), (b:Standard {node_id: 'RV32I'}) MERGE (a)-[:REFERS_TO]->(b);
 MATCH (a:Requirement {node_id: 'PVL-20'}), (b:Standard {node_id: 'Sv39'}) MERGE (a)-[:REFERS_TO]->(b);
@@ -312,13 +315,21 @@ MATCH (a:Requirement {node_id: 'TRI-10'}), (b:Standard {node_id: 'OpenPiton'}) M
 MATCH (a:Requirement {node_id: 'PPA-30'}), (b:Configuration {node_id: 'cv32a6_imac_sv32'}) MERGE (a)-[:APPLIES_TO]->(b);
 MATCH (a:Requirement {node_id: 'PPA-40'}), (b:Configuration {node_id: 'cv64a6_imacfd_sv39'}) MERGE (a)-[:APPLIES_TO]->(b);
 
-// ---- HAS_SMELL relationships (9) ----
-MATCH (a:Requirement {node_id: 'L1W-60'}), (b:Smell {node_id: 'smell_1'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'L1W-70'}), (b:Smell {node_id: 'smell_2'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'L1W-90'}), (b:Smell {node_id: 'smell_3'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'L1I-40'}), (b:Smell {node_id: 'smell_4'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'L1I-60'}), (b:Smell {node_id: 'smell_5'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'PPA-30'}), (b:Smell {node_id: 'smell_6'}) MERGE (a)-[:HAS_SMELL]->(b);
+// ---- HAS_SMELL relationships (12) ----
+MATCH (a:Requirement {node_id: 'L1W-20'}), (b:Smell {node_id: 'smell_1'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'L1W-60'}), (b:Smell {node_id: 'smell_2'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'L1W-70'}), (b:Smell {node_id: 'smell_3'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'L1W-90'}), (b:Smell {node_id: 'smell_4'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'L1I-40'}), (b:Smell {node_id: 'smell_5'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'L1I-60'}), (b:Smell {node_id: 'smell_6'}) MERGE (a)-[:HAS_SMELL]->(b);
 MATCH (a:Requirement {node_id: 'PPA-30'}), (b:Smell {node_id: 'smell_7'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'PPA-50'}), (b:Smell {node_id: 'smell_8'}) MERGE (a)-[:HAS_SMELL]->(b);
-MATCH (a:Requirement {node_id: 'PPA-60'}), (b:Smell {node_id: 'smell_9'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'PPA-30'}), (b:Smell {node_id: 'smell_8'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'PPA-50'}), (b:Smell {node_id: 'smell_9'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'PPA-60'}), (b:Smell {node_id: 'smell_10'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'RUL-30'}), (b:Smell {node_id: 'smell_11'}) MERGE (a)-[:HAS_SMELL]->(b);
+MATCH (a:Requirement {node_id: 'RUL-40'}), (b:Smell {node_id: 'smell_12'}) MERGE (a)-[:HAS_SMELL]->(b);
+
+// ---- DERIVES_FROM relationships (3) ----
+MATCH (a:Requirement {node_id: 'HPM-30'}), (b:Requirement {node_id: 'HPM-20'}) MERGE (a)-[:DERIVES_FROM]->(b);
+MATCH (a:Requirement {node_id: 'HPM-40'}), (b:Requirement {node_id: 'HPM-30'}) MERGE (a)-[:DERIVES_FROM]->(b);
+MATCH (a:Requirement {node_id: 'FET-20'}), (b:Requirement {node_id: 'FET-10'}) MERGE (a)-[:DERIVES_FROM]->(b);

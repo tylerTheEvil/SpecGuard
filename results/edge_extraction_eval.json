@@ -7,7 +7,7 @@
     "temperature": null,
     "seed": null,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-08T17:25:05+00:00"
+    "timestamp_utc": "2026-08-09T07:50:59+00:00"
   },
   "requirements_evaluated": 64,
   "evidence_guard_rejections": 0,
@@ -19,17 +19,659 @@
       "false_positives": 1,
       "false_negatives": 0,
       "precision": 0.9868421052631579,
-      "recall": 1.0
+      "recall": 1.0,
+      "edges": [
+        {
+          "source_id": "DBG-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "FET-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "GEN-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-10",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-20",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-30",
+          "target": "TLB",
+          "edge_type": "MENTIONS",
+          "evidence_span": "TLB",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-40",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CSR",
+          "confidence": 0.9,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "HPM-50",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CSR",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-50",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-60",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CSR",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-60",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-70",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-80",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-80",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "IRQ-10",
+          "target": "CLINT",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CLINT",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "IRQ-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-10",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-100",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-120",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-130",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-140",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-150",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-20",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-30",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-40",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-50",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-60",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-70",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-80",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-90",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CSR",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-90",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-10",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-20",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-30",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-40",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-50",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-60",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-70",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CSR",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-70",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-10",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-100",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CSR",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-100",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-20",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-30",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-40",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-50",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-60",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-70",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-80",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-90",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-30",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-40",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-20",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-30",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-40",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-50",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-50",
+          "target": "PMP",
+          "edge_type": "MENTIONS",
+          "evidence_span": "PMP",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-60",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-30",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-40",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "TRI-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "TRI-10",
+          "target": "TRI",
+          "edge_type": "MENTIONS",
+          "evidence_span": "TRI",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "XIF-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 0.9,
+          "verdict": "TP"
+        }
+      ]
     },
     "DERIVES_FROM": {
       "proposed": 0,
-      "ground_truth": null,
-      "note": "no hand-built ground truth; counts reported, not scored"
+      "ground_truth": 3,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "edges": [
+        {
+          "source_id": "FET-20",
+          "target": "FET-10",
+          "edge_type": "DERIVES_FROM",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        },
+        {
+          "source_id": "HPM-30",
+          "target": "HPM-20",
+          "edge_type": "DERIVES_FROM",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        },
+        {
+          "source_id": "HPM-40",
+          "target": "HPM-30",
+          "edge_type": "DERIVES_FROM",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        }
+      ],
+      "note": "3-pair hand-built set; illustrative, not statistically meaningful (CVA6 is structurally flat — no genuine HLR->LLR hierarchy)"
     },
     "MITIGATES": {
       "proposed": 0,
       "ground_truth": null,
-      "note": "no hand-built ground truth; counts reported, not scored"
+      "note": "no hand-built ground truth; counts reported, not scored",
+      "edges": []
     }
   }
 }

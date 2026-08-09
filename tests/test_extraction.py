@@ -256,3 +256,37 @@ def test_cli_missing_queue_file(tmp_path):
 
     rc = review_cli.main([str(tmp_path / "nope.json"), "list"])
     assert rc == 2
+
+
+# ---------------------------------------------------------------------------
+# Hand-built DERIVES_FROM ground truth (builder-side)
+# ---------------------------------------------------------------------------
+
+
+def test_derives_from_ground_truth_in_cva6_graph():
+    """The 3 hand-annotated pairs are emitted, exactly and only, on CVA6."""
+    from specguard.data.cva6_requirements import get_all_requirements
+    from specguard.graph.builder import HAND_BUILT_DERIVES_FROM, build_graph
+
+    graph = build_graph(get_all_requirements())
+    derives = {
+        (r.from_id, r.to_id)
+        for r in graph.relationships
+        if r.rel_type == "DERIVES_FROM"
+    }
+    assert derives == set(HAND_BUILT_DERIVES_FROM)
+    assert derives == {("HPM-30", "HPM-20"), ("HPM-40", "HPM-30"), ("FET-20", "FET-10")}
+
+
+def test_derives_from_not_emitted_for_foreign_datasets():
+    """Graphs built from non-CVA6 requirement sets get no hand-built edges."""
+    from specguard.data.cva6_requirements import Requirement
+    from specguard.graph.builder import build_graph
+
+    reqs = [
+        Requirement(req_id="X-1", text="The system shall do X.", category="General"),
+        # HPM-30 present but its parent HPM-20 absent: pair must NOT be emitted.
+        Requirement(req_id="HPM-30", text="Partial overlap.", category="Performance"),
+    ]
+    graph = build_graph(reqs)
+    assert not [r for r in graph.relationships if r.rel_type == "DERIVES_FROM"]

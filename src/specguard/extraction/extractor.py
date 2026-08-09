@@ -36,10 +36,12 @@ class EdgeType(StrEnum):
     """Graph edge types the extractor is allowed to propose.
 
     Restricted to the three relationship types the hand-built graph uses for
-    semantic links. ``MENTIONS`` (requirement -> component/standard) is the
-    one with hand-built ground truth; ``DERIVES_FROM`` (requirement ->
-    requirement) and ``MITIGATES`` (requirement -> hazard/requirement) are the
-    higher-value relations the deterministic builder leaves as placeholders.
+    semantic links. ``MENTIONS`` (requirement -> component/standard) has
+    dictionary-matched ground truth (75 edges); ``DERIVES_FROM``
+    (requirement -> requirement) has a small hand-annotated set (3 pairs,
+    illustrative only — see ``HAND_BUILT_DERIVES_FROM`` in
+    :mod:`specguard.graph.builder`); ``MITIGATES`` (requirement ->
+    hazard/requirement) has no ground truth yet.
     """
 
     MENTIONS = "MENTIONS"

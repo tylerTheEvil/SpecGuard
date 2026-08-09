@@ -29,7 +29,7 @@ Layer 3 — Compliance codification     src/specguard/compliance/
 ### Layer 2: Knowledge graph (Neo4j / NetworkX)
 
 - Property graph: Requirement → Component / Standard / Configuration / Smell nodes
-- 107 nodes / 171 relationships on the CVA6 dataset
+- 110 nodes / 177 relationships on the CVA6 dataset (includes 3 hand-annotated DERIVES_FROM ground-truth edges; Smell node count varies with detector tuning)
 - Q14 (`q14_potential_conflicts`) is a topological screening filter, not conflict detection
 - Full conflict detection (FSARC 7 types) is planned as Layer 2 Cypher queries
 

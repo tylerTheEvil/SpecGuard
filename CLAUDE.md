@@ -54,7 +54,7 @@ specguard/                               ← project root
 │       │   ├── do254.py                — 5 representative obj (§6.2-6.4)
 │       │   └── cross_domain.py         — 3 cross-domain obj (the unique niche)
 │       ├── graph/                       — knowledge graph (was neo4j/, name conflicted)
-│       │   ├── builder.py              — Cypher generation, 107 nodes / 171 rels
+│       │   ├── builder.py              — Cypher generation, 110 nodes / 177 rels
 │       │   └── queries.py              — NetworkX-based local queries
 │       ├── llm/                         — BYOM provider protocols (novelty #1 interface) + Anthropic/Mock adapters ([llm] extra)
 │       ├── extraction/                  — LLM-assisted edge extraction, human-confirmed (augmentative, outside qualifiable core)

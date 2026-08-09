@@ -7,11 +7,13 @@ human gate — against the hand-built CVA6 graph relationships from
 ``results/edge_extraction_eval.json``.
 
 Ground truth: the deterministic builder produces ``MENTIONS`` edges
-(requirement -> component) via dictionary matching. Those are the relations
-with hand-built ground truth and form the evaluable set. ``DERIVES_FROM`` /
-``MITIGATES`` have no hand-built ground truth (the builder leaves them as
-placeholders), so for those types we report proposal counts only and a null
-recall — honestly labelled, never silently scored against an empty set.
+(requirement -> component) via dictionary matching (75 edges), and carries a
+hand-built ``DERIVES_FROM`` set (3 pairs — see ``HAND_BUILT_DERIVES_FROM`` in
+``specguard.graph.builder`` for the annotation decision record; illustrative,
+not statistically meaningful, since CVA6 is structurally flat). Both are
+scored. ``MITIGATES`` has no hand-built ground truth, so we report proposal
+counts only and a null recall — honestly labelled, never silently scored
+against an empty set.
 
 Quantified question: how much graph-population labour does the
 propose-then-confirm pattern save? Recall answers "of the edges a human would
@@ -63,13 +65,13 @@ def _build_inventory() -> dict[str, list[str]]:
     }
 
 
-def _ground_truth_mentions() -> set[tuple[str, str]]:
-    """The hand-built MENTIONS edges as (source_id, target) pairs."""
+def _ground_truth(rel_type: str) -> set[tuple[str, str]]:
+    """The hand-built edges of ``rel_type`` as (source_id, target) pairs."""
     graph = build_graph(get_all_requirements())
     return {
         (rel.from_id, rel.to_id)
         for rel in graph.relationships
-        if rel.rel_type == "MENTIONS"
+        if rel.rel_type == rel_type
     }
 
 
@@ -169,6 +171,45 @@ def _run_config(provider, provider_name: str) -> dict:
     return config
 
 
+def _edge_log(
+    edge_type: str,
+    proposals: dict[tuple[str, str], object],
+    truth: set[tuple[str, str]] | None,
+) -> list[dict]:
+    """Pair-level record of every proposal (TP/FP) plus unproposed truth (FN).
+
+    Enables post-hoc adjudication (which ground-truth pairs were recovered,
+    what the spurious proposals actually were) without re-running the LLM.
+    Sorted for stable artifact diffs. ``truth is None`` marks an unscored type.
+    """
+    entries = []
+    for (src, tgt), p in sorted(proposals.items()):
+        verdict = "unscored" if truth is None else ("TP" if (src, tgt) in truth else "FP")
+        entries.append(
+            {
+                "source_id": src,
+                "target": tgt,
+                "edge_type": edge_type,
+                "evidence_span": p.evidence_span,
+                "confidence": p.confidence,
+                "verdict": verdict,
+            }
+        )
+    if truth is not None:
+        for src, tgt in sorted(truth - set(proposals)):
+            entries.append(
+                {
+                    "source_id": src,
+                    "target": tgt,
+                    "edge_type": edge_type,
+                    "evidence_span": None,
+                    "confidence": None,
+                    "verdict": "FN",
+                }
+            )
+    return entries
+
+
 def run(provider, *, provider_name: str) -> dict:
     reqs = get_all_requirements()
     inventory = _build_inventory()
@@ -176,29 +217,41 @@ def run(provider, *, provider_name: str) -> dict:
 
     results = extract_edges(provider, pairs, inventory)
 
-    proposals_by_type: dict[str, set[tuple[str, str]]] = {e.value: set() for e in EdgeType}
+    # First proposal per unique (source, target) pair; duplicates collapse so
+    # the aggregate counts keep their original set semantics.
+    proposals_by_type: dict[str, dict[tuple[str, str], object]] = {
+        e.value: {} for e in EdgeType
+    }
     total_rejected = 0
     for res in results:
         total_rejected += len(res.rejected)
         for p in res.proposals:
-            proposals_by_type[p.edge_type.value].add((p.source_id, p.target_entity))
-
-    gt_mentions = _ground_truth_mentions()
+            proposals_by_type[p.edge_type.value].setdefault(
+                (p.source_id, p.target_entity), p
+            )
 
     per_type: dict[str, dict] = {}
-    # MENTIONS has hand-built ground truth.
-    per_type["MENTIONS"] = {
-        "proposed": len(proposals_by_type["MENTIONS"]),
-        "ground_truth": len(gt_mentions),
-        **_score(proposals_by_type["MENTIONS"], gt_mentions),
-    }
-    # DERIVES_FROM / MITIGATES: no hand-built ground truth — counts only.
-    for et in ("DERIVES_FROM", "MITIGATES"):
+    # MENTIONS (75, dictionary-matched) and DERIVES_FROM (3, hand-annotated —
+    # illustrative only, see HAND_BUILT_DERIVES_FROM) have ground truth.
+    for et in ("MENTIONS", "DERIVES_FROM"):
+        truth = _ground_truth(et)
         per_type[et] = {
             "proposed": len(proposals_by_type[et]),
-            "ground_truth": None,
-            "note": "no hand-built ground truth; counts reported, not scored",
+            "ground_truth": len(truth),
+            **_score(set(proposals_by_type[et]), truth),
+            "edges": _edge_log(et, proposals_by_type[et], truth),
         }
+    per_type["DERIVES_FROM"]["note"] = (
+        "3-pair hand-built set; illustrative, not statistically meaningful "
+        "(CVA6 is structurally flat — no genuine HLR->LLR hierarchy)"
+    )
+    # MITIGATES: no hand-built ground truth — counts only.
+    per_type["MITIGATES"] = {
+        "proposed": len(proposals_by_type["MITIGATES"]),
+        "ground_truth": None,
+        "note": "no hand-built ground truth; counts reported, not scored",
+        "edges": _edge_log("MITIGATES", proposals_by_type["MITIGATES"], None),
+    }
 
     return {
         "provider": provider_name,
@@ -268,15 +321,18 @@ def main(argv: list[str] | None = None) -> int:
     print("=" * 70)
     print(f"Requirements evaluated : {report['requirements_evaluated']}")
     print(f"Evidence-guard rejects : {report['evidence_guard_rejections']}")
-    m = report["per_edge_type"]["MENTIONS"]
-    prec = "n/a" if m["precision"] is None else f"{m['precision']:.3f}"
-    rec = "n/a" if m["recall"] is None else f"{m['recall']:.3f}"
-    print(
-        f"MENTIONS: proposed={m['proposed']} truth={m['ground_truth']} "
-        f"precision={prec} recall={rec}"
-    )
-    for et in ("DERIVES_FROM", "MITIGATES"):
-        print(f"{et}: proposed={report['per_edge_type'][et]['proposed']} (unscored)")
+    for et in ("MENTIONS", "DERIVES_FROM"):
+        m = report["per_edge_type"][et]
+        prec = "n/a" if m["precision"] is None else f"{m['precision']:.3f}"
+        rec = "n/a" if m["recall"] is None else f"{m['recall']:.3f}"
+        print(
+            f"{et}: proposed={m['proposed']} truth={m['ground_truth']} "
+            f"precision={prec} recall={rec}"
+        )
+    print(f"MITIGATES: proposed={report['per_edge_type']['MITIGATES']['proposed']} (unscored)")
+    # DERIVES_FROM is small (3 GT pairs) — show the pair-level verdicts inline.
+    for e in report["per_edge_type"]["DERIVES_FROM"]["edges"]:
+        print(f"  DERIVES_FROM {e['verdict']}: {e['source_id']} -> {e['target']}")
     print(f"\nWrote {out_path}")
     return 0
 

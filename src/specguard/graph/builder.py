@@ -84,6 +84,36 @@ KNOWN_CONFIGS = {
     "cv64a6_imacfd_sv39": "CVA6 64-bit IMACFD ISA with Sv39",
 }
 
+# Hand-built DERIVES_FROM ground truth on the CVA6 dataset, as (child, parent)
+# pairs: the child requirement is a textually-grounded refinement of the parent.
+#
+# Annotation decision record (2026-08-08, all 64 requirements reviewed):
+#
+# * This set is ILLUSTRATIVE, not statistically meaningful. CVA6 is
+#   structurally flat — a single-level functional spec with no genuine
+#   HLR -> LLR hierarchy — so only local refinement pairs exist.
+# * A candidate 7-edge decomposition hub under GEN-10 (mandatory ISA
+#   extensions + DBG-10 tracing to the compliance umbrella) was considered
+#   and REJECTED: 7 of 10 edges sharing one parent would make the metric
+#   measure a single trivial rule ("link ISA reqs to GEN-10") rather than
+#   derivation extraction. The three pairs kept test local, textually
+#   grounded refinement — the property we actually care about.
+# * HPM-40's parent was an annotation decision between HPM-30 and HPM-20,
+#   resolved in favour of HPM-30: event-source selection is HPM-30's domain
+#   ("count events from one of these sources"), while HPM-20 merely
+#   introduces the counters.
+HAND_BUILT_DERIVES_FROM: list[tuple[str, str]] = [
+    # "Each of the six generic performance counters shall be able to count
+    # events..." refines the counters HPM-20 introduces.
+    ("HPM-30", "HPM-20"),
+    # "The source of events counted ... shall be selected by the mhpmevent3 to
+    # mhpmevent8 CSRs" specifies the selection mechanism for HPM-30's sources.
+    ("HPM-40", "HPM-30"),
+    # "FENCE.T should be available in all privilege modes" constrains the
+    # instruction FET-10 introduces.
+    ("FET-20", "FET-10"),
+]
+
 
 @dataclass
 class GraphNode:
@@ -349,15 +379,21 @@ def build_graph(
                     )
                 )
 
-    # ---- Heuristic structural relations: REFINES via parent_section ----
-    # If a requirement is within a parent section that itself has a "general"
-    # statement requirement, we can hint a REFINES relation. For CVA6 this is
-    # a soft heuristic — placeholder for richer LLM-assisted detection later.
-
-    # Group requirements by parent_section
-    by_section: dict = {}
-    for req in requirements:
-        by_section.setdefault(req.parent_section, []).append(req)
+    # ---- Hand-built DERIVES_FROM edges (illustrative ground truth) ----
+    # Only emitted when both endpoints are present, so graphs built from
+    # non-CVA6 datasets (CLI import path) are unaffected.
+    req_ids = {req.req_id for req in requirements}
+    for child, parent in HAND_BUILT_DERIVES_FROM:
+        if child in req_ids and parent in req_ids:
+            graph.relationships.append(
+                GraphRelationship(
+                    from_label="Requirement",
+                    from_id=child,
+                    to_label="Requirement",
+                    to_id=parent,
+                    rel_type="DERIVES_FROM",
+                )
+            )
 
     return graph
 

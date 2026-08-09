@@ -7,7 +7,7 @@
     "temperature": 0,
     "seed": 42,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-08T17:46:50+00:00",
+    "timestamp_utc": "2026-08-09T08:22:26+00:00",
     "num_ctx": 8192
   },
   "requirements_evaluated": 64,
@@ -20,17 +20,867 @@
       "false_positives": 27,
       "false_negatives": 2,
       "precision": 0.73,
-      "recall": 0.9733333333333334
+      "recall": 0.9733333333333334,
+      "edges": [
+        {
+          "source_id": "DBG-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall implement",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "DBG-10",
+          "target": "RVdbg",
+          "edge_type": "MENTIONS",
+          "evidence_span": "chapter 4 of [RVdbg]",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "FET-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should support",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "FET-10",
+          "target": "FENCE.T",
+          "edge_type": "MENTIONS",
+          "evidence_span": "FENCE.T instruction",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "FET-20",
+          "target": "FENCE.T",
+          "edge_type": "MENTIONS",
+          "evidence_span": "FENCE.T should be available",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "GEN-10",
+          "target": "RVcompat",
+          "edge_type": "MENTIONS",
+          "evidence_span": "passing [RVcompat] compatibility tests.",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "GEN-10",
+          "target": "RVdbg",
+          "edge_type": "MENTIONS",
+          "evidence_span": "and [RVdbg]",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "GEN-10",
+          "target": "RVpriv",
+          "edge_type": "MENTIONS",
+          "evidence_span": "[RVpriv]",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "GEN-10",
+          "target": "RVunpriv",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall be fully compliant with RISC-V specifications [RVunpriv]",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "HPM-10",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "in CV32A6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall implement",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-10",
+          "target": "RVpriv",
+          "edge_type": "MENTIONS",
+          "evidence_span": "as per [RVpriv]",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "HPM-20",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "upper 32 bits counterparts in CV32A6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall implement",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-30",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1 I-Cache misses",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "HPM-30",
+          "target": "TLB",
+          "edge_type": "MENTIONS",
+          "evidence_span": "ITLB misses",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-40",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "mhpmevent3 to mhpmevent8 CSRs.",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "HPM-50",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-50",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-60",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-60",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall allow the user access of performance counters through enabling of scounteren CSR.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-70",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall implement the mcountinhibit counter-inhibit register.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-80",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "in CV32A6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "HPM-80",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall implement",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "IRQ-10",
+          "target": "CLINT",
+          "edge_type": "MENTIONS",
+          "evidence_span": "interface with a CLINT implementation.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "IRQ-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall implement interrupt handling registers",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "IRQ-10",
+          "target": "RVpriv",
+          "edge_type": "MENTIONS",
+          "evidence_span": "as per the RISC-V privilege specification",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "ISA-10",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-10",
+          "target": "RV64I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "ISA-100",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-120",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should support as an option the B extension (bit manipulation), version 1.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-130",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should support as an option the Zicond extension (ratification pending) version 1.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-140",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should support as an option the Zcb extension version 1.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-150",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should support as an option the Zcmp extension version 1.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-20",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6 shall support RV32I base instruction set, version 2.1.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-20",
+          "target": "RV32I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6 shall support RV32I base instruction set, version 2.1.",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "ISA-30",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall support the M extension (integer multiply and divide), version 2.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-40",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall support the A extension (atomic instructions), version 2.1.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-50",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-60",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6 shall support as an option the F and D extensions (single- and double-precision floating-point), version 2.2.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-60",
+          "target": "FPU",
+          "edge_type": "MENTIONS",
+          "evidence_span": "the F and D extensions (single- and double-precision floating-point)",
+          "confidence": 0.9,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "ISA-70",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-80",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-90",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "(CSR instructions)",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "ISA-90",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall support",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-10",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I should offer",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-20",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I shall support datasize extension",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-30",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I shall have a line invalidate external command",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-30",
+          "target": "OpenPiton",
+          "edge_type": "MENTIONS",
+          "evidence_span": "To interface with the P-Mesh coherence system of OpenPiton",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "L1I-40",
+          "target": "FENCE.T",
+          "edge_type": "MENTIONS",
+          "evidence_span": "with the FENCE.T command.",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "L1I-40",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "invalidate L1I content",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-50",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "The replacement policy of L1I shall be LFSR (pseudo-random) or LRU (least recently used).",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-60",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1I should offer a feature to transform cache ways into a scratchpad.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-70",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "A custom CSR",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1I-70",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "disable or enable L1I",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "by the CVA6 core",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-10",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD shall reflect all write accesses",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-100",
+          "target": "CSR",
+          "edge_type": "MENTIONS",
+          "evidence_span": "A custom CSR",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-100",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "disable or enable L1WTD.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "received from the CVA6 core.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-20",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD shall not change",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-30",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD should offer the following size/ways configurations: 0 kbyte (no cache), 4 kbytes (4 or 8 ways), 8 kbytes (4, 8 or 16 ways), 16 kbytes (4, 8 or 16 ways), 32 kbytes (8 or 16 ways).",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-40",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD shall support datasize extension to store EDC, ECC or other information.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-50",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD shall have a line invalidate external command",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-50",
+          "target": "OpenPiton",
+          "edge_type": "MENTIONS",
+          "evidence_span": "OpenPiton",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "L1W-60",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-70",
+          "target": "FENCE.T",
+          "edge_type": "MENTIONS",
+          "evidence_span": "with the FENCE.T command",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "L1W-70",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "invalidate L1WTD content",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-80",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "The replacement policy of L1WTD shall be LFSR (pseudo-random) or LRU (least recently used).",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "L1W-90",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "L1WTD should offer a feature to transform cache ways into a scratchpad.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-10",
+          "target": "AXI",
+          "edge_type": "MENTIONS",
+          "evidence_span": "[AXI] section E1.1",
+          "confidence": 0.9,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "MEM-10",
+          "target": "AXI5",
+          "edge_type": "MENTIONS",
+          "evidence_span": "comply with AXI5 specification",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "MEM-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 memory interface",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "AXI",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 AXI memory interface shall feature user bit extensions",
+          "confidence": 0.9,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 AXI memory interface shall feature user bit extensions",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "L1I",
+          "edge_type": "MENTIONS",
+          "evidence_span": "in connection with the L1I and L1WTD datasize extensions",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "MEM-20",
+          "target": "L1WTD",
+          "edge_type": "MENTIONS",
+          "evidence_span": "in connection with the L1I and L1WTD datasize extensions",
+          "confidence": 0.9,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should be resource-optimized on FPGA and ASIC targets.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should deliver more than 2.1 CoreMark/MHz.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-30",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6 should run at more than 150 MHz",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-30",
+          "target": "Sv32",
+          "edge_type": "MENTIONS",
+          "evidence_span": "cv32a6_imac_sv32 configuration",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "PPA-40",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6 should run at more than 900 MHz",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PPA-40",
+          "target": "Sv39",
+          "edge_type": "MENTIONS",
+          "evidence_span": "cv64a6_imacfd_sv39 configuration",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "PVL-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall support machine, supervisor, user and debug privilege modes.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-20",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6 shall support as an option",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-20",
+          "target": "Sv39",
+          "edge_type": "MENTIONS",
+          "evidence_span": "the Sv39 virtual memory",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "PVL-30",
+          "target": "CV32A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV32A6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-30",
+          "target": "Sv32",
+          "edge_type": "MENTIONS",
+          "evidence_span": "the Sv32 virtual memory",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "PVL-40",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 instances",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-50",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall feature PMP (physical memory protection) as an option.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-50",
+          "target": "PMP",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall feature PMP (physical memory protection) as an option.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "PVL-60",
+          "target": "CV64A6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CV64A6 shall support as an option the H extension (hypervisor) version 1.0.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 should have a configurable reset signal: synchronous/asynchronous, active on high or low levels.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-20",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall be a super-synchronous design with a single clock input.",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-30",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "RUL-40",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "TRI-10",
+          "target": "OpenPiton",
+          "edge_type": "MENTIONS",
+          "evidence_span": "of OpenPiton, according to [OpenPiton]",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "TRI-10",
+          "target": "TRI",
+          "edge_type": "MENTIONS",
+          "evidence_span": "Transaction-Response Interface (TRI)",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "XIF-10",
+          "target": "CV-X-IF",
+          "edge_type": "MENTIONS",
+          "evidence_span": "supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+          "confidence": 1.0,
+          "verdict": "FP"
+        },
+        {
+          "source_id": "XIF-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": "CVA6 shall have a coprocessor interface",
+          "confidence": 1.0,
+          "verdict": "TP"
+        },
+        {
+          "source_id": "GEN-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        },
+        {
+          "source_id": "TRI-10",
+          "target": "CVA6",
+          "edge_type": "MENTIONS",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        }
+      ]
     },
     "DERIVES_FROM": {
       "proposed": 0,
-      "ground_truth": null,
-      "note": "no hand-built ground truth; counts reported, not scored"
+      "ground_truth": 3,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 3,
+      "precision": null,
+      "recall": 0.0,
+      "edges": [
+        {
+          "source_id": "FET-20",
+          "target": "FET-10",
+          "edge_type": "DERIVES_FROM",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        },
+        {
+          "source_id": "HPM-30",
+          "target": "HPM-20",
+          "edge_type": "DERIVES_FROM",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        },
+        {
+          "source_id": "HPM-40",
+          "target": "HPM-30",
+          "edge_type": "DERIVES_FROM",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        }
+      ],
+      "note": "3-pair hand-built set; illustrative, not statistically meaningful (CVA6 is structurally flat — no genuine HLR->LLR hierarchy)"
     },
     "MITIGATES": {
       "proposed": 0,
       "ground_truth": null,
-      "note": "no hand-built ground truth; counts reported, not scored"
+      "note": "no hand-built ground truth; counts reported, not scored",
+      "edges": []
     }
   }
 }
