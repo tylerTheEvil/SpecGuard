@@ -1,0 +1,365 @@
+{
+  "_note": "Per-type P/R/F1 for Section V, from the TYPED post-fix extractor (REFERS_TO first-class, P0.2 proposal guards active). Live providers: n=3 runs each (see variance artifact); mock: n=1, deterministic. F1 computed per run, then aggregated. These REPLACE the combined-taxonomy figures from retaxonomy_rescore.json (superseded).",
+  "prompt_variants": "NOT AVAILABLE under the typed extractor. The committed grid (results/prompt_variants/, git 8d6828e) measured the pre-fix extractor with standards collapsed into MENTIONS; its numbers are not comparable to the typed rows above and must not be placed in the same table. Re-run the grid under the typed extractor if Section V keeps variant rows.",
+  "providers": {
+    "anthropic": {
+      "model": "claude-opus-4-8",
+      "sampling": "api_default",
+      "seed": null,
+      "MENTIONS": {
+        "reference": "dictionary-matched surrogate (builder KNOWN_COMPONENTS, 75 edges; circular — agreement with the deterministic matcher, not validated truth)",
+        "n_runs": 3,
+        "ground_truth_size": 75,
+        "proposed": [
+          76,
+          76,
+          76
+        ],
+        "true_positives": [
+          75,
+          75,
+          75
+        ],
+        "false_positives": [
+          1,
+          1,
+          1
+        ],
+        "false_negatives": [
+          0,
+          0,
+          0
+        ],
+        "precision": {
+          "mean": 0.9868421052631579,
+          "min": 0.9868421052631579,
+          "max": 0.9868421052631579
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "f1": {
+          "mean": 0.9933774834437086,
+          "min": 0.9933774834437086,
+          "max": 0.9933774834437086
+        },
+        "source": "results/edge_extraction_variance.json"
+      },
+      "REFERS_TO": {
+        "reference": "dictionary-matched surrogate (builder KNOWN_STANDARDS, 21 edges; same circularity as MENTIONS)",
+        "n_runs": 3,
+        "ground_truth_size": 21,
+        "proposed": [
+          23,
+          23,
+          23
+        ],
+        "true_positives": [
+          21,
+          21,
+          21
+        ],
+        "false_positives": [
+          2,
+          2,
+          2
+        ],
+        "false_negatives": [
+          0,
+          0,
+          0
+        ],
+        "precision": {
+          "mean": 0.9130434782608695,
+          "min": 0.9130434782608695,
+          "max": 0.9130434782608695
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "f1": {
+          "mean": 0.9545454545454545,
+          "min": 0.9545454545454545,
+          "max": 0.9545454545454545
+        },
+        "source": "results/edge_extraction_variance.json"
+      },
+      "DERIVES_FROM": {
+        "reference": "hand-annotated, 3 pairs (non-circular but illustrative only — CVA6 is structurally flat)",
+        "n_runs": 3,
+        "ground_truth_size": 3,
+        "proposed": [
+          2,
+          1,
+          3
+        ],
+        "true_positives": [
+          1,
+          0,
+          1
+        ],
+        "false_positives": [
+          1,
+          1,
+          2
+        ],
+        "false_negatives": [
+          2,
+          3,
+          2
+        ],
+        "precision": {
+          "mean": 0.2777777777777778,
+          "min": 0.0,
+          "max": 0.5
+        },
+        "recall": {
+          "mean": 0.2222222222222222,
+          "min": 0.0,
+          "max": 0.3333333333333333
+        },
+        "f1": {
+          "mean": 0.24444444444444444,
+          "min": 0.0,
+          "max": 0.4
+        },
+        "source": "results/edge_extraction_variance.json"
+      }
+    },
+    "ollama": {
+      "model": "gemma4:latest",
+      "sampling": 0,
+      "seed": 42,
+      "MENTIONS": {
+        "reference": "dictionary-matched surrogate (builder KNOWN_COMPONENTS, 75 edges; circular — agreement with the deterministic matcher, not validated truth)",
+        "n_runs": 3,
+        "ground_truth_size": 75,
+        "proposed": [
+          85,
+          86,
+          86
+        ],
+        "true_positives": [
+          75,
+          75,
+          75
+        ],
+        "false_positives": [
+          10,
+          11,
+          11
+        ],
+        "false_negatives": [
+          0,
+          0,
+          0
+        ],
+        "precision": {
+          "mean": 0.8755129958960328,
+          "min": 0.872093023255814,
+          "max": 0.8823529411764706
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "f1": {
+          "mean": 0.9336180124223602,
+          "min": 0.9316770186335404,
+          "max": 0.9375
+        },
+        "source": "results/edge_extraction_variance.json"
+      },
+      "REFERS_TO": {
+        "reference": "dictionary-matched surrogate (builder KNOWN_STANDARDS, 21 edges; same circularity as MENTIONS)",
+        "n_runs": 3,
+        "ground_truth_size": 21,
+        "proposed": [
+          15,
+          16,
+          16
+        ],
+        "true_positives": [
+          15,
+          16,
+          16
+        ],
+        "false_positives": [
+          0,
+          0,
+          0
+        ],
+        "false_negatives": [
+          6,
+          5,
+          5
+        ],
+        "precision": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "recall": {
+          "mean": 0.746031746031746,
+          "min": 0.7142857142857143,
+          "max": 0.7619047619047619
+        },
+        "f1": {
+          "mean": 0.8543543543543543,
+          "min": 0.8333333333333333,
+          "max": 0.8648648648648648
+        },
+        "source": "results/edge_extraction_variance.json"
+      },
+      "DERIVES_FROM": {
+        "reference": "hand-annotated, 3 pairs (non-circular but illustrative only — CVA6 is structurally flat)",
+        "n_runs": 3,
+        "ground_truth_size": 3,
+        "proposed": [
+          0,
+          0,
+          0
+        ],
+        "true_positives": [
+          0,
+          0,
+          0
+        ],
+        "false_positives": [
+          0,
+          0,
+          0
+        ],
+        "false_negatives": [
+          3,
+          3,
+          3
+        ],
+        "precision": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "f1": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "source": "results/edge_extraction_variance.json"
+      }
+    },
+    "mock": {
+      "model": null,
+      "note": "deterministic offline replay of the dictionary matcher",
+      "MENTIONS": {
+        "reference": "dictionary-matched surrogate (builder KNOWN_COMPONENTS, 75 edges; circular — agreement with the deterministic matcher, not validated truth)",
+        "n_runs": 1,
+        "ground_truth_size": 75,
+        "proposed": [
+          76
+        ],
+        "true_positives": [
+          75
+        ],
+        "false_positives": [
+          1
+        ],
+        "false_negatives": [
+          0
+        ],
+        "precision": {
+          "mean": 0.9868421052631579,
+          "min": 0.9868421052631579,
+          "max": 0.9868421052631579
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "f1": {
+          "mean": 0.9933774834437086,
+          "min": 0.9933774834437086,
+          "max": 0.9933774834437086
+        },
+        "source": "results/edge_extraction_eval.json"
+      },
+      "REFERS_TO": {
+        "reference": "dictionary-matched surrogate (builder KNOWN_STANDARDS, 21 edges; same circularity as MENTIONS)",
+        "n_runs": 1,
+        "ground_truth_size": 21,
+        "proposed": [
+          21
+        ],
+        "true_positives": [
+          21
+        ],
+        "false_positives": [
+          0
+        ],
+        "false_negatives": [
+          0
+        ],
+        "precision": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "recall": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "f1": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "source": "results/edge_extraction_eval.json"
+      },
+      "DERIVES_FROM": {
+        "reference": "hand-annotated, 3 pairs (non-circular but illustrative only — CVA6 is structurally flat)",
+        "n_runs": 1,
+        "ground_truth_size": 3,
+        "proposed": [
+          0
+        ],
+        "true_positives": [
+          0
+        ],
+        "false_positives": [
+          0
+        ],
+        "false_negatives": [
+          3
+        ],
+        "precision": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "f1": {
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "source": "results/edge_extraction_eval.json"
+      }
+    }
+  }
+}

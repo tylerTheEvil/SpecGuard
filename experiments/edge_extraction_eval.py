@@ -7,13 +7,15 @@ human gate — against the hand-built CVA6 graph relationships from
 ``results/edge_extraction_eval.json``.
 
 Ground truth: the deterministic builder produces ``MENTIONS`` edges
-(requirement -> component) via dictionary matching (75 edges), and carries a
-hand-built ``DERIVES_FROM`` set (3 pairs — see ``HAND_BUILT_DERIVES_FROM`` in
-``specguard.graph.builder`` for the annotation decision record; illustrative,
-not statistically meaningful, since CVA6 is structurally flat). Both are
-scored. ``MITIGATES`` has no hand-built ground truth, so we report proposal
-counts only and a null recall — honestly labelled, never silently scored
-against an empty set.
+(requirement -> component, 75) and ``REFERS_TO`` edges (requirement -> standard,
+21) via dictionary matching against ``KNOWN_COMPONENTS`` / ``KNOWN_STANDARDS``,
+and carries a hand-built ``DERIVES_FROM`` set (3 pairs — see
+``HAND_BUILT_DERIVES_FROM`` in ``specguard.graph.builder`` for the annotation
+decision record; illustrative, not statistically meaningful, since CVA6 is
+structurally flat). All three are scored per type; MENTIONS and REFERS_TO share
+the dictionary-surrogate circularity caveat. ``MITIGATES`` has no hand-built
+ground truth, so we report proposal counts only and a null recall — honestly
+labelled, never silently scored against an empty set.
 
 Quantified question: how much graph-population labour does the
 propose-then-confirm pattern save? Recall answers "of the edges a human would
@@ -160,7 +162,7 @@ def _extract_with_critique(provider, pairs, inventory):
             log["removed"].append({"edge_type": et, "source_id": src, "target": tgt})
         log["added_by_critique"] += len(post_keys - pre_keys)
 
-        results.append(_validate_proposals(req_id, text, raw2))
+        results.append(_validate_proposals(req_id, text, raw2, inventory))
     return results, log
 
 
@@ -187,11 +189,13 @@ def _ground_truth(rel_type: str) -> set[tuple[str, str]]:
 def _make_mock_provider():
     """A MockProvider that replays plausible per-requirement proposals.
 
-    For each requirement, it proposes a MENTIONS edge to every known component
-    whose token literally occurs in the text, quoting that token as the
-    evidence span. This produces a realistic, deterministic offline run that
-    overlaps heavily (but not perfectly) with ground truth, so the eval
-    machinery and metrics are exercised end-to-end without a network call.
+    For each requirement it proposes a MENTIONS edge to every known component,
+    and a REFERS_TO edge to every known standard, whose token literally occurs
+    in the text, quoting that token as the evidence span. This produces a
+    realistic, deterministic offline run that overlaps heavily (but not
+    perfectly) with ground truth for both surface edge types, so the eval
+    machinery and metrics — including the first-class REFERS_TO scoring — are
+    exercised end-to-end without a network call.
     """
     from specguard.llm.mock_provider import MockProvider
 
@@ -206,6 +210,16 @@ def _make_mock_provider():
                         "target_entity": comp,
                         "confidence": 0.9,
                         "evidence_span": comp,
+                    }
+                )
+        for std in KNOWN_STANDARDS:
+            if std in req.text:
+                edges.append(
+                    {
+                        "edge_type": "REFERS_TO",
+                        "target_entity": std,
+                        "confidence": 0.9,
+                        "evidence_span": std,
                     }
                 )
         # Key the canned response by the unique requirement id present in prompt.
@@ -237,7 +251,10 @@ def _ping_ollama() -> str | None:
         with urllib.request.urlopen(f"{base_url}/api/version", timeout=5):
             return None
     except urllib.error.URLError as exc:
-        return f"Ollama server unreachable at {base_url} ({exc.reason}). Start it with `ollama serve`."
+        return (
+            f"Ollama server unreachable at {base_url} ({exc.reason}). "
+            "Start it with `ollama serve`."
+        )
 
 
 def _score(proposals: set[tuple[str, str]], truth: set[tuple[str, str]]) -> dict:
@@ -345,9 +362,14 @@ def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
             )
 
     per_type: dict[str, dict] = {}
-    # MENTIONS (75, dictionary-matched) and DERIVES_FROM (3, hand-annotated —
-    # illustrative only, see HAND_BUILT_DERIVES_FROM) have ground truth.
-    for et in ("MENTIONS", "DERIVES_FROM"):
+    # MENTIONS (components, 75) and REFERS_TO (standards, 21) are both
+    # dictionary-matched surrogate references (KNOWN_COMPONENTS / KNOWN_STANDARDS
+    # — the circularity disclosed for MENTIONS applies equally to REFERS_TO);
+    # DERIVES_FROM (3) is hand-annotated (illustrative only, see
+    # HAND_BUILT_DERIVES_FROM). All three carry a ground-truth set and are scored
+    # per type — REFERS_TO as a first-class typed edge (P0.1), so standard
+    # citations are scored directly instead of via the combined-taxonomy rescore.
+    for et in ("MENTIONS", "REFERS_TO", "DERIVES_FROM"):
         truth = _ground_truth(et)
         per_type[et] = {
             "proposed": len(proposals_by_type[et]),
@@ -355,6 +377,10 @@ def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
             **_score(set(proposals_by_type[et]), truth),
             "edges": _edge_log(et, proposals_by_type[et], truth),
         }
+    per_type["REFERS_TO"]["note"] = (
+        "standards reference (KNOWN_STANDARDS dictionary matcher, 21 edges); "
+        "dictionary-matched surrogate — same circularity caveat as MENTIONS"
+    )
     per_type["DERIVES_FROM"]["note"] = (
         "3-pair hand-built set; illustrative, not statistically meaningful "
         "(CVA6 is structurally flat — no genuine HLR->LLR hierarchy)"
@@ -384,7 +410,7 @@ def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
         # attributable to the critique pass is visible without re-deriving.
         for entry in critique_log["removed"]:
             et = entry["edge_type"]
-            if et in ("MENTIONS", "DERIVES_FROM"):
+            if et in ("MENTIONS", "REFERS_TO", "DERIVES_FROM"):
                 entry["in_ground_truth"] = (
                     entry["source_id"],
                     entry["target"],
@@ -470,7 +496,7 @@ def main(argv: list[str] | None = None) -> int:
         )
     print(f"Requirements evaluated : {report['requirements_evaluated']}")
     print(f"Evidence-guard rejects : {report['evidence_guard_rejections']}")
-    for et in ("MENTIONS", "DERIVES_FROM"):
+    for et in ("MENTIONS", "REFERS_TO", "DERIVES_FROM"):
         m = report["per_edge_type"][et]
         prec = "n/a" if m["precision"] is None else f"{m['precision']:.3f}"
         rec = "n/a" if m["recall"] is None else f"{m['recall']:.3f}"

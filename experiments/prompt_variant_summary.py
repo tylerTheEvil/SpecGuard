@@ -75,7 +75,19 @@ def summarise() -> dict:
     cells: dict[str, dict] = {}
     for (provider, variant), runs in sorted(groups.items()):
         cell: dict = {"n_runs": len(runs), "files": [r["_file"] for r in runs]}
-        for et in ("MENTIONS", "DERIVES_FROM"):
+        # Score every typed edge the artifacts actually carry (a type is
+        # "scored" when it has a ground-truth set). Pre-fix artifacts have no
+        # REFERS_TO — their MENTIONS collapsed components and standards at
+        # proposal time — so the set of scored types is recorded per cell
+        # rather than assumed, and cells from different extractor versions
+        # must not be compared as if same-typed.
+        scored_types = [
+            et
+            for et, m in runs[0]["per_edge_type"].items()
+            if m.get("ground_truth") is not None
+        ]
+        cell["edge_types_scored"] = scored_types
+        for et in scored_types:
             per = [r["per_edge_type"][et] for r in runs]
             cell[et] = {
                 "precision": _spread([p["precision"] for p in per]),
@@ -149,7 +161,11 @@ def summarise() -> dict:
             "generalisation signal. A baseline FP counts as suppressed only "
             "if absent from every run of the variant. Baseline run-1 files "
             "are verbatim copies of the committed canonical artifacts "
-            "(config-identical reuse)."
+            "(config-identical reuse). EXTRACTOR-VERSION CAVEAT: each cell "
+            "records edge_types_scored; cells whose artifacts predate the "
+            "typed REFERS_TO split (no REFERS_TO entry) collapsed standards "
+            "into MENTIONS at proposal time and are NOT comparable to "
+            "typed-extractor runs — re-run the grid for typed variant numbers."
         ),
         "cells": cells,
     }

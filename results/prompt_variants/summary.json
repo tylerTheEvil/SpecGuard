@@ -1,11 +1,15 @@
 {
-  "_note": "Prompt-variant grid over the edge-extraction eval. Guard, scoring and ground truth identical across variants; only the system prompt (strict) or a second same-provider pass (critique) differs. 'in_prompt' FP suppression is memorisation of the three few-shot negatives shown verbatim in the strict prompt (['GEN-10->RVpriv', 'HPM-30->L1I', 'PPA-30->Sv32']) and must not be read as generalisation; 'held_out' suppression is the generalisation signal. A baseline FP counts as suppressed only if absent from every run of the variant. Baseline run-1 files are verbatim copies of the committed canonical artifacts (config-identical reuse).",
+  "_note": "Prompt-variant grid over the edge-extraction eval. Guard, scoring and ground truth identical across variants; only the system prompt (strict) or a second same-provider pass (critique) differs. 'in_prompt' FP suppression is memorisation of the three few-shot negatives shown verbatim in the strict prompt (['GEN-10->RVpriv', 'HPM-30->L1I', 'PPA-30->Sv32']) and must not be read as generalisation; 'held_out' suppression is the generalisation signal. A baseline FP counts as suppressed only if absent from every run of the variant. Baseline run-1 files are verbatim copies of the committed canonical artifacts (config-identical reuse). EXTRACTOR-VERSION CAVEAT: each cell records edge_types_scored; cells whose artifacts predate the typed REFERS_TO split (no REFERS_TO entry) collapsed standards into MENTIONS at proposal time and are NOT comparable to typed-extractor runs — re-run the grid for typed variant numbers.",
   "cells": {
     "anthropic/baseline": {
       "n_runs": 2,
       "files": [
         "edge_extraction_eval_anthropic_opus48_baseline_run1.json",
         "edge_extraction_eval_anthropic_opus48_baseline_run2.json"
+      ],
+      "edge_types_scored": [
+        "MENTIONS",
+        "DERIVES_FROM"
       ],
       "MENTIONS": {
         "precision": {
@@ -57,6 +61,10 @@
       "files": [
         "edge_extraction_eval_anthropic_opus48_critique_run1.json",
         "edge_extraction_eval_anthropic_opus48_critique_run2.json"
+      ],
+      "edge_types_scored": [
+        "MENTIONS",
+        "DERIVES_FROM"
       ],
       "MENTIONS": {
         "precision": {
@@ -140,6 +148,10 @@
         "edge_extraction_eval_anthropic_opus48_strict_run1.json",
         "edge_extraction_eval_anthropic_opus48_strict_run2.json"
       ],
+      "edge_types_scored": [
+        "MENTIONS",
+        "DERIVES_FROM"
+      ],
       "MENTIONS": {
         "precision": {
           "mean": 0.8390804597701149,
@@ -203,6 +215,10 @@
         "edge_extraction_eval_ollama_gemma4_baseline_run1.json",
         "edge_extraction_eval_ollama_gemma4_baseline_run2.json"
       ],
+      "edge_types_scored": [
+        "MENTIONS",
+        "DERIVES_FROM"
+      ],
       "MENTIONS": {
         "precision": {
           "mean": 0.73,
@@ -253,6 +269,10 @@
       "files": [
         "edge_extraction_eval_ollama_gemma4_critique_run1.json",
         "edge_extraction_eval_ollama_gemma4_critique_run2.json"
+      ],
+      "edge_types_scored": [
+        "MENTIONS",
+        "DERIVES_FROM"
       ],
       "MENTIONS": {
         "precision": {
@@ -338,6 +358,10 @@
       "files": [
         "edge_extraction_eval_ollama_gemma4_strict_run1.json",
         "edge_extraction_eval_ollama_gemma4_strict_run2.json"
+      ],
+      "edge_types_scored": [
+        "MENTIONS",
+        "DERIVES_FROM"
       ],
       "MENTIONS": {
         "precision": {
