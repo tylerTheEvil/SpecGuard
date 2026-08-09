@@ -88,6 +88,10 @@ def main() -> int:
                 "model": run["model"],
                 "config": run["config"],
                 "evidence_guard_rejections": run["evidence_guard_rejections"],
+                # Per-reason breakdown (Section V.D); required — a run
+                # without it predates the breakdown and must be re-run,
+                # not silently aggregated.
+                "guard_rejections": run["guard_rejections"],
                 "timestamp_utc": run["config"]["timestamp_utc"],
                 "file": str(path.relative_to(ROOT)),
                 "per_edge_type": {},
@@ -109,6 +113,14 @@ def main() -> int:
             runs_out.append(entry)
 
         summary[provider] = {"n_runs": len(runs)}
+        by_reason_total: dict[str, int] = {}
+        for run in runs:
+            for reason, count in run["guard_rejections"]["by_reason"].items():
+                by_reason_total[reason] = by_reason_total.get(reason, 0) + count
+        summary[provider]["guard_rejections"] = {
+            "total_per_run": [run["guard_rejections"]["total"] for run in runs],
+            "by_reason_total": by_reason_total,
+        }
         for et in SCORED_TYPES:
             per = [r["per_edge_type"][et] for r in runs]
             summary[provider][et] = {

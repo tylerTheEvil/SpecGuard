@@ -7,20 +7,74 @@
     "temperature": 0,
     "seed": 42,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-09T17:04:28+00:00",
+    "timestamp_utc": "2026-08-09T18:53:55+00:00",
     "num_ctx": 8192,
     "prompt_variant": "baseline"
   },
   "requirements_evaluated": 64,
+  "guard_rejections": {
+    "total": 4,
+    "by_reason": {
+      "non-object edge": 0,
+      "unknown edge_type": 0,
+      "missing target_entity": 0,
+      "empty evidence_span": 0,
+      "fabricated evidence_span": 0,
+      "target not in inventory": 0,
+      "evidence does not name target": 4
+    }
+  },
   "evidence_guard_rejections": 4,
+  "rejected_proposals": [
+    {
+      "requirement_id": "HPM-30",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "L1I",
+        "confidence": 1.0,
+        "evidence_span": "L1 I-Cache misses"
+      }
+    },
+    {
+      "requirement_id": "IRQ-10",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 1.0,
+        "evidence_span": "as per the RISC-V privilege specification"
+      }
+    },
+    {
+      "requirement_id": "PPA-50",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.9,
+        "evidence_span": "single-precision floating performance"
+      }
+    },
+    {
+      "requirement_id": "PPA-60",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.9,
+        "evidence_span": "double-precision floating performance"
+      }
+    }
+  ],
   "per_edge_type": {
     "MENTIONS": {
-      "proposed": 86,
+      "proposed": 85,
       "ground_truth": 75,
       "true_positives": 75,
-      "false_positives": 11,
+      "false_positives": 10,
       "false_negatives": 0,
-      "precision": 0.872093023255814,
+      "precision": 0.8823529411764706,
       "recall": 1.0,
       "edges": [
         {
@@ -123,7 +177,7 @@
           "source_id": "HPM-50",
           "target": "CVA6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CVA6",
+          "evidence_span": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
           "confidence": 1.0,
           "verdict": "TP"
         },
@@ -473,14 +527,6 @@
         },
         {
           "source_id": "L1W-70",
-          "target": "FENCE.T",
-          "edge_type": "MENTIONS",
-          "evidence_span": "with the FENCE.T command.",
-          "confidence": 1.0,
-          "verdict": "FP"
-        },
-        {
-          "source_id": "L1W-70",
           "target": "L1WTD",
           "edge_type": "MENTIONS",
           "evidence_span": "invalidate L1WTD content",
@@ -499,7 +545,7 @@
           "source_id": "L1W-90",
           "target": "L1WTD",
           "edge_type": "MENTIONS",
-          "evidence_span": "L1WTD should offer a feature to transform cache ways into a scratchpad.",
+          "evidence_span": "L1WTD should offer a feature",
           "confidence": 1.0,
           "verdict": "TP"
         },
@@ -714,13 +760,13 @@
       ]
     },
     "REFERS_TO": {
-      "proposed": 16,
+      "proposed": 15,
       "ground_truth": 21,
-      "true_positives": 16,
+      "true_positives": 15,
       "false_positives": 0,
-      "false_negatives": 5,
+      "false_negatives": 6,
       "precision": 1.0,
-      "recall": 0.7619047619047619,
+      "recall": 0.7142857142857143,
       "edges": [
         {
           "source_id": "DBG-10",
@@ -819,14 +865,6 @@
           "verdict": "TP"
         },
         {
-          "source_id": "PVL-20",
-          "target": "Sv39",
-          "edge_type": "REFERS_TO",
-          "evidence_span": "the Sv39 virtual memory",
-          "confidence": 1.0,
-          "verdict": "TP"
-        },
-        {
           "source_id": "PVL-30",
           "target": "Sv32",
           "edge_type": "REFERS_TO",
@@ -885,6 +923,14 @@
         {
           "source_id": "L1W-50",
           "target": "OpenPiton",
+          "edge_type": "REFERS_TO",
+          "evidence_span": null,
+          "confidence": null,
+          "verdict": "FN"
+        },
+        {
+          "source_id": "PVL-20",
+          "target": "Sv39",
           "edge_type": "REFERS_TO",
           "evidence_span": null,
           "confidence": null,

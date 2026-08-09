@@ -64,6 +64,58 @@ from specguard.llm.provider import complete_structured
 
 RESULTS_PATH = Path(__file__).resolve().parent.parent / "results" / "edge_extraction_eval.json"
 
+# Canonical guard-rejection reasons, mirroring the strings emitted by
+# ``extractor._validate_proposals`` (the single place proposals are rejected).
+# Used to zero-fill the per-reason breakdown so "this guard fired zero times"
+# is a measured statement, not an absence of data. A regression test pushes a
+# bad proposal through each rejection path and asserts the emitted reason is
+# in this tuple, so a renamed/added reason fails loudly instead of silently
+# landing outside the breakdown.
+GUARD_REJECTION_REASONS = (
+    "non-object edge",
+    "unknown edge_type",
+    "missing target_entity",
+    "empty evidence_span",
+    "fabricated evidence_span",
+    "target not in inventory",
+    "evidence does not name target",
+)
+
+
+def _rejection_summary(results) -> tuple[dict, list[dict]]:
+    """Aggregate per-reason rejection counts + a stable, auditable log.
+
+    Returns ``(guard_rejections, rejected_log)`` where ``guard_rejections``
+    is ``{"total": N, "by_reason": {reason: count, ...}}`` (every canonical
+    reason present, zero-filled) and ``rejected_log`` serializes each
+    rejected proposal with its reason — sorted for stable artifact diffs,
+    mirroring the pair-level ``_edge_log`` philosophy. Reasons outside the
+    canonical tuple are still counted (never dropped) so the total always
+    equals the sum of ``by_reason``.
+    """
+    by_reason: dict[str, int] = dict.fromkeys(GUARD_REJECTION_REASONS, 0)
+    log: list[dict] = []
+    for res in results:
+        for entry in res.rejected:
+            reason = entry.get("reason", "unknown")
+            by_reason[reason] = by_reason.get(reason, 0) + 1
+            raw = entry.get("raw")
+            log.append(
+                {
+                    "requirement_id": res.requirement_id,
+                    "reason": reason,
+                    "proposal": raw if isinstance(raw, dict) else {"raw": repr(raw)},
+                }
+            )
+    log.sort(
+        key=lambda e: (
+            e["reason"],
+            e["requirement_id"],
+            str(e["proposal"].get("target_entity", "")),
+        )
+    )
+    return {"total": sum(by_reason.values()), "by_reason": by_reason}, log
+
 # ---------------------------------------------------------------------------
 # Prompt variants (precision/recall trade-off experiment). The evidence guard,
 # scoring logic and ground truth are IDENTICAL across variants — only the
@@ -353,9 +405,8 @@ def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
     proposals_by_type: dict[str, dict[tuple[str, str], object]] = {
         e.value: {} for e in EdgeType
     }
-    total_rejected = 0
+    guard_rejections, rejected_log = _rejection_summary(results)
     for res in results:
-        total_rejected += len(res.rejected)
         for p in res.proposals:
             proposals_by_type[p.edge_type.value].setdefault(
                 (p.source_id, p.target_entity), p
@@ -402,7 +453,12 @@ def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
         "model": getattr(provider, "model", None),
         "config": config,
         "requirements_evaluated": len(reqs),
-        "evidence_guard_rejections": total_rejected,
+        # Structured per-reason breakdown (Section V.D). The old scalar is
+        # kept as a back-compat alias for downstream readers of prior
+        # artifacts; both always agree.
+        "guard_rejections": guard_rejections,
+        "evidence_guard_rejections": guard_rejections["total"],
+        "rejected_proposals": rejected_log,
         "per_edge_type": per_type,
     }
     if critique_log is not None:
@@ -495,7 +551,10 @@ def main(argv: list[str] | None = None) -> int:
             f"{c['added_by_critique']} added)"
         )
     print(f"Requirements evaluated : {report['requirements_evaluated']}")
-    print(f"Evidence-guard rejects : {report['evidence_guard_rejections']}")
+    print(f"Guard rejections       : {report['guard_rejections']['total']}")
+    for reason, count in report["guard_rejections"]["by_reason"].items():
+        if count:
+            print(f"  {reason}: {count}")
     for et in ("MENTIONS", "REFERS_TO", "DERIVES_FROM"):
         m = report["per_edge_type"][et]
         prec = "n/a" if m["precision"] is None else f"{m['precision']:.3f}"

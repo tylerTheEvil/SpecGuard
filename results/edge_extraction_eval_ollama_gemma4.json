@@ -7,12 +7,66 @@
     "temperature": 0,
     "seed": 42,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-09T16:06:42+00:00",
+    "timestamp_utc": "2026-08-09T17:55:38+00:00",
     "num_ctx": 8192,
     "prompt_variant": "baseline"
   },
   "requirements_evaluated": 64,
+  "guard_rejections": {
+    "total": 4,
+    "by_reason": {
+      "non-object edge": 0,
+      "unknown edge_type": 0,
+      "missing target_entity": 0,
+      "empty evidence_span": 0,
+      "fabricated evidence_span": 0,
+      "target not in inventory": 0,
+      "evidence does not name target": 4
+    }
+  },
   "evidence_guard_rejections": 4,
+  "rejected_proposals": [
+    {
+      "requirement_id": "HPM-30",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "L1I",
+        "confidence": 1.0,
+        "evidence_span": "L1 I-Cache misses"
+      }
+    },
+    {
+      "requirement_id": "IRQ-10",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 1.0,
+        "evidence_span": "as per the RISC-V privilege specification"
+      }
+    },
+    {
+      "requirement_id": "PPA-50",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.9,
+        "evidence_span": "single-precision floating performance"
+      }
+    },
+    {
+      "requirement_id": "PPA-60",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.9,
+        "evidence_span": "double-precision floating performance"
+      }
+    }
+  ],
   "per_edge_type": {
     "MENTIONS": {
       "proposed": 85,

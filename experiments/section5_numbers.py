@@ -101,6 +101,8 @@ def main() -> int:
             "model": model,
             "sampling": runs[0]["config"].get("temperature"),
             "seed": runs[0]["config"].get("seed"),
+            # Section V.D: which guard fired, measured — not assumed.
+            "guard_rejections": variance["summary"][provider]["guard_rejections"],
             **_rows_from_runs(runs, "results/edge_extraction_variance.json"),
         }
     providers["mock"] = {
@@ -123,8 +125,11 @@ def main() -> int:
             "(results/prompt_variants/, git 8d6828e) measured the pre-fix "
             "extractor with standards collapsed into MENTIONS; its numbers "
             "are not comparable to the typed rows above and must not be "
-            "placed in the same table. Re-run the grid under the typed "
-            "extractor if Section V keeps variant rows."
+            "placed in the same table. The typed grid re-run (Task 2, "
+            "~$4 Anthropic + Ollama hours) was NOT executed — live budget "
+            "not approved at generation time. Re-run the grid under the "
+            "typed extractor into results/prompt_variants_typed/ if "
+            "Section V keeps variant rows."
         ),
         "providers": providers,
     }

@@ -7,11 +7,205 @@
     "temperature": "api_default",
     "seed": null,
     "max_tokens": 4096,
-    "timestamp_utc": "2026-08-09T15:52:10+00:00",
+    "timestamp_utc": "2026-08-09T17:44:10+00:00",
     "prompt_variant": "baseline"
   },
   "requirements_evaluated": 64,
+  "guard_rejections": {
+    "total": 18,
+    "by_reason": {
+      "non-object edge": 0,
+      "unknown edge_type": 0,
+      "missing target_entity": 0,
+      "empty evidence_span": 0,
+      "fabricated evidence_span": 0,
+      "target not in inventory": 0,
+      "evidence does not name target": 18
+    }
+  },
   "evidence_guard_rejections": 18,
+  "rejected_proposals": [
+    {
+      "requirement_id": "FET-20",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 0.6,
+        "evidence_span": "available in all privilege modes (machine, supervisor, user and hypervisor if present)"
+      }
+    },
+    {
+      "requirement_id": "HPM-30",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "L1I",
+        "confidence": 0.75,
+        "evidence_span": "L1 I-Cache misses"
+      }
+    },
+    {
+      "requirement_id": "HPM-50",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 0.6,
+        "evidence_span": "supervisor access of performance counters through enabling of mcounteren CSR"
+      }
+    },
+    {
+      "requirement_id": "HPM-70",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CSR",
+        "confidence": 0.7,
+        "evidence_span": "CVA6 shall implement the mcountinhibit counter-inhibit register."
+      }
+    },
+    {
+      "requirement_id": "HPM-70",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 0.6,
+        "evidence_span": "CVA6 shall implement the mcountinhibit counter-inhibit register."
+      }
+    },
+    {
+      "requirement_id": "HPM-80",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CSR",
+        "confidence": 0.5,
+        "evidence_span": "access to counters"
+      }
+    },
+    {
+      "requirement_id": "IRQ-10",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 0.95,
+        "evidence_span": "as per the RISC-V privilege specification"
+      }
+    },
+    {
+      "requirement_id": "ISA-30",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVunpriv",
+        "confidence": 0.55,
+        "evidence_span": "CVA6 shall support the M extension (integer multiply and divide), version 2.0."
+      }
+    },
+    {
+      "requirement_id": "ISA-40",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVunpriv",
+        "confidence": 0.6,
+        "evidence_span": "CVA6 shall support the A extension (atomic instructions), version 2.1."
+      }
+    },
+    {
+      "requirement_id": "ISA-50",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.7,
+        "evidence_span": "the F extension (single-precision floating-point)"
+      }
+    },
+    {
+      "requirement_id": "ISA-60",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.85,
+        "evidence_span": "the F and D extensions (single- and double-precision floating-point)"
+      }
+    },
+    {
+      "requirement_id": "ISA-70",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.85,
+        "evidence_span": "the F extension (single-precision without double-precision floating-point), version 2.2"
+      }
+    },
+    {
+      "requirement_id": "ISA-80",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVunpriv",
+        "confidence": 0.6,
+        "evidence_span": "the C extension (compressed instructions), version 2.0"
+      }
+    },
+    {
+      "requirement_id": "ISA-90",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVunpriv",
+        "confidence": 0.6,
+        "evidence_span": "the Zicsr extension (CSR instructions), version 2.0"
+      }
+    },
+    {
+      "requirement_id": "PPA-50",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.6,
+        "evidence_span": "Placeholder for single-precision floating performance per MHz."
+      }
+    },
+    {
+      "requirement_id": "PPA-60",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.7,
+        "evidence_span": "double-precision floating performance per MHz"
+      }
+    },
+    {
+      "requirement_id": "PVL-10",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVdbg",
+        "confidence": 0.75,
+        "evidence_span": "machine, supervisor, user and debug privilege modes"
+      }
+    },
+    {
+      "requirement_id": "PVL-10",
+      "reason": "evidence does not name target",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 0.85,
+        "evidence_span": "CVA6 shall support machine, supervisor, user and debug privilege modes."
+      }
+    }
+  ],
   "per_edge_type": {
     "MENTIONS": {
       "proposed": 76,
@@ -43,7 +237,7 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 shall be fully compliant with RISC-V specifications",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -83,7 +277,7 @@
           "target": "TLB",
           "edge_type": "MENTIONS",
           "evidence_span": "ITLB misses",
-          "confidence": 0.8,
+          "confidence": 0.7,
           "verdict": "TP"
         },
         {
@@ -91,7 +285,7 @@
           "target": "CSR",
           "edge_type": "MENTIONS",
           "evidence_span": "mhpmevent3 to mhpmevent8 CSRs",
-          "confidence": 0.95,
+          "confidence": 0.97,
           "verdict": "FP"
         },
         {
@@ -114,7 +308,7 @@
           "source_id": "HPM-60",
           "target": "CSR",
           "edge_type": "MENTIONS",
-          "evidence_span": "through enabling of scounteren CSR",
+          "evidence_span": "enabling of scounteren CSR",
           "confidence": 0.95,
           "verdict": "TP"
         },
@@ -170,8 +364,8 @@
           "source_id": "ISA-10",
           "target": "CV64A6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CV64A6 shall support RV64I base instruction set",
-          "confidence": 0.98,
+          "evidence_span": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+          "confidence": 0.99,
           "verdict": "TP"
         },
         {
@@ -179,14 +373,14 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 shall support the Zifencei extension, version 2.0.",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
           "source_id": "ISA-120",
           "target": "CVA6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CVA6 should support as an option the B extension",
+          "evidence_span": "CVA6 should support as an option the B extension (bit manipulation), version 1.0.",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -195,7 +389,7 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 should support as an option the Zicond extension",
-          "confidence": 0.98,
+          "confidence": 0.99,
           "verdict": "TP"
         },
         {
@@ -227,7 +421,7 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 shall support the M extension (integer multiply and divide), version 2.0.",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -235,7 +429,7 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 shall support the A extension (atomic instructions), version 2.1.",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -267,14 +461,14 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 shall support as an option the C extension (compressed instructions), version 2.0.",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
           "source_id": "ISA-90",
           "target": "CSR",
           "edge_type": "MENTIONS",
-          "evidence_span": "Zicsr extension (CSR instructions)",
+          "evidence_span": "the Zicsr extension (CSR instructions)",
           "confidence": 0.9,
           "verdict": "TP"
         },
@@ -291,7 +485,7 @@
           "target": "L1I",
           "edge_type": "MENTIONS",
           "evidence_span": "L1I should offer the following size/ways configurations",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -314,7 +508,7 @@
           "source_id": "L1I-40",
           "target": "L1I",
           "edge_type": "MENTIONS",
-          "evidence_span": "It shall be possible to invalidate L1I content",
+          "evidence_span": "It shall be possible to invalidate L1I content with the FENCE.T command.",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -354,7 +548,7 @@
           "source_id": "L1W-10",
           "target": "CVA6",
           "edge_type": "MENTIONS",
-          "evidence_span": "write accesses (stores) by the CVA6 core",
+          "evidence_span": "by the CVA6 core to the external memory",
           "confidence": 0.95,
           "verdict": "TP"
         },
@@ -362,7 +556,7 @@
           "source_id": "L1W-10",
           "target": "L1WTD",
           "edge_type": "MENTIONS",
-          "evidence_span": "L1WTD shall reflect all write accesses (stores) by the CVA6 core to the external memory",
+          "evidence_span": "L1WTD shall reflect all write accesses (stores)",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -386,7 +580,7 @@
           "source_id": "L1W-20",
           "target": "CVA6",
           "edge_type": "MENTIONS",
-          "evidence_span": "the order of write accesses (stores) received from the CVA6 core",
+          "evidence_span": "received from the CVA6 core",
           "confidence": 0.95,
           "verdict": "TP"
         },
@@ -426,7 +620,7 @@
           "source_id": "L1W-60",
           "target": "L1WTD",
           "edge_type": "MENTIONS",
-          "evidence_span": "not L1WTD cacheable at design time",
+          "evidence_span": "Some physical memory regions shall be configurable as not L1WTD cacheable at design time.",
           "confidence": 0.97,
           "verdict": "TP"
         },
@@ -459,14 +653,14 @@
           "target": "CVA6",
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6 memory interface shall comply with AXI5 specification",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
           "source_id": "MEM-20",
           "target": "CVA6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CVA6 AXI memory interface shall feature user bit extensions",
+          "evidence_span": "CVA6 AXI memory interface",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -475,7 +669,7 @@
           "target": "L1I",
           "edge_type": "MENTIONS",
           "evidence_span": "in connection with the L1I and L1WTD datasize extensions",
-          "confidence": 0.95,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
@@ -483,7 +677,7 @@
           "target": "L1WTD",
           "edge_type": "MENTIONS",
           "evidence_span": "in connection with the L1I and L1WTD datasize extensions",
-          "confidence": 0.95,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
@@ -506,7 +700,7 @@
           "source_id": "PPA-30",
           "target": "CV32A6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CV32A6 should run at more than 150 MHz in the cv32a6_imac_sv32 configuration",
+          "evidence_span": "CV32A6 should run at more than 150 MHz",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -530,8 +724,8 @@
           "source_id": "PVL-20",
           "target": "CV64A6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CV64A6 shall support as an option the Sv39 virtual memory, version 1.11.",
-          "confidence": 0.99,
+          "evidence_span": "CV64A6 shall support as an option the Sv39 virtual memory",
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -610,7 +804,7 @@
           "source_id": "TRI-10",
           "target": "CVA6",
           "edge_type": "MENTIONS",
-          "evidence_span": "CVA6 shall have the Transaction-Response Interface",
+          "evidence_span": "CVA6 shall have the Transaction-Response Interface (TRI)",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -618,8 +812,8 @@
           "source_id": "TRI-10",
           "target": "TRI",
           "edge_type": "MENTIONS",
-          "evidence_span": "Transaction-Response Interface (TRI)",
-          "confidence": 0.97,
+          "evidence_span": "Transaction-Response Interface (TRI) needed to interface with the P-Mesh coherence system of OpenPiton",
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -653,15 +847,15 @@
           "source_id": "FET-10",
           "target": "FENCE.T",
           "edge_type": "REFERS_TO",
-          "evidence_span": "CVA6 should support the FENCE.T instruction that ensures that the execution time of subsequent instructions is unrelated with predecessor instructions.",
-          "confidence": 0.95,
+          "evidence_span": "CVA6 should support the FENCE.T instruction",
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
           "source_id": "FET-20",
           "target": "FENCE.T",
           "edge_type": "REFERS_TO",
-          "evidence_span": "FENCE.T should be available in all privilege modes",
+          "evidence_span": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present).",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -670,7 +864,7 @@
           "target": "RVcompat",
           "edge_type": "REFERS_TO",
           "evidence_span": "by passing [RVcompat] compatibility tests",
-          "confidence": 0.97,
+          "confidence": 0.96,
           "verdict": "TP"
         },
         {
@@ -678,7 +872,7 @@
           "target": "RVdbg",
           "edge_type": "REFERS_TO",
           "evidence_span": "RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg]",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
@@ -686,7 +880,7 @@
           "target": "RVpriv",
           "edge_type": "REFERS_TO",
           "evidence_span": "RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg]",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
@@ -694,7 +888,7 @@
           "target": "RVunpriv",
           "edge_type": "REFERS_TO",
           "evidence_span": "RISC-V specifications [RVunpriv], [RVpriv] and [RVdbg]",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
@@ -702,7 +896,7 @@
           "target": "RVpriv",
           "edge_type": "REFERS_TO",
           "evidence_span": "as per [RVpriv]",
-          "confidence": 0.98,
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
@@ -733,8 +927,8 @@
           "source_id": "L1I-40",
           "target": "FENCE.T",
           "edge_type": "REFERS_TO",
-          "evidence_span": "with the FENCE.T command",
-          "confidence": 0.97,
+          "evidence_span": "It shall be possible to invalidate L1I content with the FENCE.T command.",
+          "confidence": 0.95,
           "verdict": "TP"
         },
         {
@@ -749,7 +943,7 @@
           "source_id": "L1W-70",
           "target": "FENCE.T",
           "edge_type": "REFERS_TO",
-          "evidence_span": "It shall be possible to invalidate L1WTD content with the FENCE.T command.",
+          "evidence_span": "invalidate L1WTD content with the FENCE.T command",
           "confidence": 0.95,
           "verdict": "TP"
         },
@@ -758,23 +952,23 @@
           "target": "AXI",
           "edge_type": "REFERS_TO",
           "evidence_span": "as defined in [AXI] section E1.1",
-          "confidence": 0.95,
+          "confidence": 0.9,
           "verdict": "TP"
         },
         {
           "source_id": "MEM-10",
           "target": "AXI5",
           "edge_type": "REFERS_TO",
-          "evidence_span": "shall comply with AXI5 specification",
-          "confidence": 0.97,
+          "evidence_span": "shall comply with AXI5 specification including the Atomic_Transactions property support",
+          "confidence": 0.95,
           "verdict": "TP"
         },
         {
           "source_id": "MEM-20",
           "target": "AXI",
           "edge_type": "REFERS_TO",
-          "evidence_span": "user bit extensions on the data bus (WUSER and RUSER as per [AXI])",
-          "confidence": 0.97,
+          "evidence_span": "WUSER and RUSER as per [AXI]",
+          "confidence": 0.98,
           "verdict": "TP"
         },
         {
@@ -789,23 +983,23 @@
           "source_id": "PPA-40",
           "target": "Sv39",
           "edge_type": "REFERS_TO",
-          "evidence_span": "cv64a6_imacfd_sv39 configuration",
-          "confidence": 0.7,
+          "evidence_span": "in the cv64a6_imacfd_sv39 configuration",
+          "confidence": 0.6,
           "verdict": "FP"
         },
         {
           "source_id": "PVL-20",
           "target": "Sv39",
           "edge_type": "REFERS_TO",
-          "evidence_span": "support as an option the Sv39 virtual memory, version 1.11.",
-          "confidence": 0.98,
+          "evidence_span": "the Sv39 virtual memory, version 1.11",
+          "confidence": 0.97,
           "verdict": "TP"
         },
         {
           "source_id": "PVL-30",
           "target": "Sv32",
           "edge_type": "REFERS_TO",
-          "evidence_span": "shall support as an option the Sv32 virtual memory version 1.11.",
+          "evidence_span": "the Sv32 virtual memory version 1.11",
           "confidence": 0.98,
           "verdict": "TP"
         },
@@ -813,7 +1007,7 @@
           "source_id": "TRI-10",
           "target": "OpenPiton",
           "edge_type": "REFERS_TO",
-          "evidence_span": "P-Mesh coherence system of OpenPiton, according to [OpenPiton]",
+          "evidence_span": "according to [OpenPiton]",
           "confidence": 0.97,
           "verdict": "TP"
         },
@@ -821,7 +1015,7 @@
           "source_id": "XIF-10",
           "target": "CV-X-IF",
           "edge_type": "REFERS_TO",
-          "evidence_span": "Issue, Commit and Result interfaces of the [CV-X-IF] specification",
+          "evidence_span": "supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification",
           "confidence": 0.98,
           "verdict": "TP"
         }
@@ -829,12 +1023,12 @@
       "note": "standards reference (KNOWN_STANDARDS dictionary matcher, 21 edges); dictionary-matched surrogate — same circularity caveat as MENTIONS"
     },
     "DERIVES_FROM": {
-      "proposed": 3,
+      "proposed": 2,
       "ground_truth": 3,
       "true_positives": 1,
-      "false_positives": 2,
+      "false_positives": 1,
       "false_negatives": 2,
-      "precision": 0.3333333333333333,
+      "precision": 0.5,
       "recall": 0.3333333333333333,
       "edges": [
         {
@@ -852,14 +1046,6 @@
           "evidence_span": "The source of events counted by the six generic performance counters",
           "confidence": 0.5,
           "verdict": "TP"
-        },
-        {
-          "source_id": "HPM-50",
-          "target": "HPM-10",
-          "edge_type": "DERIVES_FROM",
-          "evidence_span": "CVA6 shall allow the supervisor access of performance counters",
-          "confidence": 0.5,
-          "verdict": "FP"
         },
         {
           "source_id": "FET-20",

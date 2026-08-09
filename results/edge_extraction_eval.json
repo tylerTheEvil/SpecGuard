@@ -7,11 +7,24 @@
     "temperature": null,
     "seed": null,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-09T15:40:45+00:00",
+    "timestamp_utc": "2026-08-09T17:33:09+00:00",
     "prompt_variant": "baseline"
   },
   "requirements_evaluated": 64,
+  "guard_rejections": {
+    "total": 0,
+    "by_reason": {
+      "non-object edge": 0,
+      "unknown edge_type": 0,
+      "missing target_entity": 0,
+      "empty evidence_span": 0,
+      "fabricated evidence_span": 0,
+      "target not in inventory": 0,
+      "evidence does not name target": 0
+    }
+  },
   "evidence_guard_rejections": 0,
+  "rejected_proposals": [],
   "per_edge_type": {
     "MENTIONS": {
       "proposed": 76,

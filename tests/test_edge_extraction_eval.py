@@ -62,3 +62,59 @@ def test_mock_refers_to_targets_are_known_standards():
     }
     assert proposed_targets  # non-empty
     assert proposed_targets <= set(KNOWN_STANDARDS)
+
+
+# ---------------------------------------------------------------------------
+# Guard-rejection breakdown (Section V.D)
+# ---------------------------------------------------------------------------
+
+
+def test_guard_rejection_breakdown_consistent():
+    """total == sum(by_reason); alias and audit log agree with it."""
+    report = _mock_report()
+    gr = report["guard_rejections"]
+    assert set(gr) == {"total", "by_reason"}
+    assert gr["total"] == sum(gr["by_reason"].values())
+    # Every canonical reason is present (zero-filled), so "this guard fired
+    # zero times" is a measured value, not a missing key.
+    assert set(ev.GUARD_REJECTION_REASONS) <= set(gr["by_reason"])
+    # Back-compat alias and the serialized audit log agree with the total.
+    assert report["evidence_guard_rejections"] == gr["total"]
+    assert len(report["rejected_proposals"]) == gr["total"]
+
+
+def test_rejection_reasons_match_extractor():
+    """Each extractor rejection path emits a reason in the canonical tuple.
+
+    Exercises every guard in ``_validate_proposals`` with a minimal bad
+    proposal; a renamed or newly added reason string fails here instead of
+    silently landing outside the Section V.D breakdown.
+    """
+    from specguard.extraction.extractor import _validate_proposals
+
+    text = "CVA6 shall support the FPU."
+    inventory = {"components": ["CVA6", "FPU"], "standards": [], "requirements": []}
+    ok = {"confidence": 0.9}
+    bad_edges = [
+        "not-a-dict",                                                  # non-object edge
+        {"edge_type": "BOGUS", "target_entity": "FPU",
+         "evidence_span": "the FPU", **ok},                            # unknown edge_type
+        {"edge_type": "MENTIONS", "target_entity": "",
+         "evidence_span": "the FPU", **ok},                            # missing target_entity
+        {"edge_type": "MENTIONS", "target_entity": "FPU",
+         "evidence_span": "   ", **ok},                                # empty evidence_span
+        {"edge_type": "MENTIONS", "target_entity": "FPU",
+         "evidence_span": "the MMU translates", **ok},                 # fabricated evidence_span
+        {"edge_type": "MENTIONS", "target_entity": "NOT_IN_INVENTORY",
+         "evidence_span": "the FPU", **ok},                            # target not in inventory
+        # evidence does not name target:
+        {"edge_type": "MENTIONS", "target_entity": "CVA6",
+         "evidence_span": "the FPU", **ok},
+    ]
+    result = _validate_proposals("REQ-1", text, bad_edges, inventory)
+
+    assert not result.proposals
+    reasons = {entry["reason"] for entry in result.rejected}
+    # Every emitted reason is canonical, and every canonical reason was
+    # exercised — the tuple and the extractor cannot drift apart silently.
+    assert reasons == set(ev.GUARD_REJECTION_REASONS)
