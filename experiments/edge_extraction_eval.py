@@ -71,6 +71,9 @@ RESULTS_PATH = Path(__file__).resolve().parent.parent / "results" / "edge_extrac
 # bad proposal through each rejection path and asserts the emitted reason is
 # in this tuple, so a renamed/added reason fails loudly instead of silently
 # landing outside the breakdown.
+# Reject-class reasons only: the evidence-binding check no longer rejects —
+# it is a flag-and-route signal (evidence_names_target=False), reported
+# separately below so semantic filtering never hides inside rejection counts.
 GUARD_REJECTION_REASONS = (
     "non-object edge",
     "unknown edge_type",
@@ -78,8 +81,44 @@ GUARD_REJECTION_REASONS = (
     "empty evidence_span",
     "fabricated evidence_span",
     "target not in inventory",
-    "evidence does not name target",
+    "target type does not match edge type",
 )
+
+
+def _flagged_summary(results) -> dict:
+    """Per-edge-type counts + serialized list of unbound-evidence proposals.
+
+    Proposals carrying ``evidence_names_target=False`` survived the guards and
+    will be scored; this summary exists so the flagged set is visible for
+    human adjudication. NOT ADJUDICATED: it may contain semantic aliases
+    (lexicon coverage gaps) and genuinely irrelevant spans in unknown
+    proportion — no claim either way until a human reviews it.
+    """
+    by_type: dict[str, int] = {}
+    flagged: list[dict] = []
+    for res in results:
+        for p in res.proposals:
+            if p.evidence_names_target is False:
+                by_type[p.edge_type.value] = by_type.get(p.edge_type.value, 0) + 1
+                flagged.append(
+                    {
+                        "edge_type": p.edge_type.value,
+                        "source_id": p.source_id,
+                        "target": p.target_entity,
+                        "evidence_span": p.evidence_span,
+                    }
+                )
+    flagged.sort(key=lambda e: (e["edge_type"], e["source_id"], e["target"]))
+    return {
+        "total": len(flagged),
+        "by_edge_type": by_type,
+        "proposals": flagged,
+        "note": (
+            "evidence_names_target=False — span does not literally name the "
+            "target. NOT adjudicated: may mix semantic aliases (lexicon gaps) "
+            "and irrelevant spans; routed to human review, not filtered."
+        ),
+    }
 
 
 def _rejection_summary(results) -> tuple[dict, list[dict]]:
@@ -370,6 +409,7 @@ def _edge_log(
                 "edge_type": edge_type,
                 "evidence_span": p.evidence_span,
                 "confidence": p.confidence,
+                "evidence_names_target": p.evidence_names_target,
                 "verdict": verdict,
             }
         )
@@ -382,6 +422,7 @@ def _edge_log(
                     "edge_type": edge_type,
                     "evidence_span": None,
                     "confidence": None,
+                    "evidence_names_target": None,
                     "verdict": "FN",
                 }
             )
@@ -459,6 +500,9 @@ def run(provider, *, provider_name: str, variant: str = "baseline") -> dict:
         "guard_rejections": guard_rejections,
         "evidence_guard_rejections": guard_rejections["total"],
         "rejected_proposals": rejected_log,
+        # Flag-and-route: unbound-evidence proposals that SURVIVED and are
+        # scored below; listed for adjudication (see the embedded note).
+        "unbound_evidence_flags": _flagged_summary(results),
         "per_edge_type": per_type,
     }
     if critique_log is not None:
@@ -555,6 +599,11 @@ def main(argv: list[str] | None = None) -> int:
     for reason, count in report["guard_rejections"]["by_reason"].items():
         if count:
             print(f"  {reason}: {count}")
+    flags = report["unbound_evidence_flags"]
+    print(
+        f"Unbound-evidence flags : {flags['total']} "
+        f"(surviving, routed to review) {flags['by_edge_type'] or ''}"
+    )
     for et in ("MENTIONS", "REFERS_TO", "DERIVES_FROM"):
         m = report["per_edge_type"][et]
         prec = "n/a" if m["precision"] is None else f"{m['precision']:.3f}"

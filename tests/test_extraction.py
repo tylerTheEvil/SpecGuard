@@ -175,8 +175,13 @@ def test_target_not_in_inventory_rejected():
     assert result.rejected[0]["reason"] == "target not in inventory"
 
 
-def test_mention_to_standard_in_inventory_accepted():
-    """A MENTIONS to an inventory standard whose id appears in evidence is kept."""
+def test_mention_to_standard_rejected_type_mismatch():
+    """MENTIONS is components-only: a standard target is a typed-schema violation.
+
+    RV64I exists in the inventory (standards bucket), so this is NOT a
+    membership failure — it is the type-bucket guard, with expected/actual
+    buckets recorded for audit. The correct edge for this target is REFERS_TO.
+    """
     provider = _provider(
         [
             {
@@ -188,20 +193,66 @@ def test_mention_to_standard_in_inventory_accepted():
         ]
     )
     result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
-    assert [p.target_entity for p in result.proposals] == ["RV64I"]
+    assert result.proposals == []
+    assert len(result.rejected) == 1
+    entry = result.rejected[0]
+    assert entry["reason"] == "target type does not match edge type"
+    assert entry["expected_buckets"] == ["components"]
+    assert entry["actual_bucket"] == "standards"
+
+
+def test_refers_to_component_rejected_type_mismatch():
+    """Symmetric: REFERS_TO is standards-only, so a component target is rejected."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "REFERS_TO",
+                "target_entity": "MMU",
+                "confidence": 0.9,
+                "evidence_span": "the FPU",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals == []
+    entry = result.rejected[0]
+    assert entry["reason"] == "target type does not match edge type"
+    assert entry["expected_buckets"] == ["standards"]
+    assert entry["actual_bucket"] == "components"
+
+
+def test_mitigates_requirement_target_accepted():
+    """MITIGATES admits requirement targets (no hazards bucket in CVA6)."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "MITIGATES",
+                "target_entity": "GEN-10",
+                "confidence": 0.6,
+                "evidence_span": "shall support",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert [p.target_entity for p in result.proposals] == ["GEN-10"]
     assert result.rejected == []
 
 
 # ---------------------------------------------------------------------------
-# Evidence-binding guard, MENTIONS-scoped (P0.2)
+# Evidence-binding: flag-and-route, never reject (second review round)
 # ---------------------------------------------------------------------------
 
 
-def test_mentions_evidence_must_name_target():
-    """``target="MMU"`` justified by ``"the FPU"`` is a mismatch and is rejected.
+def test_unbound_evidence_survives_with_flag_false():
+    """``target="MMU"`` justified by ``"the FPU"`` SURVIVES, flagged.
 
-    Both entities are in the inventory and the span occurs verbatim in the text,
-    so only the target/evidence-binding guard can catch this.
+    Both entities are in the inventory, the span occurs verbatim, and the
+    bucket matches — the only anomaly is semantic (span does not name the
+    target). That judgement belongs to the human reviewer, so the proposal
+    reaches the queue carrying ``evidence_names_target=False`` instead of
+    being silently deleted. Hard-rejecting here would also delete legitimate
+    semantic aliases (L1I <- "L1 I-Cache misses") and inflate agreement with
+    the dictionary reference.
     """
     provider = _provider(
         [
@@ -214,9 +265,25 @@ def test_mentions_evidence_must_name_target():
         ]
     )
     result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
-    assert result.proposals == []
-    assert len(result.rejected) == 1
-    assert result.rejected[0]["reason"] == "evidence does not name target"
+    assert result.rejected == []
+    assert len(result.proposals) == 1
+    assert result.proposals[0].evidence_names_target is False
+
+
+def test_literal_evidence_carries_flag_true():
+    """A span that literally names the target sets the flag True."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "MENTIONS",
+                "target_entity": "FPU",
+                "confidence": 0.9,
+                "evidence_span": "the FPU",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals[0].evidence_names_target is True
 
 
 def test_derives_from_target_need_not_appear_in_evidence():
@@ -283,8 +350,13 @@ def test_mentions_component_carries_component_label():
     assert result.proposals[0].target_label == "Component"
 
 
-def test_refers_to_binding_guard_applies():
-    """REFERS_TO is a named-entity edge, so evidence must name the standard."""
+def test_refers_to_alias_span_flagged_not_rejected():
+    """The alias case from the review: RVpriv <- "RISC-V privilege specification".
+
+    A REFERS_TO whose span does not literally contain the standard id survives
+    with ``evidence_names_target=False`` — routed to the reviewer, who alone
+    can tell a semantic alias from an irrelevant span.
+    """
     provider = _provider(
         [
             {
@@ -296,8 +368,50 @@ def test_refers_to_binding_guard_applies():
         ]
     )
     result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
-    assert result.proposals == []
-    assert result.rejected[0]["reason"] == "evidence does not name target"
+    assert result.rejected == []
+    assert result.proposals[0].evidence_names_target is False
+
+
+def test_flag_none_for_non_named_entity_edges():
+    """DERIVES_FROM carries flag None — the binding check does not apply."""
+    provider = _provider(
+        [
+            {
+                "edge_type": "DERIVES_FROM",
+                "target_entity": "GEN-10",
+                "confidence": 0.7,
+                "evidence_span": "shall support",
+            }
+        ]
+    )
+    result = extract_edges_for_requirement(provider, "R1", REQ_TEXT, INVENTORY)
+    assert result.proposals[0].evidence_names_target is None
+
+
+def test_flag_roundtrips_queue_and_export(tmp_path):
+    """evidence_names_target survives queue save/load and lands in export."""
+    from specguard.extraction.extractor import EdgeProposal
+
+    queue = ReviewQueue()
+    item = queue.add(
+        EdgeProposal(
+            edge_type=EdgeType.MENTIONS,
+            source_id="R1",
+            target_entity="L1I",
+            confidence=0.8,
+            evidence_span="L1 I-Cache misses",
+            target_label="Component",
+            evidence_names_target=False,
+        )
+    )
+    path = tmp_path / "queue.json"
+    queue.save(path)
+    reloaded = ReviewQueue.load(path)
+    assert reloaded.items[0].evidence_names_target is False
+
+    reloaded.accept(item.item_id)
+    edges = export_accepted_edges(reloaded)
+    assert edges[0]["properties"]["evidence_names_target"] is False
 
 
 def test_extract_edges_batch_order():

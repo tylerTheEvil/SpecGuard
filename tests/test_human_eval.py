@@ -128,14 +128,26 @@ def test_independence_check_passes_when_gold_differs():
     gold = _typed(mentions={("R1", "CVA6"), ("R1", "LFSR")})
     surrogate = _typed(mentions={("R1", "CVA6")})
     stats = hev.independence_check(gold, surrogate)
-    assert stats["MENTIONS"]["identical"] is False
-    assert stats["MENTIONS"]["jaccard"] == pytest.approx(1 / 2)
+    assert stats["per_type"]["MENTIONS"]["identical"] is False
+    assert stats["per_type"]["MENTIONS"]["jaccard"] == pytest.approx(1 / 2)
+    assert stats["identical_to_surrogate"] is False
 
 
-def test_independence_check_raises_when_gold_equals_surrogate():
+def test_independence_check_refuses_identical_by_default():
+    """Identity is refused as SUSPICIOUS — the message must not claim proof."""
     ref = _typed(mentions={("R1", "CVA6"), ("R2", "MMU")}, refers={("R1", "RV64I")})
-    with pytest.raises(ValueError, match="byte-identical"):
+    with pytest.raises(ValueError, match="SUSPICIOUS.*not proof"):
         hev.independence_check(ref, {k: set(v) for k, v in ref.items()})
+
+
+def test_independence_check_identical_with_override_warns_loudly():
+    """--allow-identical proceeds, with the caveat recorded in the report."""
+    ref = _typed(mentions={("R1", "CVA6"), ("R2", "MMU")}, refers={("R1", "RV64I")})
+    stats = hev.independence_check(
+        ref, {k: set(v) for k, v in ref.items()}, allow_identical=True
+    )
+    assert stats["identical_to_surrogate"] is True
+    assert "suspicious" in stats["note"]
 
 
 # ---------------------------------------------------------------------------
@@ -201,3 +213,42 @@ def test_score_end_to_end(tmp_path):
     assert m["false_positives"] == 1  # BOGUS
     assert "surrogate_gap" in report
     assert "independence" in report
+    assert report["out_of_inventory_observations"] == []
+
+
+def test_null_targets_become_observations_not_pairs(tmp_path):
+    """target: null entries are coverage observations, never (req, None) pairs.
+
+    Two distinct unknown entities on ONE requirement must both survive as
+    separate observations (a set of (req, None) pairs would collapse them),
+    and neither may leak into gold pairs, P/R/F1, or dictionary-miss sets.
+    """
+    reqs = get_all_requirements()
+    subset = hev.sample_subset(reqs, 20)
+    inv = hev.build_inventory()
+    tmpl = hev.build_template(subset, inv)
+    first = tmpl["items"][0]
+    first["edges"] = [
+        {"edge_type": "MENTIONS", "target": inv["components"][0],
+         "evidence_span": "x", "note": ""},
+        {"edge_type": "MENTIONS", "target": None,
+         "evidence_span": "scratchpad", "note": "scratchpad unit not in inventory"},
+        {"edge_type": "MENTIONS", "target": None,
+         "evidence_span": "EDC", "note": "EDC not in inventory"},
+    ]
+    tmpl["_meta"]["status"] = "ANNOTATED"
+    tmpl["_meta"]["annotator"] = "test-fixture"
+    gold_path = tmp_path / "gold.json"
+    gold_path.write_text(json.dumps(tmpl))
+
+    edges, observations = hev.gold_edges(json.loads(gold_path.read_text()))
+    assert (first["req_id"], None) not in edges["MENTIONS"]
+    assert len(observations) == 2  # distinct unknowns do not collapse
+    assert {o["evidence_span"] for o in observations} == {"scratchpad", "EDC"}
+
+    prop_path = tmp_path / "proposals.json"
+    prop_path.write_text(json.dumps([]))
+    report = hev.score(gold_path, prop_path)
+    assert len(report["out_of_inventory_observations"]) == 2
+    gap = report["surrogate_gap"]["MENTIONS"]
+    assert all(t is not None for _, t in gap["dictionary_misses"])

@@ -8,24 +8,38 @@ source text.
 
 Proposal guards (decision rationale)
 ------------------------------------
-Three deterministic guards run on every proposal before it can reach the review
+Deterministic guards run on every proposal before it can reach the review
 queue. All are cheap, stdlib-only, and exactly the kind of check that keeps the
-LLM layer *augmentative* rather than authoritative:
+LLM layer *augmentative* rather than authoritative. The dividing line (the
+paper's thesis, enforced in code): guards **reject only ontological
+violations** — malformed schema, fabricated evidence, unknown targets, and
+edge-type/target-type mismatches — while **semantic adequacy of evidence is
+flagged and routed to the human, never silently decided**:
 
-1. **Evidence-span validation** — the ``evidence_span`` must be a substring that
-   literally appears in the requirement text. This anchors every proposal to a
-   checkable textual quote instead of a free-floating model assertion.
-2. **Ontology-membership** — the ``target_entity`` must be a known id from the
-   supplied inventory. The system prompt already asks the model to only use
-   inventory ids, but instruction-following is not a guarantee, so this is
+1. **Evidence-span validation (reject)** — the ``evidence_span`` must be a
+   substring that literally appears in the requirement text. This anchors every
+   proposal to a checkable textual quote instead of a free-floating model
+   assertion.
+2. **Ontology-membership (reject)** — the ``target_entity`` must be a known id
+   from the supplied inventory. The system prompt already asks the model to only
+   use inventory ids, but instruction-following is not a guarantee, so this is
    enforced in code: sentinel or hallucinated targets (e.g.
    ``"NOT_IN_INVENTORY"``) are rejected regardless of what the model returns.
-3. **Evidence-binding (MENTIONS only)** — for a component/standard mention the
-   evidence span must actually name the target (the entity id is expected to
-   appear in the text), so a target/evidence mismatch such as ``target="MMU"``
-   justified by ``"the FPU"`` is rejected. ``DERIVES_FROM`` / ``MITIGATES``
-   targets are requirement/hazard ids that legitimately need not appear verbatim
-   in the child's evidence, so this guard is scoped to ``MENTIONS``.
+3. **Type-bucket compatibility (reject)** — the target must live in the
+   inventory bucket its edge type points at (``MENTIONS`` -> components,
+   ``REFERS_TO`` -> standards, ``DERIVES_FROM`` -> requirements, ``MITIGATES``
+   -> hazards or requirements). ``MENTIONS -> RV64I`` (a standard) is a typed-
+   schema violation, not a judgement call, so it is rejected with the
+   expected/actual bucket recorded for audit.
+4. **Evidence-binding (flag-and-route, MENTIONS/REFERS_TO)** — whether the span
+   literally names the target id is *computed* and carried on the proposal as
+   ``evidence_names_target``, but it no longer rejects. A span like
+   ``"L1 I-Cache misses"`` for target ``L1I`` may be a legitimate semantic
+   alias (a lexicon coverage gap) or an irrelevant span — that is a semantic
+   question only the human reviewer can decide, so the flag is a deterministic
+   routing signal, exactly like confidence. Hard-rejecting here would both
+   pre-empt the human gate and artificially inflate agreement with the
+   dictionary reference by deleting the very proposals that expose its gaps.
 
 These guards reduce the noise a human reviewer must wade through; they do not
 make the LLM authoritative. The human remains the sole authority — only
@@ -87,13 +101,26 @@ _INVENTORY_KIND_TO_LABEL: dict[str, str] = {
 
 # Fallback label by edge type, used ONLY when a proposal was constructed without
 # inventory context (e.g. hand-built in a test) so ``target_label`` is unset.
-# The authoritative source is the inventory bucket (see ``_target_labels``); this
-# is a best-effort default, not the primary typing path.
+# The authoritative source is the inventory bucket (see the target-kind map in
+# ``_validate_proposals``); this is a best-effort default, not the primary
+# typing path.
 _EDGE_TYPE_FALLBACK_LABEL: dict[EdgeType, str] = {
     EdgeType.MENTIONS: "Component",
     EdgeType.REFERS_TO: "Standard",
     EdgeType.DERIVES_FROM: "Requirement",
     EdgeType.MITIGATES: "Hazard",
+}
+
+# Which inventory bucket(s) each edge type may target. MENTIONS is
+# components-only and REFERS_TO standards-only by the typed schema (P0.1);
+# MITIGATES admits requirements alongside hazards because the system prompt
+# says "hazard or constraint named in the inventory" and the CVA6 inventory
+# has no hazards bucket — constraints are requirements.
+_EDGE_TYPE_ALLOWED_KINDS: dict[EdgeType, tuple[str, ...]] = {
+    EdgeType.MENTIONS: ("components",),
+    EdgeType.REFERS_TO: ("standards",),
+    EdgeType.DERIVES_FROM: ("requirements",),
+    EdgeType.MITIGATES: ("hazards", "requirements"),
 }
 
 
@@ -114,6 +141,12 @@ class EdgeProposal:
             ``"Requirement"``, ``"Hazard"`` ...). Carries the *true* target type
             downstream so the export need not infer it from ``edge_type``.
             ``None`` for proposals built without inventory context.
+        evidence_names_target: whether the evidence span literally contains the
+            target id (case-insensitive). Computed for MENTIONS/REFERS_TO;
+            ``None`` for DERIVES_FROM/MITIGATES, whose requirement/hazard-id
+            targets legitimately need not appear in the span. ``False`` is a
+            ROUTING SIGNAL for the human reviewer (possible semantic alias or
+            irrelevant span), never a rejection — see the module docstring.
     """
 
     edge_type: EdgeType
@@ -122,6 +155,7 @@ class EdgeProposal:
     confidence: float
     evidence_span: str
     target_label: str | None = None
+    evidence_names_target: bool | None = None
 
 
 @dataclass
@@ -251,23 +285,6 @@ def _label_for_kind(kind: str) -> str:
     return singular.capitalize() or "Entity"
 
 
-def _target_labels(inventory: dict[str, list[str]]) -> dict[str, str]:
-    """Map every allowed target id to the node label of its inventory bucket.
-
-    First bucket wins if an id somehow appears under two kinds (not expected).
-    The keyset is exactly the set of allowed targets, so callers can use it for
-    the membership check and the label lookup at once.
-    """
-    labels: dict[str, str] = {}
-    for kind, ids in inventory.items():
-        if not ids:
-            continue
-        label = _label_for_kind(kind)
-        for target_id in ids:
-            labels.setdefault(target_id, label)
-    return labels
-
-
 def _validate_proposals(
     requirement_id: str,
     text: str,
@@ -276,14 +293,21 @@ def _validate_proposals(
 ) -> ExtractionResult:
     """Validate raw proposal dicts into an :class:`ExtractionResult`.
 
-    Applies the three deterministic proposal guards described in the module
-    docstring — evidence-span validation, ontology-membership, and (for
-    ``MENTIONS``) evidence-binding. Factored out so multi-pass experiments can
-    run the guards on a final filtered list; ``inventory`` is the same allowed-
-    target inventory passed to :func:`extract_edges_for_requirement`.
+    Applies the deterministic proposal guards described in the module
+    docstring — the reject-class guards (schema, fabrication, membership,
+    type-bucket) plus the flag-and-route evidence-binding check. Factored out
+    so multi-pass experiments can run the guards on a final filtered list;
+    ``inventory`` is the same allowed-target inventory passed to
+    :func:`extract_edges_for_requirement`.
     """
     result = ExtractionResult(requirement_id=requirement_id)
-    target_labels = _target_labels(inventory)
+    # Target id -> the inventory bucket (kind) it lives in; first bucket wins
+    # if an id somehow appears twice. Kind drives both the type-bucket check
+    # and the true node label.
+    target_kinds: dict[str, str] = {}
+    for kind, ids in inventory.items():
+        for target_id in ids or ():
+            target_kinds.setdefault(target_id, kind)
 
     for raw in raw_edges:
         if not isinstance(raw, dict):
@@ -320,27 +344,40 @@ def _validate_proposals(
         # Enforced in code (not left to the prompt) so sentinel / hallucinated
         # targets such as "NOT_IN_INVENTORY" cannot be admitted. The bucket the
         # target lives in also fixes its true node label (P0.4).
-        if target not in target_labels:
+        target_kind = target_kinds.get(target)
+        if target_kind is None:
             result.rejected.append(
                 {"reason": "target not in inventory", "raw": raw}
             )
             continue
 
-        # Guard 3 — evidence-binding (named-entity edges only): the span must
-        # name the target entity, not merely be *some* substring of the
-        # requirement. Rejects target/evidence mismatches (e.g. target="MMU"
-        # justified by "the FPU"). Scoped to MENTIONS / REFERS_TO, whose targets
-        # (components / standards) are expected to appear in the text;
-        # DERIVES_FROM / MITIGATES targets are requirement/hazard ids that need
-        # not appear verbatim in the evidence.
-        if (
-            edge_type in (EdgeType.MENTIONS, EdgeType.REFERS_TO)
-            and target.lower() not in evidence.lower()
-        ):
+        # Guard 3 — type-bucket compatibility: the target must live in the
+        # bucket its edge type points at (MENTIONS -> components, REFERS_TO ->
+        # standards, ...). A target that exists but in the wrong bucket (e.g.
+        # MENTIONS -> RV64I, a standard) violates the typed schema and is
+        # rejected with expected/actual recorded for audit.
+        allowed_kinds = _EDGE_TYPE_ALLOWED_KINDS[edge_type]
+        if target_kind not in allowed_kinds:
             result.rejected.append(
-                {"reason": "evidence does not name target", "raw": raw}
+                {
+                    "reason": "target type does not match edge type",
+                    "raw": raw,
+                    "expected_buckets": list(allowed_kinds),
+                    "actual_bucket": target_kind,
+                }
             )
             continue
+
+        # Flag-and-route — evidence-binding (named-entity edges only): compute
+        # whether the span literally names the target, but DO NOT reject on it.
+        # A non-naming span may be a semantic alias ("L1 I-Cache misses" for
+        # L1I — a lexicon gap) or genuinely irrelevant; deciding which is a
+        # semantic judgement reserved for the human reviewer, so the result
+        # rides on the proposal as a routing signal.
+        if edge_type in (EdgeType.MENTIONS, EdgeType.REFERS_TO):
+            evidence_names_target = target.lower() in evidence.lower()
+        else:
+            evidence_names_target = None
 
         try:
             confidence = float(confidence)
@@ -355,7 +392,8 @@ def _validate_proposals(
                 target_entity=target,
                 confidence=confidence,
                 evidence_span=evidence,
-                target_label=target_labels[target],
+                target_label=_label_for_kind(target_kind),
+                evidence_names_target=evidence_names_target,
             )
         )
 

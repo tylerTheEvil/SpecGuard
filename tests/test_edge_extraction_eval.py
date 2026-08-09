@@ -92,8 +92,12 @@ def test_rejection_reasons_match_extractor():
     """
     from specguard.extraction.extractor import _validate_proposals
 
-    text = "CVA6 shall support the FPU."
-    inventory = {"components": ["CVA6", "FPU"], "standards": [], "requirements": []}
+    text = "CVA6 shall support the FPU for RV64I."
+    inventory = {
+        "components": ["CVA6", "FPU"],
+        "standards": ["RV64I"],
+        "requirements": [],
+    }
     ok = {"confidence": 0.9}
     bad_edges = [
         "not-a-dict",                                                  # non-object edge
@@ -107,9 +111,9 @@ def test_rejection_reasons_match_extractor():
          "evidence_span": "the MMU translates", **ok},                 # fabricated evidence_span
         {"edge_type": "MENTIONS", "target_entity": "NOT_IN_INVENTORY",
          "evidence_span": "the FPU", **ok},                            # target not in inventory
-        # evidence does not name target:
-        {"edge_type": "MENTIONS", "target_entity": "CVA6",
-         "evidence_span": "the FPU", **ok},
+        # target type does not match edge type (standard under MENTIONS):
+        {"edge_type": "MENTIONS", "target_entity": "RV64I",
+         "evidence_span": "RV64I", **ok},
     ]
     result = _validate_proposals("REQ-1", text, bad_edges, inventory)
 
@@ -118,3 +122,21 @@ def test_rejection_reasons_match_extractor():
     # Every emitted reason is canonical, and every canonical reason was
     # exercised — the tuple and the extractor cannot drift apart silently.
     assert reasons == set(ev.GUARD_REJECTION_REASONS)
+
+
+def test_unbound_evidence_flags_consistent():
+    """Flag summary: total == len(proposals) == sum(by_edge_type); mock has 0.
+
+    The mock replays literal dictionary tokens, so nothing is flagged — the
+    zero is a measured value from a populated field, not a missing key.
+    """
+    report = _mock_report()
+    flags = report["unbound_evidence_flags"]
+    assert flags["total"] == sum(flags["by_edge_type"].values())
+    assert flags["total"] == len(flags["proposals"])
+    assert flags["total"] == 0
+    # Pair-level logs carry the flag on every proposed (TP/FP) entry.
+    for et in ("MENTIONS", "REFERS_TO"):
+        for e in report["per_edge_type"][et]["edges"]:
+            if e["verdict"] in ("TP", "FP"):
+                assert e["evidence_names_target"] is True

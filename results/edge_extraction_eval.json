@@ -7,7 +7,7 @@
     "temperature": null,
     "seed": null,
     "max_tokens": null,
-    "timestamp_utc": "2026-08-09T17:33:09+00:00",
+    "timestamp_utc": "2026-08-09T20:05:02+00:00",
     "prompt_variant": "baseline"
   },
   "requirements_evaluated": 64,
@@ -20,11 +20,17 @@
       "empty evidence_span": 0,
       "fabricated evidence_span": 0,
       "target not in inventory": 0,
-      "evidence does not name target": 0
+      "target type does not match edge type": 0
     }
   },
   "evidence_guard_rejections": 0,
   "rejected_proposals": [],
+  "unbound_evidence_flags": {
+    "total": 0,
+    "by_edge_type": {},
+    "proposals": [],
+    "note": "evidence_names_target=False — span does not literally name the target. NOT adjudicated: may mix semantic aliases (lexicon gaps) and irrelevant spans; routed to human review, not filtered."
+  },
   "per_edge_type": {
     "MENTIONS": {
       "proposed": 76,
@@ -41,6 +47,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -49,6 +56,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -57,6 +65,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -65,6 +74,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -73,6 +83,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -81,6 +92,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -89,6 +101,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -97,6 +110,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "TLB",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -105,6 +119,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CSR",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "FP"
         },
         {
@@ -113,6 +128,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CSR",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -121,6 +137,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -129,6 +146,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CSR",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -137,6 +155,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -145,6 +164,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -153,6 +173,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -161,6 +182,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -169,6 +191,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CLINT",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -177,6 +200,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -185,6 +209,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV64A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -193,6 +218,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -201,6 +227,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -209,6 +236,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -217,6 +245,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -225,6 +254,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -233,6 +263,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -241,6 +272,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -249,6 +281,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -257,6 +290,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -265,6 +299,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV64A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -273,6 +308,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV64A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -281,6 +317,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -289,6 +326,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CSR",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -297,6 +335,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -305,6 +344,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -313,6 +353,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -321,6 +362,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -329,6 +371,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -337,6 +380,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -345,6 +389,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -353,6 +398,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CSR",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -361,6 +407,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -369,6 +416,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -377,6 +425,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -385,6 +434,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CSR",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -393,6 +443,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -401,6 +452,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -409,6 +461,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -417,6 +470,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -425,6 +479,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -433,6 +488,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -441,6 +497,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -449,6 +506,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -457,6 +515,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -465,6 +524,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -473,6 +533,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -481,6 +542,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -489,6 +551,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -497,6 +560,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "L1WTD",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -505,6 +569,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -513,6 +578,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -521,6 +587,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -529,6 +596,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV64A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -537,6 +605,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -545,6 +614,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV64A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -553,6 +623,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV32A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -561,6 +632,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -569,6 +641,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -577,6 +650,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "PMP",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -585,6 +659,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CV64A6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -593,6 +668,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -601,6 +677,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -609,6 +686,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -617,6 +695,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -625,6 +704,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -633,6 +713,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "TRI",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -641,6 +722,7 @@
           "edge_type": "MENTIONS",
           "evidence_span": "CVA6",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         }
       ]
@@ -660,6 +742,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RVdbg",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -668,6 +751,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "FENCE.T",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -676,6 +760,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "FENCE.T",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -684,6 +769,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RVcompat",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -692,6 +778,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RVdbg",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -700,6 +787,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RVpriv",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -708,6 +796,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RVunpriv",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -716,6 +805,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RVpriv",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -724,6 +814,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RV64I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -732,6 +823,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "RV32I",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -740,6 +832,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "OpenPiton",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -748,6 +841,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "FENCE.T",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -756,6 +850,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "OpenPiton",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -764,6 +859,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "FENCE.T",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -772,6 +868,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "AXI",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -780,6 +877,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "AXI5",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -788,6 +886,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "AXI",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -796,6 +895,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "Sv39",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -804,6 +904,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "Sv32",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -812,6 +913,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "OpenPiton",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         },
         {
@@ -820,6 +922,7 @@
           "edge_type": "REFERS_TO",
           "evidence_span": "CV-X-IF",
           "confidence": 0.9,
+          "evidence_names_target": true,
           "verdict": "TP"
         }
       ],
@@ -840,6 +943,7 @@
           "edge_type": "DERIVES_FROM",
           "evidence_span": null,
           "confidence": null,
+          "evidence_names_target": null,
           "verdict": "FN"
         },
         {
@@ -848,6 +952,7 @@
           "edge_type": "DERIVES_FROM",
           "evidence_span": null,
           "confidence": null,
+          "evidence_names_target": null,
           "verdict": "FN"
         },
         {
@@ -856,6 +961,7 @@
           "edge_type": "DERIVES_FROM",
           "evidence_span": null,
           "confidence": null,
+          "evidence_names_target": null,
           "verdict": "FN"
         }
       ],

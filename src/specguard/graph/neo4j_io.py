@@ -173,14 +173,16 @@ def merge_accepted_edges(
     ``list[dict]`` could be written straight to Neo4j with no evidence it ever
     reached the review queue.
 
-    Honesty note: this is a *provenance gate*, not an authentication boundary.
-    The markers are plain properties, so a determined caller could forge them
-    (just as they could call the driver directly) — mirroring the
-    "defense in depth, not a security boundary" stance of
+    Honesty note: this is a **workflow-level provenance gate preventing
+    accidental bypass** — not a structural or cryptographic proof that a human
+    confirmed the edge. The markers are plain properties, so a determined
+    caller could forge them (just as they could call the driver directly) —
+    mirroring the "defense in depth, not a security boundary" stance of
     :func:`run_readonly_cypher`. What it guarantees is that the ordinary write
-    path cannot *accidentally* bypass human review: edges must come shaped like
-    review-queue output. Reviewer-identity capture is a deliberate follow-up
-    (the review CLI does not yet record who accepted an edge).
+    path cannot *accidentally* bypass human review: edges must come shaped
+    like review-queue output. A stronger claim needs reviewer identity,
+    an acceptance timestamp, and an immutable decision record — deliberate
+    follow-ups the review CLI does not yet provide.
 
     Endpoint nodes are MERGEd (not just matched) so an accepted edge to a
     target the deterministic builder never created still lands rather than

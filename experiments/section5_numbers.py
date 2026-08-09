@@ -103,6 +103,13 @@ def main() -> int:
             "seed": runs[0]["config"].get("seed"),
             # Section V.D: which guard fired, measured — not assumed.
             "guard_rejections": variance["summary"][provider]["guard_rejections"],
+            # Flag-and-route: unbound-evidence proposals survive and are
+            # scored; the flagged set is NOT adjudicated — it may contain
+            # both semantic aliases (lexicon coverage gaps) and genuinely
+            # irrelevant spans; no claim either way until human adjudication.
+            "unbound_evidence_flags": variance["summary"][provider][
+                "unbound_evidence_flags"
+            ],
             **_rows_from_runs(runs, "results/edge_extraction_variance.json"),
         }
     providers["mock"] = {

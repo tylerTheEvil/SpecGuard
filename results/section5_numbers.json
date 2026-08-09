@@ -8,9 +8,9 @@
       "seed": null,
       "guard_rejections": {
         "total_per_run": [
-          17,
-          17,
-          18
+          0,
+          0,
+          0
         ],
         "by_reason_total": {
           "non-object edge": 0,
@@ -19,17 +19,29 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 52
+          "target type does not match edge type": 0
         }
+      },
+      "unbound_evidence_flags": {
+        "total_per_run": [
+          16,
+          21,
+          17
+        ],
+        "by_edge_type_total": {
+          "REFERS_TO": 31,
+          "MENTIONS": 23
+        },
+        "note": "surviving proposals whose span does not literally name the target; NOT adjudicated (aliases vs irrelevant spans unknown)"
       },
       "MENTIONS": {
         "reference": "dictionary-matched surrogate (builder KNOWN_COMPONENTS, 75 edges; circular — agreement with the deterministic matcher, not validated truth)",
         "n_runs": 3,
         "ground_truth_size": 75,
         "proposed": [
-          76,
-          76,
-          76
+          83,
+          85,
+          83
         ],
         "true_positives": [
           75,
@@ -37,9 +49,9 @@
           75
         ],
         "false_positives": [
-          1,
-          1,
-          1
+          8,
+          10,
+          8
         ],
         "false_negatives": [
           0,
@@ -47,9 +59,9 @@
           0
         ],
         "precision": {
-          "mean": 0.9868421052631579,
-          "min": 0.9868421052631579,
-          "max": 0.9868421052631579
+          "mean": 0.8965272856130404,
+          "min": 0.8823529411764706,
+          "max": 0.9036144578313253
         },
         "recall": {
           "mean": 1.0,
@@ -57,9 +69,9 @@
           "max": 1.0
         },
         "f1": {
-          "mean": 0.9933774834437086,
-          "min": 0.9933774834437086,
-          "max": 0.9933774834437086
+          "mean": 0.9454113924050632,
+          "min": 0.9375,
+          "max": 0.9493670886075949
         },
         "source": "results/edge_extraction_variance.json"
       },
@@ -68,9 +80,9 @@
         "n_runs": 3,
         "ground_truth_size": 21,
         "proposed": [
-          22,
-          23,
-          23
+          32,
+          35,
+          33
         ],
         "true_positives": [
           21,
@@ -78,9 +90,9 @@
           21
         ],
         "false_positives": [
-          1,
-          2,
-          2
+          11,
+          14,
+          12
         ],
         "false_negatives": [
           0,
@@ -88,9 +100,9 @@
           0
         ],
         "precision": {
-          "mean": 0.9268774703557312,
-          "min": 0.9130434782608695,
-          "max": 0.9545454545454546
+          "mean": 0.6308712121212121,
+          "min": 0.6,
+          "max": 0.65625
         },
         "recall": {
           "mean": 1.0,
@@ -98,9 +110,9 @@
           "max": 1.0
         },
         "f1": {
-          "mean": 0.9619450317124736,
-          "min": 0.9545454545454545,
-          "max": 0.9767441860465117
+          "mean": 0.7734102026554857,
+          "min": 0.7499999999999999,
+          "max": 0.7924528301886793
         },
         "source": "results/edge_extraction_variance.json"
       },
@@ -111,36 +123,36 @@
         "proposed": [
           2,
           2,
-          2
+          3
         ],
         "true_positives": [
-          1,
           2,
-          1
+          0,
+          0
         ],
         "false_positives": [
-          1,
           0,
-          1
+          2,
+          3
         ],
         "false_negatives": [
-          2,
           1,
-          2
+          3,
+          3
         ],
         "precision": {
-          "mean": 0.6666666666666666,
-          "min": 0.5,
+          "mean": 0.3333333333333333,
+          "min": 0.0,
           "max": 1.0
         },
         "recall": {
-          "mean": 0.4444444444444444,
-          "min": 0.3333333333333333,
+          "mean": 0.2222222222222222,
+          "min": 0.0,
           "max": 0.6666666666666666
         },
         "f1": {
-          "mean": 0.5333333333333333,
-          "min": 0.4,
+          "mean": 0.26666666666666666,
+          "min": 0.0,
           "max": 0.8
         },
         "source": "results/edge_extraction_variance.json"
@@ -152,9 +164,9 @@
       "seed": 42,
       "guard_rejections": {
         "total_per_run": [
-          4,
-          4,
-          4
+          9,
+          9,
+          10
         ],
         "by_reason_total": {
           "non-object edge": 0,
@@ -163,17 +175,29 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 12
+          "target type does not match edge type": 28
         }
+      },
+      "unbound_evidence_flags": {
+        "total_per_run": [
+          4,
+          4,
+          4
+        ],
+        "by_edge_type_total": {
+          "MENTIONS": 9,
+          "REFERS_TO": 3
+        },
+        "note": "surviving proposals whose span does not literally name the target; NOT adjudicated (aliases vs irrelevant spans unknown)"
       },
       "MENTIONS": {
         "reference": "dictionary-matched surrogate (builder KNOWN_COMPONENTS, 75 edges; circular — agreement with the deterministic matcher, not validated truth)",
         "n_runs": 3,
         "ground_truth_size": 75,
         "proposed": [
-          85,
-          86,
-          85
+          79,
+          79,
+          79
         ],
         "true_positives": [
           75,
@@ -181,9 +205,9 @@
           75
         ],
         "false_positives": [
-          10,
-          11,
-          10
+          4,
+          4,
+          4
         ],
         "false_negatives": [
           0,
@@ -191,9 +215,9 @@
           0
         ],
         "precision": {
-          "mean": 0.8789329685362517,
-          "min": 0.872093023255814,
-          "max": 0.8823529411764706
+          "mean": 0.9493670886075949,
+          "min": 0.9493670886075949,
+          "max": 0.9493670886075949
         },
         "recall": {
           "mean": 1.0,
@@ -201,9 +225,9 @@
           "max": 1.0
         },
         "f1": {
-          "mean": 0.9355590062111802,
-          "min": 0.9316770186335404,
-          "max": 0.9375
+          "mean": 0.974025974025974,
+          "min": 0.974025974025974,
+          "max": 0.974025974025974
         },
         "source": "results/edge_extraction_variance.json"
       },
@@ -212,29 +236,29 @@
         "n_runs": 3,
         "ground_truth_size": 21,
         "proposed": [
-          15,
           16,
-          15
+          16,
+          17
         ],
         "true_positives": [
           15,
-          16,
-          15
+          15,
+          16
         ],
         "false_positives": [
-          0,
-          0,
-          0
+          1,
+          1,
+          1
         ],
         "false_negatives": [
           6,
-          5,
-          6
+          6,
+          5
         ],
         "precision": {
-          "mean": 1.0,
-          "min": 1.0,
-          "max": 1.0
+          "mean": 0.9387254901960784,
+          "min": 0.9375,
+          "max": 0.9411764705882353
         },
         "recall": {
           "mean": 0.7301587301587301,
@@ -242,9 +266,9 @@
           "max": 0.7619047619047619
         },
         "f1": {
-          "mean": 0.8438438438438438,
-          "min": 0.8333333333333333,
-          "max": 0.8648648648648648
+          "mean": 0.8212422949265055,
+          "min": 0.8108108108108109,
+          "max": 0.8421052631578947
         },
         "source": "results/edge_extraction_variance.json"
       },

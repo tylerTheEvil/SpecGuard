@@ -57,6 +57,12 @@ class ReviewItem:
     # emits the real type instead of inferring it from edge_type. ``None`` for
     # items loaded from pre-P0.4 queue files; export then falls back by type.
     target_label: str | None = None
+    # Flag-and-route binding signal, carried verbatim from the proposal:
+    # False = the evidence span does not literally name the target (possible
+    # semantic alias OR irrelevant span — the reviewer decides); True = it
+    # does; None = check not applicable (DERIVES_FROM/MITIGATES) or item
+    # loaded from a pre-flag queue file.
+    evidence_names_target: bool | None = None
 
     @classmethod
     def from_proposal(cls, item_id: int, proposal: EdgeProposal) -> ReviewItem:
@@ -68,6 +74,7 @@ class ReviewItem:
             confidence=proposal.confidence,
             evidence_span=proposal.evidence_span,
             target_label=proposal.target_label,
+            evidence_names_target=proposal.evidence_names_target,
         )
 
     def to_dict(self) -> dict:
@@ -87,6 +94,7 @@ class ReviewItem:
             evidence_span=d["evidence_span"],
             status=ReviewStatus(d.get("status", "PENDING")),
             target_label=d.get("target_label"),
+            evidence_names_target=d.get("evidence_names_target"),
         )
 
 
@@ -162,8 +170,12 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
     plus provenance properties so a downstream merge is traceable to its
     LLM-proposed-then-human-confirmed origin.
 
-    Only ``ACCEPTED`` items are emitted — this is the structural guarantee that
-    the LLM is never authoritative. There is no parameter to relax it.
+    Only ``ACCEPTED`` items are emitted — a workflow-level guarantee (no
+    parameter to relax it) that the ordinary path never exports unreviewed
+    proposals. It prevents accidental bypass of the human gate; it is not a
+    structural proof of human confirmation — reviewer identity, timestamp,
+    and an immutable decision record are the follow-up for a stronger claim
+    (see :func:`specguard.graph.neo4j_io.merge_accepted_edges`).
 
     The target's ``to_label`` is the true node label carried on the item
     (``target_label``, derived from the inventory bucket at extraction time), so
@@ -187,6 +199,10 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
                     "source": "llm_extraction",
                     "confidence": item.confidence,
                     "evidence_span": item.evidence_span,
+                    # Binding flag carried through so the graph records whether
+                    # the accepted edge's evidence literally named the target
+                    # (None = not applicable / pre-flag queue file).
+                    "evidence_names_target": item.evidence_names_target,
                     "human_confirmed": True,
                     # Lifecycle marker copied from the queue state. The Neo4j
                     # write path (merge_accepted_edges) requires this to equal
@@ -205,10 +221,14 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
 
 
 def _print_item(item: ReviewItem) -> None:
+    # Surface the binding flag so the reviewer sees the routing signal at a
+    # glance: UNBOUND-EVIDENCE marks spans that do not literally name the
+    # target (possible alias OR irrelevant span — reviewer decides).
+    flag = "  [UNBOUND-EVIDENCE]" if item.evidence_names_target is False else ""
     print(
         f"[{item.item_id}] {item.status.value:8s} "
         f"{item.source_id} -[{item.edge_type.value}]-> {item.target_entity} "
-        f"(conf={item.confidence:.2f})"
+        f"(conf={item.confidence:.2f}){flag}"
     )
     print(f"        evidence: \"{item.evidence_span}\"")
 

@@ -18,9 +18,13 @@ reference in context). The scorer reports both gaps.
 
 **Annotate each requirement by reading its `text`. Do not paste `build_graph`
 output.** The `candidate_pool.json` file is an *assist*, not an answer key:
-triage it critically. The scorer refuses a gold set byte-identical to the
-builder reference (`independence_check`), because an identical set carries no
-independent signal.
+triage it critically. By default the scorer refuses a gold set identical to
+the builder reference (`independence_check`): identity is *suspicious* —
+consistent with pasted builder output — though not proof of copying, since a
+careful annotator can legitimately agree with the dictionary everywhere on a
+small subset. If your independently authored set really is identical, re-run
+scoring with `--allow-identical`; the report then records
+`identical_to_surrogate: true` as a loud caveat that travels with the numbers.
 
 Recommended process per item: (1) read `text` and mark the true edges from your
 own understanding; (2) *then* open `candidate_pool.json` for that `req_id` to
@@ -49,9 +53,12 @@ Each edge you add is an object in an item's `edges` list:
 - `target` **must** be an id from `inventory` (component id, standard id, or
   requirement id). If you believe the text references a real entity that is *not*
   in the inventory (a dictionary coverage gap), do **not** invent a target id —
-  record it in `note` on the nearest relevant edge, or add an edge with
-  `"target": null` and describe it in `note`. These are reported separately and
-  are exactly the coverage evidence we want; they are not scored as matches.
+  add an edge with `"target": null`, quote the relevant `evidence_span`, and
+  describe the entity in `note` (one such entry per distinct unknown entity —
+  they do not collapse). The scorer excludes these from P/R/F1 and from
+  dictionary-miss pairs and reports them under
+  `out_of_inventory_observations` — exactly the coverage evidence we want,
+  never scored as matches.
 - `evidence_span` must be a **verbatim** substring of `text` that justifies the
   edge (same discipline the extractor's evidence guard enforces).
 

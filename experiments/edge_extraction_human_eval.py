@@ -340,17 +340,37 @@ def load_gold(path: str | Path) -> dict:
     return gold
 
 
-def gold_edges(gold: dict) -> dict[str, set[tuple[str, str]]]:
-    """Extract ``{edge_type: {(source_id, target)}}`` from a gold file."""
+def gold_edges(gold: dict) -> tuple[dict[str, set[tuple[str, str]]], list[dict]]:
+    """Split a gold file into scoreable pairs and coverage-gap observations.
+
+    Returns ``(edges, out_of_inventory_observations)``. Entries with
+    ``target: null`` mark entities the annotator saw in the text but could not
+    map to any inventory id — the dictionary coverage gaps the guidelines
+    promise to report. They must NOT become ``(req_id, None)`` gold pairs
+    (which would corrupt P/R/F1 and dictionary-miss sets); each is kept as a
+    distinct observation (a list, so multiple unknown entities on one
+    requirement never collapse).
+    """
     edges: dict[str, set[tuple[str, str]]] = {t: set() for t in EVAL_EDGE_TYPES}
+    observations: list[dict] = []
     for item in gold.get("items", []):
         src = item["req_id"]
         for e in item.get("edges", []):
             et = e["edge_type"]
             if et not in edges:
                 raise ValueError(f"{src}: unknown edge_type {et!r} in gold")
+            if e.get("target") is None:
+                observations.append(
+                    {
+                        "req_id": src,
+                        "edge_type": et,
+                        "note": e.get("note"),
+                        "evidence_span": e.get("evidence_span"),
+                    }
+                )
+                continue
             edges[et].add((src, e["target"]))
-    return edges
+    return edges, observations
 
 
 def subset_ids(gold: dict) -> set[str]:
@@ -382,12 +402,19 @@ def load_proposals(
 def independence_check(
     gold: dict[str, set[tuple[str, str]]],
     surrogate: dict[str, set[tuple[str, str]]],
+    *,
+    allow_identical: bool = False,
 ) -> dict:
-    """Refuse a gold set identical to the surrogate; report overlap per type.
+    """Report gold/surrogate overlap; refuse identical sets unless overridden.
 
-    If the human annotation exactly reproduces the dictionary reference for
-    every edge type, it carries no independent signal (someone copied builder
-    output). That is an error, not a result.
+    An identical gold/surrogate set is *suspicious* — it is consistent with
+    someone pasting builder output, but it does not prove copying (a careful
+    annotator can legitimately agree with the dictionary everywhere on a small
+    subset). Default behaviour still refuses to score, but the refusal names
+    the suspicion honestly and the explicit ``allow_identical`` override
+    (CLI: ``--allow-identical``) lets a user who vouches for the annotation
+    proceed — with ``identical_to_surrogate: true`` recorded loudly in the
+    report so the caveat travels with the numbers.
     """
     per_type = {}
     identical_all = True
@@ -404,13 +431,27 @@ def independence_check(
         }
         if g != s:
             identical_all = False
-    if identical_all and any(surrogate[t] for t in EVAL_EDGE_TYPES):
+    identical = identical_all and any(surrogate[t] for t in EVAL_EDGE_TYPES)
+    if identical and not allow_identical:
         raise ValueError(
-            "Gold edge set is byte-identical to the builder (surrogate) reference "
-            "for every edge type — this is not an independent annotation. Annotate "
-            "from the requirement text per annotation_guidelines.md."
+            "Gold edge set is identical to the builder (surrogate) reference "
+            "for every edge type. Identity is SUSPICIOUS (consistent with "
+            "pasted builder output) though not proof of copying — if the "
+            "annotation was genuinely authored independently, re-run with "
+            "--allow-identical to score anyway; the report will carry "
+            "identical_to_surrogate=true as a loud caveat."
         )
-    return per_type
+    return {
+        "per_type": per_type,
+        "identical_to_surrogate": identical,
+        "note": (
+            "identical_to_surrogate=true means the gold set exactly matches "
+            "the dictionary reference — suspicious but not proven copying; "
+            "scored under explicit --allow-identical override."
+        )
+        if identical
+        else None,
+    }
 
 
 def surrogate_gap(
@@ -437,16 +478,26 @@ def surrogate_gap(
 
 
 def score(
-    gold_path: str | Path, proposals_path: str | Path
+    gold_path: str | Path,
+    proposals_path: str | Path,
+    *,
+    allow_identical: bool = False,
 ) -> dict:
-    """Full scoring report: per-type P/R/F1 vs human + surrogate-gap + independence."""
+    """Full scoring report: per-type P/R/F1 vs human + surrogate-gap + independence.
+
+    ``target: null`` gold entries are excluded from all pair sets and reported
+    under ``out_of_inventory_observations`` — the coverage-gap evidence the
+    guidelines promise, never scoreable matches.
+    """
     gold = load_gold(gold_path)
     ids = subset_ids(gold)
-    g_edges = gold_edges(gold)
+    g_edges, observations = gold_edges(gold)
     surrogate = builder_reference(ids)
     proposals = load_proposals(proposals_path, ids)
 
-    independence = independence_check(g_edges, surrogate)
+    independence = independence_check(
+        g_edges, surrogate, allow_identical=allow_identical
+    )
     return {
         "subset_size": len(ids),
         "annotator": gold.get("_meta", {}).get("annotator"),
@@ -455,6 +506,7 @@ def score(
         },
         "surrogate_gap": surrogate_gap(g_edges, surrogate),
         "independence": independence,
+        "out_of_inventory_observations": observations,
     }
 
 
@@ -484,7 +536,7 @@ def _cmd_sample(args: argparse.Namespace) -> int:
 
 
 def _cmd_score(args: argparse.Namespace) -> int:
-    report = score(args.gold, args.proposals)
+    report = score(args.gold, args.proposals, allow_identical=args.allow_identical)
     if args.out:
         Path(args.out).write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
         print(f"Wrote {args.out}")
@@ -511,6 +563,15 @@ def main(argv: list[str] | None = None) -> int:
     p_score.add_argument("gold", help="Path to the completed gold JSON.")
     p_score.add_argument("proposals", help="Path to extractor proposals JSON.")
     p_score.add_argument("--out", help="Optional path to write the JSON report.")
+    p_score.add_argument(
+        "--allow-identical",
+        action="store_true",
+        help=(
+            "Proceed even if the gold set is identical to the builder "
+            "reference (suspicious, not proven copying); the report records "
+            "identical_to_surrogate=true."
+        ),
+    )
     p_score.set_defaults(func=_cmd_score)
 
     args = parser.parse_args(argv)

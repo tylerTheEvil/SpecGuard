@@ -11,12 +11,12 @@
         "temperature": "api_default",
         "seed": null,
         "max_tokens": 4096,
-        "timestamp_utc": "2026-08-09T17:37:33+00:00",
+        "timestamp_utc": "2026-08-09T20:08:34+00:00",
         "prompt_variant": "baseline"
       },
-      "evidence_guard_rejections": 17,
+      "evidence_guard_rejections": 0,
       "guard_rejections": {
-        "total": 17,
+        "total": 0,
         "by_reason": {
           "non-object edge": 0,
           "unknown edge_type": 0,
@@ -24,85 +24,35 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 17
+          "target type does not match edge type": 0
         }
       },
-      "timestamp_utc": "2026-08-09T17:37:33+00:00",
+      "unbound_evidence_flags": {
+        "total": 16,
+        "by_edge_type": {
+          "REFERS_TO": 9,
+          "MENTIONS": 7
+        }
+      },
+      "timestamp_utc": "2026-08-09T20:08:34+00:00",
       "file": "results/edge_extraction_eval_anthropic_opus48.json",
       "per_edge_type": {
         "MENTIONS": {
-          "proposed": 76,
+          "proposed": 83,
           "ground_truth": 75,
           "true_positives": 75,
-          "false_positives": 1,
+          "false_positives": 8,
           "false_negatives": 0,
-          "precision": 0.9868421052631579,
+          "precision": 0.9036144578313253,
           "recall": 1.0
         },
         "REFERS_TO": {
-          "proposed": 22,
+          "proposed": 32,
           "ground_truth": 21,
           "true_positives": 21,
-          "false_positives": 1,
+          "false_positives": 11,
           "false_negatives": 0,
-          "precision": 0.9545454545454546,
-          "recall": 1.0
-        },
-        "DERIVES_FROM": {
-          "proposed": 2,
-          "ground_truth": 3,
-          "true_positives": 1,
-          "false_positives": 1,
-          "false_negatives": 2,
-          "precision": 0.5,
-          "recall": 0.3333333333333333
-        }
-      }
-    },
-    {
-      "provider": "anthropic",
-      "model": "claude-opus-4-8",
-      "config": {
-        "provider": "anthropic",
-        "model": "claude-opus-4-8",
-        "temperature": "api_default",
-        "seed": null,
-        "max_tokens": 4096,
-        "timestamp_utc": "2026-08-09T17:40:42+00:00",
-        "prompt_variant": "baseline"
-      },
-      "evidence_guard_rejections": 17,
-      "guard_rejections": {
-        "total": 17,
-        "by_reason": {
-          "non-object edge": 0,
-          "unknown edge_type": 0,
-          "missing target_entity": 0,
-          "empty evidence_span": 0,
-          "fabricated evidence_span": 0,
-          "target not in inventory": 0,
-          "evidence does not name target": 17
-        }
-      },
-      "timestamp_utc": "2026-08-09T17:40:42+00:00",
-      "file": "results/variance_runs/anthropic_opus48_run2.json",
-      "per_edge_type": {
-        "MENTIONS": {
-          "proposed": 76,
-          "ground_truth": 75,
-          "true_positives": 75,
-          "false_positives": 1,
-          "false_negatives": 0,
-          "precision": 0.9868421052631579,
-          "recall": 1.0
-        },
-        "REFERS_TO": {
-          "proposed": 23,
-          "ground_truth": 21,
-          "true_positives": 21,
-          "false_positives": 2,
-          "false_negatives": 0,
-          "precision": 0.9130434782608695,
+          "precision": 0.65625,
           "recall": 1.0
         },
         "DERIVES_FROM": {
@@ -125,12 +75,12 @@
         "temperature": "api_default",
         "seed": null,
         "max_tokens": 4096,
-        "timestamp_utc": "2026-08-09T17:44:10+00:00",
+        "timestamp_utc": "2026-08-09T20:11:48+00:00",
         "prompt_variant": "baseline"
       },
-      "evidence_guard_rejections": 18,
+      "evidence_guard_rejections": 0,
       "guard_rejections": {
-        "total": 18,
+        "total": 0,
         "by_reason": {
           "non-object edge": 0,
           "unknown edge_type": 0,
@@ -138,57 +88,63 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 18
+          "target type does not match edge type": 0
         }
       },
-      "timestamp_utc": "2026-08-09T17:44:10+00:00",
-      "file": "results/variance_runs/anthropic_opus48_run3.json",
+      "unbound_evidence_flags": {
+        "total": 21,
+        "by_edge_type": {
+          "REFERS_TO": 12,
+          "MENTIONS": 9
+        }
+      },
+      "timestamp_utc": "2026-08-09T20:11:48+00:00",
+      "file": "results/variance_runs/anthropic_opus48_run2.json",
       "per_edge_type": {
         "MENTIONS": {
-          "proposed": 76,
+          "proposed": 85,
           "ground_truth": 75,
           "true_positives": 75,
-          "false_positives": 1,
+          "false_positives": 10,
           "false_negatives": 0,
-          "precision": 0.9868421052631579,
+          "precision": 0.8823529411764706,
           "recall": 1.0
         },
         "REFERS_TO": {
-          "proposed": 23,
+          "proposed": 35,
           "ground_truth": 21,
           "true_positives": 21,
-          "false_positives": 2,
+          "false_positives": 14,
           "false_negatives": 0,
-          "precision": 0.9130434782608695,
+          "precision": 0.6,
           "recall": 1.0
         },
         "DERIVES_FROM": {
           "proposed": 2,
           "ground_truth": 3,
-          "true_positives": 1,
-          "false_positives": 1,
-          "false_negatives": 2,
-          "precision": 0.5,
-          "recall": 0.3333333333333333
+          "true_positives": 0,
+          "false_positives": 2,
+          "false_negatives": 3,
+          "precision": 0.0,
+          "recall": 0.0
         }
       }
     },
     {
-      "provider": "ollama",
-      "model": "gemma4:latest",
+      "provider": "anthropic",
+      "model": "claude-opus-4-8",
       "config": {
-        "provider": "ollama",
-        "model": "gemma4:latest",
-        "temperature": 0,
-        "seed": 42,
-        "max_tokens": null,
-        "timestamp_utc": "2026-08-09T17:55:38+00:00",
-        "num_ctx": 8192,
+        "provider": "anthropic",
+        "model": "claude-opus-4-8",
+        "temperature": "api_default",
+        "seed": null,
+        "max_tokens": 4096,
+        "timestamp_utc": "2026-08-09T20:14:58+00:00",
         "prompt_variant": "baseline"
       },
-      "evidence_guard_rejections": 4,
+      "evidence_guard_rejections": 0,
       "guard_rejections": {
-        "total": 4,
+        "total": 0,
         "by_reason": {
           "non-object edge": 0,
           "unknown edge_type": 0,
@@ -196,37 +152,44 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 4
+          "target type does not match edge type": 0
         }
       },
-      "timestamp_utc": "2026-08-09T17:55:38+00:00",
-      "file": "results/edge_extraction_eval_ollama_gemma4.json",
+      "unbound_evidence_flags": {
+        "total": 17,
+        "by_edge_type": {
+          "REFERS_TO": 10,
+          "MENTIONS": 7
+        }
+      },
+      "timestamp_utc": "2026-08-09T20:14:58+00:00",
+      "file": "results/variance_runs/anthropic_opus48_run3.json",
       "per_edge_type": {
         "MENTIONS": {
-          "proposed": 85,
+          "proposed": 83,
           "ground_truth": 75,
           "true_positives": 75,
-          "false_positives": 10,
+          "false_positives": 8,
           "false_negatives": 0,
-          "precision": 0.8823529411764706,
+          "precision": 0.9036144578313253,
           "recall": 1.0
         },
         "REFERS_TO": {
-          "proposed": 15,
+          "proposed": 33,
           "ground_truth": 21,
-          "true_positives": 15,
-          "false_positives": 0,
-          "false_negatives": 6,
-          "precision": 1.0,
-          "recall": 0.7142857142857143
+          "true_positives": 21,
+          "false_positives": 12,
+          "false_negatives": 0,
+          "precision": 0.6363636363636364,
+          "recall": 1.0
         },
         "DERIVES_FROM": {
-          "proposed": 0,
+          "proposed": 3,
           "ground_truth": 3,
           "true_positives": 0,
-          "false_positives": 0,
+          "false_positives": 3,
           "false_negatives": 3,
-          "precision": null,
+          "precision": 0.0,
           "recall": 0.0
         }
       }
@@ -240,13 +203,13 @@
         "temperature": 0,
         "seed": 42,
         "max_tokens": null,
-        "timestamp_utc": "2026-08-09T18:17:53+00:00",
+        "timestamp_utc": "2026-08-09T20:26:37+00:00",
         "num_ctx": 8192,
         "prompt_variant": "baseline"
       },
-      "evidence_guard_rejections": 4,
+      "evidence_guard_rejections": 9,
       "guard_rejections": {
-        "total": 4,
+        "total": 9,
         "by_reason": {
           "non-object edge": 0,
           "unknown edge_type": 0,
@@ -254,29 +217,36 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 4
+          "target type does not match edge type": 9
         }
       },
-      "timestamp_utc": "2026-08-09T18:17:53+00:00",
-      "file": "results/variance_runs/ollama_gemma4_run2.json",
+      "unbound_evidence_flags": {
+        "total": 4,
+        "by_edge_type": {
+          "MENTIONS": 3,
+          "REFERS_TO": 1
+        }
+      },
+      "timestamp_utc": "2026-08-09T20:26:37+00:00",
+      "file": "results/edge_extraction_eval_ollama_gemma4.json",
       "per_edge_type": {
         "MENTIONS": {
-          "proposed": 86,
+          "proposed": 79,
           "ground_truth": 75,
           "true_positives": 75,
-          "false_positives": 11,
+          "false_positives": 4,
           "false_negatives": 0,
-          "precision": 0.872093023255814,
+          "precision": 0.9493670886075949,
           "recall": 1.0
         },
         "REFERS_TO": {
           "proposed": 16,
           "ground_truth": 21,
-          "true_positives": 16,
-          "false_positives": 0,
-          "false_negatives": 5,
-          "precision": 1.0,
-          "recall": 0.7619047619047619
+          "true_positives": 15,
+          "false_positives": 1,
+          "false_negatives": 6,
+          "precision": 0.9375,
+          "recall": 0.7142857142857143
         },
         "DERIVES_FROM": {
           "proposed": 0,
@@ -298,13 +268,13 @@
         "temperature": 0,
         "seed": 42,
         "max_tokens": null,
-        "timestamp_utc": "2026-08-09T18:53:55+00:00",
+        "timestamp_utc": "2026-08-09T21:18:34+00:00",
         "num_ctx": 8192,
         "prompt_variant": "baseline"
       },
-      "evidence_guard_rejections": 4,
+      "evidence_guard_rejections": 9,
       "guard_rejections": {
-        "total": 4,
+        "total": 9,
         "by_reason": {
           "non-object edge": 0,
           "unknown edge_type": 0,
@@ -312,29 +282,101 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 4
+          "target type does not match edge type": 9
         }
       },
-      "timestamp_utc": "2026-08-09T18:53:55+00:00",
-      "file": "results/variance_runs/ollama_gemma4_run3.json",
+      "unbound_evidence_flags": {
+        "total": 4,
+        "by_edge_type": {
+          "MENTIONS": 3,
+          "REFERS_TO": 1
+        }
+      },
+      "timestamp_utc": "2026-08-09T21:18:34+00:00",
+      "file": "results/variance_runs/ollama_gemma4_run2.json",
       "per_edge_type": {
         "MENTIONS": {
-          "proposed": 85,
+          "proposed": 79,
           "ground_truth": 75,
           "true_positives": 75,
-          "false_positives": 10,
+          "false_positives": 4,
           "false_negatives": 0,
-          "precision": 0.8823529411764706,
+          "precision": 0.9493670886075949,
           "recall": 1.0
         },
         "REFERS_TO": {
-          "proposed": 15,
+          "proposed": 16,
           "ground_truth": 21,
           "true_positives": 15,
-          "false_positives": 0,
+          "false_positives": 1,
           "false_negatives": 6,
-          "precision": 1.0,
+          "precision": 0.9375,
           "recall": 0.7142857142857143
+        },
+        "DERIVES_FROM": {
+          "proposed": 0,
+          "ground_truth": 3,
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 3,
+          "precision": null,
+          "recall": 0.0
+        }
+      }
+    },
+    {
+      "provider": "ollama",
+      "model": "gemma4:latest",
+      "config": {
+        "provider": "ollama",
+        "model": "gemma4:latest",
+        "temperature": 0,
+        "seed": 42,
+        "max_tokens": null,
+        "timestamp_utc": "2026-08-09T21:39:37+00:00",
+        "num_ctx": 8192,
+        "prompt_variant": "baseline"
+      },
+      "evidence_guard_rejections": 10,
+      "guard_rejections": {
+        "total": 10,
+        "by_reason": {
+          "non-object edge": 0,
+          "unknown edge_type": 0,
+          "missing target_entity": 0,
+          "empty evidence_span": 0,
+          "fabricated evidence_span": 0,
+          "target not in inventory": 0,
+          "target type does not match edge type": 10
+        }
+      },
+      "unbound_evidence_flags": {
+        "total": 4,
+        "by_edge_type": {
+          "MENTIONS": 3,
+          "REFERS_TO": 1
+        }
+      },
+      "timestamp_utc": "2026-08-09T21:39:37+00:00",
+      "file": "results/variance_runs/ollama_gemma4_run3.json",
+      "per_edge_type": {
+        "MENTIONS": {
+          "proposed": 79,
+          "ground_truth": 75,
+          "true_positives": 75,
+          "false_positives": 4,
+          "false_negatives": 0,
+          "precision": 0.9493670886075949,
+          "recall": 1.0
+        },
+        "REFERS_TO": {
+          "proposed": 17,
+          "ground_truth": 21,
+          "true_positives": 16,
+          "false_positives": 1,
+          "false_negatives": 5,
+          "precision": 0.9411764705882353,
+          "recall": 0.7619047619047619
         },
         "DERIVES_FROM": {
           "proposed": 0,
@@ -353,9 +395,9 @@
       "n_runs": 3,
       "guard_rejections": {
         "total_per_run": [
-          17,
-          17,
-          18
+          0,
+          0,
+          0
         ],
         "by_reason_total": {
           "non-object edge": 0,
@@ -364,15 +406,27 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 52
+          "target type does not match edge type": 0
         }
+      },
+      "unbound_evidence_flags": {
+        "total_per_run": [
+          16,
+          21,
+          17
+        ],
+        "by_edge_type_total": {
+          "REFERS_TO": 31,
+          "MENTIONS": 23
+        },
+        "note": "surviving proposals whose span does not literally name the target; NOT adjudicated (aliases vs irrelevant spans unknown)"
       },
       "MENTIONS": {
         "precision": {
-          "mean": 0.9868421052631579,
-          "min": 0.9868421052631579,
-          "max": 0.9868421052631579,
-          "stdev": 0.0
+          "mean": 0.8965272856130404,
+          "min": 0.8823529411764706,
+          "max": 0.9036144578313253,
+          "stdev": 0.012275342364060108
         },
         "recall": {
           "mean": 1.0,
@@ -381,17 +435,17 @@
           "stdev": 0.0
         },
         "proposed": [
-          76,
-          76,
-          76
+          83,
+          85,
+          83
         ]
       },
       "REFERS_TO": {
         "precision": {
-          "mean": 0.9268774703557312,
-          "min": 0.9130434782608695,
-          "max": 0.9545454545454546,
-          "stdev": 0.023961177179806656
+          "mean": 0.6308712121212121,
+          "min": 0.6,
+          "max": 0.65625,
+          "stdev": 0.028524387250983635
         },
         "recall": {
           "mean": 1.0,
@@ -400,28 +454,28 @@
           "stdev": 0.0
         },
         "proposed": [
-          22,
-          23,
-          23
+          32,
+          35,
+          33
         ]
       },
       "DERIVES_FROM": {
         "precision": {
-          "mean": 0.6666666666666666,
-          "min": 0.5,
+          "mean": 0.3333333333333333,
+          "min": 0.0,
           "max": 1.0,
-          "stdev": 0.28867513459481287
+          "stdev": 0.5773502691896257
         },
         "recall": {
-          "mean": 0.4444444444444444,
-          "min": 0.3333333333333333,
+          "mean": 0.2222222222222222,
+          "min": 0.0,
           "max": 0.6666666666666666,
-          "stdev": 0.19245008972987523
+          "stdev": 0.38490017945975047
         },
         "proposed": [
           2,
           2,
-          2
+          3
         ]
       }
     },
@@ -429,9 +483,9 @@
       "n_runs": 3,
       "guard_rejections": {
         "total_per_run": [
-          4,
-          4,
-          4
+          9,
+          9,
+          10
         ],
         "by_reason_total": {
           "non-object edge": 0,
@@ -440,15 +494,27 @@
           "empty evidence_span": 0,
           "fabricated evidence_span": 0,
           "target not in inventory": 0,
-          "evidence does not name target": 12
+          "target type does not match edge type": 28
         }
+      },
+      "unbound_evidence_flags": {
+        "total_per_run": [
+          4,
+          4,
+          4
+        ],
+        "by_edge_type_total": {
+          "MENTIONS": 9,
+          "REFERS_TO": 3
+        },
+        "note": "surviving proposals whose span does not literally name the target; NOT adjudicated (aliases vs irrelevant spans unknown)"
       },
       "MENTIONS": {
         "precision": {
-          "mean": 0.8789329685362517,
-          "min": 0.872093023255814,
-          "max": 0.8823529411764706,
-          "stdev": 0.005923566373354562
+          "mean": 0.9493670886075949,
+          "min": 0.9493670886075949,
+          "max": 0.9493670886075949,
+          "stdev": 0.0
         },
         "recall": {
           "mean": 1.0,
@@ -457,17 +523,17 @@
           "stdev": 0.0
         },
         "proposed": [
-          85,
-          86,
-          85
+          79,
+          79,
+          79
         ]
       },
       "REFERS_TO": {
         "precision": {
-          "mean": 1.0,
-          "min": 1.0,
-          "max": 1.0,
-          "stdev": 0.0
+          "mean": 0.9387254901960784,
+          "min": 0.9375,
+          "max": 0.9411764705882353,
+          "stdev": 0.0021226112837853814
         },
         "recall": {
           "mean": 0.7301587301587301,
@@ -476,9 +542,9 @@
           "stdev": 0.027492869961410718
         },
         "proposed": [
-          15,
           16,
-          15
+          16,
+          17
         ]
       },
       "DERIVES_FROM": {

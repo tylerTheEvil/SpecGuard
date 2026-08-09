@@ -92,6 +92,11 @@ def main() -> int:
                 # without it predates the breakdown and must be re-run,
                 # not silently aggregated.
                 "guard_rejections": run["guard_rejections"],
+                # Flag-and-route counts (unbound evidence, surviving + scored).
+                "unbound_evidence_flags": {
+                    "total": run["unbound_evidence_flags"]["total"],
+                    "by_edge_type": run["unbound_evidence_flags"]["by_edge_type"],
+                },
                 "timestamp_utc": run["config"]["timestamp_utc"],
                 "file": str(path.relative_to(ROOT)),
                 "per_edge_type": {},
@@ -120,6 +125,20 @@ def main() -> int:
         summary[provider]["guard_rejections"] = {
             "total_per_run": [run["guard_rejections"]["total"] for run in runs],
             "by_reason_total": by_reason_total,
+        }
+        flags_by_type: dict[str, int] = {}
+        for run in runs:
+            for et, count in run["unbound_evidence_flags"]["by_edge_type"].items():
+                flags_by_type[et] = flags_by_type.get(et, 0) + count
+        summary[provider]["unbound_evidence_flags"] = {
+            "total_per_run": [
+                run["unbound_evidence_flags"]["total"] for run in runs
+            ],
+            "by_edge_type_total": flags_by_type,
+            "note": (
+                "surviving proposals whose span does not literally name the "
+                "target; NOT adjudicated (aliases vs irrelevant spans unknown)"
+            ),
         }
         for et in SCORED_TYPES:
             per = [r["per_edge_type"][et] for r in runs]
