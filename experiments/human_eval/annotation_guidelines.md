@@ -28,7 +28,14 @@ scoring with `--allow-identical`; the report then records
 
 Recommended process per item: (1) read `text` and mark the true edges from your
 own understanding; (2) *then* open `candidate_pool.json` for that `req_id` to
-catch anything you missed, accepting/rejecting each candidate on its merits.
+catch anything you missed, accepting/rejecting each candidate on its merits;
+(3) set that item's `annotation_status` to `"REVIEWED"`.
+
+**The per-item marker matters.** An empty `edges` list is ambiguous — it can
+mean "reviewed, genuinely no edges" or "never looked at". Only a `REVIEWED`
+item's empty list counts as a genuine negative; the scorer refuses any file
+that still contains `UNREVIEWED` items, so a partially filled template can
+never silently pass as complete.
 
 ## Files
 
@@ -86,7 +93,8 @@ entity.
 
 ## Finishing and scoring
 
-When done, set in `_meta`: `status` to something other than `TEMPLATE_UNFILLED`
+When done: every item must carry `annotation_status: "REVIEWED"`, and in
+`_meta` set `status` to something other than `TEMPLATE_UNFILLED`
 (e.g. `"ANNOTATED"`), `annotator` to your name/initials, and optionally
 `annotated_utc`. Then:
 

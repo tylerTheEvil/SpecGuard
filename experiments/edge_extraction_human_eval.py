@@ -206,6 +206,13 @@ def build_template(subset: list[Requirement], inventory: dict[str, list[str]]) -
             "annotator": None,
             "annotated_utc": None,
             "status": "TEMPLATE_UNFILLED",
+            "item_status_note": (
+                "Set each item's annotation_status to REVIEWED after reading "
+                "that requirement — an empty `edges` list is a genuine "
+                "'no edges found' ONLY on a REVIEWED item. The scorer refuses "
+                "a gold file containing UNREVIEWED items, so unread items can "
+                "never silently count as negative annotations."
+            ),
         },
         "inventory": inventory,
         "items": [
@@ -213,6 +220,10 @@ def build_template(subset: list[Requirement], inventory: dict[str, list[str]]) -
                 "req_id": r.req_id,
                 "category": r.category,
                 "text": r.text,
+                # Human: set to "REVIEWED" once this requirement has been read
+                # and annotated. Distinguishes "reviewed, no edges found" from
+                # "never looked at" — the scorer enforces it.
+                "annotation_status": "UNREVIEWED",
                 # Human fills: list of
                 # {"edge_type": "MENTIONS"|"REFERS_TO"|"DERIVES_FROM",
                 #  "target": "<inventory id>", "evidence_span": "<verbatim>",
@@ -327,13 +338,32 @@ def _prf(proposed: set[tuple[str, str]], gold: set[tuple[str, str]]) -> dict:
 
 
 def load_gold(path: str | Path) -> dict:
-    """Load a completed gold file, refusing an unfilled or empty template."""
+    """Load a completed gold file, refusing unfilled, partial, or empty templates.
+
+    Beyond the global status, every item must be individually marked
+    ``annotation_status: REVIEWED``. This distinguishes the two meanings an
+    empty ``edges`` list can carry — "reviewed, genuinely no edges" versus
+    "never looked at" — so a partially filled template can never pass as
+    complete, with its unread items silently scored as negative annotations.
+    """
     gold = json.loads(Path(path).read_text())
     meta = gold.get("_meta", {})
     if meta.get("status") == "TEMPLATE_UNFILLED":
         raise ValueError(
             f"{path}: status is TEMPLATE_UNFILLED — fill in `edges` and set "
             "_meta.status (e.g. 'ANNOTATED') and _meta.annotator before scoring."
+        )
+    unreviewed = [
+        item.get("req_id", "<missing req_id>")
+        for item in gold.get("items", [])
+        if item.get("annotation_status") != "REVIEWED"
+    ]
+    if unreviewed:
+        raise ValueError(
+            f"{path}: {len(unreviewed)} item(s) not marked "
+            f"annotation_status=REVIEWED: {', '.join(unreviewed)}. An empty "
+            "`edges` list only counts as a genuine negative on a REVIEWED item "
+            "— mark every requirement you actually read, then re-score."
         )
     if not any(item.get("edges") for item in gold.get("items", [])):
         raise ValueError(f"{path}: no annotated edges found — nothing to score against.")

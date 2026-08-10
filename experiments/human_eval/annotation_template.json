@@ -12,7 +12,8 @@
     "inventory_note": "`inventory` is the allowed target vocabulary (ids), not reference edges. Targets must come from it.",
     "annotator": null,
     "annotated_utc": null,
-    "status": "TEMPLATE_UNFILLED"
+    "status": "TEMPLATE_UNFILLED",
+    "item_status_note": "Set each item's annotation_status to REVIEWED after reading that requirement — an empty `edges` list is a genuine 'no edges found' ONLY on a REVIEWED item. The scorer refuses a gold file containing UNREVIEWED items, so unread items can never silently count as negative annotations."
   },
   "inventory": {
     "components": [
@@ -120,120 +121,140 @@
       "req_id": "DBG-10",
       "category": "Interface",
       "text": "CVA6 shall implement both the Abstracted Command and Execution based features outlined in chapter 4 of [RVdbg].",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "FET-20",
       "category": "Instruction",
       "text": "FENCE.T should be available in all privilege modes (machine, supervisor, user and hypervisor if present).",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "HPM-10",
       "category": "Performance",
       "text": "CVA6 shall implement the 64-bit mcycle and minstret standard performance counters (including their upper 32 bits counterparts mcycleh and minstreth in CV32A6) as per [RVpriv].",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "HPM-50",
       "category": "Performance",
       "text": "CVA6 shall allow the supervisor access of performance counters through enabling of mcounteren CSR.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "HPM-80",
       "category": "Performance",
       "text": "CVA6 shall implement the read-only cycle, instret, hpmcounter3 to hpmcounter8 access to counters (and their upper 32-bit counterparts in CV32A6).",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "ISA-10",
       "category": "ISA",
       "text": "CV64A6 shall support RV64I base instruction set, version 2.1.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "ISA-140",
       "category": "ISA",
       "text": "CVA6 should support as an option the Zcb extension version 1.0.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "ISA-50",
       "category": "ISA",
       "text": "CV32A6 shall support as an option the F extension (single-precision floating-point), version 2.2.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "ISA-90",
       "category": "ISA",
       "text": "CVA6 shall support the Zicsr extension (CSR instructions), version 2.0.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "L1I-10",
       "category": "Cache",
       "text": "L1I should offer the following size/ways configurations: 4 kbytes: 3, 4 or 8 ways, 8 kbytes: 4, 8, or 16 ways, 16 kbytes: 4, 8 or 16 ways, 32 kbytes: 8 or 16 ways.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "L1I-50",
       "category": "Cache",
       "text": "The replacement policy of L1I shall be LFSR (pseudo-random) or LRU (least recently used).",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "L1W-100",
       "category": "Cache",
       "text": "A custom CSR shall allow to disable or enable L1WTD.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "L1W-50",
       "category": "Cache",
       "text": "To interface with the P-Mesh coherence system of OpenPiton, L1WTD shall have a line invalidate external command that invalidates the content of a line upon request.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "L1W-90",
       "category": "Cache",
       "text": "L1WTD should offer a feature to transform cache ways into a scratchpad. Alternatively, this requirement can be realized with a separate scratchpad.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "PPA-10",
       "category": "PPA",
       "text": "CVA6 should be resource-optimized on FPGA and ASIC targets.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "PPA-60",
       "category": "PPA",
       "text": "TBD: Placeholder for double-precision floating performance per MHz.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "PVL-10",
       "category": "Privileges",
       "text": "CVA6 shall support machine, supervisor, user and debug privilege modes.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "PVL-60",
       "category": "Privileges",
       "text": "CV64A6 shall support as an option the H extension (hypervisor) version 1.0.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "RUL-30",
       "category": "Design",
       "text": "CVA6 should not include multi-cycle paths.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     },
     {
       "req_id": "XIF-10",
       "category": "Interface",
       "text": "To extend the supported instructions, CVA6 shall have a coprocessor interface that supports the Issue, Commit and Result interfaces of the [CV-X-IF] specification.",
+      "annotation_status": "UNREVIEWED",
       "edges": []
     }
   ]

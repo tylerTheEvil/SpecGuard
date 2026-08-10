@@ -65,6 +65,9 @@ def test_template_is_empty_and_marked_unfilled():
     assert tmpl["_meta"]["status"] == "TEMPLATE_UNFILLED"
     assert len(tmpl["items"]) == 6
     assert all(item["edges"] == [] for item in tmpl["items"])
+    # Per-item review markers start UNREVIEWED — an unread item can never pass
+    # as a genuine "no edges found" negative (the scorer enforces REVIEWED).
+    assert all(item["annotation_status"] == "UNREVIEWED" for item in tmpl["items"])
     assert set(tmpl["inventory"]) == {"components", "standards", "requirements"}
 
 
@@ -168,9 +171,33 @@ def test_load_gold_refuses_filled_status_but_no_edges(tmp_path):
     reqs = get_all_requirements()
     tmpl = hev.build_template(hev.sample_subset(reqs, 3), hev.build_inventory())
     tmpl["_meta"]["status"] = "ANNOTATED"  # marked done but nothing annotated
+    for item in tmpl["items"]:
+        item["annotation_status"] = "REVIEWED"  # all reviewed, still no edges
     path = tmp_path / "tmpl.json"
     path.write_text(json.dumps(tmpl))
     with pytest.raises(ValueError, match="no annotated edges"):
+        hev.load_gold(path)
+
+
+def test_load_gold_refuses_partially_reviewed_template(tmp_path):
+    """One annotated item does NOT make the file complete.
+
+    Items never marked REVIEWED must fail loading — otherwise their empty
+    `edges` lists would silently count as genuine negative annotations.
+    """
+    reqs = get_all_requirements()
+    tmpl = hev.build_template(hev.sample_subset(reqs, 3), hev.build_inventory())
+    inv = hev.build_inventory()
+    first = tmpl["items"][0]
+    first["edges"] = [
+        {"edge_type": "MENTIONS", "target": inv["components"][0],
+         "evidence_span": "x", "note": ""},
+    ]
+    first["annotation_status"] = "REVIEWED"  # the other two items stay UNREVIEWED
+    tmpl["_meta"]["status"] = "ANNOTATED"
+    path = tmp_path / "tmpl.json"
+    path.write_text(json.dumps(tmpl))
+    with pytest.raises(ValueError, match="annotation_status=REVIEWED"):
         hev.load_gold(path)
 
 
@@ -196,6 +223,8 @@ def test_score_end_to_end(tmp_path):
     ]
     tmpl["_meta"]["status"] = "ANNOTATED"
     tmpl["_meta"]["annotator"] = "test-fixture"
+    for item in tmpl["items"]:
+        item["annotation_status"] = "REVIEWED"
     gold_path = tmp_path / "gold.json"
     gold_path.write_text(json.dumps(tmpl))
 
@@ -238,6 +267,8 @@ def test_null_targets_become_observations_not_pairs(tmp_path):
     ]
     tmpl["_meta"]["status"] = "ANNOTATED"
     tmpl["_meta"]["annotator"] = "test-fixture"
+    for item in tmpl["items"]:
+        item["annotation_status"] = "REVIEWED"
     gold_path = tmp_path / "gold.json"
     gold_path.write_text(json.dumps(tmpl))
 
