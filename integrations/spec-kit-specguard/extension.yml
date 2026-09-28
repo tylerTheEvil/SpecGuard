@@ -1,0 +1,69 @@
+schema_version: "1.0"
+
+extension:
+  id: "specguard"
+  name: "SpecGuard Quality Gate"
+  version: "0.1.0"
+  description: "Deterministic requirement-quality gate for spec.md (smells, measurable success criteria, open clarifications) and spec-tasks traceability; no LLM in the verdict"
+  author: "Anton Stryapunin"
+  repository: "https://github.com/tylerTheEvil/SpecGuard"
+  license: "MIT"
+  homepage: "https://github.com/tylerTheEvil/SpecGuard/tree/main/integrations/spec-kit-specguard"
+
+requires:
+  speckit_version: ">=0.14.0"
+  tools:
+    - name: "python3"
+      version: ">=3.9"
+      required: true
+
+provides:
+  commands:
+    - name: "speckit.specguard.gate"
+      file: "commands/speckit.specguard.gate.md"
+      description: "Run the deterministic SpecGuard quality gate on the feature spec"
+    - name: "speckit.specguard.trace"
+      file: "commands/speckit.specguard.trace.md"
+      description: "Check spec.md <-> tasks.md traceability from written links only"
+
+  config:
+    - name: "specguard-config.yml"
+      template: "specguard-config.template.yml"
+      description: "Gate profile, blocking threshold, requirement kinds, disabled checks"
+      required: false
+
+hooks:
+  after_specify:
+    command: "speckit.specguard.gate"
+    optional: true
+    prompt: "Run the SpecGuard deterministic quality gate on the new spec?"
+    description: "Early feedback while the spec is cheap to fix"
+  after_clarify:
+    command: "speckit.specguard.gate"
+    optional: true
+    prompt: "Re-run the SpecGuard gate on the clarified spec?"
+    description: "Confirm clarifications resolved the gate findings"
+  before_plan:
+    command: "speckit.specguard.gate"
+    optional: false
+    priority: 5
+    description: "Quality gate: planning stops on a blocking verdict"
+  after_tasks:
+    command: "speckit.specguard.trace"
+    optional: true
+    prompt: "Check spec <-> tasks traceability with SpecGuard?"
+    description: "Stories and requirements without tasks, dangling references"
+
+tags:
+  - "quality"
+  - "requirements"
+  - "gate"
+  - "deterministic"
+  - "traceability"
+
+defaults:
+  profile: "speckit"
+  fail_on: "fail"
+  kinds: ["FR", "SC", "NFR"]
+  write_report: false
+  disabled_checks: []

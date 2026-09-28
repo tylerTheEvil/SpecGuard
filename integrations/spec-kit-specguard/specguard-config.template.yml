@@ -1,0 +1,25 @@
+# SpecGuard gate configuration (spec-kit-specguard)
+#
+# Layering: these values < specguard-config.local.yml (gitignored)
+#           < environment SPECKIT_SPECGUARD_<KEY> < command-line flags.
+# Flat "key: value" YAML only (the extension is stdlib-only by design).
+
+# speckit | default
+#   speckit — core detectors + Spec Kit register rules (see docs/checks.md)
+#   default — the SpecGuard core exactly as calibrated on aerospace requirements
+profile: speckit
+
+# Lowest verdict that blocks (non-zero exit; the before_plan hook stops planning).
+# fail | warn | never
+fail_on: fail
+
+# Requirement ID prefixes to assess. SC is scored in the outcome register.
+kinds: [FR, SC, NFR]
+
+# Also write specguard-report.md/.json (gate) and specguard-trace.md/.json
+# (trace) into the feature directory — useful as review/audit evidence.
+write_report: false
+
+# Check IDs to switch off, e.g. [SK-011, SK-012]. Findings only — requirement
+# scoring cannot be disabled per check.
+disabled_checks: []

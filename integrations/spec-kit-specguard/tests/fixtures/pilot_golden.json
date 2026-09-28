@@ -1,0 +1,166 @@
+{
+ "001-photo-albums": {
+  "findings": [],
+  "gates": {
+   "FR-001": "PASS",
+   "FR-002": "PASS",
+   "FR-003": "PASS",
+   "FR-004": "PASS",
+   "FR-005": "PASS",
+   "FR-006": "PASS",
+   "FR-007": "PASS",
+   "FR-008": "PASS",
+   "FR-009": "WARN",
+   "FR-010": "PASS",
+   "FR-011": "PASS",
+   "FR-012": "PASS",
+   "FR-013": "PASS",
+   "FR-014": "WARN",
+   "SC-001": "PASS",
+   "SC-002": "PASS",
+   "SC-003": "PASS",
+   "SC-004": "PASS",
+   "SC-005": "PASS"
+  },
+  "verdict": "WARN"
+ },
+ "002-url-shortener": {
+  "findings": [],
+  "gates": {
+   "FR-001": "PASS",
+   "FR-002": "PASS",
+   "FR-003": "PASS",
+   "FR-004": "PASS",
+   "FR-005": "PASS",
+   "FR-006": "PASS",
+   "FR-007": "PASS",
+   "FR-008": "PASS",
+   "FR-009": "PASS",
+   "FR-010": "PASS",
+   "FR-011": "PASS",
+   "FR-012": "PASS",
+   "FR-013": "PASS",
+   "FR-014": "PASS",
+   "SC-001": "PASS",
+   "SC-002": "PASS",
+   "SC-003": "PASS",
+   "SC-004": "PASS",
+   "SC-005": "PASS",
+   "SC-006": "PASS"
+  },
+  "verdict": "PASS"
+ },
+ "003-log-analyzer-cli": {
+  "findings": [
+   "SK-009:SC-006"
+  ],
+  "gates": {
+   "FR-001": "PASS",
+   "FR-002": "PASS",
+   "FR-003": "PASS",
+   "FR-004": "PASS",
+   "FR-005": "PASS",
+   "FR-006": "PASS",
+   "FR-007": "PASS",
+   "FR-008": "PASS",
+   "FR-009": "PASS",
+   "FR-010": "PASS",
+   "FR-011": "PASS",
+   "FR-012": "PASS",
+   "FR-013": "PASS",
+   "FR-014": "PASS",
+   "SC-001": "PASS",
+   "SC-002": "PASS",
+   "SC-003": "PASS",
+   "SC-004": "PASS",
+   "SC-005": "PASS",
+   "SC-006": "WARN"
+  },
+  "verdict": "WARN"
+ },
+ "004-cart-discounts": {
+  "findings": [
+   "SK-010:SC-003"
+  ],
+  "gates": {
+   "FR-001": "PASS",
+   "FR-002": "PASS",
+   "FR-003": "PASS",
+   "FR-004": "PASS",
+   "FR-005": "PASS",
+   "FR-006": "PASS",
+   "FR-007": "PASS",
+   "FR-008": "PASS",
+   "FR-009": "PASS",
+   "FR-010": "PASS",
+   "FR-011": "PASS",
+   "FR-012": "PASS",
+   "FR-013": "PASS",
+   "FR-014": "PASS",
+   "FR-015": "PASS",
+   "FR-016": "PASS",
+   "SC-001": "PASS",
+   "SC-002": "PASS",
+   "SC-003": "PASS",
+   "SC-004": "PASS",
+   "SC-005": "PASS"
+  },
+  "verdict": "PASS"
+ },
+ "005-sensor-telemetry": {
+  "findings": [
+   "SK-010:SC-005"
+  ],
+  "gates": {
+   "FR-001": "PASS",
+   "FR-002": "PASS",
+   "FR-003": "PASS",
+   "FR-004": "PASS",
+   "FR-005": "PASS",
+   "FR-006": "PASS",
+   "FR-007": "PASS",
+   "FR-008": "PASS",
+   "FR-009": "PASS",
+   "FR-010": "PASS",
+   "FR-011": "PASS",
+   "FR-012": "PASS",
+   "FR-013": "PASS",
+   "FR-014": "PASS",
+   "SC-001": "PASS",
+   "SC-002": "PASS",
+   "SC-003": "PASS",
+   "SC-004": "PASS",
+   "SC-005": "PASS",
+   "SC-006": "PASS"
+  },
+  "verdict": "PASS"
+ },
+ "006-team-notifications": {
+  "findings": [
+   "SK-010:SC-003"
+  ],
+  "gates": {
+   "FR-001": "PASS",
+   "FR-002": "PASS",
+   "FR-003": "PASS",
+   "FR-004": "PASS",
+   "FR-005": "PASS",
+   "FR-006": "PASS",
+   "FR-007": "PASS",
+   "FR-008": "PASS",
+   "FR-009": "PASS",
+   "FR-010": "PASS",
+   "FR-011": "PASS",
+   "FR-012": "PASS",
+   "FR-013": "PASS",
+   "FR-014": "PASS",
+   "SC-001": "PASS",
+   "SC-002": "PASS",
+   "SC-003": "PASS",
+   "SC-004": "PASS",
+   "SC-005": "PASS",
+   "SC-006": "PASS"
+  },
+  "verdict": "PASS"
+ }
+}

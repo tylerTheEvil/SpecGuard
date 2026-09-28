@@ -2,6 +2,32 @@
 
 ## [Unreleased]
 
+### 2026-09-28 — Spec Kit extension (`integrations/spec-kit-specguard/`)
+
+A Spec Kit extension packaging SpecGuard Layer 1 as a deterministic gate:
+`speckit.specguard.gate` (smells + success-criteria measurability + structural
+checks codified from Spec Kit's own specification checklist) and
+`speckit.specguard.trace` (spec↔tasks links), hooked `before_plan`
+(mandatory) and after specify/clarify/tasks (optional). Staged here, designed
+to split into its own repository. Plan and decisions:
+`integrations/spec-kit-specguard/docs/implementation_plan.md`; supersedes
+Phases 1, 2b and 4 of `docs/speckit_integration_plan.md`.
+
+**Decision — vendor, don't depend:** the extension ships a byte-exact,
+SHA-256-locked copy of `smell_detector.py` + `quality_scorer.py`
+(`_vendor/specguard_core/VENDOR.json` pins commit 9af1cdf,
+`tools/sync_vendor.py`, drift test) instead of pip-depending on SpecGuard:
+Spec Kit runs scripts with the user project's interpreter (any venv, no
+extras), and a pinned copy identifies the exact detector version in use
+(tool configuration management).
+
+**Evidence:** 193 in-the-wild specs (calibration) + a held-out set evaluated
+once with frozen rules. FR PASS 80.5% (core) → 94.0% (`speckit` profile),
+held-out 93.9%; SC 36.8% → 90.2%, held-out 78.7%. Held-out error analysis
+(27 flags: 5 genuine, 10 template-style, 12 false positives) is reported, not
+tuned away. Verified end-to-end on spec-kit 1.0.13.dev0 (Claude, Copilot,
+Gemini integrations); Python ≥ 3.9.
+
 ### 2026-09-28 — Core detector fixes G6–G9 from in-the-wild Spec Kit specs
 
 Found by running the core on 193 real Spec Kit specs (17 repositories from

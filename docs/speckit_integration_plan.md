@@ -1,5 +1,10 @@
 # SpecGuard × GitHub Spec Kit — Integration Research & Plan
 
+> **Update 2026-09-28:** Phases 1, 2b and 4 are superseded by the standalone
+> extension in `integrations/spec-kit-specguard/` (plan:
+> `integrations/spec-kit-specguard/docs/implementation_plan.md`). Phase 3
+> (graph schema, commit↔task trace, SDD-TRACE constraints) remains open here.
+>
 > Status: **research + plan, not implemented**. Written 2026-07-18 against spec-kit
 > v0.13.1.dev0 (clone at `spec-kit/`, reference only — do not commit the clone).
 > Decision review: this document proposes; nothing here is settled until pilot
