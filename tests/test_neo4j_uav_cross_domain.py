@@ -4,7 +4,8 @@ Phase 2 of the evidence-hardening plan. These tests load the **derived** UAV
 flight-control cross-domain dataset (:mod:`specguard.data.uav_cross_domain`)
 into a real Neo4j instance and prove that the three cross-domain objectives
 (:data:`specguard.compliance.CROSS_DOMAIN_OBJECTIVES`) *discriminate*: each
-fires on exactly its seeded violation and passes on the compliant counterparts.
+finds its seeded defect and distinguishes incomplete timing allocations from
+numeric overruns. Missing budgets are UNKNOWN, not zero-valued contributions.
 
 All tests are marked ``@pytest.mark.neo4j`` and **skip cleanly** when Neo4j is
 unreachable, so plain ``pytest`` keeps passing.
@@ -97,17 +98,23 @@ def test_cross_hw_sw_interface_discriminates(uav_runner):
 
 
 def test_cross_timing_budget_discriminates(uav_runner):
-    """CROSS-TIMING-1 flags the failsafe overrun, not the in-budget systems."""
+    """CROSS-TIMING-1 separates a numeric overrun from missing allocations."""
     rows = uav_runner(_BY_ID["CROSS-TIMING-1"].cypher_query, {})
-    flagged = {r["violating_requirement"] for r in rows}
-    assert "UAV-SYS-40" in flagged  # 1.5 + 1.0 = 2.5 ms > 2 ms budget
-    assert flagged.isdisjoint(
-        {"UAV-SYS-10", "UAV-SYS-20", "UAV-SYS-30", "UAV-SYS-50", "UAV-SYS-60"}
+    by_id = {r["violating_requirement"]: r for r in rows}
+    assert len(rows) == len(by_id) == 2
+    assert {rid: r["_status"] for rid, r in by_id.items()} == {
+        "UAV-SYS-40": "FAIL", "UAV-SYS-10": "UNKNOWN",
+    }
+    overrun = by_id["UAV-SYS-40"]
+    assert (overrun["allocated"], overrun["budget"], overrun["missing_budgets"]) == (
+        2_500_000, 2_000_000, 0,
     )
-    assert len(rows) == 1
-    # Confirm the reported arithmetic matches the seeded overrun.
-    row = rows[0]
-    assert row["allocated"] > row["budget"]
+    # The FPU pair derives from SYS-10 without its own allocation. Its known
+    # 2.5 ms shares fit 4 ms, but that does not prove the complete budget fits.
+    incomplete = by_id["UAV-SYS-10"]
+    assert (incomplete["allocated"], incomplete["budget"], incomplete["missing_budgets"]) == (
+        2_500_000, 4_000_000, 2,
+    )
 
 
 def test_cross_safety_propagation_discriminates(uav_runner):
@@ -121,14 +128,24 @@ def test_cross_safety_propagation_discriminates(uav_runner):
 
 
 def test_each_objective_fires_on_exactly_its_seeded_violation(uav_runner):
-    """Every objective returns exactly one row — its seeded violation."""
+    """Each query finds one seeded defect; UNKNOWN timing is not a violation."""
     for obj in CROSS_DOMAIN_OBJECTIVES:
         rows = uav_runner(obj.cypher_query, {})
-        assert len(rows) == 1, (obj.objective_id, rows)
+        defects = [r for r in rows if r.get("_status", "FAIL") == "FAIL"]
+        assert len(defects) == 1, (obj.objective_id, rows)
+        seeded = _SEEDED[obj.objective_id]
+        field = (
+            "shared_interface" if obj.objective_id == "CROSS-HW-SW-1" else "violating_requirement"
+        )
+        assert defects[0][field] == seeded.violating_element
+        unknowns = [r for r in rows if r.get("_status") == "UNKNOWN"]
+        assert [r["violating_requirement"] for r in unknowns] == (
+            ["UAV-SYS-10"] if obj.objective_id == "CROSS-TIMING-1" else []
+        )
 
 
 def test_run_compliance_check_end_to_end(uav_runner):
-    """The engine runs the 3 CROSS-* objectives and reports 3 violations."""
+    """Unknown broader scope preserves the one demonstrated numeric violation."""
     report = run_compliance_check(
         uav_runner, CROSS_DOMAIN_OBJECTIVES, standard_name="cross-domain (UAV)"
     )

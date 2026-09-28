@@ -1,10 +1,22 @@
 """Unit tests for the smell detector — covers the canonical 11 smell types."""
 
 
-from specguard.core.smell_detector import SmellType, analyze_requirement
+import pytest
+
+from specguard.core.smell_detector import SmellType, analyze_requirement, detect_ambiguity
 
 
 class TestAmbiguityDetection:
+    @pytest.mark.parametrize(
+        "compound", ["lightning-fast", "business-safe", "custom-thread-safe", "fail-safe-ish"]
+    )
+    def test_unknown_compounds_keep_ambiguous_terms(self, compound):
+        assert detect_ambiguity(f"The service shall be {compound}.")
+
+    @pytest.mark.parametrize("compound", ["fail-safe", "thread-safe", "share-safe", "FAIL-SAFE"])
+    def test_recognized_technical_compounds_are_exempt(self, compound):
+        assert not detect_ambiguity(f"The service shall be {compound}.")
+
     def test_detects_subjective_adjective(self):
         report = analyze_requirement("T1", "The system shall be fast.")
         assert SmellType.AMBIGUITY in report.smell_types_found
@@ -235,7 +247,7 @@ class TestInTheWildCorpusFixes:
             "12"
         ]
 
-    # G7 — hyphen-compound heads are technical terms
+    # G7 — recognized technical compounds retain their exception
     def test_fail_safe_not_ambiguous(self):
         report = analyze_requirement("G7a", "The artifact shall be left untouched (fail-safe).")
         assert SmellType.AMBIGUITY not in report.smell_types_found

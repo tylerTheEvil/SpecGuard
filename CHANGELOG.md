@@ -2,6 +2,20 @@
 
 ## [Unreleased]
 
+### 2026-09-28 — Review fixes and Neo4j timing test expectations
+
+- Restrict the G7 ambiguity exception to the recognized `fail-safe`,
+  `thread-safe` and `share-safe` compounds. Unknown compounds such as
+  `lightning-fast` retain their ambiguity warnings.
+- Track Markdown fence character and length in the shared spec/tasks parser;
+  nested examples cannot create requirements, clarification markers or task links.
+- Fix the two failing Neo4j timing assertions after structured verification:
+  `UAV-SYS-40` is a numeric FAIL, while `UAV-SYS-10` is UNKNOWN because its
+  two FPU children lack allocations. Preserve the missing data and query behavior;
+  use the fully allocated `UAV-SYS-20` as the dataset's compliant counterpart.
+- Add regressions for these cases and synchronize the extension's vendored core.
+  Previously recorded corpus measurements remain historical, not recalibrated.
+
 ### 2026-09-28 — Spec Kit extension (`integrations/spec-kit-specguard/`)
 
 A Spec Kit extension packaging SpecGuard Layer 1 as a deterministic gate:

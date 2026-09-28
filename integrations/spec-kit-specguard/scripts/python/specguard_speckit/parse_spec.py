@@ -22,7 +22,7 @@ from .model import Heading, Marker, Requirement, Scenario, SpecDocument, UserSto
 DEFAULT_PREFIXES = ("FR", "SC", "NFR")
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
-FENCE_RE = re.compile(r"^\s*(```|~~~)")
+FENCE_RE = re.compile(r"^[ \t]*(`{3,}|~{3,})(.*)$")
 BULLET_RE = re.compile(r"^(\s*)(?:[-*+]|\d+[.)])\s+")
 MARKER_RE = re.compile(r"\[NEEDS CLARIFICATION(?:\s*:\s*(?P<q>[^\]]*))?\]", re.IGNORECASE)
 # "User Story 1 - Title (Priority: P1)" (template) or "US1 — Title (P1)" (short form,
@@ -113,13 +113,21 @@ def strip_markup(text: str) -> str:
 def _visible_lines(text: str) -> list[tuple[int, str]]:
     """(line_no, line) pairs outside fenced code and HTML comments."""
     out: list[tuple[int, str]] = []
-    in_fence = False
+    opening_fence = ""
     in_comment = False
     for no, line in enumerate(text.splitlines(), start=1):
-        if FENCE_RE.match(line) and not in_comment:
-            in_fence = not in_fence
+        fence = FENCE_RE.match(line) if not in_comment else None
+        if opening_fence:
+            if (
+                fence
+                and fence.group(1)[0] == opening_fence[0]
+                and len(fence.group(1)) >= len(opening_fence)
+                and not fence.group(2).strip()
+            ):
+                opening_fence = ""
             continue
-        if in_fence:
+        if fence and (fence.group(1)[0] == "~" or "`" not in fence.group(2)):
+            opening_fence = fence.group(1)
             continue
         visible = ""
         rest = line

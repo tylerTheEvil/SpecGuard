@@ -276,11 +276,10 @@ ORDINAL_LABEL_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Hyphen compounds whose head is a lexicon term are technical terms, not
-# subjective adjectives (G7): "fail-safe", "thread-safe", "share-safe".
-# Intensifier prefixes keep the smell: "super-fast", "highly-robust".
-HYPHEN_COMPOUND_HEAD_PATTERN = re.compile(r"\b([a-z]+)-$")
-INTENSIFIER_PREFIXES = {"super", "ultra", "hyper", "highly", "very", "extra", "extremely"}
+# Only recognized complete compounds receive the G7 exception. An arbitrary
+# prefix does not make a subjective word precise (e.g. "lightning-fast").
+HYPHEN_COMPOUND_HEAD_PATTERN = re.compile(r"(?<![\w-])([a-z]+(?:-[a-z]+)*)-$")
+TECHNICAL_COMPOUNDS = {"fail-safe", "thread-safe", "share-safe"}
 
 # Technical collocations of 'clean' that name a precise state (G8):
 # "clean clone", "clean working tree", "clean exit". Verb use ("MUST clean
@@ -312,9 +311,13 @@ def _is_technical_use(term: str, pos: int, text: str) -> bool:
 
     Hyphen-compound heads (G7) and 'clean' collocations / verb use (G8).
     """
-    before = text[max(0, pos - 20) : pos].lower()
+    before = text[:pos].lower()
     compound = HYPHEN_COMPOUND_HEAD_PATTERN.search(before)
-    if compound and compound.group(1) not in INTENSIFIER_PREFIXES:
+    if (
+        compound
+        and f"{compound.group(1)}-{term}" in TECHNICAL_COMPOUNDS
+        and not text[pos + len(term) :].startswith("-")
+    ):
         return True
     return term == "clean" and bool(
         CLEAN_COLLOCATION_PATTERN.match(text, pos) or VERB_CONTEXT_PATTERN.search(before)

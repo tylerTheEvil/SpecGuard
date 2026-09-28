@@ -47,6 +47,11 @@ hits (−16.2%); missing unit 791 → 375, ambiguity 199 → 151, weakness 36 �
 Residual gaps seen on the *holdout* (not fixed, to keep it held out):
 `per 007 FR-050` (feature number after "per"), `clean repository`.
 
+Review follow-up (2026-09-28): G7 now exempts only the complete compounds
+`fail-safe`, `thread-safe` and `share-safe`. Unknown prefixes such as
+`lightning-fast` retain warnings. The corpus figures above describe the original
+G6–G9 run; they have not been remeasured for this correction.
+
 (G1–G5 were found by the earlier synthetic pilot; see SpecGuard
 `results/speckit_pilot/pilot_report.md`.)
 

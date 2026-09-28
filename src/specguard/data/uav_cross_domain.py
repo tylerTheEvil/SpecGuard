@@ -694,7 +694,8 @@ SEEDED_VIOLATIONS: list[SeededViolation] = [
             "2,500,000 ns — a 500,000 ns overrun."
         ),
         violating_element="UAV-SYS-40",
-        compliant_counterpart="UAV-SYS-10",  # 1.5+1.0=2.5 ms < 4 ms
+        # SYS-10 has two unallocated FPU children, so only its known shares fit.
+        compliant_counterpart="UAV-SYS-20",  # complete allocation: 4+3=7 ms < 10 ms
         why=(
             "Single-domain tools see each child fitting its own share; only a "
             "cross-domain sum detects the system-budget overrun."

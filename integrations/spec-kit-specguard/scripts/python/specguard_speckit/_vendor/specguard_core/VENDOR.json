@@ -1,13 +1,13 @@
 {
   "source_repository": "https://github.com/tylerTheEvil/SpecGuard",
-  "source_commit": "4949821edf31b603fbd552cf1d7e6662c1e3aad9",
+  "source_commit": "85de7cecf3b481c7f0fb27af4e7813fb47052288",
   "source_dirty": false,
   "source_paths": {
     "smell_detector.py": "src/specguard/core/smell_detector.py",
     "quality_scorer.py": "src/specguard/core/quality_scorer.py"
   },
   "files": {
-    "smell_detector.py": "57ccef2bfdae4dc432430b37f87de1968d0f3cb98c27c03695e9561f89f94a22",
+    "smell_detector.py": "b0bd57e294e2e45c83285420feb50f3a01e69b5fa0fd62895b14a4ef5ec00fbf",
     "quality_scorer.py": "cc78b455af5d8fa30ec046fc1645ae6fdfa7a80f23aaafeb0433a1aba98940af"
   },
   "note": "Byte-exact copies of the SpecGuard deterministic core. Do not edit here: fix upstream, then re-run tools/sync_vendor.py. source_dirty=true means the copy was taken from uncommitted upstream changes; re-sync after the upstream commit."
