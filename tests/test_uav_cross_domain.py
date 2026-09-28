@@ -94,9 +94,9 @@ def test_each_system_req_decomposes_into_both_domains():
 
 def _budget_sum(parent_id: str) -> int:
     return sum(
-        r.timing_budget_ns or 0
+        r.timing_budget_ns
         for r in get_domain_requirements()
-        if r.derives_from == parent_id
+        if r.derives_from == parent_id and r.timing_budget_ns is not None
     )
 
 
@@ -107,8 +107,8 @@ def test_seeded_timing_overrun_really_overruns():
     assert allocated > parent.timing_budget_ns, (allocated, parent.timing_budget_ns)
 
 
-def test_compliant_timing_pairs_stay_within_budget():
-    """Every non-seeded system req's children sum within (or equal to) budget."""
+def test_known_timing_shares_stay_within_budget_except_seeded_overrun():
+    """Known shares fit; missing allocations cannot establish a full PASS."""
     overrun_id = next(
         s.violating_element for s in SEEDED_VIOLATIONS if s.key == "TIMING_OVERRUN"
     )
@@ -116,6 +116,25 @@ def test_compliant_timing_pairs_stay_within_budget():
         if r.req_id == overrun_id:
             continue
         assert _budget_sum(r.req_id) <= r.timing_budget_ns, r.req_id
+
+
+def test_attitude_timing_has_two_unallocated_fpu_children():
+    missing = {
+        r.req_id: r.derives_from
+        for r in get_domain_requirements()
+        if r.timing_budget_ns is None
+    }
+    assert missing == {"UAV-HLR-60": "UAV-SYS-10", "UAV-HWR-60": "UAV-SYS-10"}
+
+
+def test_seeded_timing_counterpart_has_complete_allocations():
+    seeded = next(s for s in SEEDED_VIOLATIONS if s.key == "TIMING_OVERRUN")
+    children = [
+        r for r in get_domain_requirements() if r.derives_from == seeded.compliant_counterpart
+    ]
+    assert children and all(r.timing_budget_ns is not None for r in children)
+    parent = next(r for r in SYSTEM_REQUIREMENTS if r.req_id == seeded.compliant_counterpart)
+    assert _budget_sum(parent.req_id) <= parent.timing_budget_ns
 
 
 def test_seeded_missing_consistency_interface_exists_and_is_inconsistent():

@@ -16,6 +16,10 @@ Python 3.9 and 3.12; root pytest does not discover this nested suite.
 
 ## Open review findings
 
+Follow-up (2026-09-28): both findings below are fixed on
+`codex/fix-compounds-fences-ci`, with regression tests. The original review and
+its validation record are retained below.
+
 These two findings were reproduced locally and are not fixed by the integration
 commit. They concern behavior introduced in PR #1, independently of the rebase.
 

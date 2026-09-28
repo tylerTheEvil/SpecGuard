@@ -2,10 +2,42 @@
 
 from __future__ import annotations
 
+import pytest
 from specguard_speckit.parse_spec import parse_spec, strip_markup
 
 
 class TestRequirementForms:
+    @pytest.mark.parametrize(
+        "opening,inner,closing",
+        [
+            ("````markdown", "```python", "````"),
+            ("~~~markdown", "```", "~~~"),
+            ("```markdown", "~~~", "```"),
+            ("```markdown", "```python", "`````  "),
+            ("~~~~markdown", "~~~", "~~~~"),
+        ],
+    )
+    def test_fence_closes_only_with_matching_character_length_and_no_info(
+        self, opening, inner, closing
+    ):
+        doc = parse_spec("\n".join([
+            opening, inner,
+            "- **FR-999**: Example [NEEDS CLARIFICATION: example only].",
+            closing, "## Requirements",
+            "- **FR-001**: The system shall respond within 10 ms.",
+        ]))
+        assert doc.ids() == ["FR-001"]
+        assert doc.requirements[0].line == 6
+        assert doc.markers == []
+
+    def test_unclosed_fence_hides_remaining_examples(self):
+        assert parse_spec("````markdown\n```\n- **FR-999**: Example.\n").ids() == []
+
+    def test_backtick_in_info_string_is_not_a_fence_opener(self):
+        assert parse_spec("```example`text\n- **FR-001**: Real requirement.\n").ids() == [
+            "FR-001"
+        ]
+
     def test_all_definition_variants_found_once(self, fixture_text):
         doc = parse_spec(fixture_text("spec_formats.md"))
         assert doc.ids() == [

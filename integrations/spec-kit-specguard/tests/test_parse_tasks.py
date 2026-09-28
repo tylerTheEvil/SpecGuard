@@ -28,6 +28,14 @@ def test_fenced_examples_ignored(fixture_text):
     assert "T999" not in ids
 
 
+def test_nested_fenced_tasks_do_not_create_trace_links():
+    doc = parse_tasks(
+        "````markdown\n```\n- [ ] T999 Example FR-999\n```\n````\n"
+        "- [ ] T001 Implement FR-001\n"
+    )
+    assert [(t.task_id, t.refs, t.line) for t in doc.tasks] == [("T001", ["FR-001"], 6)]
+
+
 def test_uppercase_x_and_refs_sorted_numerically():
     doc = parse_tasks("- [X] T010 [US2] Covers FR-010, FR-002 and SC-001\n")
     t = doc.tasks[0]
