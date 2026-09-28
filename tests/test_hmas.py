@@ -134,13 +134,14 @@ def test_traceability_runner_is_injectable():
 
     def fake_runner(query: str, params: dict) -> list[dict]:
         calls.append(query)
-        return []  # no violations -> everything passes
+        return []  # no scope or prerequisites -> unknown
 
     agent = TraceabilityAgent("traceability", runner=fake_runner)
     report = agent.run(AgentRequest(requirements=_reqs()))
     assert calls, "injected runner should have been invoked"
-    # With zero rows every objective passes.
-    assert report.payload["passing"] == report.payload["objectives_checked"]
+    # Zero violation rows cannot establish PASS without a reviewed scope.
+    assert report.payload["passing"] == 0
+    assert report.payload["summary"]["counts"]["UNKNOWN"] == 15
     assert report.payload["violation_count"] == 0
 
 

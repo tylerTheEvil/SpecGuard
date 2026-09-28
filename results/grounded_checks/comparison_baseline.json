@@ -1,0 +1,392 @@
+{
+  "technical_check_only": true,
+  "independent_gold_standard": false,
+  "case_set_hash": "bf9ab20e811c99ba4e5e98226eaf0a71675c3ffa486066af1ef739a3735fdf63",
+  "base_commit": "0f4a3057a1bf2800249558c484220ca5093ed091",
+  "configuration": "baseline",
+  "cases": [
+    {
+      "case_id": "combined",
+      "defect_class": "mixed",
+      "text_gates": [
+        {
+          "id": "R-ENABLE-1",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-ENABLE-0",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-SAMPLE",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-STALE",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-TIMEOUT",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-RESET",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-RECOVERY",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 7,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "empty",
+      "defect_class": "scope",
+      "text_gates": [],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 0,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "partial",
+      "defect_class": "scope",
+      "text_gates": [
+        {
+          "id": "R-ENABLE-1",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 1,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "timing-missing",
+      "defect_class": "timing",
+      "text_gates": [],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 0,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "timing-valid",
+      "defect_class": "timing",
+      "text_gates": [],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 0,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "same-mode",
+      "defect_class": "semantic",
+      "text_gates": [
+        {
+          "id": "R-ENABLE-1",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-ENABLE-0",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 2,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "different-mode",
+      "defect_class": "semantic",
+      "text_gates": [
+        {
+          "id": "R-ENABLE-1",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-ENABLE-0",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 2,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "missing-reaction",
+      "defect_class": "scenario",
+      "text_gates": [
+        {
+          "id": "R-SAMPLE",
+          "gate": "WARN",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 1,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "no-scenario-model",
+      "defect_class": "scenario",
+      "text_gates": [
+        {
+          "id": "R-ENABLE-1",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-ENABLE-0",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-SAMPLE",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-STALE",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-TIMEOUT",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-RESET",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-RECOVERY",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 7,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    },
+    {
+      "case_id": "stale-evidence",
+      "defect_class": "freshness",
+      "text_gates": [
+        {
+          "id": "R-ENABLE-1",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-ENABLE-0",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-SAMPLE",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-STALE",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-TIMEOUT",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-RESET",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        },
+        {
+          "id": "R-RECOVERY",
+          "gate": "PASS",
+          "consistency_heuristic": 1.0
+        }
+      ],
+      "legacy_empty_graph": {
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "legacy_partial_import": {
+        "loaded_requirements": 7,
+        "passing": [
+          "CROSS-HW-SW-1",
+          "CROSS-TIMING-1",
+          "CROSS-SAFETY-1"
+        ],
+        "rate": 1.0
+      },
+      "structured_checks": "UNSUPPORTED in baseline: no bundle/scenario/evidence/contract analyzer",
+      "scope": "Text heuristics and original empty-graph runner only; bundle fields not analyzed"
+    }
+  ],
+  "executed_commit": "0f4a3057a1bf2800249558c484220ca5093ed091"
+}

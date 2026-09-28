@@ -90,6 +90,7 @@ def cmd_assess(args: argparse.Namespace) -> int:
                     for r in results
                 ],
                 "aggregate": metrics,
+                "score_semantics": "Local text heuristics; no completeness/consistency proof",
             }
         )
     else:
@@ -108,6 +109,8 @@ def cmd_assess(args: argparse.Namespace) -> int:
             f"FAIL {metrics['gate_fail']} | avg overall {metrics['avg_overall']:.3f}"
         )
 
+    if not args.json:
+        print("Scores are local text heuristics, not completeness or consistency proofs.")
     if metrics["gate_fail"] > 0:
         return 2
     if metrics["gate_warn"] > 0:
@@ -122,6 +125,8 @@ def cmd_assess(args: argparse.Namespace) -> int:
 
 def cmd_import(args: argparse.Namespace) -> int:
     """Parse, build the graph, report counts; optionally MERGE into Neo4j."""
+    if args.format == "bundle":
+        return cmd_import_bundle(args)
     tag = args.dataset_tag
     if not tag or not tag.strip():
         print("Error: --dataset-tag must be a non-empty, non-whitespace string.", file=sys.stderr)
@@ -194,6 +199,27 @@ def cmd_comply(args: argparse.Namespace) -> int:
         run_compliance_check,
     )
 
+    if not args.neo4j and args.dataset != "cva6":
+        print(
+            "The legacy memory demo supports only cva6; use verify for JSON bundles.",
+            file=sys.stderr,
+        )
+        return 3
+    runner: Any
+    scopes = None
+    if args.scope:
+        from pathlib import Path
+
+        from specguard.compliance.constraint_engine import RuleScope
+
+        try:
+            scopes = {
+                key: RuleScope(**value)
+                for key, value in json.loads(Path(args.scope).read_text()).items()
+            }
+        except (ValueError, TypeError, OSError) as exc:
+            print(f"Invalid rule scope manifest: {exc}", file=sys.stderr)
+            return 3
     objectives = DO_178C_OBJECTIVES + DO_254_OBJECTIVES + CROSS_DOMAIN_OBJECTIVES
 
     if args.neo4j:
@@ -209,7 +235,7 @@ def cmd_comply(args: argparse.Namespace) -> int:
             print(f"Neo4j driver not installed (install '.[graph]'): {exc}", file=sys.stderr)
             return 2
         try:
-            report = run_compliance_check(runner, objectives, standard_name="ALL")
+            report = run_compliance_check(runner, objectives, standard_name="ALL", scopes=scopes)
         finally:
             runner.close()
         backend = "neo4j"
@@ -221,29 +247,96 @@ def cmd_comply(args: argparse.Namespace) -> int:
 
         graph = build_demo_graph()
         runner = make_graph_runner(graph)
-        report = run_compliance_check(runner, objectives, standard_name="ALL")
+        report = run_compliance_check(runner, objectives, standard_name="ALL", scopes=scopes)
         backend = "memory"
 
-    passing = len(report.passing_objective_ids)
-    total = report.total_objectives_checked
-
+    payload = report.to_dict()
+    payload.update(
+        backend=backend,
+        dataset=args.dataset,
+        synthetic=True if not args.neo4j else None,
+        total_objectives=report.total_objectives_checked,
+        passing=len(report.passing_objective_ids),
+        violations=report.violation_count,
+    )
+    # Detailed violations remain in per-object results; legacy count key is retained.
     if args.json:
-        _emit_json(
-            {
-                "backend": backend,
-                "dataset": args.dataset,
-                "total_objectives": total,
-                "passing": passing,
-                "violations": report.violation_count,
-                "passing_objective_ids": list(report.passing_objective_ids),
-            }
-        )
+        _emit_json(payload)
     else:
-        print(f"Compliance check ({backend} backend, dataset={args.dataset})")
-        print(f"Objectives checked: {total}")
-        print(f"Passing:            {passing} ({passing / total:.1%})" if total else "Passing: 0")
-        print(f"Violations:         {report.violation_count}")
-    return 0
+        print(
+            f"Project graph checks ({backend} backend, dataset={args.dataset}, "
+            f"synthetic={payload['synthetic']})"
+        )
+        print(report.summary())
+    return 3 if payload["summary"]["counts"]["ERROR"] else 0
+
+
+def cmd_import_bundle(args: argparse.Namespace) -> int:
+    from specguard.verification.graph_io import bundle_graph, import_bundle
+    from specguard.verification.model import Bundle, digest
+
+    try:
+        bundle = Bundle.load(args.path)
+        if args.dataset_tag != bundle.data["id"]:
+            raise ValueError("--dataset-tag must equal the bundle id")
+        graph = bundle_graph(bundle)
+        result = {
+            "bundle_id": bundle.data["id"],
+            "revision": digest(bundle.data),
+            "nodes": len(graph["nodes"]),
+            "edges": len(graph["edges"]),
+            "unresolved_links": graph["unresolved_links"],
+            "dry_run": not args.to_neo4j,
+        }
+        if args.to_neo4j:
+            result.update(import_bundle(bundle))
+        if args.json:
+            _emit_json(result)
+        else:
+            print(json.dumps(result, indent=2))
+        return 0
+    except Exception as exc:
+        if args.json:
+            _emit_json({"status": "ERROR", "reason": f"{type(exc).__name__}: {exc}"})
+        else:
+            print(f"Import error: {exc}", file=sys.stderr)
+        return 3
+
+
+def cmd_verify(args: argparse.Namespace) -> int:
+    from specguard.verification.analyzer import analyze_bundle, render_report
+    from specguard.verification.model import Bundle
+
+    try:
+        if args.neo4j:
+            from specguard.verification.graph_io import read_bundle
+
+            if args.path or not args.bundle_id or not args.revision:
+                raise ValueError(
+                    "--neo4j requires --bundle-id and --revision, without a local path"
+                )
+            bundle = read_bundle(args.bundle_id, args.revision)
+        else:
+            if not args.path or args.bundle_id or args.revision:
+                raise ValueError("Provide a JSON bundle path or select an exact Neo4j revision")
+            bundle = Bundle.load(args.path)
+        report = analyze_bundle(bundle, phase=args.phase, max_pairs=args.max_pairs)
+        if args.json:
+            _emit_json(report)
+        else:
+            print(render_report(report))
+        stats = report["summary"]
+        if stats["counts"]["ERROR"]:
+            return 3
+        if stats["counts"]["FAIL"]:
+            return 2
+        return 1 if stats["incomplete"] else 0
+    except Exception as exc:
+        if args.json:
+            _emit_json({"status": "ERROR", "reason": f"{type(exc).__name__}: {exc}"})
+        else:
+            print(f"Verification error: {exc}", file=sys.stderr)
+        return 3
 
 
 # ---------------------------------------------------------------------------
@@ -502,7 +595,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_import = sub.add_parser("import", help="Parse + build graph; optionally MERGE to Neo4j.")
     p_import.add_argument("path", help="Requirements file, or '-' for stdin.")
     p_import.add_argument("--dataset-tag", required=True, help="Coexistence tag (non-empty).")
-    p_import.add_argument("--format", default="auto", help="auto|text|md|csv (default auto).")
+    p_import.add_argument(
+        "--format", default="auto", help="auto|text|md|csv|bundle (default auto)."
+    )
     p_import.add_argument("--to-neo4j", action="store_true", help="MERGE into the live graph.")
     p_import.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     p_import.set_defaults(func=cmd_import)
@@ -516,13 +611,22 @@ def build_parser() -> argparse.ArgumentParser:
     backend.add_argument("--memory", action="store_true", help="In-memory runner (default).")
     backend.add_argument("--neo4j", action="store_true", help="Run against live Neo4j.")
     p_comply.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    p_comply.add_argument("--scope", help="Reviewed rule scope/prerequisite manifest JSON.")
     p_comply.set_defaults(func=cmd_comply)
+
+    p_verify = sub.add_parser("verify", help="Scoped project checks over reviewed JSON bundles.")
+    p_verify.add_argument("path", nargs="?")
+    p_verify.add_argument("--phase", choices=["p1", "p2"], default="p2")
+    p_verify.add_argument("--max-pairs", type=int, default=10000)
+    p_verify.add_argument("--neo4j", action="store_true")
+    p_verify.add_argument("--bundle-id")
+    p_verify.add_argument("--revision")
+    p_verify.add_argument("--json", action="store_true")
+    p_verify.set_defaults(func=cmd_verify)
 
     # graph
     p_graph = sub.add_parser("graph", help="Named graph queries or read-only Cypher.")
-    p_graph.add_argument(
-        "named", nargs="?", default=None, help="Named query: q6 | q8 | q14."
-    )
+    p_graph.add_argument("named", nargs="?", default=None, help="Named query: q6 | q8 | q14.")
     p_graph.add_argument("--cypher", default=None, help="Raw read-only Cypher (Neo4j).")
     p_graph.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     p_graph.set_defaults(func=cmd_graph)

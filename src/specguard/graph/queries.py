@@ -163,7 +163,7 @@ def q8_safety_critical_with_smells(g: nx.MultiDiGraph) -> list[dict]:
 
 
 def q14_potential_conflicts(g: nx.MultiDiGraph) -> list[dict]:
-    """Q14: Pairs of requirements sharing 2+ components — conflict candidates."""
+    """Q14: topology screening only; returns at most 15 pairs sharing 2+ components."""
     # Build req -> set of components
     req_components: dict = {}
     for req_node in _filter_nodes_by_label(g, "Requirement"):

@@ -93,7 +93,8 @@ class ReviewItem:
             confidence=float(d["confidence"]),
             evidence_span=d["evidence_span"],
             status=ReviewStatus(d.get("status", "PENDING")),
-            target_label=d.get("target_label"),
+            target_label=("SafetyHazard" if d.get("target_label") == "Hazard"
+                          else d.get("target_label")),
             evidence_names_target=d.get("evidence_names_target"),
         )
 
@@ -179,7 +180,7 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
 
     The target's ``to_label`` is the true node label carried on the item
     (``target_label``, derived from the inventory bucket at extraction time), so
-    a standard exports as ``Standard`` and a hazard as ``Hazard`` — not
+    a standard exports as ``Standard`` and a hazard as ``SafetyHazard`` — not
     collapsed by an edge-type guess. Items missing a label (pre-P0.4 queue
     files) fall back to a per-edge-type default.
     """
@@ -188,6 +189,8 @@ def export_accepted_edges(queue: ReviewQueue) -> list[dict]:
         to_label = item.target_label or _EDGE_TYPE_FALLBACK_LABEL.get(
             item.edge_type, "Requirement"
         )
+        if to_label == "Hazard":
+            to_label = "SafetyHazard"
         edges.append(
             {
                 "from_label": "Requirement",

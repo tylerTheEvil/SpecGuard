@@ -1,0 +1,33 @@
+........................................................................ [ 21%]
+...............................sssssss....................ssssssssssssss [ 42%]
+s.sssssssssssssssss..................................................... [ 64%]
+...................................s.................................... [ 85%]
+.................................................                        [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_linguistic_metrics.py:12: could not import 'textstat': No module named 'textstat'
+SKIPPED [1] tests/test_linguistic_metrics.py:31: could not import 'textstat': No module named 'textstat'
+SKIPPED [1] tests/test_linguistic_metrics.py:44: could not import 'spacy': No module named 'spacy'
+SKIPPED [1] tests/test_linguistic_metrics.py:58: could not import 'spacy': No module named 'spacy'
+SKIPPED [1] tests/test_linguistic_metrics.py:72: could not import 'spacy': No module named 'spacy'
+SKIPPED [1] tests/test_linguistic_metrics.py:90: could not import 'spacy': No module named 'spacy'
+SKIPPED [1] tests/test_linguistic_metrics.py:106: could not import 'spacy': No module named 'spacy'
+SKIPPED [15] tests/test_neo4j_integration.py:93: Neo4j not reachable — skipping integration tests
+SKIPPED [1] tests/test_neo4j_integration.py:118: Neo4j not reachable — skipping integration tests
+SKIPPED [1] tests/test_neo4j_integration.py:126: Neo4j not reachable — skipping integration tests
+SKIPPED [1] tests/test_neo4j_integration.py:134: Neo4j not reachable — skipping integration tests
+SKIPPED [1] tests/test_neo4j_integration.py:151: Neo4j not reachable — skipping integration tests
+SKIPPED [1] tests/test_neo4j_integration.py:172: Neo4j not reachable — skipping integration tests
+SKIPPED [1] tests/test_neo4j_io.py:112: Neo4j not reachable — skipping neo4j_io tests
+SKIPPED [1] tests/test_neo4j_io.py:131: Neo4j not reachable — skipping neo4j_io tests
+SKIPPED [1] tests/test_neo4j_io.py:142: Neo4j not reachable — skipping neo4j_io tests
+SKIPPED [1] tests/test_neo4j_io.py:155: Neo4j not reachable — skipping neo4j_io tests
+SKIPPED [1] tests/test_neo4j_io.py:192: Neo4j not reachable — skipping neo4j_io tests
+SKIPPED [1] tests/test_neo4j_io.py:203: Neo4j not reachable — skipping neo4j_io tests
+SKIPPED [1] tests/test_neo4j_uav_cross_domain.py:87: Neo4j not reachable — skipping UAV integration tests
+SKIPPED [1] tests/test_neo4j_uav_cross_domain.py:99: Neo4j not reachable — skipping UAV integration tests
+SKIPPED [1] tests/test_neo4j_uav_cross_domain.py:113: Neo4j not reachable — skipping UAV integration tests
+SKIPPED [1] tests/test_neo4j_uav_cross_domain.py:123: Neo4j not reachable — skipping UAV integration tests
+SKIPPED [1] tests/test_neo4j_uav_cross_domain.py:130: Neo4j not reachable — skipping UAV integration tests
+SKIPPED [1] tests/test_neo4j_verification.py:21: Destructive demo load requires SPECGUARD_ISOLATED_TEST_TARGET=bolt://localhost:7687/neo4j for a disposable database only
+SKIPPED [1] tests/test_taxonomy.py:173: could not import 'matplotlib': No module named 'matplotlib'
+297 passed, 40 skipped in 1.28s

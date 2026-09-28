@@ -42,6 +42,13 @@ def _neo4j_available() -> bool:
         return False
 
     config = Neo4jConfig.from_env()
+    from specguard.compliance.neo4j_runner import require_isolated_test_database
+
+    try:
+        require_isolated_test_database(config)
+    except RuntimeError:
+        return False
+
     try:
         driver = GraphDatabase.driver(
             config.uri,
@@ -152,7 +159,7 @@ def test_cross_domain_seeded_violations(loaded_runner):
     assert iface_flags  # at least one violation
 
     timing_rows = loaded_runner(by_id["CROSS-TIMING-1"].cypher_query, {})
-    timing_flags = {r["violating_requirement"] for r in timing_rows}
+    timing_flags = {r["violating_requirement"] for r in timing_rows if r["_status"] == "FAIL"}
     assert "SYS-4" in timing_flags  # 70 > 50 budget overrun
     assert "SYS-3" not in timing_flags  # 90 <= 100 is within budget
 
@@ -166,8 +173,10 @@ def test_run_compliance_check_end_to_end(loaded_runner):
     """The engine runs all 15 objectives via the Neo4j runner without error."""
     report = run_compliance_check(loaded_runner, ALL_OBJECTIVES, standard_name="combined")
     assert report.total_objectives_checked == 15
-    # Seeded data guarantees violations exist (DO-254 + cross-domain alone = 8).
-    assert report.violation_count >= 8
+    # Live query execution alone does not provide a reviewed completeness manifest.
+    assert report.violation_count == 1  # explicit positive additive overrun witness
+    assert sum(r.status == "UNKNOWN" for r in report.results) == 15
+    assert any(r.details.get("candidate_rows") for r in report.results)
     # No violation should fall back to the bare-title template.
     for v in report.violations:
         assert v.explanation

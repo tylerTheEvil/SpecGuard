@@ -42,6 +42,8 @@ SPECGUARD_NEO4J_* environment variables (see neo4j_runner.Neo4jConfig).
 
 from __future__ import annotations
 
+import hashlib
+
 from specguard.compliance.neo4j_runner import Neo4jConfig, Neo4jGraphRunner
 from specguard.core import assess_dataset
 from specguard.data.cva6_requirements import get_all_requirements
@@ -59,9 +61,9 @@ SYSTEM_REQUIREMENTS = [
     {"id": "SYS-2", "text": "Processor shall meet performance targets.",
      "level": "system", "dal": "B"},
     {"id": "SYS-3", "text": "Load-to-use memory access shall complete within budget.",
-     "level": "system", "dal": "A", "timing_budget_ns": 100},
+     "level": "system", "dal": "A", "timing_budget_ns": 100, "timing_composition": "additive"},
     {"id": "SYS-4", "text": "Store path shall complete within budget.",
-     "level": "system", "dal": "A", "timing_budget_ns": 50},
+     "level": "system", "dal": "A", "timing_budget_ns": 50, "timing_composition": "additive"},
 ]
 
 # Hardware requirements (HWR) — the FPGA/DO-254 side. These are MOCK additions
@@ -158,6 +160,9 @@ SAFETY_HAZARDS = [
 
 def _clear_database(runner: Neo4jGraphRunner) -> None:
     """Delete every node and relationship in the target database."""
+    from specguard.compliance.neo4j_runner import require_isolated_test_database
+
+    require_isolated_test_database(runner.config)
     runner("MATCH (n) DETACH DELETE n", {})
 
 
@@ -228,7 +233,7 @@ def _add_compliance_metadata(runner: Neo4jGraphRunner) -> None:
         elif req.category == "Performance" and req.req_id != "PPA-50":
             _merge_trace(runner, req.req_id, "SYS-2")
 
-        if hash(req.req_id) % 2 == 0:
+        if int(hashlib.sha256(req.req_id.encode()).hexdigest(), 16) % 2 == 0:
             _merge_test(runner, req.req_id, f"TC_{req.req_id}", coverage_type=None)
 
     # --- System requirements -------------------------------------------------

@@ -1,21 +1,9 @@
-"""Cross-domain compliance objectives — DO-178C ↔ DO-254 binding.
+"""Illustrative cross-domain project checks: links, additive timing and hazards.
 
-This is the *unique research niche* of the dissertation: regulatory
-objectives that bind software (DO-178C) and hardware/FPGA (DO-254)
-sides of a safety-critical system together.
-
-Existing literature focuses on either:
-    - Software side: Zrelli 2026, Ribeiro 2025, Masoudifard 2024
-    - Hardware side: AssertionForge 2025, Saarthi 2025
-    - But not the binding between them.
-
-This binding is required by ARP4754A (system-level guidance) and
-implicit in certification evidence packages — auditors check that
-hardware-software interfaces are coherently specified across both sides.
-
-These objectives demonstrate the cross-domain niche even if not
-directly numbered in either standard — they encode binding requirements
-that emerge at the system level.
+Historical standard labels are retained for compatibility, not as validated
+normative mappings. A consistency/mitigation edge establishes structural coverage
+only. Timing needs an explicit nonnegative additive allocation model; absent
+budgets or unknown composition remain visible as UNKNOWN.
 """
 
 from .constraint_engine import ComplianceConstraint
@@ -67,26 +55,31 @@ CROSS_TIMING_BUDGET = ComplianceConstraint(
     applicable_dal=["A", "B"],
     cypher_query="""
         MATCH (sysreq:Requirement {level: 'system'})
-        WHERE sysreq.timing_budget_ns IS NOT NULL
-          AND EXISTS {
-            MATCH (sysreq)<-[:DERIVES_FROM]-(:Requirement {level: 'HLR'})
-          }
-          AND EXISTS {
-            MATCH (sysreq)<-[:DERIVES_FROM]-(:Requirement {level: 'HWR'})
-          }
-        WITH sysreq,
-             [(sysreq)<-[:DERIVES_FROM]-(sw:Requirement {level: 'HLR'})
-              | sw.timing_budget_ns] AS sw_budgets,
-             [(sysreq)<-[:DERIVES_FROM]-(hw:Requirement {level: 'HWR'})
-              | hw.timing_budget_ns] AS hw_budgets
-        WITH sysreq, sw_budgets + hw_budgets AS allocated_budgets,
-             sysreq.timing_budget_ns AS budget
-        WHERE reduce(s = 0, b IN allocated_budgets | s + coalesce(b, 0)) > budget
+        OPTIONAL MATCH (child:Requirement)-[:DERIVES_FROM]->(sysreq)
+        WHERE child.level IN ['HLR', 'HWR']
+        WITH sysreq, collect(child) AS children
+        WITH sysreq, children,
+             [c IN children WHERE c.timing_budget_ns IS NOT NULL
+              AND c.timing_budget_ns >= 0 | c.timing_budget_ns] AS known
+        WITH sysreq, children, known,
+             reduce(s = 0, b IN known | s + b) AS allocated
+        WITH sysreq, children, known, allocated,
+             CASE
+               WHEN sysreq.timing_composition IS NULL
+                 OR sysreq.timing_composition <> 'additive'
+                 OR sysreq.timing_budget_ns IS NULL OR sysreq.timing_budget_ns < 0
+                 THEN 'UNKNOWN'
+               WHEN any(c IN children WHERE c.timing_budget_ns < 0) THEN 'UNKNOWN'
+               WHEN allocated > sysreq.timing_budget_ns THEN 'FAIL'
+               WHEN size(children) = 0 OR size(known) <> size(children) THEN 'UNKNOWN'
+               ELSE 'PASS'
+             END AS check_status
+        WHERE check_status <> 'PASS'
         RETURN sysreq.id AS violating_requirement,
-               sysreq.timing_budget_ns AS budget,
-               reduce(s = 0, b IN allocated_budgets | s + coalesce(b, 0))
-                 AS allocated,
-               'budget_overrun' AS reason
+               sysreq.timing_budget_ns AS budget, allocated,
+               check_status AS _status,
+               size(children) - size(known) AS missing_budgets,
+               'Explicit additive composition and nonnegative ns budgets required' AS reason
     """,
     violation_template=(
         "System requirement '{violating_requirement}' has timing budget "
@@ -113,8 +106,8 @@ CROSS_SAFETY_PROPAGATION = ComplianceConstraint(
     ),
     applicable_dal=["A", "B"],
     cypher_query="""
-        MATCH (haz:SafetyHazard)
-        WHERE haz.severity IN ['catastrophic', 'hazardous']
+        MATCH (haz)
+        WHERE (haz:SafetyHazard OR haz:Hazard) AND haz.severity IN ['catastrophic', 'hazardous']
           AND haz.mitigation_domain IN ['both', 'sw_and_hw']
           AND NOT (
             EXISTS {

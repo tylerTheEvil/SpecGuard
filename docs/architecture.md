@@ -106,3 +106,24 @@ Flesch RE ≈ 25–50, FK Grade ≈ 12–16, MDL ≈ 3.0–5.0, Lexical density 
 - DO-330 TQL-5 positioning: development tool with human-in-the-loop, not airborne AI
 - AirReq (IEEE REW 2025) is the direct comparison baseline
 - Q14 / FSARC results must not be described as "conflict detection" — they are screening
+
+## Scoped project verification (P0/P1/P2)
+
+`src/specguard/verification/` adds a stdlib-only structured analysis path:
+`model.py` validates reviewed JSON bundle inventories and artifact hashes;
+`results.py` defines verdict/freshness aggregation; `semantics.py` implements the
+closed conjunction fragment; `analyzer.py` checks evidence, timing, structural
+links, assumptions, scenarios and all contract pairs; `graph_io.py` projects and
+atomically persists immutable scoped Neo4j snapshots. CLI `import --format bundle`
+and `verify`, plus TraceabilityAgent's `verification_bundle` context, integrate it.
+Both memory and Neo4j snapshots use the same semantic implementation.
+
+The existing textual scorer, structural graph queries, formalized property
+checks, and system evidence have different claim boundaries. A high text score
+is a heuristic observation; an edge is a structural fact; a contract verdict
+applies only to reviewed mappings and the declared static fragment; a system
+property requires independently justified verification evidence. None of the
+first three establishes the fourth. The earlier research positioning in this
+historical document is not a qualification/novelty claim for these new checks.
+See [the implementation contract](grounded_checks.md) for precise limits and
+migration details. Temporal realizability, full STPA and FRET/Kind2 remain future work.

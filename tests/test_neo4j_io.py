@@ -28,6 +28,13 @@ def _neo4j_available() -> bool:
     except ImportError:
         return False
     config = Neo4jConfig.from_env()
+    from specguard.compliance.neo4j_runner import require_isolated_test_database
+
+    try:
+        require_isolated_test_database(config)
+    except RuntimeError:
+        return False
+
     try:
         driver = GraphDatabase.driver(
             config.uri, auth=(config.user, config.password), connection_timeout=_PROBE_TIMEOUT

@@ -120,3 +120,18 @@ replaced with proper absolute imports (`specguard.core.*`, `specguard.data.*`, e
 
 **Empirical results unchanged** — 100% recall on seeded faults, 95.3% gate PASS
 on CVA6, 60% compliance objectives passing — verified post-reorganization.
+
+## Unreleased — scoped project verification
+
+- Add reviewed JSON bundle import/verification for evidence freshness, assumptions,
+  failure scenarios, explicit additive timing, structural links and a bounded
+  static SW/HW contract fragment. No new mandatory packages.
+- Separate PASS/FAIL/UNKNOWN/N/A/ERROR from evidence freshness, with explicit scope,
+  source/dependency hashes and coverage. Legacy empty-query results no longer pass;
+  `compliance_rate` is nullable and means only a completed-check fraction.
+- Remove synthetic evidence generation for user requirements and duplicate mock
+  implementations. Preserve Q14 as a capped screening tool.
+- Canonicalize hazard labels and guard destructive loaders/fixtures with an exact
+  isolated test target. Additive Cypher exports do not clear data.
+- Add regression/CLI/backend tests and reproducible synthetic comparison exports
+  using archived baseline source, without altering manuscript results.
