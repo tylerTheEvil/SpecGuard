@@ -262,6 +262,36 @@ NUMERIC_NO_UNIT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+# Identifier numerals are names, not quantities, so they need no unit (G6,
+# found by the in-the-wild spec-kit corpus, integrations/spec-kit-specguard/
+# experiments): "FR-036", "ADR-0015", "SHA-256", "#17", "7/7", and a number
+# directly after an ordinal label ("Phase 4", "Pass 0", "ISO 14971").
+IDENTIFIER_PREFIX_PATTERN = re.compile(r"(?:[A-Za-z]-|#|/)$")
+ORDINAL_LABEL_PATTERN = re.compile(
+    r"\b(?:phase|pass|rank|step|stage|tier|level|gate|wave|round|iteration|sprint|"
+    r"milestone|principle|clause|rule|feature|spike|issue|pr|iso|iec|ieee|rfc|table|"
+    r"figure|fig\.|appendix|annex|article|paragraph|option|case|scenario|story|"
+    r"priority|layer|release|attempt|item|question|part|line|row|column|page|note|"
+    r"exit code|code)\s+$",
+    re.IGNORECASE,
+)
+
+# Hyphen compounds whose head is a lexicon term are technical terms, not
+# subjective adjectives (G7): "fail-safe", "thread-safe", "share-safe".
+# Intensifier prefixes keep the smell: "super-fast", "highly-robust".
+HYPHEN_COMPOUND_HEAD_PATTERN = re.compile(r"\b([a-z]+)-$")
+INTENSIFIER_PREFIXES = {"super", "ultra", "hyper", "highly", "very", "extra", "extremely"}
+
+# Technical collocations of 'clean' that name a precise state (G8):
+# "clean clone", "clean working tree", "clean exit". Verb use ("MUST clean
+# the cache") is an action, not a subjective quality.
+CLEAN_COLLOCATION_PATTERN = re.compile(
+    r"clean\s+(?:clone|checkout|working\s+(?:tree|copy)|tree|git\b|exit|status|"
+    r"install(?:ation)?|build|shutdown|boot|slate|room|environment|run)",
+    re.IGNORECASE,
+)
+VERB_CONTEXT_PATTERN = re.compile(r"\b(?:shall|must|will|should|may|to)\s+$", re.IGNORECASE)
+
 # Placeholder markers
 PLACEHOLDER_PATTERN = re.compile(r"\b(TBD|TODO|FIXME|XXX|TBC)\b")
 
@@ -277,10 +307,31 @@ def _find_terms(text: str, terms: set[str]) -> list[tuple[str, int]]:
     return found
 
 
+def _is_technical_use(term: str, pos: int, text: str) -> bool:
+    """True when an ambiguity term is part of a precise technical expression.
+
+    Hyphen-compound heads (G7) and 'clean' collocations / verb use (G8).
+    """
+    before = text[max(0, pos - 20) : pos].lower()
+    compound = HYPHEN_COMPOUND_HEAD_PATTERN.search(before)
+    if compound and compound.group(1) not in INTENSIFIER_PREFIXES:
+        return True
+    return term == "clean" and bool(
+        CLEAN_COLLOCATION_PATTERN.match(text, pos) or VERB_CONTEXT_PATTERN.search(before)
+    )
+
+
 def detect_ambiguity(text: str) -> list[SmellHit]:
-    """Detect ambiguous subjective adjectives and adverbs."""
+    """Detect ambiguous subjective adjectives and adverbs.
+
+    Technical uses are skipped: hyphen-compound heads ("fail-safe") and
+    'clean' collocations or verb use ("clean clone", "MUST clean the cache")
+    — lexical collisions found by the in-the-wild spec-kit corpus (G7, G8).
+    """
     hits = []
     for term, pos in _find_terms(text, AMBIGUITY_TERMS):
+        if _is_technical_use(term, pos, text):
+            continue
         hits.append(
             SmellHit(
                 smell_type=SmellType.AMBIGUITY,
@@ -386,9 +437,15 @@ def detect_weakness(text: str) -> list[SmellHit]:
     that undermine the normative force of a requirement. Plain 'should' and
     'may' are intentionally excluded — they carry formal RFC 2119 / ISO 29148
     semantics and flagging them produces false positives on well-formed specs.
+
+    'could not' is skipped: it is past-tense inability ("the reason it could
+    not be loaded"), not a softened modal (G9, in-the-wild spec-kit corpus).
     """
     hits = []
+    text_lower = text.lower()
     for term, pos in _find_terms(text, WEAKNESS_TERMS):
+        if term == "could" and re.match(r"could\s+not\b", text_lower[pos:]):
+            continue
         hits.append(
             SmellHit(
                 smell_type=SmellType.WEAKNESS,
@@ -573,11 +630,17 @@ def detect_missing_unit(text: str) -> list[SmellHit]:
     """Detect numeric values that appear without measurement units.
 
     Heuristic — false positives expected. Tuned to be conservative.
+    Identifier numerals ("FR-036", "#17", "7/7", "Phase 4") are skipped (G6).
     """
     hits = []
     for match in NUMERIC_NO_UNIT_PATTERN.finditer(text):
         # Skip very short numbers (likely identifiers like version numbers)
         if "." in match.group(1) and len(match.group(1)) <= 4:
+            continue
+        # G6: identifier numerals are names, not quantities
+        if IDENTIFIER_PREFIX_PATTERN.search(text[: match.start()]):
+            continue
+        if ORDINAL_LABEL_PATTERN.search(text[max(0, match.start() - 20) : match.start()]):
             continue
         # Skip common false positives like "version 2.1"
         preceding = text[max(0, match.start() - 15) : match.start()].lower()

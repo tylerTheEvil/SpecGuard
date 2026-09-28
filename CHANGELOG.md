@@ -2,6 +2,33 @@
 
 ## [Unreleased]
 
+### 2026-09-28 — Core detector fixes G6–G9 from in-the-wild Spec Kit specs
+
+Found by running the core on 193 real Spec Kit specs (17 repositories from
+the Spec Kit extension catalog; corpus and runner land with the Spec Kit
+extension in `integrations/spec-kit-specguard/experiments/`). Register-
+independent lexical collisions in `smell_detector.py`:
+
+- **G6** `MISSING_UNIT`: identifier numerals are names, not quantities —
+  hyphenated IDs (`FR-036`, `ADR-0015`, `SHA-256`), `#17`, ratio tails (`7/7`),
+  numbers after ordinal labels (`Phase 4`, `Pass 0`, `ISO 14971`).
+- **G7** `AMBIGUITY`: hyphen-compound heads (`fail-safe`, `thread-safe`) are
+  technical terms; intensifier prefixes (`super-fast`) still flagged.
+- **G8** `AMBIGUITY`: `clean` collocations (`clean clone`, `clean working
+  tree`, `clean exit`) and verb use (`MUST clean the cache`).
+- **G9** `WEAKNESS`: `could not` is past-tense inability, not a softened modal.
+
+**Decision:** core fixes, not Spec Kit profile rules — each is wrong in any
+register (an identifier is never a quantity; `fail-safe` is a term of art).
+Register-dependent calibration (`any`, entity counts, success-criteria
+scoring) stays in the extension's `speckit` profile.
+
+**Verification: zero regression.** CVA6, UAV (20) and the pilot corpus (120):
+byte-identical per-requirement results (hits, positions, scores, gates).
+Seeded-fault result files unchanged (100% / 0% / 28.6%, FPR 12.5%). 256 tests
+pass (12 new). On the in-the-wild corpus: −16.2% core hits (2,988 → 2,503;
+missing unit 791 → 375).
+
 ### 2026-07-18 — Core detector/scorer fixes from Spec Kit pilot (spec-kit-integration)
 
 Phase 2a of `docs/speckit_integration_plan.md`. Five register-independent

@@ -208,6 +208,73 @@ class TestSpecKitPilotFixes:
         assert SmellType.COMPARATIVE in report.smell_types_found
 
 
+class TestInTheWildCorpusFixes:
+    """Regression tests for lexical-collision fixes G6-G9 from the in-the-wild
+    spec-kit corpus (integrations/spec-kit-specguard/experiments)."""
+
+    # G6 — identifier numerals are names, not quantities
+    def test_hyphenated_identifier_not_missing_unit(self):
+        report = analyze_requirement(
+            "G6a", "The run MUST refuse the misplaced case of FR-036 as ADR-0015 records."
+        )
+        assert SmellType.MISSING_UNIT not in report.smell_types_found
+
+    def test_hash_and_ratio_identifiers_not_missing_unit(self):
+        report = analyze_requirement("G6b", "Issue #17 shall stay open until 7/7 checks pass.")
+        assert SmellType.MISSING_UNIT not in report.smell_types_found
+
+    def test_ordinal_label_not_missing_unit(self):
+        report = analyze_requirement(
+            "G6c", "Pass 0 MUST NOT write files and Phase 4 shall follow ISO 14971 guidance."
+        )
+        assert SmellType.MISSING_UNIT not in report.smell_types_found
+
+    def test_quantity_after_identifier_still_flagged(self):
+        report = analyze_requirement("G6d", "FR-036 shall allow 12 retries.")
+        assert [h.trigger for h in report.hits if h.smell_type == SmellType.MISSING_UNIT] == [
+            "12"
+        ]
+
+    # G7 — hyphen-compound heads are technical terms
+    def test_fail_safe_not_ambiguous(self):
+        report = analyze_requirement("G7a", "The artifact shall be left untouched (fail-safe).")
+        assert SmellType.AMBIGUITY not in report.smell_types_found
+
+    def test_intensifier_compound_still_ambiguous(self):
+        report = analyze_requirement("G7b", "The parser shall be super-fast.")
+        assert SmellType.AMBIGUITY in report.smell_types_found
+
+    def test_bare_safe_still_ambiguous(self):
+        report = analyze_requirement("G7c", "Validation MUST enforce safe paths.")
+        assert SmellType.AMBIGUITY in report.smell_types_found
+
+    # G8 — 'clean' collocations and verb use are precise
+    def test_clean_clone_not_ambiguous(self):
+        report = analyze_requirement(
+            "G8a", "All checks MUST run to completion on a clean clone and a clean working tree."
+        )
+        assert SmellType.AMBIGUITY not in report.smell_types_found
+
+    def test_clean_as_verb_not_ambiguous(self):
+        report = analyze_requirement("G8b", "The tool MUST clean the cache after each run.")
+        assert SmellType.AMBIGUITY not in report.smell_types_found
+
+    def test_clean_design_still_ambiguous(self):
+        report = analyze_requirement("G8c", "The dashboard shall have a clean design.")
+        assert SmellType.AMBIGUITY in report.smell_types_found
+
+    # G9 — 'could not' is past-tense inability, not a softened modal
+    def test_could_not_not_weak(self):
+        report = analyze_requirement(
+            "G9a", "The report MUST name the file and the reason it could not be loaded."
+        )
+        assert SmellType.WEAKNESS not in report.smell_types_found
+
+    def test_could_still_weak(self):
+        report = analyze_requirement("G9b", "The system could cache results.")
+        assert SmellType.WEAKNESS in report.smell_types_found
+
+
 class TestSmellReport:
     def test_smell_types_found_property(self):
         report = analyze_requirement("T12", "The system shall be fast.")
