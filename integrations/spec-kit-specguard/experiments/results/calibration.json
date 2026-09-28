@@ -1,0 +1,578 @@
+{
+ "set": "calibration",
+ "specs": 193,
+ "repositories": 17,
+ "fixtures_excluded": 62,
+ "configs": {
+  "core-prefix": {
+   "requirements": {
+    "FR": {
+     "n": 3489,
+     "gate": {
+      "PASS": 0.796,
+      "WARN": 0.204,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.825,
+     "smells_per_req": 0.669
+    },
+    "SC": {
+     "n": 1438,
+     "gate": {
+      "PASS": 0.362,
+      "WARN": 0.627,
+      "FAIL": 0.012
+     },
+     "pass_rate_macro_by_repo": 0.409,
+     "smells_per_req": 0.45
+    },
+    "NFR": {
+     "n": 6,
+     "gate": {
+      "PASS": 0.833,
+      "WARN": 0.167,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.833,
+     "smells_per_req": 1.0
+    },
+    "ALL": {
+     "n": 4933,
+     "gate": {
+      "PASS": 0.669,
+      "WARN": 0.327,
+      "FAIL": 0.004
+     },
+     "pass_rate_macro_by_repo": 0.7,
+     "smells_per_req": 0.606
+    }
+   },
+   "specs": {
+    "n": 193,
+    "verdict": {
+     "PASS": 0.0,
+     "WARN": 0.87,
+     "FAIL": 0.13
+    },
+    "zero_fr_parsed": 0,
+    "check_prevalence": {
+     "SK-001": 0.01,
+     "SK-002": 0.01,
+     "SK-003": 0.026,
+     "SK-004": 0.01,
+     "SK-006": 0.041,
+     "SK-007": 0.062,
+     "SK-008": 0.114,
+     "SK-011": 0.093,
+     "SK-012": 0.005,
+     "SK-013": 0.036
+    }
+   },
+   "smell_types": {
+    "vagueness": 944,
+    "negative_statement": 837,
+    "missing_unit": 791,
+    "ambiguity": 199,
+    "implicit_reference": 141,
+    "weakness": 36,
+    "comparative": 14,
+    "non_verifiable": 14,
+    "optionality": 9,
+    "subjectivity": 3
+   },
+   "top_triggers": [
+    [
+     "negative_statement",
+     "must not",
+     836
+    ],
+    [
+     "vagueness",
+     "any",
+     810
+    ],
+    [
+     "missing_unit",
+     "0",
+     139
+    ],
+    [
+     "ambiguity",
+     "clean",
+     78
+    ],
+    [
+     "vagueness",
+     "different",
+     68
+    ],
+    [
+     "implicit_reference",
+     "that",
+     60
+    ],
+    [
+     "implicit_reference",
+     "it",
+     54
+    ],
+    [
+     "missing_unit",
+     "1",
+     50
+    ],
+    [
+     "missing_unit",
+     "3",
+     37
+    ],
+    [
+     "ambiguity",
+     "safe",
+     36
+    ],
+    [
+     "weakness",
+     "could",
+     33
+    ],
+    [
+     "missing_unit",
+     "2",
+     32
+    ],
+    [
+     "missing_unit",
+     "5",
+     28
+    ],
+    [
+     "missing_unit",
+     "001",
+     27
+    ],
+    [
+     "implicit_reference",
+     "this",
+     27
+    ],
+    [
+     "vagueness",
+     "many",
+     22
+    ],
+    [
+     "missing_unit",
+     "003",
+     22
+    ],
+    [
+     "missing_unit",
+     "0014",
+     19
+    ],
+    [
+     "missing_unit",
+     "0020",
+     19
+    ],
+    [
+     "missing_unit",
+     "006",
+     17
+    ]
+   ],
+   "suppressed": {},
+   "sc_classes": {}
+  },
+  "core": {
+   "requirements": {
+    "FR": {
+     "n": 3489,
+     "gate": {
+      "PASS": 0.805,
+      "WARN": 0.195,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.832,
+     "smells_per_req": 0.564
+    },
+    "SC": {
+     "n": 1438,
+     "gate": {
+      "PASS": 0.368,
+      "WARN": 0.623,
+      "FAIL": 0.009
+     },
+     "pass_rate_macro_by_repo": 0.415,
+     "smells_per_req": 0.368
+    },
+    "NFR": {
+     "n": 6,
+     "gate": {
+      "PASS": 0.833,
+      "WARN": 0.167,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.833,
+     "smells_per_req": 1.0
+    },
+    "ALL": {
+     "n": 4933,
+     "gate": {
+      "PASS": 0.677,
+      "WARN": 0.32,
+      "FAIL": 0.003
+     },
+     "pass_rate_macro_by_repo": 0.707,
+     "smells_per_req": 0.507
+    }
+   },
+   "specs": {
+    "n": 193,
+    "verdict": {
+     "PASS": 0.0,
+     "WARN": 0.886,
+     "FAIL": 0.114
+    },
+    "zero_fr_parsed": 0,
+    "check_prevalence": {
+     "SK-001": 0.01,
+     "SK-002": 0.01,
+     "SK-003": 0.026,
+     "SK-004": 0.01,
+     "SK-006": 0.041,
+     "SK-007": 0.062,
+     "SK-008": 0.114,
+     "SK-011": 0.093,
+     "SK-012": 0.005,
+     "SK-013": 0.036
+    }
+   },
+   "smell_types": {
+    "vagueness": 944,
+    "negative_statement": 837,
+    "missing_unit": 375,
+    "ambiguity": 151,
+    "implicit_reference": 141,
+    "weakness": 15,
+    "comparative": 14,
+    "non_verifiable": 14,
+    "optionality": 9,
+    "subjectivity": 3
+   },
+   "top_triggers": [
+    [
+     "negative_statement",
+     "must not",
+     836
+    ],
+    [
+     "vagueness",
+     "any",
+     810
+    ],
+    [
+     "missing_unit",
+     "0",
+     93
+    ],
+    [
+     "vagueness",
+     "different",
+     68
+    ],
+    [
+     "implicit_reference",
+     "that",
+     60
+    ],
+    [
+     "implicit_reference",
+     "it",
+     54
+    ],
+    [
+     "ambiguity",
+     "clean",
+     52
+    ],
+    [
+     "missing_unit",
+     "1",
+     41
+    ],
+    [
+     "implicit_reference",
+     "this",
+     27
+    ],
+    [
+     "missing_unit",
+     "3",
+     23
+    ],
+    [
+     "vagueness",
+     "many",
+     22
+    ],
+    [
+     "ambiguity",
+     "safe",
+     20
+    ],
+    [
+     "missing_unit",
+     "5",
+     19
+    ],
+    [
+     "missing_unit",
+     "2",
+     16
+    ],
+    [
+     "missing_unit",
+     "003",
+     14
+    ],
+    [
+     "vagueness",
+     "several",
+     13
+    ],
+    [
+     "ambiguity",
+     "fast",
+     13
+    ],
+    [
+     "weakness",
+     "could",
+     12
+    ],
+    [
+     "missing_unit",
+     "001",
+     11
+    ],
+    [
+     "ambiguity",
+     "simply",
+     10
+    ]
+   ],
+   "suppressed": {},
+   "sc_classes": {}
+  },
+  "speckit": {
+   "requirements": {
+    "FR": {
+     "n": 3489,
+     "gate": {
+      "PASS": 0.94,
+      "WARN": 0.06,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.941,
+     "smells_per_req": 0.355
+    },
+    "SC": {
+     "n": 1438,
+     "gate": {
+      "PASS": 0.902,
+      "WARN": 0.098,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.891,
+     "smells_per_req": 0.117
+    },
+    "NFR": {
+     "n": 6,
+     "gate": {
+      "PASS": 1.0,
+      "WARN": 0.0,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 1.0,
+     "smells_per_req": 0.667
+    },
+    "ALL": {
+     "n": 4933,
+     "gate": {
+      "PASS": 0.929,
+      "WARN": 0.071,
+      "FAIL": 0.0
+     },
+     "pass_rate_macro_by_repo": 0.925,
+     "smells_per_req": 0.286
+    }
+   },
+   "specs": {
+    "n": 193,
+    "verdict": {
+     "PASS": 0.285,
+     "WARN": 0.658,
+     "FAIL": 0.057
+    },
+    "zero_fr_parsed": 0,
+    "check_prevalence": {
+     "SK-001": 0.01,
+     "SK-002": 0.01,
+     "SK-003": 0.026,
+     "SK-004": 0.01,
+     "SK-006": 0.041,
+     "SK-007": 0.062,
+     "SK-008": 0.114,
+     "SK-009": 0.466,
+     "SK-010": 0.953,
+     "SK-011": 0.093,
+     "SK-012": 0.005,
+     "SK-013": 0.036
+    }
+   },
+   "smell_types": {
+    "negative_statement": 837,
+    "missing_unit": 159,
+    "ambiguity": 151,
+    "implicit_reference": 141,
+    "vagueness": 66,
+    "weakness": 15,
+    "comparative": 14,
+    "non_verifiable": 14,
+    "optionality": 9,
+    "subjectivity": 3,
+    "placeholder": 2
+   },
+   "top_triggers": [
+    [
+     "negative_statement",
+     "must not",
+     836
+    ],
+    [
+     "implicit_reference",
+     "that",
+     60
+    ],
+    [
+     "implicit_reference",
+     "it",
+     54
+    ],
+    [
+     "ambiguity",
+     "clean",
+     52
+    ],
+    [
+     "missing_unit",
+     "1",
+     34
+    ],
+    [
+     "implicit_reference",
+     "this",
+     27
+    ],
+    [
+     "missing_unit",
+     "0",
+     25
+    ],
+    [
+     "vagueness",
+     "many",
+     22
+    ],
+    [
+     "ambiguity",
+     "safe",
+     20
+    ],
+    [
+     "vagueness",
+     "several",
+     13
+    ],
+    [
+     "ambiguity",
+     "fast",
+     13
+    ],
+    [
+     "weakness",
+     "could",
+     12
+    ],
+    [
+     "missing_unit",
+     "001",
+     11
+    ],
+    [
+     "ambiguity",
+     "simply",
+     10
+    ],
+    [
+     "missing_unit",
+     "2",
+     9
+    ],
+    [
+     "vagueness",
+     "etc",
+     9
+    ],
+    [
+     "ambiguity",
+     "sufficient",
+     8
+    ],
+    [
+     "vagueness",
+     "some",
+     8
+    ],
+    [
+     "ambiguity",
+     "quick",
+     8
+    ],
+    [
+     "ambiguity",
+     "reliably",
+     7
+    ]
+   ],
+   "suppressed": {
+    "P1": 216,
+    "P2": 810,
+    "P4": 68
+   },
+   "sc_classes": {
+    "BINARY": 871,
+    "QUANTIFIED": 436,
+    "UNMEASURED": 131
+   }
+  }
+ },
+ "trace": {
+  "pairs": 184,
+  "verdict": {
+   "FAIL": 3,
+   "PASS": 140,
+   "WARN": 41
+  },
+  "findings": {
+   "TR-002:warn": 6,
+   "TR-003:info": 53,
+   "TR-003:warn": 231,
+   "TR-004:error": 8,
+   "TR-005:info": 110,
+   "TR-006:warn": 24
+  }
+ }
+}

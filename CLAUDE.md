@@ -73,6 +73,9 @@ specguard/                               ← project root
 │   └── compliance_demo.py              — end-to-end compliance check demo
 ├── tests/                               — 34 pytest tests
 ├── results/                             — experiment outputs and Cypher dumps
+├── integrations/
+│   └── spec-kit-specguard/              — Spec Kit extension (Layer 1 gate); self-contained,
+│                                          vendors core/ with a SHA-256 lock; to be split into its own repo
 └── docs/
     ├── neo4j_guide.md
     └── architecture.md                  — architectural overview (three novelties)

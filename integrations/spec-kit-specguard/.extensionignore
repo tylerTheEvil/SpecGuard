@@ -1,0 +1,11 @@
+# Development-only content: not copied by `specify extension add`
+tests/
+experiments/
+tools/
+# docs/checks.md ships: gate reports point users to it for rule evidence
+docs/implementation_plan.md
+pyproject.toml
+.gitignore
+__pycache__/
+*.pyc
+.pytest_cache/

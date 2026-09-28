@@ -1,0 +1,28 @@
+# Development/test configuration only. The extension itself is installed by
+# `specify extension add` (files copied as-is); it is not a pip package.
+[project]
+name = "spec-kit-specguard"
+version = "0.1.0"
+description = "Deterministic requirement-quality gate for GitHub Spec Kit (SpecGuard Layer 1)"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Anton Stryapunin"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts/python"]
+markers = [
+    "e2e: installs the extension into a real Spec Kit project (needs the `specify` CLI; skipped otherwise)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+extend-exclude = ["scripts/python/specguard_speckit/_vendor"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]

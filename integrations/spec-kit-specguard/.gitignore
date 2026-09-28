@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# Harvested third-party specs are re-downloadable from the pinned manifest; never committed.
+experiments/cache/

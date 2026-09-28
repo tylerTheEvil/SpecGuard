@@ -1,0 +1,2413 @@
+{
+ "speckit_catalog_commit": "c00dc0551583428a10a94443c58c6a41e5e0138c",
+ "repositories": {
+  "calibration": 170,
+  "holdout": 34
+ },
+ "clone_failures": [],
+ "specs": [
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Arcadia822/taco",
+   "commit": "4c5b677123e89b7ad68e6daeb18ee0a87268f893",
+   "path": "specs/001-taco-bento-product/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Arcadia822__taco/specs__001-taco-bento-product__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Arcadia822/taco",
+   "commit": "4c5b677123e89b7ad68e6daeb18ee0a87268f893",
+   "path": "specs/002-taco-speckit-plugin/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Arcadia822__taco/specs__002-taco-speckit-plugin__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Arcadia822/taco",
+   "commit": "4c5b677123e89b7ad68e6daeb18ee0a87268f893",
+   "path": "specs/003-taco-security-hardening/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Arcadia822__taco/specs__003-taco-security-hardening__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Arcadia822/taco",
+   "commit": "4c5b677123e89b7ad68e6daeb18ee0a87268f893",
+   "path": "specs/004-yaml-properties-editor/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/Arcadia822__taco/specs__004-yaml-properties-editor__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Arcadia822/taco",
+   "commit": "4c5b677123e89b7ad68e6daeb18ee0a87268f893",
+   "path": "specs/005-comment-message-actions/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Arcadia822__taco/specs__005-comment-message-actions__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Arcadia822/taco",
+   "commit": "4c5b677123e89b7ad68e6daeb18ee0a87268f893",
+   "path": "specs/006-structured-file-renderers/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/Arcadia822__taco/specs__006-structured-file-renderers__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/001-jira-reconcile-engine/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__001-jira-reconcile-engine__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/002-config-discovery-team-prefix/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__002-config-discovery-team-prefix__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/003-install-hook-activation/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__003-install-hook-activation__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/004-reconcile-config-resolution/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__004-reconcile-config-resolution__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/005-fix-reconcile-idempotency/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__005-fix-reconcile-idempotency__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/007-fix-unicode-config-keys/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__007-fix-unicode-config-keys__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/008-jira-parent-hierarchy/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__008-jira-parent-hierarchy__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/009-optimize-test-performance/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__009-optimize-test-performance__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/010-jira-hierarchy-mapping/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__010-jira-hierarchy-mapping__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/011-jira-field-defaults/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__011-jira-field-defaults__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/012-jira-task-subtasks/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__012-jira-task-subtasks__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/013-fix-yaml-string-escaping/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__013-fix-yaml-string-escaping__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/015-fix-field-default-encoding/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__015-fix-field-default-encoding__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/016-jira-markdown-rendering/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__016-jira-markdown-rendering__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/017-fix-duplicate-tickets/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__017-fix-duplicate-tickets__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/018-preserve-ticket-content/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__018-preserve-ticket-content__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/019-fix-duplicate-acceptance-criteria/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__019-fix-duplicate-acceptance-criteria__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/021-reconcile-performance/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__021-reconcile-performance__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/022-story-task-checklist/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__022-story-task-checklist__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/023-advance-board-position/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__023-advance-board-position__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/024-reconcile-local-performance/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__024-reconcile-local-performance__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/025-spawn-budget-guardrails/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__025-spawn-budget-guardrails__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/026-release-asset-install/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__026-release-asset-install__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/027-seed-spec-from-jira/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__027-seed-spec-from-jira__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/028-fix-gherkin-clause-parsing/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__028-fix-gherkin-clause-parsing__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/029-confirm-ticket-reuse/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__029-confirm-ticket-reuse__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/030-retire-env-credentials/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__030-retire-env-credentials__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/031-diagnose-team-resolution/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__031-diagnose-team-resolution__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/032-pin-jira-host/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__032-pin-jira-host__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/033-routing-follows-team/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__033-routing-follows-team__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/034-retire-hook-report/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__034-retire-hook-report__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/035-routing-follows-bindings/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__035-routing-follows-bindings__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "specs/036-attach-feature-artifacts/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/specs__036-attach-feature-artifacts__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Fyloss/spec-kit-jira-mirror",
+   "commit": "3cff1f8d4aded9744fd3bc78e42142d851306867",
+   "path": "tests/conformance/fixtures/repo-with-markdown-prose/specs/001-markdown-prose/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/Fyloss__spec-kit-jira-mirror/tests__conformance__fixtures__repo-with-markdown-prose__specs__001-markdown-prose__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "examples/task-manager/specs/001-task-manager/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/examples__task-manager__specs__001-task-manager__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/adversarial-contradictory/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__adversarial-contradictory__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/adversarial-routine-migration/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__adversarial-routine-migration__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/adversarial-tidy-sync/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__adversarial-tidy-sync__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/front-loaded-spec/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__front-loaded-spec__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/heterogeneous-one-hard-task/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__heterogeneous-one-hard-task__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/mixed-specify-and-agents/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__mixed-specify-and-agents__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/thin-no-constitution/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__thin-no-constitution__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/well-cli-linter/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__well-cli-linter__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/well-crud-blog/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__well-crud-blog__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/corpus/well-payment-ledger/specs/001-f/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__corpus__well-payment-ledger__specs__001-f__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/JoaquinRuiz/SpecJudge",
+   "commit": "c3f21b6f3a8a8030d09b98e29d70adf1016ddd8b",
+   "path": "tests/fixtures/project-sufficient/specs/001-feat/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/JoaquinRuiz__SpecJudge/tests__fixtures__project-sufficient__specs__001-feat__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/RSginer/spec-kit-bdd",
+   "commit": "1172fbbf53d5a5b45b05927dd962d57846fcfc57",
+   "path": "examples/express-cucumber/specs/001-weekly-todo-crud/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/RSginer__spec-kit-bdd/examples__express-cucumber__specs__001-weekly-todo-crud__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/RSginer/spec-kit-bdd",
+   "commit": "1172fbbf53d5a5b45b05927dd962d57846fcfc57",
+   "path": "examples/vitest-react-todo/specs/001-weekly-task-list/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/RSginer__spec-kit-bdd/examples__vitest-react-todo__specs__001-weekly-task-list__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/RbBtSn0w/spec-kit-extensions",
+   "commit": "483d7e8016ef9a0564895c1b0ad2263b491930e4",
+   "path": "specs/002-missing-skill-guidance/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/RbBtSn0w__spec-kit-extensions/specs__002-missing-skill-guidance__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/RbBtSn0w/spec-kit-extensions",
+   "commit": "483d7e8016ef9a0564895c1b0ad2263b491930e4",
+   "path": "specs/003-upstream-alignment/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/RbBtSn0w__spec-kit-extensions/specs__003-upstream-alignment__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/RbBtSn0w/spec-kit-extensions",
+   "commit": "483d7e8016ef9a0564895c1b0ad2263b491930e4",
+   "path": "specs/004-refocus-superb-boundaries/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/RbBtSn0w__spec-kit-extensions/specs__004-refocus-superb-boundaries__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Rubiss-Projects/spec-kit-ralph",
+   "commit": "81acf8107bbbf01ffff1e0a920be0b1f6f9cc17f",
+   "path": "specs/001-port-ralph-extension/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Rubiss-Projects__spec-kit-ralph/specs__001-port-ralph-extension__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Rubiss-Projects/spec-kit-ralph",
+   "commit": "81acf8107bbbf01ffff1e0a920be0b1f6f9cc17f",
+   "path": "specs/002-ralph-memory-handoff/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Rubiss-Projects__spec-kit-ralph/specs__002-ralph-memory-handoff__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Rubiss-Projects/spec-kit-ralph",
+   "commit": "81acf8107bbbf01ffff1e0a920be0b1f6f9cc17f",
+   "path": "specs/003-ralph-commit-style/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Rubiss-Projects__spec-kit-ralph/specs__003-ralph-commit-style__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Rubiss-Projects/spec-kit-ralph",
+   "commit": "81acf8107bbbf01ffff1e0a920be0b1f6f9cc17f",
+   "path": "specs/004-partial-story-commit/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Rubiss-Projects__spec-kit-ralph/specs__004-partial-story-commit__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/Rubiss-Projects/spec-kit-ralph",
+   "commit": "81acf8107bbbf01ffff1e0a920be0b1f6f9cc17f",
+   "path": "specs/005-task-expansion-validation/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/Rubiss-Projects__spec-kit-ralph/specs__005-task-expansion-validation__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/WangX0111/superspec",
+   "commit": "c20ac6c1ba069cc9a72dacb8044b7b193d3dde81",
+   "path": "examples/static-landing-page/specs/001-static-landing-page/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/WangX0111__superspec/examples__static-landing-page__specs__001-static-landing-page__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/speckit-extension/tests/fixtures/doctor/bleed-clean/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__speckit-extension__tests__fixtures__doctor__bleed-clean__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/speckit-extension/tests/fixtures/doctor/bleed-fast-path/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__speckit-extension__tests__fixtures__doctor__bleed-fast-path__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/speckit-extension/tests/fixtures/doctor/bleed-plan-does-tasks/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__speckit-extension__tests__fixtures__doctor__bleed-plan-does-tasks__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/speckit-extension/tests/fixtures/doctor/bleed-spec-does-plan/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__speckit-extension__tests__fixtures__doctor__bleed-spec-does-plan__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/speckit-extension/tests/fixtures/doctor/bleed-spec-does-tasks/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__speckit-extension__tests__fixtures__doctor__bleed-spec-does-tasks__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/speckit-extension/tests/fixtures/doctor/bleed-tasks-does-code/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__speckit-extension__tests__fixtures__doctor__bleed-tasks-does-code__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/vscode/webview/src/spec-viewer/__fixtures__/specs/393-implement-button-lost/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__vscode__webview__src__spec-viewer____fixtures____specs__393-implement-button-lost__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/vscode/webview/src/spec-viewer/__fixtures__/specs/394-adopt-codex-design/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__vscode__webview__src__spec-viewer____fixtures____specs__394-adopt-codex-design__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "apps/vscode/webview/src/spec-viewer/__fixtures__/teamboard/041-profile-photo-upload/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/apps__vscode__webview__src__spec-viewer____fixtures____teamboard__041-profile-photo-upload__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/008-spec-viewer-ux/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__008-spec-viewer-ux__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/060-spec-context-tracking/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__060-spec-context-tracking__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/172-composable-command-nodes/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__172-composable-command-nodes__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/327-install-banner-responsive/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__327-install-banner-responsive__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/349-cleanup-followups/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__349-cleanup-followups__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/379-living-specs-tiered-consumption/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__379-living-specs-tiered-consumption__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/392-living-specs-viewer/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__392-living-specs-viewer__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/405-capability-registry-file/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__405-capability-registry-file__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/406-living-spec-components/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__406-living-spec-components__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/484-close-the-loop/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__484-close-the-loop__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/509-timing-capture/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__509-timing-capture__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/510-living-sync/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__510-living-sync__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/511-command-quality-eval/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__511-command-quality-eval__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/512-hide-nav-lifecycle/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__512-hide-nav-lifecycle__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/514-fast-path-fixture/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__514-fast-path-fixture__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/515-readable-spec-names/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__515-readable-spec-names__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/519-fast-path-untrust-dedup/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__519-fast-path-untrust-dedup__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/522-fastpath-overview-capture/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__522-fastpath-overview-capture__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/523-install-prompt-telemetry/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__523-install-prompt-telemetry__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/524-dedupe-run-timing/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__524-dedupe-run-timing__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/527-serialize-context-writes/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__527-serialize-context-writes__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/528-footer-done-guard/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__528-footer-done-guard__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/532-folded-steps-label/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__532-folded-steps-label__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/533-nest-artifacts-under-step/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__533-nest-artifacts-under-step__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/534-antigravity-provider/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__534-antigravity-provider__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/535-surface-install-companion/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__535-surface-install-companion__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/542-pipeline-overhead/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__542-pipeline-overhead__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/562-trust-cli-timing/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__562-trust-cli-timing__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/563-companion-default-workflow/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__563-companion-default-workflow__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/564-cli-install-nudge/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__564-cli-install-nudge__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/565-homedir-steering-path/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__565-homedir-steering-path__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/582-footer-next-step/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__582-footer-next-step__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/585-changelog-link/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__585-changelog-link__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/589-posthog-telemetry/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__589-posthog-telemetry__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/597-activation-funnel/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__597-activation-funnel__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/599-pipeline-doctor/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__599-pipeline-doctor__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/600-fix-vendoring-regressions/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__600-fix-vendoring-regressions__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/601-status-object-decisions/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__601-status-object-decisions__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/602-loud-malformed-config/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__602-loud-malformed-config__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/603-custom-step-viewer-rail/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__603-custom-step-viewer-rail__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/604-doctor-blind-spots/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__604-doctor-blind-spots__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/605-requirement-level-living-specs/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__605-requirement-level-living-specs__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/606-living-spec-validation/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__606-living-spec-validation__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/607-hook-catalog-picker/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__607-hook-catalog-picker__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/608-hook-anchor-once/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__608-hook-anchor-once__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/alfredoperez/speckit-companion",
+   "commit": "db0c28a31df6f45d66c6bbd6cd7a81e0e8ea9bd5",
+   "path": "specs/609-living-spec-navigation/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/alfredoperez__speckit-companion/specs__609-living-spec-navigation__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/001-blocking-enforcement-gate/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__001-blocking-enforcement-gate__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/002-namespace-by-role/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__002-namespace-by-role__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/003-domain-manifest-sync/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__003-domain-manifest-sync__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/004-domain-contract/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__004-domain-contract__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/005-citation-contract/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__005-citation-contract__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/006-citations-fresh/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__006-citations-fresh__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-arch-governance",
+   "commit": "5ac80346a3aa31595f03e7fe192fd44bb61ec518",
+   "path": "specs/007-issue-emitter/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-arch-governance/specs__007-issue-emitter__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/docs_authority/core/specs/001-auth/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__docs_authority__core__specs__001-auth__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/docs_authority/core/specs/002-reporting/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__docs_authority__core__specs__002-reporting__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/docs_authority/web/specs/003-reporting/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__docs_authority__web__specs__003-reporting__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/governed/core/specs/001-core/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__governed__core__specs__001-core__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/governed_ws/core/specs/001-core/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__governed_ws__core__specs__001-core__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/governed_ws/web/specs/001-web/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__governed_ws__web__specs__001-web__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/mini_project/specs/001-widget/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__mini_project__specs__001-widget__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "skill/tests/fixtures/mini_project/specs/002-polish/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/skill__tests__fixtures__mini_project__specs__002-polish__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/001-renderer-v2/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__001-renderer-v2__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/002-portal-north-star/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__002-portal-north-star__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/003-source-views/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__003-source-views__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/004-conform-governance/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__004-conform-governance__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/005-governed-autoscaffold/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__005-governed-autoscaffold__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/006-melded-capability-story/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__006-melded-capability-story__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/007-docs-authority-capability-signal/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__007-docs-authority-capability-signal__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/008-read-citation-slots/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__008-read-citation-slots__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/009-source-anchored-clustering/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__009-source-anchored-clustering__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/010-contract-driven-clustering/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__010-contract-driven-clustering__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-atlas",
+   "commit": "5433e3aadf434e8b34f2c28314a32984ccf76507",
+   "path": "specs/011-atlas-legibility/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-atlas/specs__011-atlas-legibility__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/001-core-bridge/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__001-core-bridge__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/002-configurable-mapping/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__002-configurable-mapping__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/003-engine-orchestration-unification/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__003-engine-orchestration-unification__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/004-mapping-remode/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__004-mapping-remode__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/005-adr-mirroring/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__005-adr-mirroring__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/006-consumer-privacy-guard/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__006-consumer-privacy-guard__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/007-author-attribution/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__007-author-attribution__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/008-install-seed-ceremony/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__008-install-seed-ceremony__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/009-title-source-ladder/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__009-title-source-ladder__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/010-lifecycle-subtask-cascade/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__010-lifecycle-subtask-cascade__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/011-hook-auto-registration/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__011-hook-auto-registration__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/012-hook-self-heal/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__012-hook-self-heal__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "specs/013-extension-identity/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/specs__013-extension-identity__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "tests/fixtures/specs/001-sample/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/tests__fixtures__specs__001-sample__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "tests/fixtures/specs/002-updates/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/tests__fixtures__specs__002-updates__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "tests/fixtures/specs/empty-phase/004-empty/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/tests__fixtures__specs__empty-phase__004-empty__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "tests/fixtures/specs/multispec-a/002-alpha/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/tests__fixtures__specs__multispec-a__002-alpha__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-jira-sync",
+   "commit": "05733c87aa0e943aa84f42ee68b2f351fc5906e3",
+   "path": "tests/fixtures/specs/multispec-a/003-beta/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-jira-sync/tests__fixtures__specs__multispec-a__003-beta__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/001-spec-kit-linear-bridge/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__001-spec-kit-linear-bridge__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/002-install-ergonomics/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__002-install-ergonomics__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/003-drift-aware-authority/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__003-drift-aware-authority__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/004-config-identity-split/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__004-config-identity-split__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/005-team-scoped-seeding/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__005-team-scoped-seeding__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/006-faithful-projection/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__006-faithful-projection__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/007-configurable-mapping/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__007-configurable-mapping__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/008-adr-mirroring/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__008-adr-mirroring__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/010-author-attribution/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__010-author-attribution__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/012-readable-titles/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__012-readable-titles__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/013-subissue-cascade/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__013-subissue-cascade__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "specs/014-hook-health/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/specs__014-hook-health__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "tests/fixtures/specs/001-minimal/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/tests__fixtures__specs__001-minimal__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "tests/fixtures/specs/003-malformed-tasks/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/tests__fixtures__specs__003-malformed-tasks__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "tests/fixtures/specs/004-already-merged/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/tests__fixtures__specs__004-already-merged__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "tests/fixtures/specs/005-clarify-sessions/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/tests__fixtures__specs__005-clarify-sessions__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ashbrener/spec-kit-linear-sync",
+   "commit": "6086ea30c0facf4a525b5a603291821f6ac4a4a2",
+   "path": "tests/fixtures/specs/007-worded-phase/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/ashbrener__spec-kit-linear-sync/tests__fixtures__specs__007-worded-phase__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/d0whc3r/spec-kit-product",
+   "commit": "6fa9f078e337cd6da69361c8d00697bda51e3093",
+   "path": "examples/specs/001-tenant-rate-limiting/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/d0whc3r__spec-kit-product/examples__specs__001-tenant-rate-limiting__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/d0whc3r/spec-kit-product",
+   "commit": "6fa9f078e337cd6da69361c8d00697bda51e3093",
+   "path": "examples/specs/002-billing-usage-dashboard/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/d0whc3r__spec-kit-product/examples__specs__002-billing-usage-dashboard__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/datastone-inc/spec-kit-verify-tasks",
+   "commit": "eab64d40c17af9848a3122be6e00cd16663f49f3",
+   "path": "specs/001-verify-tasks-phantom/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/datastone-inc__spec-kit-verify-tasks/specs__001-verify-tasks-phantom__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/hupe1980/spec-kit-threatspec",
+   "commit": "c69416be485fbf898cfc8c16c8a60c845ad9dc32",
+   "path": "examples/rag-assistant/specs/001-rag-assistant/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/hupe1980__spec-kit-threatspec/examples__rag-assistant__specs__001-rag-assistant__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/hupe1980/spec-kit-threatspec",
+   "commit": "c69416be485fbf898cfc8c16c8a60c845ad9dc32",
+   "path": "tests/fixtures/rag-assistant/specs/007-rag-assistant/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/hupe1980__spec-kit-threatspec/tests__fixtures__rag-assistant__specs__007-rag-assistant__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/leocamello/spec-kit-v-model",
+   "commit": "e050c7bee795ab8fddd40d3fa1d3966e027bf132",
+   "path": "specs/001-v-model-mvp/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/leocamello__spec-kit-v-model/specs__001-v-model-mvp__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/leocamello/spec-kit-v-model",
+   "commit": "e050c7bee795ab8fddd40d3fa1d3966e027bf132",
+   "path": "specs/002-system-design-testing/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/leocamello__spec-kit-v-model/specs__002-system-design-testing__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/leocamello/spec-kit-v-model",
+   "commit": "e050c7bee795ab8fddd40d3fa1d3966e027bf132",
+   "path": "specs/003-architecture-integration/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/leocamello__spec-kit-v-model/specs__003-architecture-integration__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/leocamello/spec-kit-v-model",
+   "commit": "e050c7bee795ab8fddd40d3fa1d3966e027bf132",
+   "path": "specs/004-module-unit/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/leocamello__spec-kit-v-model/specs__004-module-unit__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/leocamello/spec-kit-v-model",
+   "commit": "e050c7bee795ab8fddd40d3fa1d3966e027bf132",
+   "path": "specs/005a-hazard-analysis/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/leocamello__spec-kit-v-model/specs__005a-hazard-analysis__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/leocamello/spec-kit-v-model",
+   "commit": "e050c7bee795ab8fddd40d3fa1d3966e027bf132",
+   "path": "specs/007-bridge-commands/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/leocamello__spec-kit-v-model/specs__007-bridge-commands__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/001-spec-superpowers-bridge/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__001-spec-superpowers-bridge__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/002-complete-bridge-protocol/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__002-complete-bridge-protocol__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/003-bridge-cross-platform-scripts/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__003-bridge-cross-platform-scripts__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/004-polish-and-publish/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__004-polish-and-publish__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/005-marketplace-alignment/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__005-marketplace-alignment__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/006-trim-to-thin-bridge/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__006-trim-to-thin-bridge__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/007-catalog-distribution-polish/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__007-catalog-distribution-polish__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/008-bridge-hardening-0-5-0/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__008-bridge-hardening-0-5-0__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/009-wsl-dev-env-alignment/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__009-wsl-dev-env-alignment__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/010-prespec-brainstorming/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__010-prespec-brainstorming__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/011-v060-comet-polish/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__011-v060-comet-polish__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/012-bridge-status-and-hash/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__012-bridge-status-and-hash__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/013-v1-0-release-hardening/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__013-v1-0-release-hardening__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/014-speckit-0-10-x-alignment/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__014-speckit-0-10-x-alignment__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/016-superpowers-6-0-0-alignment/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__016-superpowers-6-0-0-alignment__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/017-fire-implement-hooks/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__017-fire-implement-hooks__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/018-release-0-16-4-hardening/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__018-release-0-16-4-hardening__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/lihan3238/speckit-superpowers-bridge",
+   "commit": "3a86e5482e759b00bed9e461769ce88d6976d7b4",
+   "path": "specs/019-update-latest-upstreams/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/lihan3238__speckit-superpowers-bridge/specs__019-update-latest-upstreams__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/maximiliamus/spec-kit-canon",
+   "commit": "64b7b0897f8344c2325eab9e2b4642d1caaed2f1",
+   "path": "tests/scaffold/api-baseline/specs/001-feature-api-todo-read/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/maximiliamus__spec-kit-canon/tests__scaffold__api-baseline__specs__001-feature-api-todo-read__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/maximiliamus/spec-kit-canon",
+   "commit": "64b7b0897f8344c2325eab9e2b4642d1caaed2f1",
+   "path": "tests/scaffold/api-with-drift/specs/001-feature-api-todo-read/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/maximiliamus__spec-kit-canon/tests__scaffold__api-with-drift__specs__001-feature-api-todo-read__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/001-schema-and-core/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__001-schema-and-core__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/002-affects-resolution/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__002-affects-resolution__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/003-migration/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__003-migration__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/004-ci-surface/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__004-ci-surface__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/005-deterministic-evaluator/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__005-deterministic-evaluator__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/006-mcp-server/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__006-mcp-server__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/007-arb-queue/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__007-arb-queue__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/008-spec-kit-hook-viability/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__008-spec-kit-hook-viability__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/009-catalog-binding-viability/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__009-catalog-binding-viability__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/010-catalog-backstage/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__010-catalog-backstage__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/011-probabilistic-evaluator-passes/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__011-probabilistic-evaluator-passes__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/mbeacom/adrkit",
+   "commit": "138cfccee0164a7badae92f61e61c59b94403577",
+   "path": "specs/012-evaluator-calibration/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/mbeacom__adrkit/specs__012-evaluator-calibration__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/ogil109/spec-kit-blueprint",
+   "commit": "43c332998d5d893c8d8ab83dbd55d3f38416e686",
+   "path": "specs/001-stale-logic-cleanup/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/ogil109__spec-kit-blueprint/specs__001-stale-logic-cleanup__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "benchmarks/agent-context/fixtures/option-migration/specs/001-retired-timeout/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/raccioly__docguard/benchmarks__agent-context__fixtures__option-migration__specs__001-retired-timeout__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "benchmarks/agent-context/fixtures/option-migration/specs/002-timeout-options/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/raccioly__docguard/benchmarks__agent-context__fixtures__option-migration__specs__002-timeout-options__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "benchmarks/agent-context/fixtures/python-config/specs/001-safe-config/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/raccioly__docguard/benchmarks__agent-context__fixtures__python-config__specs__001-safe-config__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "benchmarks/agent-context/fixtures/status-alias/specs/001-status-aliases/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/raccioly__docguard/benchmarks__agent-context__fixtures__status-alias__specs__001-status-aliases__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/006-document-lifecycle/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__006-document-lifecycle__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/007-precision-evidence-loop/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__007-precision-evidence-loop__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/008-evidence-scoped-verification/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__008-evidence-scoped-verification__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/009-language-repository-coverage/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__009-language-repository-coverage__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/010-task-specific-agent-context/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__010-task-specific-agent-context__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/011-tokenless-scheduled-releases/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__011-tokenless-scheduled-releases__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/012-adoption-workflow-integrity/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "calibration/raccioly__docguard/specs__012-adoption-workflow-integrity__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/raccioly/docguard",
+   "commit": "8a3a6615e8271326d9cc06f3dc52e6fcd9f4889b",
+   "path": "specs/013-calibrated-finding-channels/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/raccioly__docguard/specs__013-calibrated-finding-channels__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/schwichtgit/spec-gates",
+   "commit": "a20061dff4db5e0bcd747cababc957f5dad88e1c",
+   "path": "specs/001-provable-enforcement-gate/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/schwichtgit__spec-gates/specs__001-provable-enforcement-gate__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/schwichtgit/spec-gates",
+   "commit": "a20061dff4db5e0bcd747cababc957f5dad88e1c",
+   "path": "specs/002-spec-conformance-gate/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/schwichtgit__spec-gates/specs__002-spec-conformance-gate__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/schwichtgit/spec-gates",
+   "commit": "a20061dff4db5e0bcd747cababc957f5dad88e1c",
+   "path": "specs/003-policy-contract/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/schwichtgit__spec-gates/specs__003-policy-contract__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/schwichtgit/spec-gates",
+   "commit": "a20061dff4db5e0bcd747cababc957f5dad88e1c",
+   "path": "specs/004-constitution-gate/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/schwichtgit__spec-gates/specs__004-constitution-gate__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/srobroek/speckit-roadmap",
+   "commit": "f67f7905c8c47cff8627b5533414934561478023",
+   "path": "specs/001-roadmap-write/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/srobroek__speckit-roadmap/specs__001-roadmap-write__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/srobroek/speckit-roadmap",
+   "commit": "f67f7905c8c47cff8627b5533414934561478023",
+   "path": "specs/002-roadmap-brief/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/srobroek__speckit-roadmap/specs__002-roadmap-brief__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/srobroek/speckit-roadmap",
+   "commit": "f67f7905c8c47cff8627b5533414934561478023",
+   "path": "specs/003-roadmap-debrief/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/srobroek__speckit-roadmap/specs__003-roadmap-debrief__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/srobroek/speckit-roadmap",
+   "commit": "f67f7905c8c47cff8627b5533414934561478023",
+   "path": "specs/004-roadmap-sync/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "calibration/srobroek__speckit-roadmap/specs__004-roadmap-sync__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/archived-state/memory/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__archived-state__memory__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/bug-extension-state/specs/004-attachments/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__bug-extension-state__specs__004-attachments__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/legacy-state/memory/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__legacy-state__memory__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/001-task-manager/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__001-task-manager__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/002-notifications/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__002-notifications__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/003-reporting/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__003-reporting__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/004-attachments/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__004-attachments__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/005-shared-ownership/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__005-shared-ownership__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/20260814-101500-timestamped-export/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__20260814-101500-timestamped-export__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-archive",
+   "commit": "b1bc505fc1dc921a4d9a9a130175df360a137813",
+   "path": "tests/fixture/project/specs/billing/006-invoice-settings/spec.md",
+   "fixture": true,
+   "tasks": false,
+   "cache": "calibration/stn1slv__spec-kit-archive/tests__fixture__project__specs__billing__006-invoice-settings__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-reconcile",
+   "commit": "36bc21be58f3e2b68b9b38a3862d4f35917e58b8",
+   "path": "tests/fixture/project/specs/001-task-manager/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-reconcile/tests__fixture__project__specs__001-task-manager__spec.md"
+  },
+  {
+   "set": "calibration",
+   "repo": "https://github.com/stn1slv/spec-kit-reconcile",
+   "commit": "36bc21be58f3e2b68b9b38a3862d4f35917e58b8",
+   "path": "tests/fixture/project/specs/003-attachments/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "calibration/stn1slv__spec-kit-reconcile/tests__fixture__project__specs__003-attachments__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "examples/python-api-failing/specs/001-example/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "holdout/dfirs1car1o__sicario-spec/examples__python-api-failing__specs__001-example__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "examples/python-api/specs/001-example/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "holdout/dfirs1car1o__sicario-spec/examples__python-api__specs__001-example__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/001-maintainer-operations/spec.md",
+   "fixture": false,
+   "tasks": true,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__001-maintainer-operations__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/003-issue-email-alerts/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__003-issue-email-alerts__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/004-advisory-quality-tier/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__004-advisory-quality-tier__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/005-spec-change-control/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__005-spec-change-control__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/006-complete-secret-scan-reporting/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__006-complete-secret-scan-reporting__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/007-onboarding-guides-and-playbooks/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__007-onboarding-guides-and-playbooks__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/dfirs1car1o/sicario-spec",
+   "commit": "bc3d4df6a54a7cd0c1219fda87c4742b24715c3e",
+   "path": "specs/008-graph-loop-engineering-track/spec.md",
+   "fixture": false,
+   "tasks": false,
+   "cache": "holdout/dfirs1car1o__sicario-spec/specs__008-graph-loop-engineering-track__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/yunusdim/spec-kit-preset-closed-vocabulary",
+   "commit": "4a302f92bf409ac30982a570702fba2a1ae3e539",
+   "path": "evidence/fixtures/001-divergent/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "holdout/yunusdim__spec-kit-preset-closed-vocabulary/evidence__fixtures__001-divergent__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/yunusdim/spec-kit-preset-closed-vocabulary",
+   "commit": "4a302f92bf409ac30982a570702fba2a1ae3e539",
+   "path": "evidence/fixtures/002-agreeing/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "holdout/yunusdim__spec-kit-preset-closed-vocabulary/evidence__fixtures__002-agreeing__spec.md"
+  },
+  {
+   "set": "holdout",
+   "repo": "https://github.com/yunusdim/spec-kit-preset-closed-vocabulary",
+   "commit": "4a302f92bf409ac30982a570702fba2a1ae3e539",
+   "path": "evidence/fixtures/003-declared-subset/spec.md",
+   "fixture": true,
+   "tasks": true,
+   "cache": "holdout/yunusdim__spec-kit-preset-closed-vocabulary/evidence__fixtures__003-declared-subset__spec.md"
+  }
+ ]
+}
