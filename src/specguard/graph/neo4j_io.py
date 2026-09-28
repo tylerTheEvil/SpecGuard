@@ -213,6 +213,16 @@ def merge_accepted_edges(
             "than passing raw dicts."
         )
 
+    edges = [dict(edge, to_label='SafetyHazard' if edge.get('to_label') == 'Hazard'
+                  else edge.get('to_label')) for edge in edges]
+    for edge in edges:
+        if edge.get('rel_type') == 'MITIGATES' and (
+            edge.get('from_label') != 'Requirement'
+            or edge.get('to_label') not in ('Requirement', 'SafetyHazard')
+        ):
+            raise ValueError('MITIGATES requires Requirement -> SafetyHazard '
+                             '(legacy Requirement constraint targets are retained separately)')
+
     runner = _resolve_runner(config)
     try:
         merged = 0

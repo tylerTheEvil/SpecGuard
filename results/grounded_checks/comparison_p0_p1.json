@@ -1,0 +1,2116 @@
+{
+  "technical_check_only": true,
+  "independent_gold_standard": false,
+  "case_set_hash": "bf9ab20e811c99ba4e5e98226eaf0a71675c3ffa486066af1ef739a3735fdf63",
+  "implementation_hash": "64878d9c81407dcd8b16c1babaf692c95c964cc5044e39faab69c470b85274a4",
+  "base_commit": "0f4a3057a1bf2800249558c484220ca5093ed091",
+  "configuration": "p0_p1",
+  "cases": [
+    {
+      "case_id": "combined",
+      "defect_class": "mixed",
+      "bundle_hash": "87dc3e4b5cb2e06d7806a2c9101c495c6b1a59cf13e839a6cf9194b3210e163c",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "87dc3e4b5cb2e06d7806a2c9101c495c6b1a59cf13e839a6cf9194b3210e163c",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 5,
+          "covered": 4,
+          "fraction": 0.8,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "FAIL",
+          "counts": {
+            "PASS": 6,
+            "FAIL": 1,
+            "UNKNOWN": 3,
+            "NOT_APPLICABLE": 0,
+            "ERROR": 0
+          },
+          "stale": 1,
+          "freshness_unknown": 0,
+          "expected_checks": 10,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 6,
+          "pass_fraction_completed": 0.8333333333333334,
+          "completion_coverage": 0.6,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-EVIDENCE",
+            "objects": [
+              "E-SAMPLE",
+              "R-SAMPLE",
+              "A-SENSOR",
+              "S-LOSS"
+            ],
+            "status": "PASS",
+            "reason": "Recorded evidence verdict; dependency hashes checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "E-SAMPLE",
+              "synthetic:test-run#1",
+              "synthetic:spec#3",
+              "synthetic:environment",
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "E-SAMPLE": "2b0818a9bf8346d6a2f28e0357d4783d7bdabf166da2c5c4221ca246af7919be",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "STALE",
+            "details": {
+              "recorded_dependencies": {
+                "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+                "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+                "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+              },
+              "recorded_outcome": "PASS"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING",
+            "objects": [
+              "T-CONTROL"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Additive allocation checked in seconds",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:allocation-review"
+            ],
+            "missing_prerequisites": [
+              "budget for HW"
+            ],
+            "dependency_versions": {
+              "T-CONTROL": "d54710e4b9a00be18fb84085d7f57adf1c2a7421dceb80a9bcc864e858fedf9b",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "budget_s": "0.002",
+              "known_sum_s": "0.001000",
+              "components": [
+                "SW",
+                "HW"
+              ],
+              "composition": "additive"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION",
+            "objects": [
+              "A-SENSOR"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Assumption confirmation prerequisites checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:environment"
+            ],
+            "missing_prerequisites": [
+              "human review acceptance",
+              "evidence bound to this assumption"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-DEPENDENCY",
+            "objects": [
+              "R-SAMPLE",
+              "A-SENSOR"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Conclusion depends on unconfirmed or stale assumption",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:spec#3",
+              "synthetic:environment"
+            ],
+            "missing_prerequisites": [
+              "A-SENSOR"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-LOSS",
+              "R-SAMPLE"
+            ],
+            "status": "FAIL",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#LOSS",
+              "synthetic:spec#3"
+            ],
+            "missing_prerequisites": [
+              "response"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "loss of sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-STALE",
+              "R-STALE"
+            ],
+            "status": "PASS",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#STALE",
+              "synthetic:spec#R-STALE"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "R-STALE": "20fd179d3f52c7f42ad960e1ac1c55ee0b950896a957caeac9df8e4c94013ca3",
+              "S-STALE": "8fcc537895c7cd51b3a175f60460e4eca3a0103685069e57e53511777a44a61d",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "stale sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-TIMEOUT",
+              "R-TIMEOUT"
+            ],
+            "status": "PASS",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#TIMEOUT",
+              "synthetic:spec#R-TIMEOUT"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "R-TIMEOUT": "0127a34289b4b568c36031a4ef9507c1434bcecc59cffb8c8578490fdb427565",
+              "S-TIMEOUT": "c670e87c1b25ee5211ecaef271c8855226d7dacae5e996990c406ad643e827fb",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "timeout"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-RESET",
+              "R-RESET"
+            ],
+            "status": "PASS",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#RESET",
+              "synthetic:spec#R-RESET"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "R-RESET": "f27b2c18105630c60a1a607d8e6675d6192a72b546cf17f293af1a2295086d39",
+              "S-RESET": "9b8c0f367a99f34c1f51a0809c3ae438ca6123af0fc0f983c0e9ba7f1e6060d8",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "reset during exchange"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-RECOVERY",
+              "R-RECOVERY"
+            ],
+            "status": "PASS",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#RECOVERY",
+              "synthetic:spec#R-RECOVERY"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "R-RECOVERY": "0f602333176948473b951d26c9dfdeeedfba0dc03c2258fa0a3fa1b692c51bad",
+              "S-RECOVERY": "6eaf7b245afe9cb7f12e01351277cefaef5561b518e5dc57eefc793cec65ca52",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "recovery"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-LINK",
+            "objects": [
+              "R-SAMPLE",
+              "S-LOSS"
+            ],
+            "status": "PASS",
+            "reason": "Reviewed scenario link",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:spec#3",
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "empty",
+      "defect_class": "scope",
+      "bundle_hash": "3245520128cbf680f34c359a992dbbece518870eedaff4efd8074eaf6d0ab22e",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-empty",
+        "bundle_hash": "3245520128cbf680f34c359a992dbbece518870eedaff4efd8074eaf6d0ab22e",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 0,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": false,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "UNKNOWN",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 0,
+            "UNKNOWN": 5,
+            "NOT_APPLICABLE": 0,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 0,
+          "expected_checks": 5,
+          "expected_scope_complete": false,
+          "completed_applicable_checks": 0,
+          "pass_fraction_completed": null,
+          "completion_coverage": null,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-REQUIREMENT-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "requirements inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-empty",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.requirements and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": null,
+              "available_objects": []
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-EVIDENCE-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "evidence inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-empty",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.evidence and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": null,
+              "available_objects": []
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "timing inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-empty",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.timing and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": null,
+              "available_objects": []
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "assumptions inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-empty",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.assumptions and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": null,
+              "available_objects": []
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "scenarios inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-empty",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.scenarios and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": null,
+              "available_objects": []
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "partial",
+      "defect_class": "scope",
+      "bundle_hash": "9ceb87bce779e1f5e9730f7cb67f9a877173bfd4bc01fb8170143916dd5f1810",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "9ceb87bce779e1f5e9730f7cb67f9a877173bfd4bc01fb8170143916dd5f1810",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 5,
+          "covered": 0,
+          "fraction": 0.0,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "FAIL",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 1,
+            "UNKNOWN": 8,
+            "NOT_APPLICABLE": 0,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 1,
+          "expected_checks": 9,
+          "expected_scope_complete": false,
+          "completed_applicable_checks": 1,
+          "pass_fraction_completed": 0.0,
+          "completion_coverage": null,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-REQUIREMENT-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "requirements inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.requirements and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": [
+                "R-ENABLE-1",
+                "R-ENABLE-0",
+                "R-SAMPLE",
+                "R-STALE",
+                "R-TIMEOUT",
+                "R-RESET",
+                "R-RECOVERY"
+              ],
+              "available_objects": [
+                "R-ENABLE-1"
+              ]
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-EVIDENCE",
+            "objects": [
+              "E-SAMPLE",
+              "R-SAMPLE",
+              "A-SENSOR",
+              "S-LOSS"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Recorded evidence verdict; dependency hashes checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "E-SAMPLE",
+              "synthetic:test-run#1",
+              "synthetic:environment",
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [
+              "dependency R-SAMPLE"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "E-SAMPLE": "2b0818a9bf8346d6a2f28e0357d4783d7bdabf166da2c5c4221ca246af7919be",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "UNKNOWN",
+            "details": {
+              "recorded_dependencies": {
+                "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+                "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+                "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+              },
+              "recorded_outcome": "PASS"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING",
+            "objects": [
+              "T-CONTROL"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Additive allocation checked in seconds",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:allocation-review"
+            ],
+            "missing_prerequisites": [
+              "budget for HW"
+            ],
+            "dependency_versions": {
+              "T-CONTROL": "d54710e4b9a00be18fb84085d7f57adf1c2a7421dceb80a9bcc864e858fedf9b",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "budget_s": "0.002",
+              "known_sum_s": "0.001000",
+              "components": [
+                "SW",
+                "HW"
+              ],
+              "composition": "additive"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION",
+            "objects": [
+              "A-SENSOR"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Assumption confirmation prerequisites checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:environment"
+            ],
+            "missing_prerequisites": [
+              "human review acceptance",
+              "evidence bound to this assumption"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-LOSS",
+              "R-SAMPLE"
+            ],
+            "status": "FAIL",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [
+              "response",
+              "requirement R-SAMPLE"
+            ],
+            "dependency_versions": {
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "loss of sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-STALE",
+              "R-STALE"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#STALE"
+            ],
+            "missing_prerequisites": [
+              "requirement R-STALE"
+            ],
+            "dependency_versions": {
+              "S-STALE": "8fcc537895c7cd51b3a175f60460e4eca3a0103685069e57e53511777a44a61d",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "stale sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-TIMEOUT",
+              "R-TIMEOUT"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#TIMEOUT"
+            ],
+            "missing_prerequisites": [
+              "requirement R-TIMEOUT"
+            ],
+            "dependency_versions": {
+              "S-TIMEOUT": "c670e87c1b25ee5211ecaef271c8855226d7dacae5e996990c406ad643e827fb",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "timeout"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-RESET",
+              "R-RESET"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#RESET"
+            ],
+            "missing_prerequisites": [
+              "requirement R-RESET"
+            ],
+            "dependency_versions": {
+              "S-RESET": "9b8c0f367a99f34c1f51a0809c3ae438ca6123af0fc0f983c0e9ba7f1e6060d8",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "reset during exchange"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-RECOVERY",
+              "R-RECOVERY"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#RECOVERY"
+            ],
+            "missing_prerequisites": [
+              "requirement R-RECOVERY"
+            ],
+            "dependency_versions": {
+              "S-RECOVERY": "6eaf7b245afe9cb7f12e01351277cefaef5561b518e5dc57eefc793cec65ca52",
+              "$scope": "1ca70ca1c89452b57d55c6d5eabc5b32f3b1bb0e72c5c30888c9f7ca90249427",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "recovery"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "timing-missing",
+      "defect_class": "timing",
+      "bundle_hash": "0fda201c5fb2e6896f03c94947c5a481f495a0661852f4886514b0247b560301",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "0fda201c5fb2e6896f03c94947c5a481f495a0661852f4886514b0247b560301",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 0,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "UNKNOWN",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 0,
+            "UNKNOWN": 1,
+            "NOT_APPLICABLE": 4,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 0,
+          "expected_checks": 5,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 0,
+          "pass_fraction_completed": null,
+          "completion_coverage": 0.0,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-REQUIREMENT-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero requirements",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-EVIDENCE-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero evidence",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING",
+            "objects": [
+              "T-CONTROL"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Additive allocation checked in seconds",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:allocation-review"
+            ],
+            "missing_prerequisites": [
+              "budget for HW"
+            ],
+            "dependency_versions": {
+              "T-CONTROL": "d54710e4b9a00be18fb84085d7f57adf1c2a7421dceb80a9bcc864e858fedf9b",
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "budget_s": "0.002",
+              "known_sum_s": "0.001000",
+              "components": [
+                "SW",
+                "HW"
+              ],
+              "composition": "additive"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero assumptions",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero scenarios",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "timing-valid",
+      "defect_class": "timing",
+      "bundle_hash": "82b34d7616a1a5027ea47f9902a5e353fd88c9495de0d83dc9ea640d3eb2e950",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "82b34d7616a1a5027ea47f9902a5e353fd88c9495de0d83dc9ea640d3eb2e950",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 0,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "PASS",
+          "counts": {
+            "PASS": 1,
+            "FAIL": 0,
+            "UNKNOWN": 0,
+            "NOT_APPLICABLE": 4,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 0,
+          "expected_checks": 5,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 1,
+          "pass_fraction_completed": 1.0,
+          "completion_coverage": 0.2,
+          "incomplete": false
+        },
+        "results": [
+          {
+            "rule_id": "P0-REQUIREMENT-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero requirements",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-EVIDENCE-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero evidence",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING",
+            "objects": [
+              "T-CONTROL"
+            ],
+            "status": "PASS",
+            "reason": "Additive allocation checked in seconds",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:allocation-review"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "T-CONTROL": "b9a28984d623f06626d47346499411672ad86cc011d0546456342e729fc7846b",
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "budget_s": "0.002",
+              "known_sum_s": "0.002000",
+              "components": [
+                "SW",
+                "HW"
+              ],
+              "composition": "additive"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero assumptions",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero scenarios",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "94e67c75add5fffb245590c80c89a4beeaeb42f65f0446e45cb76f8d921e549a",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "same-mode",
+      "defect_class": "semantic",
+      "bundle_hash": "c9f8802be27d0971cbf19388a82406340cf5a7113f2750b125cfd35cc090d402",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "c9f8802be27d0971cbf19388a82406340cf5a7113f2750b125cfd35cc090d402",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 0,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "NOT_APPLICABLE",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 0,
+            "UNKNOWN": 0,
+            "NOT_APPLICABLE": 4,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 0,
+          "expected_checks": 4,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 0,
+          "pass_fraction_completed": null,
+          "completion_coverage": 0.0,
+          "incomplete": false
+        },
+        "results": [
+          {
+            "rule_id": "P0-EVIDENCE-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero evidence",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero timing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero assumptions",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero scenarios",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "different-mode",
+      "defect_class": "semantic",
+      "bundle_hash": "fb798eb0d554d5094cb39a1f05dee21e63f312fa2f995ce82d4fa2d06ba02715",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "fb798eb0d554d5094cb39a1f05dee21e63f312fa2f995ce82d4fa2d06ba02715",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 0,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "NOT_APPLICABLE",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 0,
+            "UNKNOWN": 0,
+            "NOT_APPLICABLE": 4,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 0,
+          "expected_checks": 4,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 0,
+          "pass_fraction_completed": null,
+          "completion_coverage": 0.0,
+          "incomplete": false
+        },
+        "results": [
+          {
+            "rule_id": "P0-EVIDENCE-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero evidence",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero timing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero assumptions",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero scenarios",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "74464bad95f4fb8bca84a1a9a2129a1e2e9280239b6bc8cf3273af12449be3f2",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "missing-reaction",
+      "defect_class": "scenario",
+      "bundle_hash": "66643fc72ce905ec6f3cfac3562d87a891e86cb0a3ed33d805b19d2d46d76b2b",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "66643fc72ce905ec6f3cfac3562d87a891e86cb0a3ed33d805b19d2d46d76b2b",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 1,
+          "covered": 0,
+          "fraction": 0.0,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "FAIL",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 1,
+            "UNKNOWN": 0,
+            "NOT_APPLICABLE": 3,
+            "ERROR": 0
+          },
+          "stale": 0,
+          "freshness_unknown": 0,
+          "expected_checks": 4,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 1,
+          "pass_fraction_completed": 0.0,
+          "completion_coverage": 0.25,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-EVIDENCE-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero evidence",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "04951c4b7d0f5f2002947f48a21d25dc26c5593d67a1ba61cba920f187adda48",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero timing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "04951c4b7d0f5f2002947f48a21d25dc26c5593d67a1ba61cba920f187adda48",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero assumptions",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "04951c4b7d0f5f2002947f48a21d25dc26c5593d67a1ba61cba920f187adda48",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-LOSS",
+              "R-SAMPLE"
+            ],
+            "status": "FAIL",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [
+              "response"
+            ],
+            "dependency_versions": {
+              "R-SAMPLE": "f8d14b472e911c7533dd5be66b7e02703f5312e0269d75c5f11e93a677666627",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "04951c4b7d0f5f2002947f48a21d25dc26c5593d67a1ba61cba920f187adda48",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "loss of sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "no-scenario-model",
+      "defect_class": "scenario",
+      "bundle_hash": "a3846fac6f4b4e82b9e63471fa45fd105502dcdb6baee30e48165c7d6e44eaac",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "a3846fac6f4b4e82b9e63471fa45fd105502dcdb6baee30e48165c7d6e44eaac",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 5,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": false,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "UNKNOWN",
+          "counts": {
+            "PASS": 2,
+            "FAIL": 0,
+            "UNKNOWN": 9,
+            "NOT_APPLICABLE": 0,
+            "ERROR": 0
+          },
+          "stale": 1,
+          "freshness_unknown": 0,
+          "expected_checks": 11,
+          "expected_scope_complete": false,
+          "completed_applicable_checks": 1,
+          "pass_fraction_completed": 1.0,
+          "completion_coverage": null,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-EVIDENCE",
+            "objects": [
+              "E-SAMPLE",
+              "R-SAMPLE",
+              "A-SENSOR",
+              "S-LOSS"
+            ],
+            "status": "PASS",
+            "reason": "Recorded evidence verdict; dependency hashes checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "E-SAMPLE",
+              "synthetic:test-run#1",
+              "synthetic:spec#3",
+              "synthetic:environment",
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "E-SAMPLE": "2b0818a9bf8346d6a2f28e0357d4783d7bdabf166da2c5c4221ca246af7919be",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "STALE",
+            "details": {
+              "recorded_dependencies": {
+                "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+                "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+                "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+              },
+              "recorded_outcome": "PASS"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING",
+            "objects": [
+              "T-CONTROL"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Additive allocation checked in seconds",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:allocation-review"
+            ],
+            "missing_prerequisites": [
+              "budget for HW"
+            ],
+            "dependency_versions": {
+              "T-CONTROL": "d54710e4b9a00be18fb84085d7f57adf1c2a7421dceb80a9bcc864e858fedf9b",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "budget_s": "0.002",
+              "known_sum_s": "0.001000",
+              "components": [
+                "SW",
+                "HW"
+              ],
+              "composition": "additive"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION",
+            "objects": [
+              "A-SENSOR"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Assumption confirmation prerequisites checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:environment"
+            ],
+            "missing_prerequisites": [
+              "human review acceptance",
+              "evidence bound to this assumption"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-DEPENDENCY",
+            "objects": [
+              "R-SAMPLE",
+              "A-SENSOR"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Conclusion depends on unconfirmed or stale assumption",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:spec#3",
+              "synthetic:environment"
+            ],
+            "missing_prerequisites": [
+              "A-SENSOR"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "UNKNOWN",
+            "reason": "scenarios inventory is not reviewed and complete",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [
+              "reviewed scope.expected.scenarios and complete inventory"
+            ],
+            "dependency_versions": {
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "scope_unknown": true,
+              "expected_objects": null,
+              "available_objects": [
+                "S-LOSS",
+                "S-STALE",
+                "S-TIMEOUT",
+                "S-RESET",
+                "S-RECOVERY"
+              ]
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-LOSS",
+              "R-SAMPLE"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Required scenario fields missing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#LOSS",
+              "synthetic:spec#3"
+            ],
+            "missing_prerequisites": [
+              "response",
+              "complete scenario"
+            ],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "loss of sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-STALE",
+              "R-STALE"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#STALE",
+              "synthetic:spec#R-STALE"
+            ],
+            "missing_prerequisites": [
+              "complete scenario"
+            ],
+            "dependency_versions": {
+              "R-STALE": "20fd179d3f52c7f42ad960e1ac1c55ee0b950896a957caeac9df8e4c94013ca3",
+              "S-STALE": "8fcc537895c7cd51b3a175f60460e4eca3a0103685069e57e53511777a44a61d",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "stale sensor data"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-TIMEOUT",
+              "R-TIMEOUT"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#TIMEOUT",
+              "synthetic:spec#R-TIMEOUT"
+            ],
+            "missing_prerequisites": [
+              "complete scenario"
+            ],
+            "dependency_versions": {
+              "R-TIMEOUT": "0127a34289b4b568c36031a4ef9507c1434bcecc59cffb8c8578490fdb427565",
+              "S-TIMEOUT": "c670e87c1b25ee5211ecaef271c8855226d7dacae5e996990c406ad643e827fb",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "timeout"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-RESET",
+              "R-RESET"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#RESET",
+              "synthetic:spec#R-RESET"
+            ],
+            "missing_prerequisites": [
+              "complete scenario"
+            ],
+            "dependency_versions": {
+              "R-RESET": "f27b2c18105630c60a1a607d8e6675d6192a72b546cf17f293af1a2295086d39",
+              "S-RESET": "9b8c0f367a99f34c1f51a0809c3ae438ca6123af0fc0f983c0e9ba7f1e6060d8",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "reset during exchange"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO",
+            "objects": [
+              "S-RECOVERY",
+              "R-RECOVERY"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Declared scenario response fields checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:scenario-review#RECOVERY",
+              "synthetic:spec#R-RECOVERY"
+            ],
+            "missing_prerequisites": [
+              "complete scenario"
+            ],
+            "dependency_versions": {
+              "R-RECOVERY": "0f602333176948473b951d26c9dfdeeedfba0dc03c2258fa0a3fa1b692c51bad",
+              "S-RECOVERY": "6eaf7b245afe9cb7f12e01351277cefaef5561b518e5dc57eefc793cec65ca52",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {
+              "not_applicable_fields": {},
+              "event": "recovery"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-LINK",
+            "objects": [
+              "R-SAMPLE",
+              "S-LOSS"
+            ],
+            "status": "PASS",
+            "reason": "Reviewed scenario link",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:spec#3",
+              "synthetic:scenario-review#LOSS"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc",
+              "$scope": "eb0e6185b43bc09f9bd92b5b4286b2457f84248b6d3414b36556b1305c3bd154",
+              "$model": "60377be94f3922b5b05abfff0930621880254682b75864ccbb492290ef3f8624"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    },
+    {
+      "case_id": "stale-evidence",
+      "defect_class": "freshness",
+      "bundle_hash": "1a1e95034591f02664b61166e8c133a80466526b8d1b6e898ac41b8969ba93ef",
+      "report": {
+        "schema_version": 1,
+        "bundle_id": "synthetic-flight-control",
+        "bundle_hash": "1a1e95034591f02664b61166e8c133a80466526b8d1b6e898ac41b8969ba93ef",
+        "configuration": "baseline+P0/P1",
+        "synthetic": true,
+        "scenario_coverage": {
+          "reviewed_applicable_scenarios": 0,
+          "covered": 0,
+          "fraction": null,
+          "scope_reviewed_complete": true,
+          "meaning": "Required fields of enumerated reviewed applicable scenarios only"
+        },
+        "summary": {
+          "status": "UNKNOWN",
+          "counts": {
+            "PASS": 0,
+            "FAIL": 0,
+            "UNKNOWN": 3,
+            "NOT_APPLICABLE": 3,
+            "ERROR": 0
+          },
+          "stale": 1,
+          "freshness_unknown": 1,
+          "expected_checks": 6,
+          "expected_scope_complete": true,
+          "completed_applicable_checks": 0,
+          "pass_fraction_completed": null,
+          "completion_coverage": 0.0,
+          "incomplete": true
+        },
+        "results": [
+          {
+            "rule_id": "P0-EVIDENCE",
+            "objects": [
+              "E-SAMPLE",
+              "R-SAMPLE",
+              "A-SENSOR",
+              "S-LOSS"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Recorded evidence verdict; dependency hashes checked",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "E-SAMPLE",
+              "synthetic:test-run#1",
+              "synthetic:spec#3"
+            ],
+            "missing_prerequisites": [
+              "dependency A-SENSOR",
+              "dependency S-LOSS"
+            ],
+            "dependency_versions": {
+              "E-SAMPLE": "2b0818a9bf8346d6a2f28e0357d4783d7bdabf166da2c5c4221ca246af7919be",
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "$scope": "d532e068f217ba47a01bab03ed6222a37cd94a5a0b70eb2fdf5a887326289fee",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "STALE",
+            "details": {
+              "recorded_dependencies": {
+                "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+                "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+                "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+              },
+              "recorded_outcome": "PASS"
+            },
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P0-TIMING-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero timing",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "d532e068f217ba47a01bab03ed6222a37cd94a5a0b70eb2fdf5a887326289fee",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero assumptions",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "d532e068f217ba47a01bab03ed6222a37cd94a5a0b70eb2fdf5a887326289fee",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-ASSUMPTION-DEPENDENCY",
+            "objects": [
+              "R-SAMPLE",
+              "A-SENSOR"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Conclusion depends on unconfirmed or stale assumption",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:spec#3"
+            ],
+            "missing_prerequisites": [
+              "A-SENSOR"
+            ],
+            "dependency_versions": {
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "$scope": "d532e068f217ba47a01bab03ed6222a37cd94a5a0b70eb2fdf5a887326289fee",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "UNKNOWN",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-SCOPE",
+            "objects": [],
+            "status": "NOT_APPLICABLE",
+            "reason": "Reviewed scope explicitly enumerates zero scenarios",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "$scope": "d532e068f217ba47a01bab03ed6222a37cd94a5a0b70eb2fdf5a887326289fee",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          },
+          {
+            "rule_id": "P1-SCENARIO-LINK",
+            "objects": [
+              "R-SAMPLE",
+              "S-LOSS"
+            ],
+            "status": "UNKNOWN",
+            "reason": "Missing/unreviewed linked scenario",
+            "applicability": "Declared project objects and reviewed scope; see prerequisites",
+            "scope": "synthetic-flight-control",
+            "evidence": [
+              "synthetic:spec#3"
+            ],
+            "missing_prerequisites": [],
+            "dependency_versions": {
+              "R-SAMPLE": "8144d82ae0c500d23c0ba9018409d9ddad27362980a383568f86b5f7f9b4e5a6",
+              "$scope": "d532e068f217ba47a01bab03ed6222a37cd94a5a0b70eb2fdf5a887326289fee",
+              "$model": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+            },
+            "freshness": "CURRENT",
+            "details": {},
+            "limits": [
+              "Project check only; no claim of system safety or whole-standard compliance."
+            ]
+          }
+        ],
+        "limits": [
+          "Conjunctions of Boolean/enum equalities and closed numeric intervals; explicit Cartesian or finite-state reachability; static pairwise checks only. No temporal realizability, controller synthesis or natural-language consistency proof."
+        ]
+      }
+    }
+  ]
+}

@@ -98,7 +98,7 @@ class AssessmentReport:
             if "objectives_checked" in q:
                 lines.append(
                     f"  compliance: {q['passing']}/{q['objectives_checked']} "
-                    f"passing ({q['compliance_rate']:.1%}), "
+                    f"passing; statuses={q.get('summary', {})}, "
                     f"{q['violation_count']} violations"
                 )
             if rep.used_provider:

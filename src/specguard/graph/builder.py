@@ -450,10 +450,7 @@ def graph_to_cypher(graph: RequirementGraph) -> str:
     lines.append("//   $ cypher-shell -u neo4j -p <password> < specguard_graph.cypher")
     lines.append("// =========================================================")
     lines.append("")
-    lines.append("// Clean any previous SpecGuard data (comment out to keep)")
-    lines.append("MATCH (n) WHERE n:Requirement OR n:Category OR n:Component OR")
-    lines.append("              n:Standard OR n:Configuration OR n:Smell")
-    lines.append("DETACH DELETE n;")
+    lines.append("// Additive export: no database cleanup is performed.")
     lines.append("")
 
     # Indexes for performance

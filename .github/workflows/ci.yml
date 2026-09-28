@@ -61,6 +61,11 @@ jobs:
         run: |
           python -c "import specguard; print('specguard', specguard.__version__ if hasattr(specguard, '__version__') else 'ok')"
           specguard --help
+          python - <<'PYCORE'
+          from specguard.verification.model import Bundle
+          from specguard.verification.analyzer import analyze_bundle
+          assert analyze_bundle(Bundle.load("examples/verification_bundle.json"))["summary"]["status"] == "FAIL"
+          PYCORE
           printf 'REQ-1: The system shall respond within 100 ms.\nREQ-2: The system should be fast enough.\n' | specguard assess - || true
       - name: Validate checkability taxonomy (stdlib-only, FK integrity)
         run: specguard taxonomy validate
@@ -86,6 +91,8 @@ jobs:
         python-version: ["3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # archived baseline regression needs the actual original commit
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
@@ -147,6 +154,7 @@ jobs:
       SPECGUARD_NEO4J_URI: bolt://localhost:7687
       SPECGUARD_NEO4J_USER: neo4j
       SPECGUARD_NEO4J_PASSWORD: testpassword
+      SPECGUARD_ISOLATED_TEST_TARGET: bolt://localhost:7687/neo4j
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

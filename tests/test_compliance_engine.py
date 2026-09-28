@@ -38,11 +38,15 @@ class TestRunComplianceCheck:
         report = run_compliance_check(self._no_op_runner, DO_178C_OBJECTIVES)
         assert report.violation_count == 0
         assert report.total_objectives_checked == len(DO_178C_OBJECTIVES)
-        assert len(report.passing_objective_ids) == len(DO_178C_OBJECTIVES)
+        assert report.passing_objective_ids == []
+        assert all(r.status == "UNKNOWN" for r in report.results)
 
     def test_violations_are_captured(self):
         def always_violating(query, params):
             return [{"violating_requirement": "REQ-1", "req_text": "text", "reason": "test"}]
 
-        report = run_compliance_check(always_violating, DO_178C_OBJECTIVES[:1])
+        from specguard.compliance.constraint_engine import RuleScope
+        report = run_compliance_check(always_violating, DO_178C_OBJECTIVES[:1], scopes={
+            DO_178C_OBJECTIVES[0].objective_id: RuleScope(["REQ-1"], "test-review", complete=True)
+        })
         assert report.violation_count >= 1

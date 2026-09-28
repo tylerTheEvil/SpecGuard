@@ -1,0 +1,69 @@
+{
+  "configuration": "baseline",
+  "commit": "0f4a3057a1bf2800249558c484220ca5093ed091",
+  "synthetic": true,
+  "cases": [
+    {
+      "case_id": "same-mode-one",
+      "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1.",
+      "gate": "PASS",
+      "consistency_heuristic": 1.0,
+      "semantic_scenario_freshness_check": "not implemented"
+    },
+    {
+      "case_id": "same-mode-zero",
+      "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 0.",
+      "gate": "PASS",
+      "consistency_heuristic": 1.0,
+      "semantic_scenario_freshness_check": "not implemented"
+    },
+    {
+      "case_id": "nominal-no-loss-reaction",
+      "text": "The controller shall sample the sensor every 10 ms.",
+      "gate": "PASS",
+      "consistency_heuristic": 1.0,
+      "semantic_scenario_freshness_check": "not implemented"
+    },
+    {
+      "case_id": "changed-after-evidence",
+      "text": "The controller shall sample the sensor every 20 ms.",
+      "gate": "PASS",
+      "consistency_heuristic": 1.0,
+      "semantic_scenario_freshness_check": "not implemented"
+    },
+    {
+      "case_id": "empty-runner",
+      "passing": [
+        "DO-178C-A3-1",
+        "DO-178C-A3-2",
+        "DO-178C-A3-3",
+        "DO-178C-A4-1",
+        "DO-178C-A4-6",
+        "DO-178C-A7-1",
+        "DO-178C-A7-3"
+      ],
+      "rate": 1.0,
+      "expected_rules": 7
+    },
+    {
+      "case_id": "empty-graph",
+      "passing": [
+        "DO-178C-A3-1",
+        "DO-178C-A3-2",
+        "DO-178C-A3-3",
+        "DO-178C-A4-1",
+        "DO-178C-A4-6",
+        "DO-178C-A7-1",
+        "DO-178C-A7-3"
+      ],
+      "rate": 1.0,
+      "expected_rules": 7
+    },
+    {
+      "case_id": "zero-checks",
+      "passing": [],
+      "rate": 1.0,
+      "expected_rules": 0
+    }
+  ]
+}

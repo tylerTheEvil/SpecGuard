@@ -96,7 +96,7 @@ _INVENTORY_KIND_TO_LABEL: dict[str, str] = {
     "standards": "Standard",
     "requirements": "Requirement",
     "configurations": "Configuration",
-    "hazards": "Hazard",
+    "hazards": "SafetyHazard",
 }
 
 # Fallback label by edge type, used ONLY when a proposal was constructed without
@@ -108,7 +108,7 @@ _EDGE_TYPE_FALLBACK_LABEL: dict[EdgeType, str] = {
     EdgeType.MENTIONS: "Component",
     EdgeType.REFERS_TO: "Standard",
     EdgeType.DERIVES_FROM: "Requirement",
-    EdgeType.MITIGATES: "Hazard",
+    EdgeType.MITIGATES: "SafetyHazard",
 }
 
 # Which inventory bucket(s) each edge type may target. MENTIONS is

@@ -77,7 +77,8 @@ def _load_system_requirements(
             MERGE (n:Requirement {node_id: $id})
             SET n.id = $id, n.text = $text, n.level = 'system',
                 n.dal = $dal, n.is_derived = false,
-                n.timing_budget_ns = $budget, n.provenance = $prov
+                n.timing_budget_ns = $budget, n.provenance = $prov,
+                n.timing_composition = 'additive'
             """,
             {
                 "id": r.req_id,

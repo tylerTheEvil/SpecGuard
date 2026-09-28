@@ -1,0 +1,34 @@
+Project checks: synthetic-flight-control (baseline+P0/P1/P2)
+Status: FAIL; {'PASS': 8, 'FAIL': 2, 'UNKNOWN': 3, 'NOT_APPLICABLE': 0, 'ERROR': 0}; STALE: 1
+Completed applicable: 9/13; PASS fraction: 0.7777777777777778
+Scenario coverage: {'reviewed_applicable_scenarios': 5, 'covered': 4, 'fraction': 0.8, 'scope_reviewed_complete': True, 'meaning': 'Required fields of enumerated reviewed applicable scenarios only'}
+[PASS/STALE] P0-EVIDENCE ['E-SAMPLE', 'R-SAMPLE', 'A-SENSOR', 'S-LOSS']: Recorded evidence verdict; dependency hashes checked
+  Sources/evidence: ['E-SAMPLE', 'synthetic:test-run#1', 'synthetic:spec#3', 'synthetic:environment', 'synthetic:scenario-review#LOSS']
+[UNKNOWN/CURRENT] P0-TIMING ['T-CONTROL']: Additive allocation checked in seconds
+  Missing: ['budget for HW']
+  Sources/evidence: ['synthetic:allocation-review']
+[UNKNOWN/CURRENT] P1-ASSUMPTION ['A-SENSOR']: Assumption confirmation prerequisites checked
+  Missing: ['human review acceptance', 'evidence bound to this assumption']
+  Sources/evidence: ['synthetic:environment']
+[UNKNOWN/CURRENT] P1-ASSUMPTION-DEPENDENCY ['R-SAMPLE', 'A-SENSOR']: Conclusion depends on unconfirmed or stale assumption
+  Missing: ['A-SENSOR']
+  Sources/evidence: ['synthetic:spec#3', 'synthetic:environment']
+[FAIL/CURRENT] P1-SCENARIO ['S-LOSS', 'R-SAMPLE']: Required scenario fields missing
+  Missing: ['response']
+  Sources/evidence: ['synthetic:scenario-review#LOSS', 'synthetic:spec#3']
+[PASS/CURRENT] P1-SCENARIO ['S-STALE', 'R-STALE']: Declared scenario response fields checked
+  Sources/evidence: ['synthetic:scenario-review#STALE', 'synthetic:spec#R-STALE']
+[PASS/CURRENT] P1-SCENARIO ['S-TIMEOUT', 'R-TIMEOUT']: Declared scenario response fields checked
+  Sources/evidence: ['synthetic:scenario-review#TIMEOUT', 'synthetic:spec#R-TIMEOUT']
+[PASS/CURRENT] P1-SCENARIO ['S-RESET', 'R-RESET']: Declared scenario response fields checked
+  Sources/evidence: ['synthetic:scenario-review#RESET', 'synthetic:spec#R-RESET']
+[PASS/CURRENT] P1-SCENARIO ['S-RECOVERY', 'R-RECOVERY']: Declared scenario response fields checked
+  Sources/evidence: ['synthetic:scenario-review#RECOVERY', 'synthetic:spec#R-RECOVERY']
+[PASS/CURRENT] P1-SCENARIO-LINK ['R-SAMPLE', 'S-LOSS']: Reviewed scenario link
+  Sources/evidence: ['synthetic:spec#3', 'synthetic:scenario-review#LOSS']
+[PASS/CURRENT] P2-CONDITION ['C-R-ENABLE-1', 'R-ENABLE-1']: Reviewed antecedent reachable in declared model
+  Sources/evidence: ['synthetic:formalization-review', 'synthetic:spec#1']
+[PASS/CURRENT] P2-CONDITION ['C-R-ENABLE-0', 'R-ENABLE-0']: Reviewed antecedent reachable in declared model
+  Sources/evidence: ['synthetic:formalization-review', 'synthetic:spec#2']
+[FAIL/CURRENT] P2-PAIR ['C-R-ENABLE-1', 'C-R-ENABLE-0', 'R-ENABLE-1', 'R-ENABLE-0']: Incompatible guarantee constraints under reachable conditions; this is not an execution counterexample
+  Sources/evidence: ['synthetic:formalization-review', 'synthetic:formalization-review', 'synthetic:spec#1', 'synthetic:spec#2']

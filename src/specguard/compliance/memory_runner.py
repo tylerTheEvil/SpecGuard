@@ -14,11 +14,13 @@ This is a *pattern-recognition* runner: it dispatches each constraint by
 metadata it builds (DAL / level / traceability) is **mock** — the public CVA6
 spec carries none. It demonstrates that the codified objectives execute
 end-to-end and discriminate; it is **not** certification evidence. The
-authoritative Cypher execution path is :class:`Neo4jGraphRunner`.
+Neo4j path executes actual Cypher; both paths still require independent scope
+and prerequisite declarations before their empty result can support PASS.
 """
 
 from __future__ import annotations
 
+import hashlib
 from collections.abc import Callable
 
 from specguard.data.cva6_requirements import get_all_requirements
@@ -28,6 +30,7 @@ class MockGraph:
     """Minimal in-memory graph supporting the constraint runner's needs."""
 
     def __init__(self) -> None:
+        self.synthetic = False
         self.requirements: list[dict] = []
         self.smells: list[dict] = []
         self.relationships: list[dict] = []
@@ -182,9 +185,11 @@ def make_graph_runner(graph: MockGraph) -> Callable[[str, dict], list[dict]]:
                 and not graph.has_outgoing_edge(r["id"], ["DERIVED_FROM_RATIONALE"])
             ]
 
-        # Objectives without mock data return no violation (demo behaviour).
+        # Unsupported patterns have no findings; the engine reports UNKNOWN without scope.
         return []
 
+    run.synthetic = graph.synthetic  # type: ignore[attr-defined]
+    run.supports_constraint = lambda constraint: False  # type: ignore[attr-defined]
     return run
 
 
@@ -198,6 +203,7 @@ def build_demo_graph() -> MockGraph:
     from specguard.core.smell_detector import analyze_requirement
 
     graph = MockGraph()
+    graph.synthetic = True
     cva6_reqs = get_all_requirements()
 
     graph.add_requirement(id="SYS-1", text="Processor shall execute RISC-V ISA",
@@ -215,7 +221,7 @@ def build_demo_graph() -> MockGraph:
             graph.add_edge(req.req_id, "DERIVES_FROM", "SYS-1")
         elif req.category == "Performance" and req.req_id != "PPA-50":
             graph.add_edge(req.req_id, "DERIVES_FROM", "SYS-2")
-        if hash(req.req_id) % 2 == 0:
+        if int(hashlib.sha256(req.req_id.encode()).hexdigest(), 16) % 2 == 0:
             graph.add_edge(f"TC_{req.req_id}", "VERIFIES", req.req_id)
 
     for req in cva6_reqs:

@@ -43,6 +43,12 @@ def _neo4j_available() -> bool:
         return False
 
     config = Neo4jConfig.from_env()
+    from specguard.compliance.neo4j_runner import require_isolated_test_database
+    try:
+        require_isolated_test_database(config)
+    except RuntimeError:
+        return False
+
     try:
         driver = GraphDatabase.driver(
             config.uri,
@@ -127,12 +133,7 @@ def test_run_compliance_check_end_to_end(uav_runner):
         uav_runner, CROSS_DOMAIN_OBJECTIVES, standard_name="cross-domain (UAV)"
     )
     assert report.total_objectives_checked == 3
-    assert report.violation_count == 3
-    assert report.passing_objective_ids == []  # all three seeded to fail
-    for v in report.violations:
-        assert v.explanation
-        assert not v.explanation.startswith(f"{v.title} (data:")
-    # One violation per objective, matching the seeded registry.
-    by_obj = report.violations_by_objective()
-    for oid in _SEEDED:
-        assert len(by_obj.get(oid, [])) == 1, oid
+    assert report.violation_count == 1  # numeric witness survives unknown broader scope
+    assert report.passing_objective_ids == []
+    assert sum(r.status == "UNKNOWN" for r in report.results) == 3
+    assert all(r.details.get('candidate_rows') for r in report.results if r.status == 'UNKNOWN')

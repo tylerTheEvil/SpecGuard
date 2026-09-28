@@ -330,3 +330,27 @@ authoritative), so auditable results are preserved.
 3. **DO-330 qualification skeleton + GSN assurance case**.
 4. **Cross-dataset validation** — extend beyond CVA6 (e.g. via NVP "Radiy"
    collaboration) for external validity.
+
+## Scoped requirements checks: assumptions, scenarios and contracts
+
+`specguard verify` analyzes reviewed JSON bundles with explicit scope, evidence
+freshness, additive timing, failure scenarios and a limited static contract
+fragment. Empty/incomplete data produces UNKNOWN; STALE is separate from the
+verdict. Text quality scores remain local heuristics, not proofs of completeness
+or consistency. These are project checks, not whole-standard compliance or
+system safety claims.
+
+```sh
+specguard import examples/verification_bundle.json --format bundle \
+  --dataset-tag synthetic-flight-control --json
+specguard verify examples/verification_bundle.json --json
+python experiments/grounded_checks.py --write-example
+```
+
+See [schema, CLI, compatibility changes and limits](docs/grounded_checks.md),
+[initial baseline](docs/grounded_checks_baseline.md), and the
+[synthetic report](results/grounded_checks/example_report.txt).
+The legacy `comply` runner now needs independent reviewed scope for PASS;
+`compliance_rate` can be null. A graph edge alone does not establish mitigation
+sufficiency. Neo4j demo loaders now require an explicitly designated disposable
+test target before clearing any data.

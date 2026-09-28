@@ -51,6 +51,8 @@ class FormalizationAgent(Agent):
             # Q14 is a topological screening filter, NOT conflict detection
             # (per CLAUDE.md / architecture.md) — keep the honest label.
             "conflict_candidates_screened": len(conflict_candidates),
+            "screening_limit": 15,
+            "screening_is_semantic_analysis": False,
             "cross_cutting_count": len(cross_cutting),
             "safety_critical_with_smells": safety_with_smells,
             # Expose the built graph so the Coordinator can thread it forward.

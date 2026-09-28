@@ -1,0 +1,14 @@
+src/specguard/linguistic/_spacy_loader.py:27: error: Cannot find implementation or library stub for module named "spacy"  [import-not-found]
+src/specguard/io/parsers.py:264: error: Argument 1 to "append" of "list" has incompatible type "Requirement | None"; expected "Requirement"  [arg-type]
+src/specguard/llm/anthropic_provider.py:69: error: Cannot find implementation or library stub for module named "anthropic"  [import-not-found]
+src/specguard/llm/anthropic_provider.py:83: error: "object" has no attribute "messages"  [attr-defined]
+src/specguard/llm/anthropic_provider.py:103: error: "object" has no attribute "messages"  [attr-defined]
+src/specguard/extraction/extractor.py:323: error: Argument 1 to "EdgeType" has incompatible type "Any | None"; expected "str"  [arg-type]
+src/specguard/linguistic/metrics.py:73: error: Cannot find implementation or library stub for module named "textstat"  [import-not-found]
+src/specguard/graph/queries.py:18: error: Library stubs not installed for "networkx"  [import-untyped]
+src/specguard/graph/queries.py:18: note: Hint: "python3 -m pip install types-networkx"
+src/specguard/graph/queries.py:18: note: (or run "mypy --install-types" to install all missing stub packages)
+src/specguard/graph/queries.py:18: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+src/specguard/graph/neo4j_io.py:145: error: Dict entry 2 has incompatible type "str": "str"; expected "str": "int"  [dict-item]
+src/specguard/cli.py:223: error: Incompatible types in assignment (expression has type "Callable[[str, dict[Any, Any]], list[dict[Any, Any]]]", variable has type "Neo4jGraphRunner")  [assignment]
+src/specguard/cli.py:359: error: Incompatible types in assignment (expression has type "AnthropicProvider", variable has type "MockProvider")  [assignment]

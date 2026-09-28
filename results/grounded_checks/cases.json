@@ -1,0 +1,1635 @@
+[
+  {
+    "case_id": "combined",
+    "defect_class": "mixed",
+    "bundle": {
+      "requirements": [
+        {
+          "id": "R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:spec#1",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1."
+        },
+        {
+          "id": "R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:spec#2",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 0."
+        },
+        {
+          "id": "R-SAMPLE",
+          "version": "1",
+          "source": "synthetic:spec#3",
+          "text": "The controller shall sample the sensor every 20 ms.",
+          "assumption_ids": [
+            "A-SENSOR"
+          ],
+          "scenario_ids": [
+            "S-LOSS"
+          ]
+        },
+        {
+          "id": "R-STALE",
+          "version": "1",
+          "source": "synthetic:spec#R-STALE",
+          "text": "On stale sensor data, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-TIMEOUT",
+          "version": "1",
+          "source": "synthetic:spec#R-TIMEOUT",
+          "text": "On timeout, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-RESET",
+          "version": "1",
+          "source": "synthetic:spec#R-RESET",
+          "text": "On reset during exchange, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-RECOVERY",
+          "version": "1",
+          "source": "synthetic:spec#R-RECOVERY",
+          "text": "On recovery, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        }
+      ],
+      "contracts": [
+        {
+          "id": "C-R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-1"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-1": "8f98fb2093d996c7df4764c64385d255f58b62d4388c7a10506ae7af7294823b"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 1
+            }
+          ]
+        },
+        {
+          "id": "C-R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-0"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-0": "7412a655c81b51276d78f5370f1a60e4164f7eec9ad3adc70530fd7f7ffc3282"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 0
+            }
+          ]
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "S-LOSS",
+          "version": "1",
+          "mode": "RUN",
+          "event": "loss of sensor data",
+          "hazard_id": "H-ACTUATION",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-SAMPLE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#LOSS",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-STALE",
+          "version": "1",
+          "mode": "RUN",
+          "event": "stale sensor data",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-STALE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#STALE",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-TIMEOUT",
+          "version": "1",
+          "mode": "RUN",
+          "event": "timeout",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-TIMEOUT"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#TIMEOUT",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-RESET",
+          "version": "1",
+          "mode": "RUN",
+          "event": "reset during exchange",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-RESET"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#RESET",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-RECOVERY",
+          "version": "1",
+          "mode": "RUN",
+          "event": "recovery",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-RECOVERY"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#RECOVERY",
+          "applicable": true,
+          "complete": true
+        }
+      ],
+      "assumptions": [
+        {
+          "id": "A-SENSOR",
+          "version": "1",
+          "source": "synthetic:environment",
+          "statement": "Sensor supplies valid data every 10 ms",
+          "scope": "MODE=RUN",
+          "owner": "integration",
+          "verification_method": "bench test",
+          "review_status": "candidate",
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E-SAMPLE",
+          "version": "1",
+          "review_status": "accepted",
+          "outcome": "PASS",
+          "source": "synthetic:test-run#1",
+          "dependencies": {
+            "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+            "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+            "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+          }
+        }
+      ],
+      "timing": [
+        {
+          "id": "T-CONTROL",
+          "source": "synthetic:allocation-review",
+          "review_status": "accepted",
+          "composition": "additive",
+          "components_complete": true,
+          "budget": {
+            "value": 2,
+            "unit": "ms"
+          },
+          "components": [
+            {
+              "id": "SW",
+              "budget": {
+                "value": 1000,
+                "unit": "us"
+              }
+            },
+            {
+              "id": "HW"
+            }
+          ]
+        }
+      ],
+      "hazards": [
+        {
+          "id": "H-ACTUATION",
+          "description": "Uncommanded actuation",
+          "source": "synthetic:FHA"
+        }
+      ],
+      "model": {
+        "variables": {
+          "MODE": {
+            "type": "enum",
+            "values": [
+              "RUN",
+              "STOP"
+            ]
+          },
+          "ENABLE": {
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "reachability": {
+          "kind": "cartesian",
+          "reviewed": true,
+          "source": "synthetic:static-domain-review"
+        }
+      },
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-ENABLE-1",
+            "R-ENABLE-0",
+            "R-SAMPLE",
+            "R-STALE",
+            "R-TIMEOUT",
+            "R-RESET",
+            "R-RECOVERY"
+          ],
+          "assumptions": [
+            "A-SENSOR"
+          ],
+          "scenarios": [
+            "S-LOSS",
+            "S-STALE",
+            "S-TIMEOUT",
+            "S-RESET",
+            "S-RECOVERY"
+          ],
+          "contracts": [
+            "C-R-ENABLE-1",
+            "C-R-ENABLE-0"
+          ],
+          "evidence": [
+            "E-SAMPLE"
+          ],
+          "timing": [
+            "T-CONTROL"
+          ],
+          "hazards": [
+            "H-ACTUATION"
+          ],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "empty",
+    "defect_class": "scope",
+    "bundle": {
+      "id": "synthetic-empty",
+      "schema_version": 1,
+      "synthetic": true
+    }
+  },
+  {
+    "case_id": "partial",
+    "defect_class": "scope",
+    "bundle": {
+      "requirements": [
+        {
+          "id": "R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:spec#1",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1."
+        }
+      ],
+      "contracts": [
+        {
+          "id": "C-R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-1"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-1": "8f98fb2093d996c7df4764c64385d255f58b62d4388c7a10506ae7af7294823b"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 1
+            }
+          ]
+        },
+        {
+          "id": "C-R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-0"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-0": "7412a655c81b51276d78f5370f1a60e4164f7eec9ad3adc70530fd7f7ffc3282"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 0
+            }
+          ]
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "S-LOSS",
+          "version": "1",
+          "mode": "RUN",
+          "event": "loss of sensor data",
+          "hazard_id": "H-ACTUATION",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-SAMPLE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#LOSS",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-STALE",
+          "version": "1",
+          "mode": "RUN",
+          "event": "stale sensor data",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-STALE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#STALE",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-TIMEOUT",
+          "version": "1",
+          "mode": "RUN",
+          "event": "timeout",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-TIMEOUT"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#TIMEOUT",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-RESET",
+          "version": "1",
+          "mode": "RUN",
+          "event": "reset during exchange",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-RESET"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#RESET",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-RECOVERY",
+          "version": "1",
+          "mode": "RUN",
+          "event": "recovery",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-RECOVERY"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#RECOVERY",
+          "applicable": true,
+          "complete": true
+        }
+      ],
+      "assumptions": [
+        {
+          "id": "A-SENSOR",
+          "version": "1",
+          "source": "synthetic:environment",
+          "statement": "Sensor supplies valid data every 10 ms",
+          "scope": "MODE=RUN",
+          "owner": "integration",
+          "verification_method": "bench test",
+          "review_status": "candidate",
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E-SAMPLE",
+          "version": "1",
+          "review_status": "accepted",
+          "outcome": "PASS",
+          "source": "synthetic:test-run#1",
+          "dependencies": {
+            "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+            "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+            "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+          }
+        }
+      ],
+      "timing": [
+        {
+          "id": "T-CONTROL",
+          "source": "synthetic:allocation-review",
+          "review_status": "accepted",
+          "composition": "additive",
+          "components_complete": true,
+          "budget": {
+            "value": 2,
+            "unit": "ms"
+          },
+          "components": [
+            {
+              "id": "SW",
+              "budget": {
+                "value": 1000,
+                "unit": "us"
+              }
+            },
+            {
+              "id": "HW"
+            }
+          ]
+        }
+      ],
+      "hazards": [
+        {
+          "id": "H-ACTUATION",
+          "description": "Uncommanded actuation",
+          "source": "synthetic:FHA"
+        }
+      ],
+      "model": {
+        "variables": {
+          "MODE": {
+            "type": "enum",
+            "values": [
+              "RUN",
+              "STOP"
+            ]
+          },
+          "ENABLE": {
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "reachability": {
+          "kind": "cartesian",
+          "reviewed": true,
+          "source": "synthetic:static-domain-review"
+        }
+      },
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-ENABLE-1",
+            "R-ENABLE-0",
+            "R-SAMPLE",
+            "R-STALE",
+            "R-TIMEOUT",
+            "R-RESET",
+            "R-RECOVERY"
+          ],
+          "assumptions": [
+            "A-SENSOR"
+          ],
+          "scenarios": [
+            "S-LOSS",
+            "S-STALE",
+            "S-TIMEOUT",
+            "S-RESET",
+            "S-RECOVERY"
+          ],
+          "contracts": [
+            "C-R-ENABLE-1",
+            "C-R-ENABLE-0"
+          ],
+          "evidence": [
+            "E-SAMPLE"
+          ],
+          "timing": [
+            "T-CONTROL"
+          ],
+          "hazards": [
+            "H-ACTUATION"
+          ],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "timing-missing",
+    "defect_class": "timing",
+    "bundle": {
+      "timing": [
+        {
+          "id": "T-CONTROL",
+          "source": "synthetic:allocation-review",
+          "review_status": "accepted",
+          "composition": "additive",
+          "components_complete": true,
+          "budget": {
+            "value": 2,
+            "unit": "ms"
+          },
+          "components": [
+            {
+              "id": "SW",
+              "budget": {
+                "value": 1000,
+                "unit": "us"
+              }
+            },
+            {
+              "id": "HW"
+            }
+          ]
+        }
+      ],
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [],
+          "assumptions": [],
+          "scenarios": [],
+          "contracts": [],
+          "evidence": [],
+          "timing": [
+            "T-CONTROL"
+          ],
+          "hazards": [],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "timing-valid",
+    "defect_class": "timing",
+    "bundle": {
+      "timing": [
+        {
+          "id": "T-CONTROL",
+          "source": "synthetic:allocation-review",
+          "review_status": "accepted",
+          "composition": "additive",
+          "components_complete": true,
+          "budget": {
+            "value": 2,
+            "unit": "ms"
+          },
+          "components": [
+            {
+              "id": "SW",
+              "budget": {
+                "value": 1000,
+                "unit": "us"
+              }
+            },
+            {
+              "id": "HW",
+              "budget": {
+                "value": 1,
+                "unit": "ms"
+              }
+            }
+          ]
+        }
+      ],
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [],
+          "assumptions": [],
+          "scenarios": [],
+          "contracts": [],
+          "evidence": [],
+          "timing": [
+            "T-CONTROL"
+          ],
+          "hazards": [],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "same-mode",
+    "defect_class": "semantic",
+    "bundle": {
+      "requirements": [
+        {
+          "id": "R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:spec#1",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1."
+        },
+        {
+          "id": "R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:spec#2",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 0."
+        }
+      ],
+      "contracts": [
+        {
+          "id": "C-R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-1"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-1": "8f98fb2093d996c7df4764c64385d255f58b62d4388c7a10506ae7af7294823b"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 1
+            }
+          ]
+        },
+        {
+          "id": "C-R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-0"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-0": "7412a655c81b51276d78f5370f1a60e4164f7eec9ad3adc70530fd7f7ffc3282"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 0
+            }
+          ]
+        }
+      ],
+      "model": {
+        "variables": {
+          "MODE": {
+            "type": "enum",
+            "values": [
+              "RUN",
+              "STOP"
+            ]
+          },
+          "ENABLE": {
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "reachability": {
+          "kind": "cartesian",
+          "reviewed": true,
+          "source": "synthetic:static-domain-review"
+        }
+      },
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-ENABLE-1",
+            "R-ENABLE-0"
+          ],
+          "assumptions": [],
+          "scenarios": [],
+          "contracts": [
+            "C-R-ENABLE-1",
+            "C-R-ENABLE-0"
+          ],
+          "evidence": [],
+          "timing": [],
+          "hazards": [],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "different-mode",
+    "defect_class": "semantic",
+    "bundle": {
+      "requirements": [
+        {
+          "id": "R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:spec#1",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1."
+        },
+        {
+          "id": "R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:spec#2",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 0."
+        }
+      ],
+      "contracts": [
+        {
+          "id": "C-R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-1"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-1": "8f98fb2093d996c7df4764c64385d255f58b62d4388c7a10506ae7af7294823b"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 1
+            }
+          ]
+        },
+        {
+          "id": "C-R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-0"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-0": "7412a655c81b51276d78f5370f1a60e4164f7eec9ad3adc70530fd7f7ffc3282"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "STOP"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 0
+            }
+          ]
+        }
+      ],
+      "model": {
+        "variables": {
+          "MODE": {
+            "type": "enum",
+            "values": [
+              "RUN",
+              "STOP"
+            ]
+          },
+          "ENABLE": {
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "reachability": {
+          "kind": "cartesian",
+          "reviewed": true,
+          "source": "synthetic:static-domain-review"
+        }
+      },
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-ENABLE-1",
+            "R-ENABLE-0"
+          ],
+          "assumptions": [],
+          "scenarios": [],
+          "contracts": [
+            "C-R-ENABLE-1",
+            "C-R-ENABLE-0"
+          ],
+          "evidence": [],
+          "timing": [],
+          "hazards": [],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "missing-reaction",
+    "defect_class": "scenario",
+    "bundle": {
+      "scenarios": [
+        {
+          "id": "S-LOSS",
+          "version": "1",
+          "mode": "RUN",
+          "event": "loss of sensor data",
+          "hazard_id": "H-ACTUATION",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-SAMPLE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#LOSS",
+          "applicable": true,
+          "complete": true
+        }
+      ],
+      "hazards": [
+        {
+          "id": "H-ACTUATION",
+          "description": "Uncommanded actuation",
+          "source": "synthetic:FHA"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "R-SAMPLE",
+          "text": "Nominal sampling."
+        }
+      ],
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-SAMPLE"
+          ],
+          "assumptions": [],
+          "scenarios": [
+            "S-LOSS"
+          ],
+          "contracts": [],
+          "evidence": [],
+          "timing": [],
+          "hazards": [
+            "H-ACTUATION"
+          ],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "no-scenario-model",
+    "defect_class": "scenario",
+    "bundle": {
+      "requirements": [
+        {
+          "id": "R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:spec#1",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1."
+        },
+        {
+          "id": "R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:spec#2",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 0."
+        },
+        {
+          "id": "R-SAMPLE",
+          "version": "1",
+          "source": "synthetic:spec#3",
+          "text": "The controller shall sample the sensor every 20 ms.",
+          "assumption_ids": [
+            "A-SENSOR"
+          ],
+          "scenario_ids": [
+            "S-LOSS"
+          ]
+        },
+        {
+          "id": "R-STALE",
+          "version": "1",
+          "source": "synthetic:spec#R-STALE",
+          "text": "On stale sensor data, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-TIMEOUT",
+          "version": "1",
+          "source": "synthetic:spec#R-TIMEOUT",
+          "text": "On timeout, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-RESET",
+          "version": "1",
+          "source": "synthetic:spec#R-RESET",
+          "text": "On reset during exchange, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-RECOVERY",
+          "version": "1",
+          "source": "synthetic:spec#R-RECOVERY",
+          "text": "On recovery, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        }
+      ],
+      "contracts": [
+        {
+          "id": "C-R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-1"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-1": "8f98fb2093d996c7df4764c64385d255f58b62d4388c7a10506ae7af7294823b"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 1
+            }
+          ]
+        },
+        {
+          "id": "C-R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:formalization-review",
+          "requirement_ids": [
+            "R-ENABLE-0"
+          ],
+          "requirement_hashes": {
+            "R-ENABLE-0": "7412a655c81b51276d78f5370f1a60e4164f7eec9ad3adc70530fd7f7ffc3282"
+          },
+          "review_status": "accepted",
+          "bindings": {
+            "MODE": "MODE",
+            "ENABLE": "CTRL.ENABLE"
+          },
+          "when": [
+            {
+              "var": "MODE",
+              "eq": "RUN"
+            }
+          ],
+          "guarantees": [
+            {
+              "var": "ENABLE",
+              "eq": 0
+            }
+          ]
+        }
+      ],
+      "scenarios": [
+        {
+          "id": "S-LOSS",
+          "version": "1",
+          "mode": "RUN",
+          "event": "loss of sensor data",
+          "hazard_id": "H-ACTUATION",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-SAMPLE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#LOSS",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-STALE",
+          "version": "1",
+          "mode": "RUN",
+          "event": "stale sensor data",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-STALE"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#STALE",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-TIMEOUT",
+          "version": "1",
+          "mode": "RUN",
+          "event": "timeout",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-TIMEOUT"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#TIMEOUT",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-RESET",
+          "version": "1",
+          "mode": "RUN",
+          "event": "reset during exchange",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-RESET"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#RESET",
+          "applicable": true,
+          "complete": true
+        },
+        {
+          "id": "S-RECOVERY",
+          "version": "1",
+          "mode": "RUN",
+          "event": "recovery",
+          "hazard_id": "H-ACTUATION",
+          "response": "hold disabled until data is validated",
+          "time_limit": {
+            "value": 10,
+            "unit": "ms"
+          },
+          "responsibility": {
+            "SW": "controller",
+            "HW": "input validity flag"
+          },
+          "requirement_ids": [
+            "R-RECOVERY"
+          ],
+          "evidence": [],
+          "review_status": "accepted",
+          "source": "synthetic:scenario-review#RECOVERY",
+          "applicable": true,
+          "complete": true
+        }
+      ],
+      "assumptions": [
+        {
+          "id": "A-SENSOR",
+          "version": "1",
+          "source": "synthetic:environment",
+          "statement": "Sensor supplies valid data every 10 ms",
+          "scope": "MODE=RUN",
+          "owner": "integration",
+          "verification_method": "bench test",
+          "review_status": "candidate",
+          "evidence": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E-SAMPLE",
+          "version": "1",
+          "review_status": "accepted",
+          "outcome": "PASS",
+          "source": "synthetic:test-run#1",
+          "dependencies": {
+            "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+            "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+            "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+          }
+        }
+      ],
+      "timing": [
+        {
+          "id": "T-CONTROL",
+          "source": "synthetic:allocation-review",
+          "review_status": "accepted",
+          "composition": "additive",
+          "components_complete": true,
+          "budget": {
+            "value": 2,
+            "unit": "ms"
+          },
+          "components": [
+            {
+              "id": "SW",
+              "budget": {
+                "value": 1000,
+                "unit": "us"
+              }
+            },
+            {
+              "id": "HW"
+            }
+          ]
+        }
+      ],
+      "hazards": [
+        {
+          "id": "H-ACTUATION",
+          "description": "Uncommanded actuation",
+          "source": "synthetic:FHA"
+        }
+      ],
+      "model": {
+        "variables": {
+          "MODE": {
+            "type": "enum",
+            "values": [
+              "RUN",
+              "STOP"
+            ]
+          },
+          "ENABLE": {
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "reachability": {
+          "kind": "cartesian",
+          "reviewed": true,
+          "source": "synthetic:static-domain-review"
+        }
+      },
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-ENABLE-1",
+            "R-ENABLE-0",
+            "R-SAMPLE",
+            "R-STALE",
+            "R-TIMEOUT",
+            "R-RESET",
+            "R-RECOVERY"
+          ],
+          "assumptions": [
+            "A-SENSOR"
+          ],
+          "contracts": [
+            "C-R-ENABLE-1",
+            "C-R-ENABLE-0"
+          ],
+          "evidence": [
+            "E-SAMPLE"
+          ],
+          "timing": [
+            "T-CONTROL"
+          ],
+          "hazards": [
+            "H-ACTUATION"
+          ],
+          "artifacts": []
+        }
+      }
+    }
+  },
+  {
+    "case_id": "stale-evidence",
+    "defect_class": "freshness",
+    "bundle": {
+      "requirements": [
+        {
+          "id": "R-ENABLE-1",
+          "version": "1",
+          "source": "synthetic:spec#1",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 1."
+        },
+        {
+          "id": "R-ENABLE-0",
+          "version": "1",
+          "source": "synthetic:spec#2",
+          "text": "While MODE is RUN, CTRL shall maintain ENABLE equal to 0."
+        },
+        {
+          "id": "R-SAMPLE",
+          "version": "1",
+          "source": "synthetic:spec#3",
+          "text": "The controller shall sample the sensor every 20 ms.",
+          "assumption_ids": [
+            "A-SENSOR"
+          ],
+          "scenario_ids": [
+            "S-LOSS"
+          ]
+        },
+        {
+          "id": "R-STALE",
+          "version": "1",
+          "source": "synthetic:spec#R-STALE",
+          "text": "On stale sensor data, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-TIMEOUT",
+          "version": "1",
+          "source": "synthetic:spec#R-TIMEOUT",
+          "text": "On timeout, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-RESET",
+          "version": "1",
+          "source": "synthetic:spec#R-RESET",
+          "text": "On reset during exchange, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        },
+        {
+          "id": "R-RECOVERY",
+          "version": "1",
+          "source": "synthetic:spec#R-RECOVERY",
+          "text": "On recovery, the controller shall hold the actuator disabled within 10 ms until data is validated."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E-SAMPLE",
+          "version": "1",
+          "review_status": "accepted",
+          "outcome": "PASS",
+          "source": "synthetic:test-run#1",
+          "dependencies": {
+            "R-SAMPLE": "2047b4498e0b85f479a1b7d1c3eb675f71ff2d6cabc5c33a35a45267bba48ae5",
+            "A-SENSOR": "56dae52272c0c1e780d5788cf9d49f5643a1b8c56ad35dfa4caaa3b7089b97e7",
+            "S-LOSS": "48eabd03798e44f7bf6dc250d6c978dbedb93103a1cb9bce4039f3142eaa1ccc"
+          }
+        }
+      ],
+      "schema_version": 1,
+      "id": "synthetic-flight-control",
+      "synthetic": true,
+      "scope": {
+        "reviewed": true,
+        "source": "synthetic:review-record-1",
+        "complete": [
+          "requirements",
+          "assumptions",
+          "scenarios",
+          "contracts",
+          "evidence",
+          "timing",
+          "hazards",
+          "artifacts"
+        ],
+        "expected": {
+          "requirements": [
+            "R-ENABLE-1",
+            "R-ENABLE-0",
+            "R-SAMPLE",
+            "R-STALE",
+            "R-TIMEOUT",
+            "R-RESET",
+            "R-RECOVERY"
+          ],
+          "assumptions": [],
+          "scenarios": [],
+          "contracts": [],
+          "evidence": [
+            "E-SAMPLE"
+          ],
+          "timing": [],
+          "hazards": [],
+          "artifacts": []
+        }
+      }
+    }
+  }
+]

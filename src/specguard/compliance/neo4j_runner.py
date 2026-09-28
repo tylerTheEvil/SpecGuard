@@ -152,3 +152,14 @@ class Neo4jGraphRunner:
 def make_neo4j_runner(config: Neo4jConfig | None = None) -> Neo4jGraphRunner:
     """Convenience factory mirroring ``make_graph_runner`` in the demo."""
     return Neo4jGraphRunner(config)
+
+
+def require_isolated_test_database(config: Neo4jConfig) -> None:
+    """Refuse demo clears unless the exact database URI/name was explicitly designated."""
+    expected = f"{config.uri}/{config.database}"
+    if os.environ.get("SPECGUARD_ISOLATED_TEST_TARGET") != expected:
+        raise RuntimeError(
+            "Destructive demo load requires SPECGUARD_ISOLATED_TEST_TARGET="
+            + expected
+            + " for a disposable database only"
+        )

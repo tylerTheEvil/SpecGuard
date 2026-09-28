@@ -73,7 +73,7 @@ def test_assess_human_table(mixed_file, capsys):
 def test_assess_json_shape(mixed_file, capsys):
     main(["assess", str(mixed_file), "--json"])
     payload = json.loads(capsys.readouterr().out)
-    assert set(payload) == {"results", "aggregate"}
+    assert set(payload) == {"results", "aggregate", "score_semantics"}
     assert len(payload["results"]) == 3
     first = payload["results"][0]
     assert {"id", "gate", "overall", "smell_count", "smells"} <= set(first)
@@ -126,7 +126,7 @@ def test_comply_memory(capsys):
     assert main(["comply", "--memory"]) == 0
     out = capsys.readouterr().out
     assert "memory backend" in out
-    assert "Objectives checked: 15" in out
+    assert "Expected checks: 15" in out
 
 
 def test_comply_memory_json(capsys):
@@ -134,7 +134,10 @@ def test_comply_memory_json(capsys):
     payload = json.loads(capsys.readouterr().out)
     assert payload["backend"] == "memory"
     assert payload["total_objectives"] == 15
-    assert payload["passing"] == 9  # documented CVA6 result
+    assert payload["passing"] == 0
+    assert payload["summary"]["counts"]["UNKNOWN"] == 15
+    assert payload["compliance_rate"] is None
+    assert payload["synthetic"] is True
 
 
 # ---------------------------------------------------------------------------

@@ -27,6 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0  # original baseline source is replayed by grounded_checks.py
           # Pin to exactly the commit CI validated (workflow_run), else the ref.
           ref: ${{ github.event.workflow_run.head_sha || github.ref }}
       - uses: actions/setup-python@v5
@@ -66,6 +67,9 @@ jobs:
         id: exp_hmas
         continue-on-error: true
         run: python scripts/hmas_demo.py | tee /tmp/hmas.txt
+
+      - name: Scoped P0/P1/P2 technical checks (synthetic, archived baseline)
+        run: python experiments/grounded_checks.py
 
       - name: Taxonomy stats + coverage map (calibration subset)
         id: exp_taxonomy

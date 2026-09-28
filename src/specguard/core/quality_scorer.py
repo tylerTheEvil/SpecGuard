@@ -12,14 +12,10 @@ Scoring rationale follows:
   measurement based on requirement smells". Neural Computing and Applications.
 - ISO/IEC/IEEE 29148:2018 quality characteristics.
 
-The output is three normalized scores in [0, 1]:
-- completeness_score: presence of mandatory structural elements
-- consistency_score: absence of self-contradictory patterns (limited at single-req level)
-- verifiability_score: presence of measurable criteria, absence of subjective terms
-
-These map directly to the dissertation's three quality criteria, which in turn
-align with DO-178C Table A-3 objectives 1-7 and DO-254 requirements capture
-objectives.
+The legacy completeness / consistency / verifiability field names are local
+text heuristics, not proofs of specification completeness, semantic consistency,
+or system verifiability. A high score says nothing about omitted failure scenarios.
+Weights and field names are retained for API compatibility; no safety claim follows.
 """
 
 from __future__ import annotations
@@ -91,7 +87,7 @@ MEASURABLE_PATTERNS = [
 
 @dataclass
 class QualityScores:
-    """Quality scores for a single requirement, in [0, 1]."""
+    """Local text heuristics for a single requirement, in [0, 1]."""
 
     requirement_id: str
     completeness: float
