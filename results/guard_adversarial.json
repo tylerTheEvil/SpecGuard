@@ -1,0 +1,653 @@
+{
+  "generated_utc": "2026-09-30T10:56:40+00:00",
+  "guard_function": "specguard.extraction.extractor._validate_proposals",
+  "guard_code_ref": "ab54ec6528110d291d8e4fbc97826a6c8b9bff77",
+  "cases": [
+    {
+      "id": "C01",
+      "category": "control",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement"
+      },
+      "desired": "admit",
+      "observed": {
+        "verdict": "admit",
+        "names_target": true
+      },
+      "note": "genuine span naming its target",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "PR1",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement a lockstep core"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "fabricated evidence_span"
+      },
+      "note": "fabricated span",
+      "strict_span_found": false,
+      "normalised_span_offsets": null
+    },
+    {
+      "id": "PR2",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "L1I",
+        "confidence": 0.9,
+        "evidence_span": "L1 I-Cache misses"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "fabricated evidence_span"
+      },
+      "note": "genuine span copied from another requirement (HPM-30)",
+      "strict_span_found": false,
+      "normalised_span_offsets": null
+    },
+    {
+      "id": "PR3",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "cva6 shall implement"
+      },
+      "desired": "admit",
+      "observed": {
+        "verdict": "reject",
+        "reason": "fabricated evidence_span"
+      },
+      "note": "case variant of a genuine span",
+      "strict_span_found": false,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "PR4",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6  shall implement"
+      },
+      "desired": "admit",
+      "observed": {
+        "verdict": "reject",
+        "reason": "fabricated evidence_span"
+      },
+      "note": "whitespace variant (double space)",
+      "strict_span_found": false,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "PR5",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall\nimplement"
+      },
+      "desired": "admit",
+      "observed": {
+        "verdict": "reject",
+        "reason": "fabricated evidence_span"
+      },
+      "note": "line-break variant",
+      "strict_span_found": false,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "PR6",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement the 64‑bit"
+      },
+      "desired": "admit",
+      "observed": {
+        "verdict": "reject",
+        "reason": "fabricated evidence_span"
+      },
+      "note": "Unicode non-breaking hyphen instead of '-'",
+      "strict_span_found": false,
+      "normalised_span_offsets": null
+    },
+    {
+      "id": "PR7",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CSR",
+        "confidence": 0.9,
+        "evidence_span": "the"
+      },
+      "desired": "admit+flag",
+      "observed": {
+        "verdict": "admit",
+        "names_target": false
+      },
+      "note": "short generic fragment (named-entity edge)",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        21,
+        24
+      ]
+    },
+    {
+      "id": "PR8",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "RVpriv",
+        "confidence": 0.9,
+        "evidence_span": "a"
+      },
+      "desired": "admit+flag",
+      "observed": {
+        "verdict": "admit",
+        "names_target": false
+      },
+      "note": "single-character span",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "PR9",
+      "category": "provenance",
+      "source": "HPM-30",
+      "proposal": {
+        "edge_type": "DERIVES_FROM",
+        "target_entity": "HPM-20",
+        "confidence": 0.9,
+        "evidence_span": "the"
+      },
+      "desired": "admit (unflagged)",
+      "observed": {
+        "verdict": "admit",
+        "names_target": null
+      },
+      "note": "short generic fragment on DERIVES_FROM",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        8,
+        11
+      ]
+    },
+    {
+      "id": "PR10",
+      "category": "provenance",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "FPU",
+        "confidence": 0.9,
+        "evidence_span": "standard performance counters"
+      },
+      "desired": "admit+flag",
+      "observed": {
+        "verdict": "admit",
+        "names_target": false
+      },
+      "note": "genuine but irrelevant span",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        52,
+        81
+      ]
+    },
+    {
+      "id": "BD1",
+      "category": "binding",
+      "source": "ISA-90",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CSR",
+        "confidence": 0.9,
+        "evidence_span": "Zicsr extension"
+      },
+      "desired": "admit+flag",
+      "observed": {
+        "verdict": "admit",
+        "names_target": true
+      },
+      "note": "target id occurs only inside another word",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        23,
+        38
+      ]
+    },
+    {
+      "id": "BD2",
+      "category": "binding",
+      "source": "MEM-10",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "AXI",
+        "confidence": 0.9,
+        "evidence_span": "AXI5 specification"
+      },
+      "desired": "admit+flag",
+      "observed": {
+        "verdict": "admit",
+        "names_target": true
+      },
+      "note": "span names a different standard (AXI5) containing the id",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        40,
+        58
+      ]
+    },
+    {
+      "id": "IN1",
+      "category": "inventory",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "NOT_IN_INVENTORY",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "target not in inventory"
+      },
+      "note": "sentinel target",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "IN2",
+      "category": "inventory",
+      "source": "HPM-30",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "L1D",
+        "confidence": 0.9,
+        "evidence_span": "L1 D-Cache misses"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "target not in inventory"
+      },
+      "note": "plausible entity absent from inventory",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        121,
+        138
+      ]
+    },
+    {
+      "id": "IN3",
+      "category": "inventory",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "cva6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "target not in inventory"
+      },
+      "note": "case variant of a valid target id",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "TY1",
+      "category": "type",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "RVpriv",
+        "confidence": 0.9,
+        "evidence_span": "[RVpriv]"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "target type does not match edge type"
+      },
+      "note": "standard under MENTIONS",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        166,
+        174
+      ]
+    },
+    {
+      "id": "TY2",
+      "category": "type",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "REFERS_TO",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "target type does not match edge type"
+      },
+      "note": "component under REFERS_TO",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "TY3",
+      "category": "type",
+      "source": "HPM-30",
+      "proposal": {
+        "edge_type": "DERIVES_FROM",
+        "target_entity": "CSR",
+        "confidence": 0.9,
+        "evidence_span": "Each of the six generic performance counters"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "target type does not match edge type"
+      },
+      "note": "component under DERIVES_FROM",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        44
+      ]
+    },
+    {
+      "id": "DR1",
+      "category": "derivation",
+      "source": "HPM-30",
+      "proposal": {
+        "edge_type": "DERIVES_FROM",
+        "target_entity": "HPM-30",
+        "confidence": 0.9,
+        "evidence_span": "Each of the six generic performance counters"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "admit",
+        "names_target": null
+      },
+      "note": "self-derivation",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        44
+      ]
+    },
+    {
+      "id": "DR2",
+      "category": "derivation",
+      "source": "HPM-20",
+      "proposal": {
+        "edge_type": "DERIVES_FROM",
+        "target_entity": "HPM-30",
+        "confidence": 0.9,
+        "evidence_span": "six generic 64-bit performance counters"
+      },
+      "desired": "human",
+      "observed": {
+        "verdict": "admit",
+        "names_target": null
+      },
+      "note": "reversed direction (parent -> child)",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        34,
+        73
+      ]
+    },
+    {
+      "id": "DR3",
+      "category": "derivation",
+      "source": "ISA-80",
+      "proposal": {
+        "edge_type": "DERIVES_FROM",
+        "target_entity": "ISA-10",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall support"
+      },
+      "desired": "human",
+      "observed": {
+        "verdict": "admit",
+        "names_target": null
+      },
+      "note": "topical similarity only (annotation-rejected kind)",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        18
+      ]
+    },
+    {
+      "id": "MI1",
+      "category": "mitigates",
+      "source": "FET-20",
+      "proposal": {
+        "edge_type": "MITIGATES",
+        "target_entity": "FET-10",
+        "confidence": 0.9,
+        "evidence_span": "FENCE.T should be available"
+      },
+      "desired": "per Table I: reject",
+      "observed": {
+        "verdict": "admit",
+        "names_target": null
+      },
+      "note": "MITIGATES targeting a requirement",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        27
+      ]
+    },
+    {
+      "id": "SC1",
+      "category": "schema",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "IMPLEMENTS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "CVA6 shall implement"
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "unknown edge_type"
+      },
+      "note": "unknown edge type",
+      "strict_span_found": true,
+      "normalised_span_offsets": [
+        0,
+        20
+      ]
+    },
+    {
+      "id": "SC2",
+      "category": "schema",
+      "source": "HPM-10",
+      "proposal": {
+        "edge_type": "MENTIONS",
+        "target_entity": "CVA6",
+        "confidence": 0.9,
+        "evidence_span": "   "
+      },
+      "desired": "reject",
+      "observed": {
+        "verdict": "reject",
+        "reason": "empty evidence_span"
+      },
+      "note": "whitespace-only span",
+      "strict_span_found": false,
+      "normalised_span_offsets": null
+    }
+  ],
+  "log_replay": {
+    "runs": [
+      {
+        "file": "results/edge_extraction_eval_anthropic_opus48.json",
+        "provider": "anthropic",
+        "proposals": 117,
+        "reproduced": 117,
+        "mismatch": 0,
+        "normalised_changes": 0
+      },
+      {
+        "file": "results/variance_runs/anthropic_opus48_run2.json",
+        "provider": "anthropic",
+        "proposals": 122,
+        "reproduced": 122,
+        "mismatch": 0,
+        "normalised_changes": 0
+      },
+      {
+        "file": "results/variance_runs/anthropic_opus48_run3.json",
+        "provider": "anthropic",
+        "proposals": 119,
+        "reproduced": 119,
+        "mismatch": 0,
+        "normalised_changes": 0
+      },
+      {
+        "file": "results/edge_extraction_eval_ollama_gemma4.json",
+        "provider": "ollama",
+        "proposals": 104,
+        "reproduced": 104,
+        "mismatch": 0,
+        "normalised_changes": 0
+      },
+      {
+        "file": "results/variance_runs/ollama_gemma4_run2.json",
+        "provider": "ollama",
+        "proposals": 104,
+        "reproduced": 104,
+        "mismatch": 0,
+        "normalised_changes": 0
+      },
+      {
+        "file": "results/variance_runs/ollama_gemma4_run3.json",
+        "provider": "ollama",
+        "proposals": 106,
+        "reproduced": 106,
+        "mismatch": 0,
+        "normalised_changes": 0
+      }
+    ],
+    "totals": {
+      "proposals": 672,
+      "reproduced": 672,
+      "mismatch": 0,
+      "normalised_changes": 0
+    },
+    "shortest_admitted_spans": [
+      {
+        "len": 3,
+        "span": "L1I",
+        "edge_type": "MENTIONS",
+        "source": "L1I-50"
+      },
+      {
+        "len": 3,
+        "span": "L1I",
+        "edge_type": "MENTIONS",
+        "source": "L1I-50"
+      },
+      {
+        "len": 3,
+        "span": "L1I",
+        "edge_type": "MENTIONS",
+        "source": "L1I-50"
+      },
+      {
+        "len": 4,
+        "span": "CVA6",
+        "edge_type": "MENTIONS",
+        "source": "HPM-50"
+      },
+      {
+        "len": 4,
+        "span": "CVA6",
+        "edge_type": "MENTIONS",
+        "source": "ISA-140"
+      },
+      {
+        "len": 4,
+        "span": "CVA6",
+        "edge_type": "MENTIONS",
+        "source": "ISA-140"
+      },
+      {
+        "len": 4,
+        "span": "CVA6",
+        "edge_type": "MENTIONS",
+        "source": "ISA-140"
+      },
+      {
+        "len": 4,
+        "span": "CVA6",
+        "edge_type": "MENTIONS",
+        "source": "ISA-150"
+      }
+    ]
+  }
+}
