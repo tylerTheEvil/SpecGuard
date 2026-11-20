@@ -87,6 +87,21 @@ def test_assess_stdin(monkeypatch, capsys):
     assert main(["assess", "-"]) == 0
 
 
+def test_assess_structural_is_opt_in(monkeypatch, capsys):
+    import io
+
+    text = "S1: The FC shall log the event and notify the GCS.\n"
+    monkeypatch.setattr("sys.stdin", io.StringIO(text))
+    main(["assess", "-", "--json"])
+    off = json.loads(capsys.readouterr().out)["results"][0]
+    monkeypatch.setattr("sys.stdin", io.StringIO(text))
+    main(["assess", "-", "--json", "--structural"])
+    on = json.loads(capsys.readouterr().out)["results"][0]
+    assert off["smell_count"] == 0
+    assert on["smell_count"] == 1
+    assert "non_atomic" in json.dumps(on["smells"])
+
+
 def test_assess_parse_error_exit_3(tmp_path):
     p = tmp_path / "bad.txt"
     p.write_text("no id prefix here at all")

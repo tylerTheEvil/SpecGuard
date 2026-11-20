@@ -2,6 +2,38 @@
 
 ## [Unreleased]
 
+### 2026-11-20 — Opt-in structural smells (Veizaga et al. 2024, EARS)
+
+- New stdlib-only module `core/structure.py`: keyword (EARS) segmentation into
+  condition / actor / modal / response, and seven segment-level smells adapted
+  from Paska (Veizaga, Shin & Briand, IEEE TSE 50(4), 2024): not a requirement,
+  incomplete requirement, incomplete response, incorrect order, coordination
+  ambiguity, non-atomic, passive voice.
+- **Opt-in** — `assess_requirement(..., structural=True)`, `assess_dataset(...,
+  structural=True)`, `specguard assess --structural`. `DETECTORS` is untouched,
+  so every published number (CVA6 61/1/2, seeded-fault tiers, spec-kit corpus)
+  reproduces without the flag; a regression test pins the CVA6 gate counts.
+- Why opt-in, not default: the structural smells have provisional, uncalibrated
+  severities. Making them default would silently shift numbers already in
+  submitted papers. Calibrate on a held-out corpus (PX4) first.
+- Why no parser: Paska relies on POS tagging, constituency parsing and Tregex;
+  that would break the stdlib-only core (DO-330 argument). Trade-off taken:
+  Paska's "incomplete condition" (needs POS) is not implemented, and a missing
+  actor is only reported when provably empty.
+- FP guards found on CVA6 (with the flag on): parenthetical conditions
+  (FET-20), identifiers like `[CV-X-IF]` (XIF-10), `upon <noun>` inside the
+  response (L1W-50), trailing note sentences (L1W-10, L1W-90), stative
+  participles (`is armed`, `is unrelated`). With the flag on, CVA6 gates are
+  unchanged (only PPA-50/60 gain `not_a_requirement`); on the UAV dataset four
+  "detect X and command Y" requirements are reported as non-atomic — left
+  as findings for review, not tuned away.
+- `quality_scorer`: structural smell values mapped into the completeness /
+  verifiability penalty sets by string value (scorer stays independent of the
+  new module so the vendored copy keeps working). Vendored core re-synced.
+- Citation fixes: Veizaga et al. is TSE 2024 (was "2023"); `seeded_faults.py`
+  no longer claims Paska used mutation-style validation (it used a manually
+  annotated industrial ground truth).
+
 ### 2026-09-28 — Review fixes and Neo4j timing test expectations
 
 - Restrict the G7 ambiguity exception to the recognized `fail-safe`,

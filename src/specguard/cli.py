@@ -70,7 +70,7 @@ def cmd_assess(args: argparse.Namespace) -> int:
     except ParseError as exc:
         print(f"Parse error: {exc}", file=sys.stderr)
         return 3
-    results = assess_dataset(requirements)
+    results = assess_dataset(requirements, structural=args.structural)
     metrics = aggregate_metrics(results)
 
     if args.json:
@@ -589,6 +589,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_assess.add_argument("path", help="Requirements file, or '-' for stdin.")
     p_assess.add_argument("--format", default="auto", help="auto|text|md|csv (default auto).")
     p_assess.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    p_assess.add_argument(
+        "--structural",
+        action="store_true",
+        help="Also run opt-in structural smells (EARS segmentation; Veizaga et al. 2024).",
+    )
     p_assess.set_defaults(func=cmd_assess)
 
     # import

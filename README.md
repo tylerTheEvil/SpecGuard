@@ -212,8 +212,10 @@ Two GitHub Actions pipelines (`.github/workflows/`):
 
 1. **Vogelsang & Korn (ICSE-NIER 2025)** — Requirements smell catalog and
    their impact on LLM-based traceability tasks.
-2. **Veizaga et al. (IEEE TSE 2023)** — *Paska + Rimay CNL*: 89% precision
-   and recall on industrial smell detection in 13 financial systems.
+2. **Veizaga et al. (IEEE TSE 50(4), 2024)** — *Paska + Rimay CNL*: 89% precision
+   and recall on industrial smell detection in 13 financial systems. Its
+   segment-level smells are adapted (parser-free, EARS-based) in the opt-in
+   `core/structure.py` — `specguard assess --structural`.
 3. **Zakeri-Nasrabadi et al. (Neural Computing & Applications 2024)** —
    Mathematical model for quantitative testability scoring on 1000 industrial
    requirements.

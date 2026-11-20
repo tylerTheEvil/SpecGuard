@@ -48,6 +48,27 @@ SMELL_AFFECTS_COMPLETENESS = {
     SmellType.OPTIONALITY,
 }
 
+# Structural (segment-level) smells from ``core.structure`` — emitted only when
+# the caller opts in (``assess_requirement(..., structural=True)``), so default
+# scores are unchanged. Listed by string value: ``StructuralSmellType`` is a
+# str-Enum and compares equal to its value, and this module must not import
+# ``structure`` (it is vendored into the spec-kit extension on its own).
+# Mapping follows the quality attribute Veizaga et al. (2024, Table III) assign
+# to each smell: completeness -> completeness; atomicity / clarity /
+# correctness -> verifiability (each obscures what a test must check).
+# Provisional and uncalibrated.
+SMELL_AFFECTS_COMPLETENESS |= {
+    "not_a_requirement",
+    "incomplete_requirement",
+    "incomplete_response",
+    "passive_voice",
+}
+SMELL_AFFECTS_VERIFIABILITY |= {
+    "non_atomic",
+    "coordination_ambiguity",
+    "incorrect_order",
+}
+
 # Modal verbs indicating commitment level
 MANDATORY_MODALS = {"shall", "must", "will"}
 RECOMMENDED_MODALS = {"should"}
