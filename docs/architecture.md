@@ -25,6 +25,9 @@ Layer 3 — Compliance codification     src/specguard/compliance/
 - Rule-based only — no LLM in detection path (required for DO-330 qualifiability)
 - Quality scoring adapted from Zakeri-Nasrabadi et al. (2024)
 - Gate decisions: PASS / WARN / FAIL
+- Opt-in set-level screening in `core/set_checks.py` (`specguard setcheck`):
+  duplicate / near-duplicate pairs, acronyms not in glossary or defined
+  in-text, acronym spelling variants — candidates for review, outside the gate
 
 ### Layer 2: Knowledge graph (Neo4j / NetworkX)
 
