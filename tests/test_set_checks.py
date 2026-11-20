@@ -12,6 +12,7 @@ import pytest
 from specguard.cli import main
 from specguard.core.set_checks import (
     defined_in_text,
+    find_duplicate_ids,
     find_duplicates,
     find_term_variants,
     find_undefined_acronyms,
@@ -64,6 +65,29 @@ class TestDuplicates:
             ("R1", "R3"): ("variant", "polarity"),
             ("R2", "R3"): ("variant", "polarity"),
         }
+
+    def test_same_id_different_texts_is_not_a_self_pair(self):
+        # Regression: keying by ID overwrote R1's first text and paired R1
+        # with itself as a false "exact R1 ~ R1".
+        reqs = [
+            ("R1", "The FC shall respond within 100 ms."),
+            ("R1", "The GCS shall display battery voltage in volts."),
+        ]
+        assert not any(d.kind == "exact" for d in find_duplicates(reqs))
+        assert find_duplicate_ids(reqs) == [("R1", 2)]
+        report = run_set_checks(reqs)
+        assert report.duplicate_ids == [("R1", 2)]
+        assert report.has_findings
+
+    def test_same_id_identical_text_is_one_exact_pair_and_a_duplicate_id(self):
+        reqs = [("R1", "The FC shall land."), ("R1", "The FC shall land.")]
+        report = run_set_checks(reqs)
+        assert [(d.kind, d.a_id, d.b_id) for d in report.duplicates] == [("exact", "R1", "R1")]
+        assert report.duplicate_ids == [("R1", 2)]
+
+    def test_duplicate_ids_first_seen_order(self):
+        reqs = [("B", "x"), ("A", "y"), ("B", "z"), ("A", "w"), ("A", "v"), ("C", "u")]
+        assert find_duplicate_ids(reqs) == [("B", 2), ("A", 3)]
 
     def test_modal_difference_is_not_a_duplicate(self):
         reqs = [
@@ -165,6 +189,7 @@ class TestReportAndRegression:
         assert by_kind.count(("variant", "polarity")) == 1
         assert len(r.acronyms) == 26 and all(a.status == "unknown" for a in r.acronyms)
         assert r.acronyms_defined == {"LRU", "PMP", "TRI"}
+        assert r.duplicate_ids == []
 
     def test_variants_and_unknown_are_not_findings(self):
         reqs = [
@@ -189,6 +214,14 @@ class TestCli:
         payload = json.loads(capsys.readouterr().out)
         assert payload["duplicates"][0]["kind"] == "exact"
         assert payload["glossary_provided"] is False
+        assert payload["duplicate_ids"] == []
+
+        dup = tmp_path / "d.txt"
+        dup.write_text("R1: The FC shall land.\nR1: The GCS shall show voltage.\n")
+        assert main(["setcheck", str(dup), "--json"]) == 1
+        payload = json.loads(capsys.readouterr().out)
+        assert payload["duplicate_ids"] == [{"requirement_id": "R1", "count": 2}]
+        assert payload["duplicates"] == []
 
         clean = tmp_path / "c.txt"
         clean.write_text("R1: The unit shall land.\nR2: The display shall show voltage in volts.\n")

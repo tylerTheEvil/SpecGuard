@@ -159,6 +159,9 @@ def cmd_setcheck(args: argparse.Namespace) -> int:
             {
                 "requirement_count": report.requirement_count,
                 "glossary_provided": report.glossary_provided,
+                "duplicate_ids": [
+                    {"requirement_id": rid, "count": n} for rid, n in report.duplicate_ids
+                ],
                 "duplicates": [asdict(d) for d in report.duplicates],
                 "acronyms": [asdict(a) for a in report.acronyms],
                 "acronyms_defined": sorted(report.acronyms_defined),
@@ -170,6 +173,11 @@ def cmd_setcheck(args: argparse.Namespace) -> int:
         )
     else:
         print(f"{report.requirement_count} requirements")
+        print("\nDuplicate requirement IDs (id: occurrences):")
+        if not report.duplicate_ids:
+            print("  -")
+        for rid, n in report.duplicate_ids:
+            print(f"  {rid}: {n}")
         print("\nDuplicate candidates (kind, pair, similarity, differing tokens):")
         if not report.duplicates:
             print("  -")

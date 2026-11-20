@@ -132,9 +132,13 @@ def find_duplicates(
         near_threshold: minimum token-sequence similarity for ``near`` and
             ``variant`` candidates. Exact duplicates are always reported.
     """
-    toks = {rid: _tokens(text) for rid, text in requirements}
-    sets = {rid: set(t) for rid, t in toks.items()}
-    names_by_req = {rid: _identifier_tokens(text) for rid, text in requirements}
+    # Indexed by position, not by ID: two different requirements may share an
+    # ID (a defect reported by ``find_duplicate_ids``). Keying by ID would
+    # overwrite the first text and pair the ID with itself.
+    items = list(requirements)
+    toks = [_tokens(text) for _, text in items]
+    sets = [set(t) for t in toks]
+    names_by_req = [_identifier_tokens(text) for _, text in items]
 
     # All pairs, no rare-token blocking. Blocking on tokens that are not
     # ubiquitous in the set silently drops exactly the pairs this check exists
@@ -142,26 +146,25 @@ def find_duplicates(
     # the set (e.g. "shall" vs "shall not" differ by one rare token only).
     # Pairs are cheap to reject (Jaccard on token sets) before difflib runs;
     # O(n^2) is acceptable for a screening command over one specification.
-    ids = [rid for rid, _ in requirements]
-
     found: list[DuplicateCandidate] = []
-    for a, b in combinations(ids, 2):
-        if not toks[a] or not toks[b]:
+    for i, j in combinations(range(len(items)), 2):
+        a, b = items[i][0], items[j][0]
+        if not toks[i] or not toks[j]:
             continue
-        union = sets[a] | sets[b]
-        jaccard = len(sets[a] & sets[b]) / len(union)
-        if toks[a] == toks[b]:
+        union = sets[i] | sets[j]
+        jaccard = len(sets[i] & sets[j]) / len(union)
+        if toks[i] == toks[j]:
             found.append(DuplicateCandidate("exact", a, b, 1.0, 1.0, (), ()))
             continue
         if jaccard < JACCARD_PREFILTER:
             continue
-        ratio = SequenceMatcher(a=toks[a], b=toks[b], autojunk=False).ratio()
+        ratio = SequenceMatcher(a=toks[i], b=toks[j], autojunk=False).ratio()
         if ratio < near_threshold:
             continue
-        only_a = tuple(sorted(sets[a] - sets[b]))
-        only_b = tuple(sorted(sets[b] - sets[a]))
+        only_a = tuple(sorted(sets[i] - sets[j]))
+        only_b = tuple(sorted(sets[j] - sets[i]))
         diff = set(only_a) | set(only_b)
-        names = names_by_req[a] | names_by_req[b]
+        names = names_by_req[i] | names_by_req[j]
         if diff & POLARITY_TOKENS:
             kind, reason = "variant", "polarity"
         elif diff and all(_is_parameter_token(t, names) for t in diff):
@@ -174,6 +177,18 @@ def find_duplicates(
             )
         )
     return found
+
+
+def find_duplicate_ids(requirements: list[tuple[str, str]]) -> list[tuple[str, int]]:
+    """Requirement IDs used more than once, with their count, in first-seen order.
+
+    A reused ID breaks traceability regardless of whether the texts match, so
+    it is a finding of its own, separate from text duplicates.
+    """
+    counts: dict[str, int] = {}
+    for rid, _ in requirements:
+        counts[rid] = counts.get(rid, 0) + 1
+    return [(rid, n) for rid, n in counts.items() if n > 1]
 
 
 # ---------------------------------------------------------------------------
@@ -331,6 +346,7 @@ def find_term_variants(requirements: list[tuple[str, str]]) -> list[TermVariant]
 class SetCheckReport:
     requirement_count: int
     duplicates: list[DuplicateCandidate] = field(default_factory=list)
+    duplicate_ids: list[tuple[str, int]] = field(default_factory=list)
     acronyms: list[AcronymFinding] = field(default_factory=list)
     acronyms_defined: set[str] = field(default_factory=set)
     term_variants: list[TermVariant] = field(default_factory=list)
@@ -338,13 +354,14 @@ class SetCheckReport:
 
     @property
     def has_findings(self) -> bool:
-        """True for exact/near duplicates, undefined acronyms or term variants.
+        """True for duplicate IDs, exact/near duplicates, undefined acronyms or term variants.
 
         ``variant`` pairs and ``unknown`` acronyms are informational: they need
         a human look but are not established defects.
         """
         return (
-            any(d.kind in ("exact", "near") for d in self.duplicates)
+            bool(self.duplicate_ids)
+            or any(d.kind in ("exact", "near") for d in self.duplicates)
             or any(a.status == "undefined" for a in self.acronyms)
             or bool(self.term_variants)
         )
@@ -361,6 +378,7 @@ def run_set_checks(
     return SetCheckReport(
         requirement_count=len(requirements),
         duplicates=find_duplicates(requirements, near_threshold=near_threshold),
+        duplicate_ids=find_duplicate_ids(requirements),
         acronyms=acronyms,
         acronyms_defined=defined,
         term_variants=find_term_variants(requirements),

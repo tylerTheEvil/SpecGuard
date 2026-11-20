@@ -20,6 +20,9 @@ see — TfNSW ASA *T MU AM 06007 GU* (v3.0, 2016), App. E, Table 13; ISO/IEC/IEE
   following the UNKNOWN discipline of `grounded_checks.md`.
 - **Consistent terms (narrow)** — `find_term_variants`: one acronym in several
   spellings (`I-TLB` / `ITLB`). Synonyms are out of reach for a lexical check.
+- **Duplicate IDs** — `find_duplicate_ids`: an ID used for more than one
+  requirement is a finding (exit 1); pairs are indexed by position, so a
+  reused ID no longer yields a false `exact R1 ~ R1`.
 
 Decisions:
 - **Opt-in and outside the gate.** Set-level candidates are not per-requirement
