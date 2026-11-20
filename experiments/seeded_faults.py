@@ -24,8 +24,13 @@ evidence of method quality in Paper #3.
 Methodology reference:
 - Zakeri-Nasrabadi et al. (2024). "Natural language requirements testability
   measurement based on requirement smells"
-- Veizaga et al. (2023). "Automated Smell Detection and Recommendation"
-  used similar mutation-style validation
+- Veizaga, Shin & Briand (2024). "Automated Smell Detection and
+  Recommendation in Natural Language Requirements", IEEE TSE 50(4).
+  NOTE: Paska was evaluated against a manually annotated industrial ground
+  truth (2725 requirements, 13 SRSs), not by mutation — cite it as the
+  annotated-ground-truth contrast to this seeded-fault method, not as a
+  precedent for it. (Seeded omissions as an evaluation device: Arora et al.,
+  domain-model completeness study, cited in Veizaga et al. 2024 §IX.)
 """
 
 from __future__ import annotations

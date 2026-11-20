@@ -46,18 +46,33 @@ class AssessmentResult:
         )
 
 
-def assess_requirement(req_id: str, text: str, metadata: dict | None = None) -> AssessmentResult:
+def assess_requirement(
+    req_id: str,
+    text: str,
+    metadata: dict | None = None,
+    *,
+    structural: bool = False,
+) -> AssessmentResult:
     """Run the complete pipeline on a single requirement.
 
     Args:
         req_id: Requirement identifier (e.g., "L1W-10")
         text: Natural language requirement text
         metadata: Optional metadata (category, safety-critical flag, etc.)
+        structural: Also run the opt-in structural (segment-level) detectors
+            from ``core.structure`` (Veizaga et al. 2024 smells, EARS
+            segmentation). Off by default so published Layer 1 numbers are
+            reproducible unchanged.
 
     Returns:
         AssessmentResult with smell report, quality scores, and gate decision.
     """
     smell_report = analyze_requirement(req_id, text)
+    if structural:
+        from .structure import detect_structural_smells
+
+        smell_report.hits.extend(detect_structural_smells(text))
+        smell_report.hits.sort(key=lambda h: h.position)
     quality_scores = score_requirement(text, smell_report)
     return AssessmentResult(
         requirement_id=req_id,
@@ -68,7 +83,7 @@ def assess_requirement(req_id: str, text: str, metadata: dict | None = None) -> 
     )
 
 
-def assess_dataset(requirements: list) -> list[AssessmentResult]:
+def assess_dataset(requirements: list, *, structural: bool = False) -> list[AssessmentResult]:
     """Run the complete pipeline on a list of Requirement objects."""
     results = []
     for req in requirements:
@@ -77,7 +92,7 @@ def assess_dataset(requirements: list) -> list[AssessmentResult]:
             "safety_critical_context": req.safety_critical_context,
             "parent_section": req.parent_section,
         }
-        result = assess_requirement(req.req_id, req.text, metadata=metadata)
+        result = assess_requirement(req.req_id, req.text, metadata=metadata, structural=structural)
         results.append(result)
     return results
 

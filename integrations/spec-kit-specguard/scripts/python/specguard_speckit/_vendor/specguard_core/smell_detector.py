@@ -26,9 +26,13 @@ reproducible, deterministic results suitable for DO-330 tool qualification
 considerations. LLM-based augmentation (suggestions, explanations) is
 provided in a separate module.
 
+Structural (segment-level) smells adapted from Veizaga et al. (2024) live in
+the opt-in module ``core.structure``; they are not part of ``DETECTORS``.
+
 Future work:
-- Recommendation engine inspired by Veizaga et al. (2023) IEEE TSE
-  "Automated Smell Detection and Recommendation in NL Requirements".
+- Recommendation engine inspired by Veizaga, Shin & Briand (2024),
+  "Automated Smell Detection and Recommendation in Natural Language
+  Requirements", IEEE TSE 50(4):695-720, DOI 10.1109/TSE.2024.3361033.
 """
 
 from __future__ import annotations

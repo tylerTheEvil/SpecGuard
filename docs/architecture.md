@@ -25,6 +25,9 @@ Layer 3 — Compliance codification     src/specguard/compliance/
 - Rule-based only — no LLM in detection path (required for DO-330 qualifiability)
 - Quality scoring adapted from Zakeri-Nasrabadi et al. (2024)
 - Gate decisions: PASS / WARN / FAIL
+- Opt-in structural (segment-level) smells in `core/structure.py` — EARS
+  keyword segmentation, smells adapted from Veizaga et al. (TSE 2024); still
+  stdlib-only and deterministic, off by default (`--structural`)
 
 ### Layer 2: Knowledge graph (Neo4j / NetworkX)
 
