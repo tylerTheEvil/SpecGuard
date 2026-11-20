@@ -1,7 +1,7 @@
 {
   "source_repository": "https://github.com/tylerTheEvil/SpecGuard",
-  "source_commit": "3727081b266009d9c1ee55989eaab7295168ea93",
-  "source_dirty": true,
+  "source_commit": "677b43359e8d5bc1bf1b783842e40ed56b8d05a6",
+  "source_dirty": false,
   "source_paths": {
     "smell_detector.py": "src/specguard/core/smell_detector.py",
     "quality_scorer.py": "src/specguard/core/quality_scorer.py"
