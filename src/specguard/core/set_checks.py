@@ -136,32 +136,16 @@ def find_duplicates(
     sets = {rid: set(t) for rid, t in toks.items()}
     names_by_req = {rid: _identifier_tokens(text) for rid, text in requirements}
 
-    # Blocking: compare only pairs that share a token that is not ubiquitous.
-    df: dict[str, int] = defaultdict(int)
-    for s in sets.values():
-        for t in s:
-            df[t] += 1
-    limit = max(2, len(requirements) // 2)
-    index: dict[str, set[str]] = defaultdict(set)
-    for rid, s in sets.items():
-        for t in s:
-            if df[t] <= limit:
-                index[t].add(rid)
-    order = {rid: i for i, (rid, _) in enumerate(requirements)}
-    pairs: set[tuple[str, str]] = set()
-    for ids in index.values():
-        for a, b in combinations(sorted(ids, key=order.__getitem__), 2):
-            pairs.add((a, b))
-    # Requirements consisting only of ubiquitous tokens still need exact matching.
-    by_norm: dict[tuple[str, ...], list[str]] = defaultdict(list)
-    for rid, seq in toks.items():
-        by_norm[tuple(seq)].append(rid)
-    for same in by_norm.values():
-        for a, b in combinations(same, 2):
-            pairs.add((a, b) if order[a] < order[b] else (b, a))
+    # All pairs, no rare-token blocking. Blocking on tokens that are not
+    # ubiquitous in the set silently drops exactly the pairs this check exists
+    # for: near-identical requirements whose shared tokens are common across
+    # the set (e.g. "shall" vs "shall not" differ by one rare token only).
+    # Pairs are cheap to reject (Jaccard on token sets) before difflib runs;
+    # O(n^2) is acceptable for a screening command over one specification.
+    ids = [rid for rid, _ in requirements]
 
     found: list[DuplicateCandidate] = []
-    for a, b in sorted(pairs, key=lambda p: (order[p[0]], order[p[1]])):
+    for a, b in combinations(ids, 2):
         if not toks[a] or not toks[b]:
             continue
         union = sets[a] | sets[b]

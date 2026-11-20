@@ -51,6 +51,20 @@ class TestDuplicates:
         ]
         assert kinds(reqs) == {("R1", "R2"): ("variant", "polarity")}
 
+    def test_pairs_sharing_only_common_tokens_are_compared(self):
+        # Regression: rare-token blocking never paired R3 with R1/R2, because
+        # every token R3 shares with them occurs in all three requirements.
+        reqs = [
+            ("R1", "When the GNSS fix is lost, the FC shall enter Hold mode within 1 s."),
+            ("R2", "When GNSS fix is lost the FC shall enter Hold mode within 1 s."),
+            ("R3", "When the GNSS fix is lost, the FC shall not enter Hold mode within 1 s."),
+        ]
+        assert kinds(reqs) == {
+            ("R1", "R2"): ("exact", None),
+            ("R1", "R3"): ("variant", "polarity"),
+            ("R2", "R3"): ("variant", "polarity"),
+        }
+
     def test_modal_difference_is_not_a_duplicate(self):
         reqs = [
             ("R1", "The FC shall log every parameter change to the flight log."),
