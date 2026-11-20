@@ -119,6 +119,82 @@ def cmd_assess(args: argparse.Namespace) -> int:
 
 
 # ---------------------------------------------------------------------------
+# setcheck
+# ---------------------------------------------------------------------------
+
+
+def cmd_setcheck(args: argparse.Namespace) -> int:
+    """Set-level screening: duplicates, undefined acronyms, term variants.
+
+    Exit 0 no findings, 1 findings (candidates for review), 3 input error.
+    ``variant`` pairs and ``unknown`` acronyms are informational (exit 0).
+    """
+    from dataclasses import asdict
+
+    from specguard.core.set_checks import load_glossary, run_set_checks
+
+    try:
+        requirements = parse_requirements(_read_input_arg(args.path), fmt=args.format)
+    except ParseError as exc:
+        print(f"Parse error: {exc}", file=sys.stderr)
+        return 3
+    glossary = None
+    if args.glossary:
+        try:
+            glossary = load_glossary(args.glossary)
+        except OSError as exc:
+            print(f"Glossary error: {exc}", file=sys.stderr)
+            return 3
+    if not 0.0 < args.near_threshold <= 1.0:
+        print("--near-threshold must be in (0, 1].", file=sys.stderr)
+        return 3
+    report = run_set_checks(
+        [(r.req_id, r.text) for r in requirements],
+        glossary=glossary,
+        near_threshold=args.near_threshold,
+    )
+
+    if args.json:
+        _emit_json(
+            {
+                "requirement_count": report.requirement_count,
+                "glossary_provided": report.glossary_provided,
+                "duplicates": [asdict(d) for d in report.duplicates],
+                "acronyms": [asdict(a) for a in report.acronyms],
+                "acronyms_defined": sorted(report.acronyms_defined),
+                "term_variants": [asdict(v) for v in report.term_variants],
+                "has_findings": report.has_findings,
+                "semantics": "Screening candidates for human review; not proof of redundancy "
+                "or of an undefined term",
+            }
+        )
+    else:
+        print(f"{report.requirement_count} requirements")
+        print("\nDuplicate candidates (kind, pair, similarity, differing tokens):")
+        if not report.duplicates:
+            print("  -")
+        for d in report.duplicates:
+            kind = d.kind if d.variant_reason is None else f"{d.kind}:{d.variant_reason}"
+            diff = f"{list(d.only_in_a)} vs {list(d.only_in_b)}" if d.kind != "exact" else ""
+            print(f"  {kind:<18} {d.a_id} ~ {d.b_id}  {d.similarity:.3f}  {diff}")
+        label = "Undefined acronyms" if report.glossary_provided else "Acronyms not defined in-text"
+        print(f"\n{label} (term: requirements):")
+        if not report.acronyms:
+            print("  -")
+        for a in report.acronyms:
+            print(f"  {a.status:<10} {a.term}: {', '.join(a.requirement_ids)}")
+        if not report.glossary_provided and report.acronyms:
+            print("  (no --glossary given: status 'unknown', not a finding)")
+        print("\nAcronym spelling variants:")
+        if not report.term_variants:
+            print("  -")
+        for v in report.term_variants:
+            print(f"  {' / '.join(v.spellings)}: {', '.join(v.requirement_ids)}")
+        print("\nScreening candidates for human review, not proofs.")
+    return 1 if report.has_findings else 0
+
+
+# ---------------------------------------------------------------------------
 # import
 # ---------------------------------------------------------------------------
 
@@ -590,6 +666,22 @@ def build_parser() -> argparse.ArgumentParser:
     p_assess.add_argument("--format", default="auto", help="auto|text|md|csv (default auto).")
     p_assess.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     p_assess.set_defaults(func=cmd_assess)
+
+    # setcheck
+    p_set = sub.add_parser(
+        "setcheck", help="Set-level screening: duplicates, undefined acronyms, term variants."
+    )
+    p_set.add_argument("path", help="Requirements file, or '-' for stdin.")
+    p_set.add_argument("--format", default="auto", help="auto|text|md|csv (default auto).")
+    p_set.add_argument("--glossary", default=None, help="Glossary file (TERM[: definition]).")
+    p_set.add_argument(
+        "--near-threshold",
+        type=float,
+        default=0.85,
+        help="Token-sequence similarity for near-duplicate candidates (default 0.85).",
+    )
+    p_set.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    p_set.set_defaults(func=cmd_setcheck)
 
     # import
     p_import = sub.add_parser("import", help="Parse + build graph; optionally MERGE to Neo4j.")

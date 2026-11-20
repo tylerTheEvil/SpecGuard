@@ -133,6 +133,7 @@ Input parsers accept plain text (`ID: text` per line), Markdown tables, and CSV
 ```bash
 specguard assess reqs.txt                       # Layer 1 gate table (text/MD/CSV/stdin)
 specguard assess - --json                        # machine-readable; stdin input
+specguard setcheck reqs.txt [--glossary g.txt]    # set-level screening: duplicates, undefined acronyms (opt-in)
 specguard import reqs.csv --dataset-tag myproj   # build graph, report counts (dry run)
 specguard import reqs.csv --dataset-tag myproj --to-neo4j   # MERGE (never clears; dataset-tagged)
 specguard comply --memory                        # 15 codified objectives, no DB needed

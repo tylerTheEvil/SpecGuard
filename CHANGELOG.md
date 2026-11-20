@@ -2,6 +2,40 @@
 
 ## [Unreleased]
 
+### 2026-11-20 — Opt-in set-level screening (`core/set_checks.py`, `specguard setcheck`)
+
+Covers three quality-review criteria that a per-requirement detector cannot
+see — TfNSW ASA *T MU AM 06007 GU* (v3.0, 2016), App. E, Table 13; ISO/IEC/IEEE
+29148:2018 §5.2.6 (set characteristics):
+
+- **Necessary / no duplication** — `find_duplicates`: exact (after
+  normalisation) and near-duplicate pairs (Jaccard pre-filter, `difflib`
+  token-sequence ratio ≥ 0.85). Pairs differing only in identifiers/numbers are
+  `variant:parameter`; pairs differing in negation or modal verbs are
+  `variant:polarity` (worth a look as a possible conflict; no conflict-detection
+  claim).
+- **Defined terms and acronyms** — `find_undefined_acronyms`: in-text
+  definitions ("Inertial Measurement Unit (IMU)") are recognised; with
+  `--glossary` the rest are `undefined`, without it `unknown` (not a finding),
+  following the UNKNOWN discipline of `grounded_checks.md`.
+- **Consistent terms (narrow)** — `find_term_variants`: one acronym in several
+  spellings (`I-TLB` / `ITLB`). Synonyms are out of reach for a lexical check.
+
+Decisions:
+- **Opt-in and outside the gate.** Set-level candidates are not per-requirement
+  verdicts; `assess` / `pipeline.py` are untouched, so all published numbers
+  reproduce. Exit codes: 0 none, 1 candidates, 3 input error.
+- **No embeddings.** A trained model in the detection path would break the
+  stdlib-only/DO-330 argument; cost: low-overlap paraphrases are missed.
+- Not vendored into the spec-kit extension (lock unchanged).
+
+On CVA6 (pinned in `tests/test_set_checks.py`): 0 exact, 1 near (PPA-50 ~
+PPA-60, both TBD placeholders), 7 parameter variants (L1W-*/L1I-* families,
+ISA-140/150), 1 polarity variant (L1W-30 ~ L1I-10, "no cache"); 26 acronyms
+not defined in-text (no glossary in the dataset → `unknown`), 3 defined in-text;
+one spelling variant, `I-TLB` / `ITLB` in HPM-30 — a genuine inconsistency.
+UAV dataset: no duplicate candidates, 7 acronyms without in-text definition.
+
 ### 2026-09-28 — Review fixes and Neo4j timing test expectations
 
 - Restrict the G7 ambiguity exception to the recognized `fail-safe`,
